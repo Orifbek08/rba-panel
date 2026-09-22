@@ -616,6 +616,7 @@ input::placeholder{color:var(--muted)}
   <div class="pswitch" id="pswitch">
     <button data-prod="praktikum">3 кунлик</button>
     <button data-prod="kouch">Коучинг</button>
+    <button data-prod="ai">Сунъий интеллект</button>
     <button data-prod="moliya">Молия</button>
     <button data-prod="marketing">Маркетинг</button>
   </div>
@@ -655,6 +656,10 @@ var KALIT_MOLIYA = 'moliya-2026-BUNI-OZGARTIRING-9z8y7x';
 var API_MARKETING   = 'https://script.google.com/macros/s/AKfycbwiVKenlzSr9oUA-T-PiZMlNVoVZUlveIH82mCYFpsqt_OAigzt0etZJexq58052WNY/exec';
 var KALIT_MARKETING = 'marketing-2026-BUNI-OZGARTIRING-5k4j3h';
 
+/* Сунъий интеллект (RBA AI 3.0) — AI.gs деплойи */
+var API_AI   = 'https://script.google.com/macros/s/AKfycbw0KmelTqx6XC-oql_YuvM9S-UMNByLospSMjSfv4Cv2671ABwz5N6p3UVbol477Ru2/exec';
+var KALIT_AI = 'ai-2026-BUNI-OZGARTIRING-7r6t5y';
+
 
 /* ══════════════════════════════════════════════════════
    2. ҲОЛАТ — илова нимани кўрсатиб турибди
@@ -671,7 +676,7 @@ var S = {
   ochiq:   null,              // очилган карточка номи
   qidiruv: '',
   target:  'hammasi',         // маркетинг: қайси таргетолог
-  eski:false, xato:null, band:false, mBand:false, kBand:false, yangi:false
+  eski:false, xato:null, band:false, mBand:false, kBand:false, aBand:false, yangi:false
 };
 
 var XOT='rba_sotuv_v2', TEMA='rba_tema_v1';
@@ -733,6 +738,7 @@ function dqisqa(s){ var d=sanaOqi(s); if(!d) return '';
 /** Молия API созланганми */
 function moliyaUlangan(){ return API_MOLIYA.indexOf('BU_YERGA')<0 }
 function markUlangan(){ return API_MARKETING.indexOf('BU_YERGA')<0 }
+function aiUlangan(){ return API_AI.indexOf('BU_YERGA')<0 }
 
 async function bittaYukla(url){
   var r=await fetch(url);
@@ -761,7 +767,8 @@ async function yukla(jim){
     if(D){ j.moliya=D.moliya; j.moliyaTashxis=D.moliyaTashxis;
            j.moliyaVersiya=D.moliyaVersiya; j.moliyaXato=D.moliyaXato;
            j.marketing=D.marketing; j.markTashxis=D.markTashxis;
-           j.markVersiya=D.markVersiya; j.markXato=D.markXato }
+           j.markVersiya=D.markVersiya; j.markXato=D.markXato;
+           j.ai=D.ai; j.aiReja=D.aiReja; j.aiVersiya=D.aiVersiya; j.aiXato=D.aiXato }
     D=j; S.xato=null; S.eski=false;
     aloqa(true,D.vaqt);
     saqla();
@@ -773,6 +780,25 @@ async function yukla(jim){
   S.band=false; belgi(false); chiz();
   if(moliyaMi()) moliyaYukla();
   if(markMi())   markYukla();
+  if(aiMi())     aiYukla();
+}
+
+/** Сунъий интеллект маълумоти — фақат шу бўлим очилганда */
+async function aiYukla(majburiy){
+  if(!aiUlangan() || S.aBand) return;
+  if(D && D.ai && !majburiy) return;
+  S.aBand=true; belgi(true); chiz();
+  try{
+    var j=await bittaYukla(API_AI+'?amal=baza&kalit='+encodeURIComponent(KALIT_AI)+(S.yangi?'&yangi=1':''));
+    D.ai=j.sotuvP ? paketOch(j.sotuvP) : (j.sotuv||[]);
+    D.aiReja=j.reja||[];
+    D.aiVersiya=j.versiya||null;
+    D.aiXato=null;
+  }catch(e){
+    D.aiXato=e.message;
+    D.ai=D.ai||[];
+  }
+  S.aBand=false; belgi(false); saqla(); chiz();
 }
 
 /** Маркетинг маълумоти — фақат бир марта, «Маркетинг» очилганда */
@@ -884,8 +910,9 @@ function satrlar(){
 
 /** Жами: сони, суммалар, келмаганлар */
 function jam(l){
-  var o={soni:l.length,kelishuv:0,tolangan:0,qarz:0,kelmagan:0};
+  var o={soni:0,kelishuv:0,tolangan:0,qarz:0,kelmagan:0};
   l.forEach(function(x){
+    o.soni+=(x.kishi||1);
     o.kelishuv+=x.kelishuv; o.tolangan+=x.tolangan; o.qarz+=x.qarz;
     if(x.kelmagan) o.kelmagan++;
   });
@@ -899,7 +926,8 @@ function guruhla(l,ol){
     var k=ol(x)||'—';
     if(!m[k]){ m[k]={nom:k,soni:0,tolangan:0,qarz:0,satrlar:[]}; t.push(k) }
     var g=m[k];
-    g.soni++; g.tolangan+=x.tolangan; g.qarz+=x.qarz;
+    // «Нечи киши» бўлса ўша қўшилади (сунъий интеллект), акс ҳолда 1
+    g.soni+=(x.kishi||1); g.tolangan+=x.tolangan; g.qarz+=x.qarz;
     g.satrlar.push(x);
   });
   return t.map(function(k){ return m[k] }).sort(function(a,b){ return b.soni-a.soni });
@@ -1033,7 +1061,7 @@ function dinamika(l){
   l.forEach(function(x){
     var k=davrKalit(x.sana); if(!k) return;
     if(!m[k]){ m[k]={soni:0,pul:0}; t.push(k) }
-    m[k].soni++; m[k].pul+=(x.tolangan||0);
+    m[k].soni+=(x.kishi||1); m[k].pul+=(x.tolangan||0);
   });
   t.sort();
   if(!t.length) return bosh('Бу даврда сотув йўқ');
@@ -1097,7 +1125,7 @@ function davrQatori(l){
   var m={},eng=null;
   l.forEach(function(x){
     var k=davrKalit(x.sana); if(!k) return;
-    m[k]=(m[k]||0)+1;
+    m[k]=(m[k]||0)+(x.kishi||1);
     if(!eng||m[k]>m[eng]) eng=k;
   });
   var oz = eng ? 'Энг фаол: '+davrYorliq(eng)+' \u2014 '+m[eng]+' та сотув' : '';
@@ -1130,7 +1158,7 @@ function mobilTugma(){
 function produktSwitch(){
   function b(k,t){ return '<button data-prod="'+k+'" class="'+(S.prod===k?'on':'')+'">'+t+'</button>' }
   return '<div class="mswitch">'+b('praktikum','3 кунлик')+b('kouch','Коучинг')+
-         b('moliya','Молия')+b('marketing','Маркетинг')+'</div>';
+         b('ai','Сунъий интеллект')+b('moliya','Молия')+b('marketing','Маркетинг')+'</div>';
 }
 
 function eskiBelgi(){
@@ -2597,6 +2625,237 @@ var IKONKA={
   chiqim:'<path d="M12 21V9"/><path d="M7 14l5-5 5 5"/><path d="M4 4h16"/>'
 };
 
+/* ══════════════════════════════════════════════════════
+   11.5 СУНЪИЙ ИНТЕЛЛЕКТ (RBA AI 3.0)
+   Иккита панел: «Умумий» ва «Ёзувлар»
+   ⚠ «Нечи киши» = сотув сони. guruhla / jam / dinamika
+     шу рақамни қўшади (x.kishi), шунинг учун ҳамма жойда тўғри.
+   ══════════════════════════════════════════════════════ */
+
+function aiMi(){ return S.prod==='ai' }
+
+/** Сана фильтридан ўтган сунъий интеллект ёзувлари */
+function aSatrlar(){
+  if(!D || !D.ai) return [];
+  return sanaFiltrla(D.ai);
+}
+
+/** Давлатлар — харитадаги чегара коди ва марказий нуқтаси */
+var AI_DAVLAT=[
+  {kalit:'узбекистон',  nom:'Ўзбекистон',  kod:'uz', lat:41.4, lon:64.4},
+  {kalit:'узбекстан',   nom:'Ўзбекистон',  kod:'uz', lat:41.4, lon:64.4},
+  {kalit:'тожикистон',  nom:'Тожикистон',  kod:'tj', lat:38.6, lon:71.4},
+  {kalit:'таджикистан', nom:'Тожикистон',  kod:'tj', lat:38.6, lon:71.4},
+  {kalit:'козогистон',  nom:'Қозоғистон',  kod:'kz', lat:43.6, lon:68.5},
+  {kalit:'казахстан',   nom:'Қозоғистон',  kod:'kz', lat:43.6, lon:68.5},
+  {kalit:'киргизистон', nom:'Қирғизистон', kod:'kg', lat:41.5, lon:74.4},
+  {kalit:'киргизстан',  nom:'Қирғизистон', kod:'kg', lat:41.5, lon:74.4},
+  {kalit:'кыргызстан',  nom:'Қирғизистон', kod:'kg', lat:41.5, lon:74.4}
+];
+
+function davlatTop(nom){
+  var t=shaharNorm(nom);
+  if(!t) return null;
+  for(var i=0;i<AI_DAVLAT.length;i++)
+    if(t===shaharNorm(AI_DAVLAT[i].kalit)) return AI_DAVLAT[i];
+  return null;
+}
+
+/**
+ * ДАВЛАТЛАР ХАРИТАСИ — чегаралар бўялади, марказига доира ва рақам қўйилади.
+ * Харитада йўқ давлатлар пастда чип бўлиб чиқади.
+ */
+function xaritaDavlat(guruh){
+  var nuq=[], tashqari=[];
+  guruh.forEach(function(g){
+    var d=davlatTop(g.nom);
+    if(d) nuq.push({d:d, g:g}); else tashqari.push(g);
+  });
+  if(!nuq.length) return '';
+
+  var W=XARITA_W, H=XARITA_H, max=1, jami=0;
+  nuq.forEach(function(x){ if(x.g.soni>max) max=x.g.soni; jami+=x.g.soni });
+
+  // ── чегаралар ──
+  var bor={};
+  nuq.forEach(function(x){ bor[x.d.kod]=x });
+  var yer='';
+  ['kz','uz','kg','tj'].forEach(function(k,i){
+    var x=bor[k];
+    var c=x?DAVLAT_RANG[x.d.nom]:null;
+    yer+='<path class="xyer'+(x?' faol':'')+'" d="'+XARITA_YOL[k]+'" '+
+      'fill="'+(c||'var(--line)')+'" stroke="'+(c||'var(--line2)')+'" '+
+      'style="animation-delay:'+(i*0.09).toFixed(2)+'s"><title>'+
+      (x?esc(x.d.nom)+' — '+fmt(x.g.soni)+' та сотув':'')+'</title></path>';
+  });
+
+  // ── доиралар ──
+  var shar='';
+  nuq.forEach(function(x,i){
+    var c=xproy(x.d.lon,x.d.lat);
+    var px=c[0], py=c[1];
+    var r=14+20*Math.sqrt(x.g.soni/max);
+    var rng=DAVLAT_RANG[x.d.nom]||'var(--a)';
+    var ulush=jami?Math.round(x.g.soni/jami*100)+'%':'';
+    shar+='<g class="xsh" style="animation-delay:'+(0.4+i*0.1).toFixed(2)+'s">'+
+      '<circle class="xdoira" cx="'+px.toFixed(1)+'" cy="'+py.toFixed(1)+'" r="'+r.toFixed(1)+
+        '" fill="'+rng+'" fill-opacity=".38" stroke="'+rng+'" stroke-width="2"/>'+
+      '<text class="xson" x="'+px.toFixed(1)+'" y="'+py.toFixed(1)+'" text-anchor="middle" '+
+        'dominant-baseline="central">'+fmt(x.g.soni)+'</text>'+
+      '<text class="xnom" x="'+px.toFixed(1)+'" y="'+(py+r+16).toFixed(1)+'" text-anchor="middle">'+
+        esc(x.d.nom)+'</text>'+
+      '<text class="xizoh" x="'+px.toFixed(1)+'" y="'+(py+r+30).toFixed(1)+'" text-anchor="middle" '+
+        'fill="'+rng+'">'+ulush+'</text>'+
+      '<title>'+esc(x.d.nom)+' — '+fmt(x.g.soni)+' та сотув</title></g>';
+  });
+
+  var chip = tashqari.length
+    ? '<div class="xtashq">'+tashqari.map(function(g){
+        return '<span class="xchip"><b>'+fmt(g.soni)+'</b>'+esc(g.nom)+'</span>';
+      }).join('')+'</div>'
+    : '';
+
+  var afsona='<div class="xafs">'+nuq.map(function(x){
+    return '<span><i style="background:'+DAVLAT_RANG[x.d.nom]+'"></i>'+esc(x.d.nom)+
+           ' <b>'+fmt(x.g.soni)+'</b></span>';
+  }).join('')+'</div>';
+
+  return '<div class="xkarta"><div class="xscroll">'+
+    '<svg class="xsvg" viewBox="0 0 '+W+' '+H+'">'+yer+shar+'</svg></div>'+
+    '<div class="xsurish"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">'+
+      '<path d="M5 12h14M12 5l7 7-7 7"/></svg>Харитани чапга-ўнгга суринг</div>'+
+    afsona+chip+'</div>';
+}
+
+/** Юкланмаган / хато ҳолати */
+function aiHolat(){
+  if(!aiUlangan())
+    return sarlavha('Сунъий интеллект','Ҳали уланмаган',mobilTugma())+
+      '<div class="empty"><b>API ҳаволаси қўйилмаган</b>'+
+      'AI.gs ни деплой қилиб, ҳаволани HTML даги <b>API_AI</b> га қўйинг.</div>';
+  if(D && D.aiXato)
+    return sarlavha('Сунъий интеллект','Хатолик',mobilTugma())+
+      '<div class="xato"><b>Серверга уланиб бўлмади</b>'+esc(D.aiXato)+
+      '<div style="margin-top:10px;font-size:12.5px">Apps Script: <b>Deploy → Anyone</b> '+
+      'қилинганми ва <b>KALIT_AI</b> иккала жойда бир хилми?</div></div>';
+  if(!D || !D.ai)
+    return sarlavha('Сунъий интеллект','Юкланмоқда…',mobilTugma())+
+      '<div class="load"><div class="spin"></div>Маълумот юкланмоқда…</div>';
+  return null;
+}
+
+/* ── ПАНЕЛ 1: УМУМИЙ ────────────────────────────────── */
+
+function aiUmumiy(){
+  var h=aiHolat(); if(h) return h;
+
+  var l=aSatrlar(), j=jam(l);
+  var reja=(D.aiReja)||[];
+  var rJami=0,fJami=0;
+  reja.forEach(function(x){ rJami+=x.reja; fJami+=x.fakt });
+  var b=foiz(fJami,rJami);
+
+  var men=guruhla(l,function(x){ return x.menejer });
+  var dav=guruhla(l,function(x){ return x.davlat });
+
+  var o=sarlavha('Сунъий интеллект','Режа, сотув сони, пул ва география',
+    sanaFiltr()+mobilTugma())+
+
+  '<div class="mets">'+
+    '<div class="met o"><div class="met-l">Режа</div><div class="met-v num">'+fmt(rJami)+'</div>'+
+      '<div class="met-d">факт '+fmt(fJami)+' · қолди '+fmt(Math.max(0,rJami-fJami))+
+        ' <span style="opacity:.7">(«план» варағидан)</span></div>'+
+      '<div class="mprog"><i style="width:'+Math.min(100,b)+'%;background:'+
+        (b>=100?'var(--green)':'var(--ochre)')+'"></i></div></div>'+
+    '<div class="met"><div class="met-l">Сотувлар</div><div class="met-v num">'+fmt(j.soni)+'</div>'+
+      '<div class="met-d">'+fmt(l.length)+' та ёзув · «нечи киши» қўшилган</div></div>'+
+    '<div class="met k"><div class="met-l">Тўланган</div><div class="met-v num">'+pul(j.tolangan)+'</div>'+
+      '<div class="met-d">дагавор '+pul(j.kelishuv)+'</div></div>'+
+    '<div class="met c"><div class="met-l">Қарздорлик</div><div class="met-v num">'+pul(j.qarz)+'</div>'+
+      '<div class="met-d">дагаворнинг '+foiz(j.qarz,j.kelishuv)+'%</div></div>'+
+  '</div>'+
+
+  bolim('Режа бажарилиши','Ҳар бир менежер бўйича. Қора чизиқ — режа даражаси.',
+    rejaUstun(reja))+
+
+  bolim('Менежерлар','Ким қанча сотган',
+    ustunlar(men.map(function(x){
+      return { nom:x.nom, qiy:x.soni, ong:pul(x.tolangan) };
+    })))+
+
+  bolim('Сотув динамикаси','Ҳар бир санада нечта сотув бўлган',
+    davrQatori(l)+dinamika(l));
+
+  // ── География ──
+  if(dav.length && dav.some(function(x){ return x.nom!=='—' })){
+    var jd=0; dav.forEach(function(x){ jd+=x.soni });
+    o+='<div class="sec"><h2>География</h2><p>Мижозлар қайси давлатдан</p></div>';
+    var xr=xaritaDavlat(dav);
+    if(xr) o+=xr;
+    o+='<div class="dbody"><div class="eb">Давлатлар бўйича</div>'+
+      ustunlar(dav.map(function(x){
+        return { nom:x.nom, qiy:x.soni,
+                 ong:(jd?Math.round(x.soni/jd*100)+'% · ':'')+pul(x.tolangan) };
+      }))+'</div>';
+  }
+
+  return o;
+}
+
+/* ── ПАНЕЛ 2: ЁЗУВЛАР ───────────────────────────────── */
+
+function aiJurnal(){
+  var h=aiHolat(); if(h) return h;
+
+  var l=aSatrlar();
+  if(S.qidiruv){
+    var q=S.qidiruv.toLowerCase();
+    l=l.filter(function(x){
+      return [x.fio,x.menejer,x.davlat].join(' ').toLowerCase().indexOf(q)>=0;
+    });
+  }
+  l=l.sort(function(a,b){ return (sanaOqi(b.sana)||0)-(sanaOqi(a.sana)||0) });
+  var kes=l.slice(0,300);
+  var j=jam(l);
+
+  var o=sarlavha('Сунъий интеллект — ёзувлар','Google Sheets’даги қаторлар',
+    '<input type="text" id="qid" placeholder="Исм, менежер, давлат…" value="'+esc(S.qidiruv)+'" style="width:190px">'+
+    sanaFiltr()+mobilTugma());
+
+  o+='<div class="chips" style="margin:0 0 14px">'+
+    '<span class="chip">Ёзув: <b>'+fmt(l.length)+'</b></span>'+
+    '<span class="chip">Сотув: <b>'+fmt(j.soni)+'</b></span>'+
+    '<span class="chip k">Тўланган <b>'+pul(j.tolangan)+'</b></span>'+
+    '<span class="chip c">Қарз <b>'+pul(j.qarz)+'</b></span></div>';
+
+  var O='text-align:right';
+  o+='<div class="tw"><div class="tscroll"><table class="tbl"><thead><tr>'+
+    '<th>Сана</th><th>Мижоз</th><th>Давлати</th><th>Менежер</th>'+
+    '<th style="'+O+'">Киши</th><th style="'+O+'">Дагавор</th>'+
+    '<th style="'+O+'">Тўланган</th><th style="'+O+'">Қарз</th>'+
+    '</tr></thead><tbody>'+
+    (kes.length?kes.map(function(x){
+      return '<tr><td class="num" style="color:var(--muted)">'+dfmt(x.sana)+'</td>'+
+        '<td style="font-weight:500">'+esc(x.fio||'—')+'</td>'+
+        '<td><span class="pill">'+esc(x.davlat||'—')+'</span></td>'+
+        '<td>'+esc(x.menejer||'—')+'</td>'+
+        '<td class="num" style="'+O+';font-weight:600">'+fmt(x.kishi||1)+'</td>'+
+        '<td class="num" style="'+O+'">'+pul(x.kelishuv)+'</td>'+
+        '<td class="num" style="'+O+';color:var(--green);font-weight:600">'+pul(x.tolangan)+'</td>'+
+        '<td class="num" style="'+O+';color:'+(x.qarz>0?'var(--red)':'var(--muted)')+'">'+pul(x.qarz)+'</td></tr>';
+    }).join(''):'<tr><td colspan="8" style="padding:26px;text-align:center;color:var(--muted)">Ёзув топилмади</td></tr>')+
+    '</tbody></table></div></div>';
+
+  o+='<div class="jfaqat">'+kunlikRoyxat(kes)+'</div>';
+
+  if(l.length>kes.length)
+    o+='<div class="sub" style="margin-top:10px">Биринчи '+fmt(kes.length)+
+       ' таси кўрсатилди (жами '+fmt(l.length)+')</div>';
+
+  return o;
+}
+
+
 function menyu(){
   if(markMi()){
     var kl=(D&&D.marketing)?kSatrlar():[];
@@ -2614,6 +2873,12 @@ function menyu(){
       {p:'menejer',nom:'Кирим',   ik:'kirim', son:ml.filter(function(x){return x.tip==='kirim'}).length},
       {p:'kesim',  nom:'Чиқим',   ik:'chiqim',son:ml.filter(function(x){return x.tip==='chiqim'}).length},
       {p:'jurnal', nom:'Ёзувлар', ik:'jadval',son:ml.length}];
+  }
+  if(aiMi()){
+    var al=(D&&D.ai)?aSatrlar():[];
+    return [
+      {p:'umumiy', nom:'Умумий',  ik:'chart'},
+      {p:'jurnal', nom:'Ёзувлар', ik:'jadval', son:al.length}];
   }
   var l=satrlar();
   return [
@@ -2638,6 +2903,8 @@ function chiz(){
     ? ( S.sahifa==='umumiy'  ? markUmumiy()  :
         S.sahifa==='menejer' ? markTarget()  :
         S.sahifa==='kesim'   ? markStadiya() : markJurnal() )
+    : aiMi()
+    ? ( S.sahifa==='umumiy' ? aiUmumiy() : aiJurnal() )
     : moliyaMi()
     ? ( S.sahifa==='umumiy'  ? moliyaUmumiy()          :
         S.sahifa==='menejer' ? moliyaYonalish('kirim') :
@@ -2653,6 +2920,9 @@ function chiz(){
   var m=menyu(), n=document.querySelectorAll('.ni[data-p]');
   for(var i=0;i<n.length;i++){
     var b=m[i];
+    // Баъзи бўлимларда панел камроқ (масалан, сунъий интеллектда 2 та)
+    if(!b){ n[i].style.display='none'; continue }
+    n[i].style.display='';
     n[i].dataset.p=b.p;
     n[i].querySelector('.ik').innerHTML=
       '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">'+IKONKA[b.ik]+'</svg>';
@@ -2682,6 +2952,7 @@ function produktOch(p){
   S.prod=p;
   if(p==='moliya') moliyaYukla();
   if(p==='marketing') markYukla();
+  if(p==='ai') aiYukla();
   // Фильтрни тозалаймиз: акс ҳолда «Бугун» қолиб кетиб,
   // янги бўлим сабабсиз бўм-бўш кўринади.
   S.sahifa='umumiy'; S.ochiq=null; S.qidiruv=''; S.oraliq='hammasi'; S.target='hammasi';
@@ -2762,6 +3033,7 @@ function hammasiYangila(){
   yukla(true);
   if(moliyaMi()) moliyaYukla(true);
   if(markMi())   markYukla(true);
+  if(aiMi())     aiYukla(true);
   setTimeout(function(){ S.yangi=false },4000);
 }
 document.getElementById('yangilaBtn').onclick=hammasiYangila;
