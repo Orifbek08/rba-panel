@@ -1721,24 +1721,36 @@ function kesimSahifa(){
  * Тадбир қаерда бўлгани эмас, МИЖОЗ қаердан экани кўрсатилади.
  */
 function mijozGeo(l){
-  var bor=l.some(function(x){ return x.davlat });
   var h='';
 
-  if(bor){
-    var geo=guruhla(l,function(x){ return x.davlat });
-    var xrt=xarita(geo,true);
+  /* «Давлати» устуни тўлдирилган қаторлар. Бўшлари фоизни бузмаслиги учун
+     ҳисобдан чиқарилади, лекин сони пастда айтиб ўтилади. */
+  var bilan=l.filter(function(x){ return x.davlat });
+  var yoq=l.length-bilan.length;
+
+  if(bilan.length){
+    /* Ёзилиши ҳар хил бўлса ҳам битта давлат битта сатр бўлсин:
+       «Киргизистан» ва «Қирғизистон» — бир хил ҳисобланади. */
+    var geo=guruhla(bilan,function(x){
+      var d=davlatTop(x.davlat);
+      return d ? d.nom : x.davlat;
+    });
+    var xrt=xaritaDavlat(geo);
     var jami=0;
     geo.forEach(function(g){ jami+=g.soni });
 
     h+='<div class="sec"><h2>Мижозлар географияси</h2>'+
-       '<p>Мижоз қайси шаҳардан — доира катталиги мижозлар сони</p></div>';
+       '<p>Мижоз қайси давлатдан — доира катталиги мижозлар сони</p></div>';
     if(xrt) h+=xrt;
 
-    h+='<div class="dbody"><div class="eb">Шаҳарлар бўйича мижозлар</div>'+
+    h+='<div class="dbody"><div class="eb">Давлатлар бўйича мижозлар</div>'+
       ustunlar(geo.map(function(x){
         return { nom:x.nom, qiy:x.soni,
                  ong: jami?Math.round(x.soni/jami*100)+'%':'' };
-      }))+'</div>';
+      }))+
+      (yoq?'<div class="sub" style="margin-top:12px">Яна '+fmt(yoq)+
+           ' та сотувда «Давлати» устуни тўлдирилмаган</div>':'')+
+      '</div>';
   }
 
   // ── Манбалар (Источник) ──
@@ -2744,11 +2756,17 @@ var AI_DAVLAT=[
   {kalit:'кыргызстан',  nom:'Қирғизистон', kod:'kg', lat:41.5, lon:74.4}
 ];
 
+/* «Киргизистан» ва «Қирғизистон», «Козогистон» ва «Казахстан» —
+   ёзилиши ҳар хил, шунинг учун охирги «стан/стон» бир кўринишга келтирилади. */
+function davlatNorm(nom){
+  return shaharNorm(nom).replace(/стан$/,'стон');
+}
+
 function davlatTop(nom){
-  var t=shaharNorm(nom);
+  var t=davlatNorm(nom);
   if(!t) return null;
   for(var i=0;i<AI_DAVLAT.length;i++)
-    if(t===shaharNorm(AI_DAVLAT[i].kalit)) return AI_DAVLAT[i];
+    if(t===davlatNorm(AI_DAVLAT[i].kalit)) return AI_DAVLAT[i];
   return null;
 }
 
