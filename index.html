@@ -539,194 +539,6 @@ input::placeholder{color:var(--muted)}
 .bittakun b{font-size:38px;font-family:Archivo;font-weight:600;color:var(--a);letter-spacing:-.04em}
 .bittakun span{font-size:12.5px;color:var(--muted)}
 
-
-
-/* Бошқарув панели тугмаси — чап менюда алоҳида ажралиб туради */
-.pswitch .pv-btn{display:flex;align-items:center;justify-content:center;gap:8px;
-  margin-bottom:5px;padding:12px 10px;font-weight:600;color:#E6E9EE;
-  background:linear-gradient(145deg,rgba(255,255,255,.06),rgba(255,255,255,.02));
-  border:1px solid rgba(255,255,255,.08)}
-.pswitch .pv-btn svg{width:16px;height:16px;flex-shrink:0}
-.pswitch .pv-btn.on{border-color:transparent}
-body.dokyoq .bnav{display:none}
-body.dokyoq .main{padding-bottom:50px}
-/* ═══════════ БОШҚАРУВ ПАНЕЛИ ═══════════ */
-.pv-hero{position:relative;overflow:hidden;border-radius:20px;padding:28px 30px;
-  display:grid;grid-template-columns:1fr auto;gap:26px;align-items:center;
-  background:
-    radial-gradient(620px 300px at 100% 0%,rgba(224,160,72,.20),transparent 62%),
-    radial-gradient(520px 260px at 0% 100%,rgba(78,203,146,.10),transparent 60%),
-    linear-gradient(160deg,var(--card2),var(--card));
-  border:1px solid var(--line);box-shadow:var(--sh);animation:kir .5s cubic-bezier(.22,1,.36,1) both}
-.pv-hero::after{content:"";position:absolute;inset:0;pointer-events:none;border-radius:inherit;
-  background:linear-gradient(115deg,transparent 40%,rgba(255,255,255,.035) 50%,transparent 60%)}
-.pv-kick{font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);font-weight:600}
-.pv-big{font-family:Archivo,Inter,sans-serif;font-weight:700;font-size:54px;line-height:1;
-  letter-spacing:-.045em;margin:12px 0 6px;color:var(--ink)}
-.pv-big small{font-size:.42em;color:var(--muted);font-weight:500;letter-spacing:-.01em;margin-left:6px}
-.pv-sub{font-size:12.5px;color:var(--muted)}
-.pv-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
-.pv-chip{display:flex;align-items:center;gap:9px;padding:9px 13px;border-radius:12px;
-  background:rgba(255,255,255,.035);border:1px solid var(--line);font-size:12px;color:var(--muted)}
-.pv-chip b{font-family:Archivo,Inter,sans-serif;font-size:17px;color:var(--ink);font-weight:650;letter-spacing:-.02em}
-.pv-chip i{width:8px;height:8px;border-radius:50%;flex-shrink:0}
-body.oq .pv-chip{background:rgba(0,0,0,.025)}
-
-.halqa-w{position:relative;display:grid;place-items:center;flex-shrink:0}
-.halqa-m{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
-  text-align:center;line-height:1.05}
-.halqa-m b{font-family:Archivo,Inter,sans-serif;font-weight:700;letter-spacing:-.04em;color:var(--ink)}
-.halqa-m span{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:5px}
-.halqa-m em{font-style:normal;font-size:10.5px;color:var(--muted);margin-top:3px;font-family:"JetBrains Mono",monospace}
-.hq{animation:hqOs 1.3s cubic-bezier(.22,1,.36,1) both .15s}
-@keyframes hqOs{from{stroke-dasharray:0 999}}
-
-.pv-grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-.pv-prod{position:relative;text-align:left;border:1px solid var(--line);border-radius:18px;
-  padding:20px 20px 18px;background:linear-gradient(165deg,var(--card2),var(--card) 64%);
-  color:var(--ink);box-shadow:var(--sh);overflow:hidden;cursor:pointer;
-  transition:transform .2s cubic-bezier(.22,1,.36,1),border-color .2s,box-shadow .2s;
-  animation:kir .5s cubic-bezier(.22,1,.36,1) both}
-.pv-prod::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:var(--pc)}
-.pv-prod::after{content:"";position:absolute;right:-60px;top:-60px;width:170px;height:170px;border-radius:50%;
-  background:radial-gradient(circle,var(--pc),transparent 70%);opacity:.12;pointer-events:none}
-.pv-prod:hover{transform:translateY(-3px);border-color:var(--line2);
-  box-shadow:0 22px 40px -22px rgba(0,0,0,.7),var(--sh)}
-.pv-ph{display:flex;align-items:center;justify-content:space-between;gap:10px}
-.pv-pn{font-family:Archivo,Inter,sans-serif;font-weight:650;font-size:15px;letter-spacing:-.01em}
-.pv-go{font-size:11px;color:var(--muted);display:flex;align-items:center;gap:4px;transition:.2s}
-.pv-prod:hover .pv-go{color:var(--pc)}
-.pv-go svg{width:13px;height:13px}
-.pv-pb{display:flex;align-items:center;gap:16px;margin-top:16px}
-.pv-pv{flex:1;min-width:0}
-.pv-pv .n{font-family:Archivo,Inter,sans-serif;font-weight:700;font-size:34px;letter-spacing:-.04em;line-height:1}
-.pv-pv .l{font-size:11.5px;color:var(--muted);margin-top:4px}
-.pv-pf{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:16px;padding-top:14px;
-  border-top:1px dashed var(--line2)}
-.pv-pf div{font-size:10.5px;color:var(--muted);letter-spacing:.04em}
-.pv-pf b{display:block;font-family:"JetBrains Mono",monospace;font-size:13.5px;color:var(--ink);
-  font-weight:600;margin-top:3px;letter-spacing:-.02em}
-.pv-pf b.q{color:var(--no)} .pv-pf b.k{color:var(--ok)}
-
-.pv-two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.pv-card{border:1px solid var(--line);border-radius:18px;padding:20px 22px;
-  background:linear-gradient(168deg,var(--card2),var(--card) 62%);box-shadow:var(--sh);min-width:0}
-.pv-ch{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:16px}
-.pv-ch h3{font-size:14.5px;display:flex;align-items:center;gap:9px}
-.pv-ch h3 i{width:28px;height:28px;border-radius:9px;display:grid;place-items:center;
-  background:rgba(255,255,255,.05);border:1px solid var(--line)}
-.pv-ch h3 svg{width:15px;height:15px}
-.pv-lnk{border:none;background:none;color:var(--muted);font-size:11.5px;display:flex;align-items:center;gap:4px;padding:4px}
-.pv-lnk:hover{color:var(--a)}
-.pv-lnk svg{width:13px;height:13px}
-
-.pv-val{margin-bottom:14px}
-.pv-val:last-child{margin-bottom:0}
-.pv-vt{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:9px}
-.pv-fin{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.pv-fin div{padding:11px 12px;border-radius:12px;background:rgba(255,255,255,.03);border:1px solid var(--line)}
-body.oq .pv-fin div{background:rgba(0,0,0,.02)}
-.pv-fin span{display:block;font-size:10.5px;color:var(--muted)}
-.pv-fin b{display:block;font-family:Archivo,Inter,sans-serif;font-size:18px;font-weight:650;
-  letter-spacing:-.03em;margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.pv-fin .k b{color:var(--ok)} .pv-fin .c b{color:var(--no)}
-.pv-bar2{display:flex;height:8px;border-radius:6px;overflow:hidden;margin-top:10px;background:var(--line);gap:2px}
-.pv-bar2 i{display:block;height:100%;border-radius:6px;transition:width .8s cubic-bezier(.22,1,.36,1)}
-
-.pv-fun{display:flex;flex-direction:column;gap:9px}
-.pv-fr{display:grid;grid-template-columns:110px 1fr 70px;align-items:center;gap:12px;font-size:12.5px}
-.pv-fr span{color:var(--muted)}
-.pv-ft{height:26px;border-radius:8px;background:var(--line);overflow:hidden;position:relative}
-.pv-ft i{position:absolute;left:0;top:0;bottom:0;border-radius:8px;
-  animation:pvCho .9s cubic-bezier(.22,1,.36,1) both}
-@keyframes pvCho{from{width:0!important}}
-.pv-fr b{font-family:"JetBrains Mono",monospace;text-align:right;font-size:13px}
-.pv-konv{display:flex;align-items:baseline;gap:8px;margin-top:14px;padding-top:13px;border-top:1px dashed var(--line2)}
-.pv-konv b{font-family:Archivo,Inter,sans-serif;font-size:26px;letter-spacing:-.03em;color:var(--ok)}
-.pv-konv span{font-size:12px;color:var(--muted)}
-
-.pv-tw{overflow-x:auto;margin:0 -4px;padding:0 4px}
-.pv-t{width:100%;border-collapse:separate;border-spacing:0;font-size:13px;min-width:640px}
-.pv-t th{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600;
-  text-align:right;padding:0 12px 11px;border-bottom:1px solid var(--line);white-space:nowrap}
-.pv-t th:first-child{text-align:left}
-.pv-t td{padding:13px 12px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap}
-.pv-t td:first-child{text-align:left}
-.pv-t tr:last-child td{border-bottom:none}
-.pv-t .nm{display:flex;align-items:center;gap:10px;font-weight:550}
-.pv-t .nm i{width:30px;height:30px;border-radius:10px;display:grid;place-items:center;font-style:normal;
-  font-family:Archivo;font-weight:700;font-size:12px;color:#1A1206}
-.pv-t .mn{font-family:"JetBrains Mono",monospace;font-size:12.5px}
-.pv-t .zo{color:var(--a);font-weight:700}
-.pv-t .dim{color:var(--muted)}
-.pv-t tfoot td{border-top:1px solid var(--line2);border-bottom:none;font-weight:600;padding-top:14px}
-.pv-izoh{font-size:11.5px;color:var(--muted);margin-top:14px;display:flex;gap:8px;align-items:flex-start}
-.pv-izoh svg{width:14px;height:14px;flex-shrink:0;margin-top:1px}
-
-.pv-top{display:flex;flex-direction:column;gap:8px}
-.pv-tr{display:grid;grid-template-columns:34px 1fr auto;gap:12px;align-items:center;padding:10px 12px;
-  border-radius:13px;background:rgba(255,255,255,.025);border:1px solid var(--line);
-  animation:kir .45s cubic-bezier(.22,1,.36,1) both}
-body.oq .pv-tr{background:rgba(0,0,0,.018)}
-.pv-md{width:34px;height:34px;border-radius:11px;display:grid;place-items:center;font-family:Archivo;
-  font-weight:700;font-size:13px;color:#1A1206;background:var(--line2)}
-.pv-md.m1{background:linear-gradient(145deg,#FFE08A,#E0A048);box-shadow:0 4px 14px -4px rgba(224,160,72,.7)}
-.pv-md.m2{background:linear-gradient(145deg,#EEF1F5,#A9B2BF)}
-.pv-md.m3{background:linear-gradient(145deg,#F2C29B,#B8743F)}
-.pv-md.mx{color:var(--muted);background:rgba(255,255,255,.05)}
-.pv-tn{min-width:0}
-.pv-tn b{display:block;font-weight:550;font-size:13.5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.pv-tn span{font-size:11px;color:var(--muted)}
-.pv-tbar{height:4px;border-radius:3px;background:var(--line);margin-top:6px;overflow:hidden}
-.pv-tbar i{display:block;height:100%;border-radius:3px;background:linear-gradient(90deg,var(--a2),var(--a))}
-.pv-tv{text-align:right;font-family:"JetBrains Mono",monospace}
-.pv-tv b{display:block;font-size:17px;font-family:Archivo,Inter,sans-serif;letter-spacing:-.03em}
-.pv-tv span{font-size:11px;color:var(--ok)}
-.pv-tk{display:none;flex-direction:column;gap:9px}
-.pv-tkr{padding:13px 13px;border-radius:13px;background:rgba(255,255,255,.025);border:1px solid var(--line)}
-body.oq .pv-tkr{background:rgba(0,0,0,.018)}
-.pv-tkh{display:flex;align-items:center;justify-content:space-between;gap:10px}
-.pv-tkh .nm{display:flex;align-items:center;gap:10px;font-weight:600;font-size:13.5px}
-.pv-tkh .nm i{width:28px;height:28px;border-radius:9px;display:grid;place-items:center;font-style:normal;
-  font-family:Archivo;font-weight:700;font-size:12px;color:#1A1206}
-.pv-tkk{font-family:"JetBrains Mono",monospace;font-size:12px;padding:3px 8px;border-radius:8px;
-  background:var(--ok-dim);color:var(--ok);font-weight:600}
-.pv-tkg{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:11px}
-.pv-tkg span{display:block;font-size:10px;color:var(--muted)}
-.pv-tkg b{display:block;font-family:"JetBrains Mono",monospace;font-size:12px;margin-top:3px;
-  line-height:1.35;font-weight:600}
-.pv-tkg b.zo{color:var(--a)}
-.pv-tkg .dim{color:var(--muted)}
-@media(min-width:1081px){ .pv-top{display:grid;grid-template-columns:1fr 1fr} }
-.pv-wait{padding:26px 10px;text-align:center;color:var(--muted);font-size:12.5px;
-  display:flex;align-items:center;justify-content:center;gap:10px}
-.pv-wait .spin{width:18px;height:18px;border-width:2px;margin:0}
-
-@media(max-width:1080px){
-  .pv-grid3{grid-template-columns:1fr 1fr 1fr;gap:10px}
-  .pv-two{grid-template-columns:1fr}
-  .pv-big{font-size:44px}
-}
-@media(max-width:820px){
-  .pv-hero{grid-template-columns:1fr;padding:22px 18px;gap:18px;border-radius:17px}
-  .pv-hero .halqa-w{justify-self:center;width:136px!important;height:136px!important}
-  .pv-hero .halqa-w svg{width:100%;height:100%}
-  .pv-hero .halqa-m b{font-size:28px!important}
-  .pv-tw{display:none}
-  .pv-tk{display:flex}
-  .pv-big{font-size:40px}
-  .pv-chip{flex:1 1 calc(50% - 8px);padding:9px 11px}
-  .pv-chip b{font-size:15px}
-  .pv-grid3{grid-template-columns:1fr;gap:10px}
-  .pv-prod{padding:16px}
-  .pv-pv .n{font-size:28px}
-  .pv-card{padding:16px 14px;border-radius:15px}
-  .pv-fin{gap:7px}
-  .pv-fin div{padding:9px}
-  .pv-fin b{font-size:14.5px}
-  .pv-fr{grid-template-columns:86px 1fr 52px;gap:9px;font-size:11.5px}
-}
-
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 
 /* ═══════════ ЎРТА ЭКРАН ═══════════ */
@@ -881,10 +693,9 @@ body.oq .pv-tkr{background:rgba(0,0,0,.018)}
 
   <div class="nl">Продуктлар</div>
   <div class="pswitch" id="pswitch">
-    <button data-prod="panel" class="pv-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg>Бошқарув панели</button>
     <button data-prod="praktikum">3 кунлик</button>
     <button data-prod="kouch">Коучинг</button>
-    <button data-prod="ai">AI 3.0</button>
+    <button data-prod="ai">Сунъий интеллект</button>
     <button data-prod="moliya">Молия</button>
     <button data-prod="marketing">Маркетинг</button>
   </div>
@@ -941,7 +752,7 @@ var KALIT_AI = 'ai-2026-BUNI-OZGARTIRING-7r6t5y';
 
 var D = null;                 // сервердан келган маълумот
 var S = {
-  prod:    'panel',           // қайси продукт: panel | praktikum | kouch | ai | moliya | marketing
+  prod:    'praktikum',       // қайси продукт: praktikum | kouch | moliya
   valyuta: 'UZS',             // молияда: UZS | USD
   sahifa:  'umumiy',          // қайси бўлим
   oraliq:  'hammasi',         // сана фильтри
@@ -953,7 +764,7 @@ var S = {
   eski:false, xato:null, band:false, mBand:false, kBand:false, aBand:false, yangi:false
 };
 
-var PROD_NOM={panel:'Бошқарув панели',praktikum:'3 кунлик',kouch:'Коучинг',ai:'AI 3.0',
+var PROD_NOM={praktikum:'3 кунлик',kouch:'Коучинг',ai:'Сунъий интеллект',
               moliya:'Молия',marketing:'Маркетинг'};
 
 var XOT='rba_sotuv_v2', TEMA='rba_tema_v1', MENYU='rba_menyu_v1';
@@ -1058,19 +869,17 @@ async function yukla(jim){
   if(moliyaMi()) moliyaYukla();
   if(markMi())   markYukla();
   if(aiMi())     aiYukla();
-  if(panelMi() && D){ aiYukla(); moliyaYukla(); markYukla(); }
 }
 
 /** Сунъий интеллект маълумоти — фақат шу бўлим очилганда */
 async function aiYukla(majburiy){
   if(!aiUlangan() || S.aBand) return;
-  if(!D) return;
   if(D && D.ai && !majburiy) return;
   S.aBand=true; belgi(true); chiz();
   try{
     var j=await bittaYukla(API_AI+'?amal=baza&kalit='+encodeURIComponent(KALIT_AI)+(S.yangi?'&yangi=1':''));
     D.ai=j.sotuvP ? paketOch(j.sotuvP) : (j.sotuv||[]);
-    D.aiReja=Array.isArray(j.reja)?j.reja:[];
+    D.aiReja=j.reja||[];
     D.aiVersiya=j.versiya||null;
     D.aiXato=null;
   }catch(e){
@@ -1083,7 +892,6 @@ async function aiYukla(majburiy){
 /** Маркетинг маълумоти — фақат бир марта, «Маркетинг» очилганда */
 async function markYukla(majburiy){
   if(!markUlangan() || S.kBand) return;
-  if(!D) return;
   if(D && D.marketing && !majburiy) return;
   S.kBand=true; belgi(true); chiz();
   try{
@@ -1102,7 +910,6 @@ async function markYukla(majburiy){
 /** Молия маълумоти — фақат бир марта, «Молия» очилганда */
 async function moliyaYukla(majburiy){
   if(!moliyaUlangan() || S.mBand) return;
-  if(!D) return;
   if(D && D.moliya && !majburiy) return;          // аллақачон бор
   S.mBand=true; belgi(true); chiz();
   try{
@@ -2922,308 +2729,6 @@ var IKONKA={
 };
 
 /* ══════════════════════════════════════════════════════
-   0. БОШҚАРУВ ПАНЕЛИ — ҳамма бўлимнинг умумий манзараси
-   «Бизнесда ҳозир нима бўляпти?» — битта саҳифада.
-   Сана фильтри ҳамма блокка бир хил қўлланади.
-   ══════════════════════════════════════════════════════ */
-
-function panelMi(){ return S.prod==='panel' }
-
-var PV_PROD=[
-  {k:'praktikum', nom:'3 кунлик', rang:'#E0A048'},
-  {k:'kouch',     nom:'Коучинг',  rang:'#4ECB92'},
-  {k:'ai',        nom:'AI 3.0',   rang:'#A08FD0'}
-];
-
-/** Бир продуктнинг сана фильтридан ўтган сотувлари */
-function pvQator(k){
-  if(!D) return null;
-  if(k==='ai') return D.ai ? sanaFiltrla(D.ai) : null;
-  return sanaFiltrla((k==='praktikum'?D.praktikum:D.kouch)||[]);
-}
-
-/** Режа («план» варағидан — сана фильтрига боғлиқ эмас) */
-function pvReja(k){
-  var l = k==='ai' ? (D&&D.aiReja)||[] : (D&&D.reja&&D.reja[k])||[];
-  if(!Array.isArray(l)) l=[];
-  var o={reja:0,fakt:0};
-  l.forEach(function(x){ o.reja+=x.reja; o.fakt+=x.fakt });
-  o.foiz=o.reja?o.fakt/o.reja*100:0;
-  return o;
-}
-
-/** Ҳалқа (доира прогресс) */
-function halqa(f,rang,olcham,qalin,ichi){
-  var R=52, C=2*Math.PI*R, d=Math.max(0,Math.min(100,f))/100*C;
-  qalin=qalin||10;
-  return '<div class="halqa-w" style="width:'+olcham+'px;height:'+olcham+'px">'+
-    '<svg width="'+olcham+'" height="'+olcham+'" viewBox="0 0 120 120">'+
-      '<circle cx="60" cy="60" r="'+R+'" fill="none" stroke="var(--line)" stroke-width="'+qalin+'"/>'+
-      '<circle class="hq" cx="60" cy="60" r="'+R+'" fill="none" stroke="'+rang+'" stroke-width="'+qalin+'" '+
-        'stroke-linecap="round" stroke-dasharray="'+d.toFixed(1)+' '+C.toFixed(1)+'" transform="rotate(-90 60 60)"/>'+
-    '</svg><div class="halqa-m">'+(ichi||'')+'</div></div>';
-}
-
-/** Валюта билан қисқа сумма: $1 200 · 1,8 млн сўм */
-function vPul(n,v){
-  if(v==='USD') return '$'+fmt(n);
-  var a=Math.abs(n), b=n<0?'−':'';
-  if(a>=1e9) return b+(a/1e9).toFixed(1).replace('.',',')+' млрд';
-  if(a>=1e6) return b+(a/1e6).toFixed(a>=1e8?0:1).replace('.',',')+' млн';
-  if(a>=1e3) return b+Math.round(a/1e3)+' минг';
-  return b+fmt(a)+' сўм';
-}
-
-/* ── Таргет харажати: молиядан ─────────────────────────────
-   «Таргет / Тарет» бўлимидаги чиқимлар таргетологларга бўлинади.
-   ⚠ «Қўшимча таргетолог» — бу ОЙЛИК, реклама харажати эмас,
-     шунинг учун бу ҳисобга КИРМАЙДИ. */
-function tNorm(s){
-  return String(s||'').toLowerCase()
-    .replace(/ў/g,'у').replace(/қ/g,'к').replace(/ғ/g,'г').replace(/ҳ/g,'х').replace(/ё/g,'е')
-    .replace(/[\s ._\-'`’]/g,'');
-}
-function tgKimniki(x){
-  if(x.tip!=='chiqim') return null;
-  var t=tNorm([x.asosiy,x.stadiya,x.kichik].join(' '));
-  if(!/таргет|тарет|target/.test(t)) return null;
-  if(/кушимча|кошимча|qoshimcha|qo?shimcha/.test(t)) return null;      // ойлик — кирмайди
-  if(/элер|elyor|eler/.test(t)) return 'Элёр';
-  if(/гавхар|gavhar|таргет2|тарет2|target2/.test(t)) return 'Гавхар';
-  return 'Бошқа таргет';
-}
-function tgHarajat(){
-  if(!D || !D.moliya) return null;
-  var r={};
-  sanaFiltrla(D.moliya).forEach(function(x){
-    var k=tgKimniki(x); if(!k) return;
-    if(!r[k]) r[k]={UZS:0,USD:0};
-    r[k][x.valyuta==='USD'?'USD':'UZS']+=x.summa;
-  });
-  return r;
-}
-
-function pvKutish(m){
-  return '<div class="pv-wait"><div class="spin"></div>'+esc(m||'Юкланмоқда…')+'</div>';
-}
-
-/* ── Асосий саҳифа ───────────────────────────────────────── */
-function panelSahifa(){
-  var ok='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
-
-  // 1. Продуктлар
-  var pr=PV_PROD.map(function(p){
-    var l=pvQator(p.k);
-    var j=l?jam(l):null;
-    return {p:p, l:l, j:j, r:pvReja(p.k)};
-  });
-  var hamma=[], jami={soni:0,tolangan:0,qarz:0,kelishuv:0}, rj={reja:0,fakt:0};
-  pr.forEach(function(x){
-    if(x.l) hamma=hamma.concat(x.l);
-    if(x.j){ jami.soni+=x.j.soni; jami.tolangan+=x.j.tolangan; jami.qarz+=x.j.qarz; jami.kelishuv+=x.j.kelishuv }
-    rj.reja+=x.r.reja; rj.fakt+=x.r.fakt;
-  });
-  var rf=rj.reja?rj.fakt/rj.reja*100:0;
-
-  // Маркетинг
-  var kl=(D&&D.marketing)?sanaFiltrla(D.marketing):null;
-  var kj=kl?kJam(kl):null;
-
-  var h=sarlavha('Бошқарув панели','Ҳамма бўлимнинг умумий ҳисоботи',sanaFiltr());
-
-  /* ── HERO ── */
-  h+='<div class="pv-hero"><div>'+
-      '<div class="pv-kick">'+(S.oraliq==='hammasi'?'Жами тушум':'Танланган даврда тушум')+'</div>'+
-      '<div class="pv-big num">'+pul(jami.tolangan)+'</div>'+
-      '<div class="pv-sub">келишув '+pul(jami.kelishuv)+' · 3 кунлик, Коучинг ва AI 3.0 бирга</div>'+
-      '<div class="pv-chips">'+
-        '<div class="pv-chip"><i style="background:var(--a)"></i><b class="num">'+fmt(jami.soni)+'</b>сотув</div>'+
-        '<div class="pv-chip"><i style="background:var(--no)"></i><b class="num">'+pul(jami.qarz)+'</b>қарз</div>'+
-        '<div class="pv-chip"><i style="background:var(--info)"></i><b class="num">'+(kj?fmt(kj.jami):'…')+'</b>лид</div>'+
-        '<div class="pv-chip"><i style="background:var(--ok)"></i><b class="num">'+(kj?kFoiz(kj.konv):'…')+'</b>конверсия</div>'+
-      '</div></div>'+
-      halqa(rf, rf>=100?'var(--ok)':'var(--a)', 168, 11,
-        '<b class="num" style="font-size:34px">'+Math.round(rf)+'%</b><span>Режа</span>'+
-        '<em>'+fmt(rj.fakt)+' / '+fmt(rj.reja)+'</em>')+
-    '</div>';
-
-  /* ── ПРОДУКТЛАР ── */
-  h+='<div class="sec"><h2>Продуктлар</h2><p>Ҳар бирини босиб батафсил кўринг</p></div>'+
-    '<div class="pv-grid3">'+pr.map(function(x,i){
-      var p=x.p, j=x.j;
-      var ichi='<b class="num" style="font-size:22px">'+Math.round(x.r.foiz)+'%</b><span style="font-size:8.5px">режа</span>';
-      return '<button class="pv-prod" data-prod="'+p.k+'" style="--pc:'+p.rang+';animation-delay:'+(i*.07)+'s">'+
-        '<div class="pv-ph"><div class="pv-pn">'+esc(p.nom)+'</div><div class="pv-go">кириш'+ok+'</div></div>'+
-        '<div class="pv-pb"><div class="pv-pv">'+
-          (j ? '<div class="n num">'+fmt(j.soni)+'</div><div class="l">та сотув</div>'
-             : '<div class="l">'+(p.k==='ai'&&!aiUlangan()?'уланмаган':'юкланмоқда…')+'</div>')+
-          '</div>'+halqa(x.r.foiz,p.rang,78,12,ichi)+'</div>'+
-        '<div class="pv-pf">'+
-          '<div>Тўланган<b class="k">'+(j?pul(j.tolangan):'—')+'</b></div>'+
-          '<div>Қарз<b class="q">'+(j?pul(j.qarz):'—')+'</b></div>'+
-        '</div></button>';
-    }).join('')+'</div>';
-
-  /* ── МОЛИЯ + МАРКЕТИНГ ── */
-  var ikM='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="6" width="20" height="13" rx="2"/><path d="M2 10h20M6 15h3"/></svg>';
-  var ikK='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 4h18l-7 8v6l-4 2v-8z"/></svg>';
-
-  var finH;
-  if(!moliyaUlangan()) finH='<div class="pv-wait">Молия уланмаган</div>';
-  else if(!D||!D.moliya) finH=pvKutish();
-  else{
-    var ml=sanaFiltrla(D.moliya), vl={};
-    ml.forEach(function(x){
-      var v=x.valyuta==='USD'?'USD':'UZS';
-      if(!vl[v]) vl[v]={kirim:0,chiqim:0};
-      vl[v][x.tip==='kirim'?'kirim':'chiqim']+=x.summa;
-    });
-    var vk=['UZS','USD'].filter(function(v){ return vl[v] });
-    finH = vk.length ? vk.map(function(v){
-      var o=vl[v], f=o.kirim-o.chiqim, t=(o.kirim+o.chiqim)||1;
-      return '<div class="pv-val"><div class="pv-vt">'+(v==='USD'?'Доллар':'Сўм')+'</div>'+
-        '<div class="pv-fin">'+
-          '<div class="k"><span>Кирим</span><b class="num">'+vPul(o.kirim,v)+'</b></div>'+
-          '<div class="c"><span>Чиқим</span><b class="num">'+vPul(o.chiqim,v)+'</b></div>'+
-          '<div><span>Фарқ</span><b class="num" style="color:'+(f<0?'var(--no)':'var(--ink)')+'">'+vPul(f,v)+'</b></div>'+
-        '</div>'+
-        '<div class="pv-bar2"><i style="width:'+(o.kirim/t*100).toFixed(1)+'%;background:var(--ok)"></i>'+
-          '<i style="width:'+(o.chiqim/t*100).toFixed(1)+'%;background:var(--no)"></i></div></div>';
-    }).join('') : '<div class="pv-wait">Бу даврда молия ёзуви йўқ</div>';
-  }
-
-  var mkH;
-  if(!markUlangan()) mkH='<div class="pv-wait">Маркетинг уланмаган</div>';
-  else if(!kj) mkH=pvKutish();
-  else{
-    var qat=[
-      ['Жами лид',  kj.jami,     'var(--info)'],
-      ['Обработка', kj.obrabotka,'var(--a)'],
-      ['Янги',      kj.yangi,    'rgba(111,168,220,.55)'],
-      ['Сифатсиз',  kj.sifatsiz, 'var(--no)'],
-      ['Сотув',     kj.sotuv,    'var(--ok)']
-    ];
-    var mx=kj.jami||1;
-    mkH='<div class="pv-fun">'+qat.map(function(q,i){
-      return '<div class="pv-fr"><span>'+q[0]+'</span>'+
-        '<div class="pv-ft"><i style="width:'+Math.max(1.5,q[1]/mx*100).toFixed(1)+'%;background:'+q[2]+
-          ';animation-delay:'+(i*.08)+'s"></i></div><b>'+fmt(q[1])+'</b></div>';
-    }).join('')+'</div>'+
-    '<div class="pv-konv"><b>'+kFoiz(kj.konv)+'</b><span>лиддан сотувга конверсия</span></div>';
-  }
-
-  h+='<div class="sec"><h2>Пул ва лидлар</h2><p>Молия ҳаракати ва маркетинг воронкаси</p></div>'+
-    '<div class="pv-two">'+
-      '<div class="pv-card"><div class="pv-ch"><h3><i>'+ikM+'</i>Молия</h3>'+
-        '<button class="pv-lnk" data-prod="moliya">батафсил'+ok+'</button></div>'+finH+'</div>'+
-      '<div class="pv-card"><div class="pv-ch"><h3><i>'+ikK+'</i>Маркетинг воронкаси</h3>'+
-        '<button class="pv-lnk" data-prod="marketing">батафсил'+ok+'</button></div>'+mkH+'</div>'+
-    '</div>';
-
-  /* ── МАРКЕТИНГ САМАРАДОРЛИГИ ── */
-  h+='<div class="sec"><h2>Таргет самарадорлиги</h2>'+
-     '<p>Ҳар бир таргетолог: қанча лид, қанча сотув ва битта лид неча пулга тушди</p></div>';
-  if(!kl || (moliyaUlangan() && !D.moliya)) h+='<div class="pv-card">'+pvKutish()+'</div>';
-  else{
-    var tg=kTargetlar(kl), hj=tgHarajat()||{};
-    var TR={'Элёр':'#E0A048','Гавхар':'#D77B96','ilhombegimqulov.uz':'#6FA8DC'};
-    /* Жами «1 лид нархи» фақат ХАРАЖАТИ БОР таргетларнинг лидига бўлинади —
-       акс ҳолда пул сарфланмаган манбалар (ilhombegimqulov.uz) нархни сунъий пасайтиради. */
-    var sum={jami:0,sotuv:0,UZS:0,USD:0,hJami:0,hSotuv:0};
-    var q2=tg.map(function(g){
-      var x=hj[g.nom]||{UZS:0,USD:0};
-      sum.jami+=g.jami; sum.sotuv+=g.sotuv; sum.UZS+=x.UZS; sum.USD+=x.USD;
-      if(x.UZS||x.USD){ sum.hJami+=g.jami; sum.hSotuv+=g.sotuv }
-      return {g:g,x:x};
-    });
-    // харажати бор, лекин лиди йўқ таргет ҳам кўринсин
-    Object.keys(hj).forEach(function(k){
-      if(tg.some(function(g){ return g.nom===k })) return;
-      q2.push({g:{nom:k,jami:0,sotuv:0,konv:0},x:hj[k]});
-      sum.UZS+=hj[k].UZS; sum.USD+=hj[k].USD;
-    });
-
-    function narx(x,n){
-      var o=[];
-      if(x.UZS) o.push(n?vPul(x.UZS/n,'UZS'):'—');
-      if(x.USD) o.push(n?vPul(x.USD/n,'USD'):'—');
-      return o.length?o.join('<br>'):'<span class="dim">—</span>';
-    }
-    function har(x){
-      var o=[];
-      if(x.UZS) o.push(vPul(x.UZS,'UZS'));
-      if(x.USD) o.push(vPul(x.USD,'USD'));
-      return o.length?o.join('<br>'):'<span class="dim">—</span>';
-    }
-
-    h+='<div class="pv-card"><div class="pv-tw"><table class="pv-t"><thead><tr>'+
-      '<th>Таргетолог</th><th>Лид</th><th>Сотув</th><th>Конверсия</th>'+
-      '<th>Харажат</th><th>1 лид нархи</th><th>1 сотув нархи</th></tr></thead><tbody>'+
-      q2.map(function(r){
-        var g=r.g, c=TR[g.nom]||'var(--line2)';
-        return '<tr><td><div class="nm"><i style="background:'+c+'">'+esc(g.nom.charAt(0).toUpperCase())+'</i>'+esc(g.nom)+'</div></td>'+
-          '<td class="mn">'+fmt(g.jami)+'</td>'+
-          '<td class="mn" style="color:var(--ok);font-weight:600">'+fmt(g.sotuv)+'</td>'+
-          '<td class="mn">'+(g.jami?kFoiz(g.konv):'—')+'</td>'+
-          '<td class="mn">'+har(r.x)+'</td>'+
-          '<td class="mn zo">'+narx(r.x,g.jami)+'</td>'+
-          '<td class="mn">'+narx(r.x,g.sotuv)+'</td></tr>';
-      }).join('')+
-      '</tbody><tfoot><tr><td>Жами</td><td class="mn">'+fmt(sum.jami)+'</td>'+
-        '<td class="mn" style="color:var(--ok)">'+fmt(sum.sotuv)+'</td>'+
-        '<td class="mn">'+(sum.jami?kFoiz(sum.sotuv/sum.jami*100):'—')+'</td>'+
-        '<td class="mn">'+har(sum)+'</td><td class="mn zo">'+narx(sum,sum.hJami)+'</td>'+
-        '<td class="mn">'+narx(sum,sum.hSotuv)+'</td></tr></tfoot></table></div>'+
-      /* Телефон учун — жадвал ўрнига карточкалар */
-      '<div class="pv-tk">'+q2.map(function(r){
-        var g=r.g, c=TR[g.nom]||'var(--line2)';
-        return '<div class="pv-tkr"><div class="pv-tkh"><div class="nm"><i style="background:'+c+'">'+
-            esc(g.nom.charAt(0).toUpperCase())+'</i>'+esc(g.nom)+'</div>'+
-            '<span class="pv-tkk">'+(g.jami?kFoiz(g.konv):'—')+'</span></div>'+
-          '<div class="pv-tkg">'+
-            '<div><span>Лид</span><b>'+fmt(g.jami)+'</b></div>'+
-            '<div><span>Сотув</span><b style="color:var(--ok)">'+fmt(g.sotuv)+'</b></div>'+
-            '<div><span>Харажат</span><b>'+har(r.x)+'</b></div>'+
-            '<div><span>1 лид</span><b class="zo">'+narx(r.x,g.jami)+'</b></div>'+
-          '</div></div>';
-      }).join('')+'</div>'+
-      '<div class="pv-izoh"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">'+
-        '<circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/></svg>'+
-        '<span>Харажат — Молиядаги «Таргет» чиқимлари: «Таргет Элёр» → Элёр, «Таргет 2» → Гавхар. '+
-        '«Қўшимча таргетолог» ойлик бўлгани учун ҳисобга <b>киритилмаган</b>. '+
-        'Жами нарх фақат харажати бор таргетларнинг лидига бўлинган.</span></div></div>';
-  }
-
-  /* ── ЭНГ ЯХШИ МЕНЕЖЕРЛАР + ДИНАМИКА ── */
-  var men=guruhla(hamma,function(x){ return x.menejer }).filter(function(x){ return x.nom!=='—' }).slice(0,6);
-  var mmax=men.length?men[0].soni:1;
-  var topH = men.length ? '<div class="pv-top">'+men.map(function(x,i){
-      var md=i===0?'m1':i===1?'m2':i===2?'m3':'mx';
-      return '<div class="pv-tr" style="animation-delay:'+(i*.05)+'s"><div class="pv-md '+md+'">'+(i+1)+'</div>'+
-        '<div class="pv-tn"><b>'+esc(x.nom)+'</b>'+
-          '<div class="pv-tbar"><i style="width:'+(x.soni/mmax*100).toFixed(1)+'%"></i></div></div>'+
-        '<div class="pv-tv"><b class="num">'+fmt(x.soni)+'</b><span>'+pul(x.tolangan)+'</span></div></div>';
-    }).join('')+'</div>' : bosh('Бу даврда сотув йўқ');
-
-  h+='<div class="sec"><h2>Энг яхши менежерлар</h2><p>Учала продукт бирга — сотув сони бўйича</p></div>'+
-     '<div class="pv-card">'+topH+'</div>';
-
-  h+=bolim('Сотув динамикаси','Учала продукт бирга — ҳар бир санада нечта сотув',
-    davrQatori(hamma)+dinamika(hamma));
-
-  /* ── ГЕОГРАФИЯ ── */
-  var geoL=hamma.filter(function(x){ return x.davlat });
-  if(geoL.length){
-    var geo=guruhla(geoL,function(x){ var d=davlatTop(x.davlat); return d?d.nom:x.davlat });
-    var xr=xaritaDavlat(geo);
-    if(xr) h+='<div class="sec"><h2>Мижозлар географияси</h2><p>3 кунлик ва AI 3.0 — мижоз қайси давлатдан</p></div>'+xr;
-  }
-
-  return h;
-}
-
-
-/* ══════════════════════════════════════════════════════
    11.5 СУНЪИЙ ИНТЕЛЛЕКТ (RBA AI 3.0)
    Иккита панел: «Умумий» ва «Ёзувлар»
    ⚠ «Нечи киши» = сотув сони. guruhla / jam / dinamika
@@ -3334,16 +2839,16 @@ function xaritaDavlat(guruh){
 /** Юкланмаган / хато ҳолати */
 function aiHolat(){
   if(!aiUlangan())
-    return sarlavha('AI 3.0','Ҳали уланмаган',mobilTugma())+
+    return sarlavha('Сунъий интеллект','Ҳали уланмаган',mobilTugma())+
       '<div class="empty"><b>API ҳаволаси қўйилмаган</b>'+
       'AI.gs ни деплой қилиб, ҳаволани HTML даги <b>API_AI</b> га қўйинг.</div>';
   if(D && D.aiXato)
-    return sarlavha('AI 3.0','Хатолик',mobilTugma())+
+    return sarlavha('Сунъий интеллект','Хатолик',mobilTugma())+
       '<div class="xato"><b>Серверга уланиб бўлмади</b>'+esc(D.aiXato)+
       '<div style="margin-top:10px;font-size:12.5px">Apps Script: <b>Deploy → Anyone</b> '+
       'қилинганми ва <b>KALIT_AI</b> иккала жойда бир хилми?</div></div>';
   if(!D || !D.ai)
-    return sarlavha('AI 3.0','Юкланмоқда…',mobilTugma())+
+    return sarlavha('Сунъий интеллект','Юкланмоқда…',mobilTugma())+
       '<div class="load"><div class="spin"></div>Маълумот юкланмоқда…</div>';
   return null;
 }
@@ -3362,7 +2867,7 @@ function aiUmumiy(){
   var men=guruhla(l,function(x){ return x.menejer });
   var dav=guruhla(l,function(x){ return x.davlat });
 
-  var o=sarlavha('AI 3.0 — умумий','Режа, сотув сони, пул ва география',
+  var o=sarlavha('Сунъий интеллект','Режа, сотув сони, пул ва география',
     sanaFiltr()+mobilTugma())+
 
   '<div class="mets">'+
@@ -3422,7 +2927,7 @@ function aiJurnal(){
   var kes=l.slice(0,300);
   var j=jam(l);
 
-  var o=sarlavha('AI 3.0 — ёзувлар','Google Sheets’даги қаторлар',
+  var o=sarlavha('Сунъий интеллект — ёзувлар','Google Sheets’даги қаторлар',
     '<input type="text" id="qid" placeholder="Исм, менежер, давлат…" value="'+esc(S.qidiruv)+'" style="width:190px">'+
     sanaFiltr()+mobilTugma());
 
@@ -3461,7 +2966,6 @@ function aiJurnal(){
 
 
 function menyu(){
-  if(panelMi()) return [{p:'umumiy', nom:'Умумий', ik:'chart'}];
   if(markMi()){
     var kl=(D&&D.marketing)?kSatrlar():[];
     var kb=(D&&D.marketing)?sanaFiltrla(D.marketing):[];
@@ -3504,9 +3008,7 @@ function chiz(){
   }
   if(!D) return;
 
-  main.innerHTML = panelMi()
-    ? panelSahifa()
-    : markMi()
+  main.innerHTML = markMi()
     ? ( S.sahifa==='umumiy'  ? markUmumiy()  :
         S.sahifa==='menejer' ? markTarget()  :
         S.sahifa==='kesim'   ? markStadiya() : markJurnal() )
@@ -3526,7 +3028,6 @@ function chiz(){
 
   /* Бўлим тугмалари икки жойда: чап менюда ва пастки панелда */
   var m=menyu();
-  document.body.classList.toggle('dokyoq', m.length<2);
   ['#side','#bnav'].forEach(function(joy){
     var n=document.querySelectorAll(joy+' .ni[data-p]');
     for(var i=0;i<n.length;i++){
@@ -3568,7 +3069,6 @@ function produktOch(p){
   if(p==='moliya') moliyaYukla();
   if(p==='marketing') markYukla();
   if(p==='ai') aiYukla();
-  if(p==='panel' && D){ aiYukla(); moliyaYukla(); markYukla(); }
   // Фильтрни тозалаймиз: акс ҳолда «Бугун» қолиб кетиб,
   // янги бўлим сабабсиз бўм-бўш кўринади.
   S.sahifa='umumiy'; S.ochiq=null; S.qidiruv=''; S.oraliq='hammasi'; S.target='hammasi';
@@ -3650,7 +3150,6 @@ function hammasiYangila(){
   if(moliyaMi()) moliyaYukla(true);
   if(markMi())   markYukla(true);
   if(aiMi())     aiYukla(true);
-  if(panelMi()){ aiYukla(true); moliyaYukla(true); markYukla(true); }
   setTimeout(function(){ S.yangi=false },4000);
 }
 document.getElementById('yangilaBtn').onclick=hammasiYangila;
