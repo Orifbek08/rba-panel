@@ -760,7 +760,6 @@ body.qulfli .tbar,body.qulfli .app,body.qulfli .bnav{visibility:hidden}
 .qfoot b{color:#8A919B;font-weight:500}
 
 /* ═══════════ РОЛЛАР ═══════════ */
-body:not(.admin) [data-prod="moliya"],
 body:not(.admin) [data-prod="admin"]{display:none!important}
 .pswitch .adm-btn{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:5px;
   border:1px dashed rgba(224,160,72,.35);color:#E7C48E}
@@ -1035,13 +1034,13 @@ body:not(.admin) [data-prod="admin"]{display:none!important}
    ══════════════════════════════════════════════════════ */
 
 // Кириш (парол, журнал) — Kirish.gs деплойи
-var API_KIRISH = 'https://script.google.com/macros/s/AKfycbxN1I4yfczxFeOnKhXz9OHmWVcjXvLfrccTDqWnHOw-oYzDCeTR0mEJHPS0W0osGQwW/exec';
+var API_KIRISH = 'https://script.google.com/macros/s/AKfycbzMjaAqu8R7Xj1mi2x7XgzNZHnem06_BK2usR714kPSOE8qZgEhf4WAevwbbRNE6mtU/exec';
 
 // Сотув жадвали (интенсив + коуч)
 var API = 'https://script.google.com/macros/s/AKfycbzfu9cVpXz50ySk8k_Wcd1RFXlU3myqXv4RaAt6BTs9igrBKPVIM-kEJxHrwY512yz7Fg/exec';
 
 // Молия — фақат admin учун очилади
-var API_MOLIYA = 'https://script.google.com/macros/s/AKfycbxCWIGMzkSgEApsoqgRO81QhqobVurbnRFIQA2tO4FZ7d2CSE1fNht0HIysQMEcMBt_AQ/exec';
+var API_MOLIYA = 'https://script.google.com/macros/s/AKfycbwvTM3uHEoPn4GBGzsuuSdcMg1CICb-TIXnBJ8M3jt83mm_cf-x99_UiPFQn2KC5p9tlw/exec';
 
 // Маркетинг
 var API_MARKETING = 'https://script.google.com/macros/s/AKfycbwCtp5u0u_HaUub73E-X6YiMFY6ayCd1roRDEppKL6yyO9_twR6t5FbBYtoXXdhUMju/exec';
@@ -1063,7 +1062,7 @@ var KIR_SAQ='rba_kirish_v1', QUR_SAQ='rba_qurilma_v1', ROL_SAQ='rba_rol_v1';
 var AUTH={token:null,rol:null,exp:0};
 var BOSHLANDI=false;
 var PIN='', QULF_XATO='', QULF_IZOH='', QULF_BAND=false, QULF_BLOK=false;
-var BLOK_DAQIQA=30;                     // шунча дақиқа ишлатилмаса — қулф
+var BLOK_DAQIQA=24*60;                  // 24 соат ишлатилмаса — қулф (сервердаги муддат билан бир хил)
 
 function kirishUlangan(){ return API_KIRISH.indexOf('BU_YERGA')<0 }
 function adminMi(){ return AUTH.rol==='admin' }
@@ -1134,7 +1133,7 @@ function qulfChiz(){
     '<div class="qpad">'+b(1)+b(2)+b(3)+b(4)+b(5)+b(6)+b(7)+b(8)+b(9)+
       '<span></span>'+b(0)+'<button class="qb bo" type="button" data-pin="del" aria-label="Ўчириш">'+del+'</button></div>'+
     '<div class="qfoot">Бу қурилма: <b>'+esc(qurilmaNomi())+'</b><br>'+
-      'Сеанс 12 соат · '+BLOK_DAQIQA+' дақиқа ишлатилмаса қулфланади</div>'+
+      'Бир марта кирсангиз — 24 соат фаол бўлмагунча код сўралмайди</div>'+
   '</div>';
   qulfYangila();
 }
@@ -1233,8 +1232,8 @@ function kirishOk(j){
   document.getElementById('qulf').innerHTML='';
   rolBelgi();
   if(!adminMi()){
-    if(S.prod==='moliya'||S.prod==='admin'){ S.prod='panel'; S.sahifa='umumiy' }
-    if(D) delete D.moliya;
+    if(S.prod==='admin'){ S.prod='panel'; S.sahifa='umumiy' }
+    if(D) delete D.nazorat;
   }
   if(!BOSHLANDI){ BOSHLANDI=true; boshla() }
   else { chiz(); yukla(!!D) }
@@ -1246,7 +1245,11 @@ async function faolYubor(bolim){
   if(!kirishUlangan() || !AUTH.token) return;
   try{
     var j=await kirPost({amal:'faol',t:AUTH.token,bolim:bolim||'',qurilma:qurilmaNomi()});
-    if(j && j.chiqish) qulfla(j.sabab||'Сеанс тугади — қайта киринг');
+    if(j && j.chiqish){ qulfla(j.sabab||'Сеанс тугади — қайта киринг'); return }
+    if(j && j.token){
+      AUTH.token=j.token; AUTH.exp=j.exp;
+      try{ localStorage.setItem(KIR_SAQ,JSON.stringify(AUTH)) }catch(e){}
+    }
   }catch(e){}
 }
 
@@ -1256,7 +1259,7 @@ var OXIRGI_HARAKAT=Date.now();
 });
 setInterval(function(){
   if(!AUTH.token) return;
-  if(Date.now()-OXIRGI_HARAKAT > BLOK_DAQIQA*60000){ qulfla(BLOK_DAQIQA+' дақиқа фаолият бўлмади — қайта киринг'); return }
+  if(Date.now()-OXIRGI_HARAKAT > BLOK_DAQIQA*60000){ qulfla('24 соат фаолият бўлмади — қайта киринг'); return }
   if(AUTH.exp < Date.now()) qulfla('Сеанс муддати тугади — қайта киринг');
 },20000);
 setInterval(function(){
@@ -1279,7 +1282,7 @@ function kirishBoshla(){
   var a=authOqi();
   if(a && kirishUlangan()){
     AUTH=a; rolBelgi();
-    if(!adminMi() && (S.prod==='moliya'||S.prod==='admin')) S.prod='panel';
+    if(!adminMi() && S.prod==='admin') S.prod='panel';
     BOSHLANDI=true; boshla();
     faolYubor('Қайта очди · '+(PROD_NOM[S.prod]||S.prod));
   }else{
@@ -1456,7 +1459,7 @@ async function markYukla(majburiy){
 
 /** Молия маълумоти — фақат бир марта, «Молия» очилганда */
 async function moliyaYukla(majburiy){
-  if(!moliyaUlangan() || S.mBand || !adminMi()) return;
+  if(!moliyaUlangan() || S.mBand) return;
   if(!D) return;
   if(D && D.moliya && !majburiy) return;          // аллақачон бор
   S.mBand=true; belgi(true); chiz();
@@ -1487,7 +1490,7 @@ function aloqa(ok,vaqt){
 function boshla(){
   var bor=null;
   try{ bor=JSON.parse(localStorage.getItem(XOT)||'null') }catch(e){}
-  if(bor && !adminMi()){ delete bor.moliya; delete bor.nazorat }
+  if(bor && !adminMi()){ delete bor.nazorat }
   if(bor){ D=bor; S.eski=true; chiz(); aloqa(true,''); }
   yukla(!!bor);
 }
@@ -3452,8 +3455,7 @@ function panelSahifa(){
       '</div>'+
     '</div>';
 
-  /* ═══ 4. МОЛИЯ — фақат admin ═══ */
-  if(!adminMi()) return h;
+  /* ═══ 4. МОЛИЯ ═══ */
   h+='<div class="sec"><h2>Молия</h2><p>Кассаларда ҳозир қанча пул бор ва кечаги пул ҳаракати</p></div>';
 
   if(!moliyaUlangan()) return h+'<div class="pv-card"><div class="pv-wait">Молия уланмаган</div></div>';
@@ -3671,7 +3673,7 @@ function nzKodlar(){
       '<button class="btn btn-o" data-kodsaqla="'+rol+'">Сақлаш</button></div></div>';
   }
   h+='<div class="nz-kg">'+
-    k('xodim','Ходим коди','Ходимлар шу код билан киради. Молия ва «Назорат» уларга кўринмайди.')+
+    k('xodim','Ходим коди','Ходимлар шу код билан киради. Ҳамма бўлим очиқ, фақат «Назорат» кўринмайди.')+
     k('admin','Admin коди','Ҳамма бўлим, молия ва шу «Назорат» очилади. Ҳеч кимга берманг.')+
   '</div>';
   h+='<div class="sec"><h2>Сеанслар</h2><p>Кодни алмаштирсангиз, янги кириш фақат янги код билан бўлади</p></div>'+
@@ -3681,8 +3683,8 @@ function nzKodlar(){
         'Код ўғирланган деб ўйласангиз, аввал кодни алмаштиринг, кейин шу тугмани босинг.</p>'+
         '<button class="btn btn-x" id="chiqarBtn">Ҳаммани чиқариш</button></div>'+
       '<div class="nz-k"><h3>Қоидалар</h3><p>'+
-        '• Сеанс 12 соат амал қилади.<br>'+
-        '• '+BLOK_DAQIQA+' дақиқа ишлатилмаса экран қулфланади.<br>'+
+        '• Бир марта кирилгач, 24 соат фаол бўлмагунча код сўралмайди.<br>'+
+        '• Сайт ишлатилиб турса, сеанс ўзи узаяди.<br>'+
         '• 5 марта хато код — қурилма 15 дақиқага блокланади.<br>'+
         '• Кодлар серверда сақланади, сайт кодида йўқ.</p></div>'+
     '</div>';
@@ -4056,7 +4058,7 @@ function tepaga(){ main.scrollTop=0; window.scrollTo(0,0) }
 function sahifaOch(nom){ S.sahifa=nom; S.ochiq=null; S.qidiruv=''; chiz(); tepaga() }
 function produktOch(p){
   if(S.prod===p) return;
-  if((p==='moliya'||p==='admin') && !adminMi()) return;
+  if(p==='admin' && !adminMi()) return;
   S.prod=p;
   faolYubor(PROD_NOM[p]||p);
   if(p==='admin') nazoratYukla();
