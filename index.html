@@ -712,6 +712,130 @@ body.oq .pv-gch{background:rgba(0,0,0,.03)}
   .pv-card{padding:14px 14px;border-radius:15px}
 }
 
+
+@media(min-width:821px){ body:not(.dokyoq) .toast{bottom:92px} }
+
+/* ═══════════ КИРИШ ЭКРАНИ ═══════════ */
+.qulf{position:fixed;inset:0;z-index:300;display:none;align-items:center;justify-content:center;
+  padding:24px 16px;overflow-y:auto;color:#E8EBEF;
+  background:
+    radial-gradient(700px 420px at 50% -8%,rgba(224,160,72,.20),transparent 62%),
+    radial-gradient(560px 380px at 8% 108%,rgba(78,203,146,.10),transparent 60%),
+    radial-gradient(520px 360px at 100% 90%,rgba(111,168,220,.08),transparent 60%),
+    #080A0D}
+body.qulfli .qulf{display:flex}
+body.qulfli{overflow:hidden}
+body.qulfli .tbar,body.qulfli .app,body.qulfli .bnav{visibility:hidden}
+.qk{width:100%;max-width:360px;text-align:center;animation:kir .55s cubic-bezier(.22,1,.36,1) both}
+.qlogo{width:68px;height:68px;margin:0 auto;border-radius:21px;display:grid;place-items:center;
+  font-family:Archivo,Inter,sans-serif;font-weight:800;font-size:19px;letter-spacing:.06em;color:#1A1206;
+  background:linear-gradient(145deg,#FFE08A,#E0A048);
+  box-shadow:0 14px 36px -10px rgba(224,160,72,.75),inset 0 1px 0 rgba(255,255,255,.5)}
+.qt{font-family:Archivo,Inter,sans-serif;font-weight:700;font-size:21px;letter-spacing:-.02em;margin-top:18px}
+.qs{font-size:13px;color:#8A919B;margin-top:5px}
+.qdots{display:flex;justify-content:center;gap:13px;margin:30px 0 14px}
+.qdots i{width:15px;height:15px;border-radius:50%;border:1.6px solid rgba(255,255,255,.22);
+  transition:transform .15s,background .15s,border-color .15s}
+.qdots i.on{background:linear-gradient(145deg,#FFE08A,#E0A048);border-color:transparent;transform:scale(1.08);
+  box-shadow:0 0 14px -2px rgba(224,160,72,.8)}
+.qdots.silk{animation:silk .45s cubic-bezier(.36,.07,.19,.97)}
+.qdots.silk i{border-color:rgba(240,121,110,.8)}
+@keyframes silk{10%,90%{transform:translateX(-2px)}20%,80%{transform:translateX(4px)}30%,50%,70%{transform:translateX(-8px)}40%,60%{transform:translateX(8px)}}
+.qx{min-height:20px;font-size:12.5px;color:#F0796E;margin-bottom:14px;padding:0 10px}
+.qx.ok{color:#8A919B}
+.qpad{display:grid;grid-template-columns:repeat(3,76px);gap:14px 20px;justify-content:center}
+.qb{width:76px;height:76px;border-radius:50%;border:1px solid rgba(255,255,255,.09);
+  background:linear-gradient(160deg,rgba(255,255,255,.07),rgba(255,255,255,.02));
+  color:#F2F4F7;font-family:Archivo,Inter,sans-serif;font-size:27px;font-weight:500;
+  display:grid;place-items:center;transition:transform .08s,background .15s,border-color .15s;
+  -webkit-user-select:none;user-select:none;touch-action:manipulation}
+.qb:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.16)}
+.qb:active{transform:scale(.92);background:rgba(224,160,72,.22);border-color:rgba(224,160,72,.5)}
+.qb.bo{border-color:transparent;background:none;font-size:13px;color:#8A919B}
+.qb svg{width:26px;height:26px}
+.qb:disabled{opacity:.35;cursor:not-allowed}
+.qband{display:flex;align-items:center;justify-content:center;gap:9px;font-size:12.5px;color:#8A919B;margin-bottom:14px;min-height:20px}
+.qband .spin{width:16px;height:16px;border-width:2px;margin:0}
+.qfoot{margin-top:30px;font-size:11px;color:#5C636C;line-height:1.7}
+.qfoot b{color:#8A919B;font-weight:500}
+
+/* ═══════════ РОЛЛАР ═══════════ */
+body:not(.admin) [data-prod="moliya"],
+body:not(.admin) [data-prod="admin"]{display:none!important}
+.pswitch .adm-btn{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:5px;
+  border:1px dashed rgba(224,160,72,.35);color:#E7C48E}
+.pswitch .adm-btn svg{width:15px;height:15px}
+.pswitch .adm-btn.on{border-style:solid;border-color:transparent}
+.tbrol{font-size:10px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;padding:5px 9px;border-radius:8px;
+  color:#9AA1AB;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08)}
+.tbrol.adm{color:#1A1206;background:linear-gradient(145deg,#F2C078,#E0A048);border-color:transparent}
+.ni.chiq{color:#E58F86}
+.ni.chiq:hover{color:#FFB3AB;background:rgba(240,121,110,.08)}
+@media(max-width:820px){ .tbrol{display:none} .qpad{grid-template-columns:repeat(3,72px);gap:12px 18px} .qb{width:72px;height:72px} }
+
+/* ═══════════ НАЗОРАТ (admin) ═══════════ */
+.nz-sum{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:6px}
+.nz-s{border:1px solid var(--line);border-radius:16px;padding:15px 17px;
+  background:linear-gradient(165deg,var(--card2),var(--card) 64%);box-shadow:var(--sh)}
+.nz-s span{font-size:11px;color:var(--muted);letter-spacing:.04em}
+.nz-s b{display:block;font-family:Archivo,Inter,sans-serif;font-size:28px;font-weight:700;letter-spacing:-.04em;margin-top:4px}
+.nz-s.on b{color:var(--ok)} .nz-s.bl b{color:var(--no)}
+.nz-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
+.nz-q{position:relative;border:1px solid var(--line);border-radius:17px;padding:16px 17px 14px;
+  background:linear-gradient(165deg,var(--card2),var(--card) 64%);box-shadow:var(--sh);
+  animation:kir .45s cubic-bezier(.22,1,.36,1) both}
+.nz-q.blok{border-color:var(--no-line);background:linear-gradient(165deg,var(--no-dim),var(--card) 70%)}
+.nz-qh{display:flex;align-items:center;gap:10px}
+.nz-dot{width:9px;height:9px;border-radius:50%;background:var(--line2);flex-shrink:0}
+.nz-dot.on{background:var(--ok);box-shadow:0 0 0 4px var(--ok-dim)}
+.nz-nom{font-weight:650;font-size:14.5px;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.nz-nom.bosh{color:var(--muted);font-weight:500;font-style:italic}
+.nz-b{font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;padding:3px 7px;border-radius:7px;
+  background:var(--line);color:var(--muted);white-space:nowrap}
+.nz-b.adm{background:var(--a-dim);color:var(--a)}
+.nz-b.siz{background:var(--info-dim);color:var(--info)}
+.nz-b.bl{background:var(--no-dim);color:var(--no)}
+.nz-qq{font-size:12px;color:var(--muted);margin:8px 0 12px;font-family:"JetBrains Mono",monospace}
+.nz-qr{display:flex;justify-content:space-between;font-size:12px;padding:6px 0;border-top:1px dashed var(--line)}
+.nz-qr span{color:var(--muted)}
+.nz-qr b{font-weight:600}
+.nz-qa{display:flex;gap:7px;margin-top:12px;flex-wrap:wrap}
+.nz-qa .btn{padding:7px 11px;font-size:12px;border-radius:10px}
+.nz-qa .btn.xavf{color:var(--no);border-color:var(--no-line)}
+.nz-qa .btn.xavf:hover{background:var(--no-dim)}
+.nz-in{display:flex;gap:7px;margin-top:4px}
+.nz-in input{flex:1;min-width:0}
+.nz-jr{display:grid;grid-template-columns:52px 30px 1fr auto;gap:12px;align-items:center;padding:10px 0;
+  border-bottom:1px solid var(--line)}
+.nz-jr:last-child{border-bottom:none}
+.nz-jt{font-family:"JetBrains Mono",monospace;font-size:12.5px;color:var(--muted)}
+.nz-ji{width:30px;height:30px;border-radius:10px;display:grid;place-items:center;font-size:14px;background:var(--line)}
+.nz-ji.ok{background:var(--ok-dim)} .nz-ji.no{background:var(--no-dim)} .nz-ji.a{background:var(--a-dim)}
+.nz-jn{min-width:0}
+.nz-jn b{display:block;font-weight:550;font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.nz-jn span{display:block;font-size:11.5px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.nz-jk{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:600;margin:18px 0 4px}
+.nz-jk:first-child{margin-top:0}
+.nz-flt{display:inline-flex;align-items:center;gap:8px;margin-bottom:12px;padding:7px 12px;border-radius:10px;
+  background:var(--info-dim);color:var(--info);font-size:12.5px;border:none}
+.nz-kg{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.nz-k{border:1px solid var(--line);border-radius:17px;padding:18px 19px;
+  background:linear-gradient(165deg,var(--card2),var(--card) 64%);box-shadow:var(--sh)}
+.nz-k h3{font-size:15px;display:flex;align-items:center;gap:9px}
+.nz-k p{font-size:12px;color:var(--muted);margin:6px 0 14px;line-height:1.5}
+.nz-k input{font-family:"JetBrains Mono",monospace;font-size:18px;letter-spacing:.3em;text-align:center;padding:11px}
+.nz-k.xavf{border-color:var(--no-line)}
+.nz-k .btn-x{background:var(--no);color:#fff;border-color:transparent;font-weight:600}
+.nz-k .btn-x:hover{filter:brightness(1.08)}
+@media(max-width:820px){
+  .nz-sum{grid-template-columns:1fr 1fr;gap:9px}
+  .nz-s b{font-size:23px}
+  .nz-grid{grid-template-columns:1fr}
+  .nz-kg{grid-template-columns:1fr}
+  .nz-jr{grid-template-columns:44px 28px 1fr;gap:9px}
+  .nz-jr .nz-b{grid-column:3;justify-self:start}
+}
+
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 
 /* ═══════════ ЎРТА ЭКРАН ═══════════ */
@@ -846,10 +970,13 @@ body.oq .pv-gch{background:rgba(0,0,0,.03)}
 </head>
 <body>
 
+<div class="qulf" id="qulf" aria-modal="true" role="dialog"></div>
+
 <header class="tbar">
   <button class="tbic burger" id="burger" aria-label="Меню"><i></i><i></i><i></i></button>
   <div class="tbmid"><b>RBA</b><span class="tbn" id="tbProd"></span></div>
   <div class="tbong">
+    <span class="tbrol" id="tbRol"></span>
     <div class="tblive"><i class="dot" id="dot"></i><span id="liveT">уланмоқда…</span></div>
     <button class="tbic" id="temaBtn2" aria-label="Режим"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
     <button class="tbic" id="yangilaBtn2" aria-label="Янгилаш"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 12a9 9 0 1 1-3-6.7M21 4v5h-5"/></svg></button>
@@ -872,6 +999,7 @@ body.oq .pv-gch{background:rgba(0,0,0,.03)}
     <button data-prod="ai">AI 3.0</button>
     <button data-prod="moliya">Молия</button>
     <button data-prod="marketing">Маркетинг</button>
+    <button data-prod="admin" class="adm-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg>Назорат</button>
   </div>
 
   <div class="nl" id="nlBolim">Бўлимлар</div>
@@ -883,6 +1011,7 @@ body.oq .pv-gch{background:rgba(0,0,0,.03)}
   <div class="sf">
     <button class="ni" id="temaBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><span>Қора режим</span></button>
     <button class="ni" id="yangilaBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 12a9 9 0 1 1-3-6.7M21 4v5h-5"/></svg><span>Янгилаш</span></button>
+    <button class="ni chiq" id="chiqishBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg><span>Чиқиш</span></button>
   </div>
 </aside>
 <main class="main" id="main"><div class="load"><div class="spin"></div>Маълумот юкланмоқда…</div></main>
@@ -900,29 +1029,239 @@ body.oq .pv-gch{background:rgba(0,0,0,.03)}
 
 <script>
 /* ══════════════════════════════════════════════════════
-   1. СОЗЛАМА — фақат шу икки қаторни тўлдирасиз
+   1. СОЗЛАМА — API ҳаволалари
+   ⚠ Бу ерда ҲЕЧ ҚАНДАЙ калит ёки парол йўқ.
+     Маълумот фақат «RBA Кириш» берган рухсатнома билан очилади.
    ══════════════════════════════════════════════════════ */
 
+// Кириш (парол, журнал) — Kirish.gs деплойи
+var API_KIRISH = 'https://script.google.com/macros/s/AKfycbw6T9zYKgi9A6MfBbnPdRmAExiLvkQtY9CaGa8ekpG4HmkIuq266DP3UdkdKpnCtNzs/exec';
+
 // Сотув жадвали (интенсив + коуч)
-var API   = 'https://script.google.com/macros/s/AKfycbxU50MkZBDmgxKrWW9XnKLldouq7u-o-lexMwsDNSxulZ-yqWCznrzFJg9qNQUVxwNtWw/exec';
-var KALIT = 'sotuv-2026-BUNI-OZGARTIRING-1a2b3c';
+var API = 'https://script.google.com/macros/s/AKfycbzfu9cVpXz50ySk8k_Wcd1RFXlU3myqXv4RaAt6BTs9igrBKPVIM-kEJxHrwY512yz7Fg/exec';
 
-// Молия жадвали («Финансе орг») — Moliya.gs дан чиққан ҳавола
-var API_MOLIYA   = 'https://script.google.com/macros/s/AKfycbzeYH2CQKzncHrRxp0dn8ClEHj6FibbkzvrmOp5r-mCISC8I7iZkhRoRvWkED0QPpr3hw/exec';
-var KALIT_MOLIYA = 'moliya-2026-BUNI-OZGARTIRING-9z8y7x';
+// Молия — фақат admin учун очилади
+var API_MOLIYA = 'https://script.google.com/macros/s/AKfycbxCWIGMzkSgEApsoqgRO81QhqobVurbnRFIQA2tO4FZ7d2CSE1fNht0HIysQMEcMBt_AQ/exec';
 
-// ── Маркетинг (алоҳида жадвал, алоҳида Apps Script) ──
-var API_MARKETING   = 'https://script.google.com/macros/s/AKfycbwiVKenlzSr9oUA-T-PiZMlNVoVZUlveIH82mCYFpsqt_OAigzt0etZJexq58052WNY/exec';
-var KALIT_MARKETING = 'marketing-2026-BUNI-OZGARTIRING-5k4j3h';
+// Маркетинг
+var API_MARKETING = 'https://script.google.com/macros/s/AKfycbwCtp5u0u_HaUub73E-X6YiMFY6ayCd1roRDEppKL6yyO9_twR6t5FbBYtoXXdhUMju/exec';
 
-/* Сунъий интеллект (RBA AI 3.0) — AI.gs деплойи */
-var API_AI   = 'https://script.google.com/macros/s/AKfycbw0KmelTqx6XC-oql_YuvM9S-UMNByLospSMjSfv4Cv2671ABwz5N6p3UVbol477Ru2/exec';
-var KALIT_AI = 'ai-2026-BUNI-OZGARTIRING-7r6t5y';
+// AI 3.0
+var API_AI = 'https://script.google.com/macros/s/AKfycbz0utSwXV43iAKqVG0qvzMtuj02ELwM5ueAhsRarSlvpRqssfZY-NC0szcp5uT6Rr1w/exec';
 
 
 /* ══════════════════════════════════════════════════════
    2. ҲОЛАТ — илова нимани кўрсатиб турибди
    ══════════════════════════════════════════════════════ */
+
+/* ══════════════════════════════════════════════════════
+   1.5 КИРИШ — PIN экран, рухсатнома, роллар, автоблок
+   Код серверда текширилади. Бу ерда фақат рухсатнома сақланади.
+   ══════════════════════════════════════════════════════ */
+
+var KIR_SAQ='rba_kirish_v1', QUR_SAQ='rba_qurilma_v1', ROL_SAQ='rba_rol_v1';
+var AUTH={token:null,rol:null,exp:0};
+var BOSHLANDI=false;
+var PIN='', QULF_XATO='', QULF_IZOH='', QULF_BAND=false, QULF_BLOK=false;
+var BLOK_DAQIQA=30;                     // шунча дақиқа ишлатилмаса — қулф
+
+function kirishUlangan(){ return API_KIRISH.indexOf('BU_YERGA')<0 }
+function adminMi(){ return AUTH.rol==='admin' }
+
+/** Қурилманинг доимий белгиси — бир марта яратилади */
+function qurilmaId(){
+  var q=null; try{ q=localStorage.getItem(QUR_SAQ) }catch(e){}
+  if(!q || !/^[A-Za-z0-9]{12,32}$/.test(q)){
+    var a='ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnpqrstuvwxyz23456789', r=null;
+    try{ r=crypto.getRandomValues(new Uint8Array(20)) }catch(e){}
+    q=''; for(var i=0;i<20;i++) q+=a[(r?r[i]:Math.floor(Math.random()*256))%a.length];
+    try{ localStorage.setItem(QUR_SAQ,q) }catch(e){}
+  }
+  return q;
+}
+
+/** «Android · Chrome · 412×915» — admin қурилмани танийди */
+function qurilmaNomi(){
+  var u=navigator.userAgent||'', os='Қурилма', br='Браузер';
+  if(/iPhone/.test(u)) os='iPhone';
+  else if(/iPad/.test(u) || (/Macintosh/.test(u) && 'ontouchend' in document)) os='iPad';
+  else if(/Android/.test(u)){
+    var m=u.match(/Android[^;)]*;\s*([^;)]+?)(?:\s+Build\/|\))/);
+    var mod=m&&m[1]?m[1].trim():'';
+    os='Android'+(mod && mod!=='K' && !/^wv$|Linux/.test(mod) ? ' '+mod : '');
+  }
+  else if(/Windows/.test(u)) os='Windows';
+  else if(/Mac OS X/.test(u)) os='Mac';
+  else if(/Linux/.test(u)) os='Linux';
+  if(/YaBrowser/.test(u)) br='Яндекс';
+  else if(/Edg\//.test(u)) br='Edge';
+  else if(/OPR\//.test(u)) br='Opera';
+  else if(/Telegram/i.test(u)) br='Telegram';
+  else if(/SamsungBrowser/.test(u)) br='Samsung';
+  else if(/Firefox|FxiOS/.test(u)) br='Firefox';
+  else if(/CriOS|Chrome/.test(u)) br='Chrome';
+  else if(/Safari/.test(u)) br='Safari';
+  return os+' · '+br+' · '+screen.width+'×'+screen.height;
+}
+
+function authOqi(){
+  try{
+    var a=JSON.parse(localStorage.getItem(KIR_SAQ)||'null');
+    if(a && a.token && a.exp>Date.now()+60000) return a;
+  }catch(e){}
+  return null;
+}
+
+async function kirPost(o){
+  var r=await fetch(API_KIRISH,{method:'POST',body:JSON.stringify(o)});
+  return await r.json();
+}
+
+/* ── Экран ── */
+function qulfChiz(){
+  var el=document.getElementById('qulf');
+  var dots=''; for(var i=0;i<6;i++) dots+='<i class="'+(i<PIN.length?'on':'')+'"></i>';
+  var o=QULF_BAND||QULF_BLOK||!kirishUlangan();
+  function b(r,t){ return '<button class="qb" data-pin="'+r+'"'+(o?' disabled':'')+'>'+t+'</button>' }
+  var del='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 5H9l-6 7 6 7h12a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1z"/><path d="M18 9l-6 6M12 9l6 6"/></svg>';
+  var xato = !kirishUlangan()
+    ? 'Кириш скрипти ҳали уланмаган (API_KIRISH)'
+    : (QULF_XATO||QULF_IZOH);
+  el.innerHTML='<div class="qk">'+
+    '<div class="qlogo">RBA</div>'+
+    '<div class="qt">Real Business Academy</div>'+
+    '<div class="qs">Бошқарув панелига кириш учун кодни теринг</div>'+
+    '<div class="qdots" id="qdots">'+dots+'</div>'+
+    (QULF_BAND ? '<div class="qband"><div class="spin"></div>Текширилмоқда…</div>'
+               : '<div class="qx'+(QULF_XATO?'':' ok')+'">'+esc(xato||'')+'</div>')+
+    '<div class="qpad">'+b(1,1)+b(2,2)+b(3,3)+b(4,4)+b(5,5)+b(6,6)+b(7,7)+b(8,8)+b(9,9)+
+      '<span></span>'+b(0,0)+'<button class="qb bo" data-pin="del"'+(o?' disabled':'')+' aria-label="Ўчириш">'+del+'</button></div>'+
+    '<div class="qfoot">Бу қурилма: <b>'+esc(qurilmaNomi())+'</b><br>'+
+      'Сеанс 12 соат · '+BLOK_DAQIQA+' дақиқа ишлатилмаса қулфланади</div>'+
+  '</div>';
+}
+
+function qulfKorsat(izoh){
+  PIN=''; QULF_XATO=''; QULF_IZOH=izoh||''; QULF_BAND=false;
+  document.body.classList.add('qulfli');
+  qulfChiz();
+}
+
+/** Сеансни тугатади (рухсатнома ўчади) ва кириш экранини очади */
+function qulfla(izoh){
+  if(document.body.classList.contains('qulfli') && !AUTH.token) return;
+  AUTH={token:null,rol:null,exp:0};
+  try{ localStorage.removeItem(KIR_SAQ) }catch(e){}
+  main.innerHTML='';
+  qulfKorsat(izoh);
+}
+
+/** «Чиқиш» — сақланган маълумот ҳам ўчади */
+function chiqish(){
+  try{ localStorage.removeItem(XOT) }catch(e){}
+  D=null;
+  qulfla('Сиз тизимдан чиқдингиз');
+}
+
+function pinBos(r){
+  if(QULF_BAND || QULF_BLOK || !kirishUlangan()) return;
+  if(r==='del') PIN=PIN.slice(0,-1);
+  else if(PIN.length<6) PIN+=String(r);
+  QULF_XATO='';
+  qulfChiz();
+  if(PIN.length===6) pinYubor();
+}
+
+async function pinYubor(){
+  QULF_BAND=true; qulfChiz();
+  var silk=false;
+  try{
+    var j=await kirPost({amal:'kirish',kod:PIN,qid:qurilmaId(),qurilma:qurilmaNomi()});
+    if(j && j.ok){ QULF_BAND=false; kirishOk(j); return }
+    QULF_XATO=(j&&j.xato)||'Хатолик';
+    if(j && j.qoldi!=null) QULF_XATO+=' · яна '+j.qoldi+' та уриниш';
+    if(j && j.blok){ QULF_BLOK=true; setTimeout(function(){ QULF_BLOK=false; QULF_XATO=''; qulfChiz() },60000) }
+    silk=true;
+  }catch(e){
+    QULF_XATO='Серверга уланиб бўлмади — интернетни текширинг';
+  }
+  PIN=''; QULF_BAND=false; qulfChiz();
+  if(silk){ var d=document.getElementById('qdots'); if(d) d.classList.add('silk') }
+}
+
+function rolBelgi(){
+  document.body.classList.toggle('admin',adminMi());
+  var r=document.getElementById('tbRol');
+  if(r){ r.textContent=adminMi()?'Admin':'Ходим'; r.className='tbrol'+(adminMi()?' adm':'') }
+}
+
+function kirishOk(j){
+  var eski=null; try{ eski=localStorage.getItem(ROL_SAQ) }catch(e){}
+  // Рол алмашса (admin → ходим) — сақланган маълумот ўчади, молия қолиб кетмасин
+  if(eski && eski!==j.rol){ try{ localStorage.removeItem(XOT) }catch(e){} D=null }
+  try{ localStorage.setItem(ROL_SAQ,j.rol) }catch(e){}
+  AUTH={token:j.token,rol:j.rol,exp:j.exp};
+  try{ localStorage.setItem(KIR_SAQ,JSON.stringify(AUTH)) }catch(e){}
+  PIN=''; QULF_XATO=''; QULF_IZOH='';
+  OXIRGI_HARAKAT=Date.now();
+  document.body.classList.remove('qulfli');
+  document.getElementById('qulf').innerHTML='';
+  rolBelgi();
+  if(!adminMi()){
+    if(S.prod==='moliya'||S.prod==='admin'){ S.prod='panel'; S.sahifa='umumiy' }
+    if(D) delete D.moliya;
+  }
+  if(!BOSHLANDI){ BOSHLANDI=true; boshla() }
+  else { chiz(); yukla(!!D) }
+  xabar(adminMi()?'Хуш келибсиз, admin':'Хуш келибсиз');
+}
+
+/* ── Фаоллик: бўлим алмашганда ва ҳар 5 дақиқада ── */
+async function faolYubor(bolim){
+  if(!kirishUlangan() || !AUTH.token) return;
+  try{
+    var j=await kirPost({amal:'faol',t:AUTH.token,bolim:bolim||'',qurilma:qurilmaNomi()});
+    if(j && j.chiqish) qulfla(j.sabab||'Сеанс тугади — қайта киринг');
+  }catch(e){}
+}
+
+var OXIRGI_HARAKAT=Date.now();
+['pointerdown','keydown','touchstart','wheel','scroll'].forEach(function(ev){
+  document.addEventListener(ev,function(){ OXIRGI_HARAKAT=Date.now() },{passive:true,capture:true});
+});
+setInterval(function(){
+  if(!AUTH.token) return;
+  if(Date.now()-OXIRGI_HARAKAT > BLOK_DAQIQA*60000){ qulfla(BLOK_DAQIQA+' дақиқа фаолият бўлмади — қайта киринг'); return }
+  if(AUTH.exp < Date.now()) qulfla('Сеанс муддати тугади — қайта киринг');
+},20000);
+setInterval(function(){
+  if(AUTH.token && document.visibilityState==='visible') faolYubor('');
+},5*60000);
+
+/* ── PIN тугмалари ва клавиатура ── */
+document.getElementById('qulf').addEventListener('click',function(e){
+  var b=e.target.closest('[data-pin]');
+  if(b && !b.disabled) pinBos(b.dataset.pin==='del'?'del':+b.dataset.pin);
+});
+document.addEventListener('keydown',function(e){
+  if(!document.body.classList.contains('qulfli')) return;
+  if(/^[0-9]$/.test(e.key)){ pinBos(+e.key); e.preventDefault() }
+  else if(e.key==='Backspace'){ pinBos('del'); e.preventDefault() }
+});
+
+/** Ишга тушиш: рухсатнома бўлса — дарҳол, бўлмаса — PIN экран */
+function kirishBoshla(){
+  var a=authOqi();
+  if(a && kirishUlangan()){
+    AUTH=a; rolBelgi();
+    if(!adminMi() && (S.prod==='moliya'||S.prod==='admin')) S.prod='panel';
+    BOSHLANDI=true; boshla();
+    faolYubor('Қайта очди · '+(PROD_NOM[S.prod]||S.prod));
+  }else{
+    qulfKorsat('');
+  }
+}
+
 
 var D = null;                 // сервердан келган маълумот
 var S = {
@@ -935,10 +1274,10 @@ var S = {
   ochiq:   null,              // очилган карточка номи
   qidiruv: '',
   target:  'hammasi',         // маркетинг: қайси таргетолог
-  eski:false, xato:null, band:false, mBand:false, kBand:false, aBand:false, yangi:false
+  eski:false, xato:null, band:false, mBand:false, kBand:false, aBand:false, nBand:false, yangi:false, nomTahrir:null, jQid:null
 };
 
-var PROD_NOM={panel:'Бошқарув панели',praktikum:'3 кунлик',kouch:'Коучинг',ai:'AI 3.0',
+var PROD_NOM={admin:'Назорат',panel:'Бошқарув панели',praktikum:'3 кунлик',kouch:'Коучинг',ai:'AI 3.0',
               moliya:'Молия',marketing:'Маркетинг'};
 
 var XOT='rba_sotuv_v2', TEMA='rba_tema_v1', MENYU='rba_menyu_v1';
@@ -1005,7 +1344,11 @@ function aiUlangan(){ return API_AI.indexOf('BU_YERGA')<0 }
 async function bittaYukla(url){
   var r=await fetch(url);
   var j=await r.json();
-  if(!j.ok) throw new Error(j.xato||'Сервер хатоси');
+  if(!j.ok){
+    // Рухсатнома тугаган ёки нотўғри — кириш экранига қайтамиз
+    if(j.kirish){ qulfla(j.xato); var e=new Error(j.xato||'Кириш талаб қилинади'); e.kirish=true; throw e }
+    throw new Error(j.xato||'Сервер хатоси');
+  }
   return j;
 }
 
@@ -1021,7 +1364,7 @@ async function yukla(jim){
   belgi(true);
 
   try{
-    var j=await bittaYukla(API+'?amal=baza&kalit='+encodeURIComponent(KALIT)+(S.yangi?'&yangi=1':''));
+    var j=await bittaYukla(API+'?amal=baza&t='+encodeURIComponent(AUTH.token)+(S.yangi?'&yangi=1':''));
     // v3 сиқилган формат
     if(j.praktikumP){ j.praktikum=paketOch(j.praktikumP); delete j.praktikumP }
     if(j.kouchP){     j.kouch=paketOch(j.kouchP);         delete j.kouchP }
@@ -1030,7 +1373,8 @@ async function yukla(jim){
            j.moliyaVersiya=D.moliyaVersiya; j.moliyaXato=D.moliyaXato;
            j.marketing=D.marketing; j.markTashxis=D.markTashxis;
            j.markVersiya=D.markVersiya; j.markXato=D.markXato;
-           j.ai=D.ai; j.aiReja=D.aiReja; j.aiVersiya=D.aiVersiya; j.aiXato=D.aiXato }
+           j.ai=D.ai; j.aiReja=D.aiReja; j.aiVersiya=D.aiVersiya; j.aiXato=D.aiXato;
+           j.nazorat=D.nazorat; j.nazoratXato=D.nazoratXato }
     D=j; S.xato=null; S.eski=false;
     aloqa(true,D.vaqt);
     saqla();
@@ -1044,6 +1388,7 @@ async function yukla(jim){
   if(markMi())   markYukla();
   if(aiMi())     aiYukla();
   if(panelMi() && D){ aiYukla(); moliyaYukla(); markYukla(); }
+  if(nazoratMi()) nazoratYukla();
 }
 
 /** Сунъий интеллект маълумоти — фақат шу бўлим очилганда */
@@ -1053,7 +1398,7 @@ async function aiYukla(majburiy){
   if(D && D.ai && !majburiy) return;
   S.aBand=true; belgi(true); chiz();
   try{
-    var j=await bittaYukla(API_AI+'?amal=baza&kalit='+encodeURIComponent(KALIT_AI)+(S.yangi?'&yangi=1':''));
+    var j=await bittaYukla(API_AI+'?amal=baza&t='+encodeURIComponent(AUTH.token)+(S.yangi?'&yangi=1':''));
     D.ai=j.sotuvP ? paketOch(j.sotuvP) : (j.sotuv||[]);
     D.aiReja=Array.isArray(j.reja)?j.reja:[];
     D.aiVersiya=j.versiya||null;
@@ -1072,7 +1417,7 @@ async function markYukla(majburiy){
   if(D && D.marketing && !majburiy) return;
   S.kBand=true; belgi(true); chiz();
   try{
-    var j=await bittaYukla(API_MARKETING+'?amal=lid&kalit='+encodeURIComponent(KALIT_MARKETING)+(S.yangi?'&yangi=1':''));
+    var j=await bittaYukla(API_MARKETING+'?amal=lid&t='+encodeURIComponent(AUTH.token)+(S.yangi?'&yangi=1':''));
     D.marketing=j.lidlarP ? paketOch(j.lidlarP) : (j.lidlar||[]);
     D.markTashxis=j.tashxis||null;
     D.markVersiya=j.versiya||null;
@@ -1086,12 +1431,12 @@ async function markYukla(majburiy){
 
 /** Молия маълумоти — фақат бир марта, «Молия» очилганда */
 async function moliyaYukla(majburiy){
-  if(!moliyaUlangan() || S.mBand) return;
+  if(!moliyaUlangan() || S.mBand || !adminMi()) return;
   if(!D) return;
   if(D && D.moliya && !majburiy) return;          // аллақачон бор
   S.mBand=true; belgi(true); chiz();
   try{
-    var j=await bittaYukla(API_MOLIYA+'?amal=moliya&kalit='+encodeURIComponent(KALIT_MOLIYA)+(S.yangi?'&yangi=1':''));
+    var j=await bittaYukla(API_MOLIYA+'?amal=moliya&t='+encodeURIComponent(AUTH.token)+(S.yangi?'&yangi=1':''));
     D.moliya=j.moliyaP ? paketOch(j.moliyaP) : (j.moliya||[]);
     D.moliyaTashxis=j.tashxis||null;
     D.moliyaVersiya=j.versiya||null;
@@ -1117,6 +1462,7 @@ function aloqa(ok,vaqt){
 function boshla(){
   var bor=null;
   try{ bor=JSON.parse(localStorage.getItem(XOT)||'null') }catch(e){}
+  if(bor && !adminMi()){ delete bor.moliya; delete bor.nazorat }
   if(bor){ D=bor; S.eski=true; chiz(); aloqa(true,''); }
   yukla(!!bor);
 }
@@ -2053,7 +2399,7 @@ function mBoshHolat(){
   if(D.moliyaXato)
     return '<div class="xato"><b>Молия серверига уланиб бўлмади</b>'+esc(D.moliyaXato)+
       '<div style="margin-top:10px;font-size:12.5px">Текширинг: Moliya.gs '+
-      '<b>Deploy → Anyone</b> қилинганми ва <b>KALIT_MOLIYA</b> иккала жойда бир хилми.</div></div>';
+      '<b>Deploy → Anyone</b> қилинганми ва Moliya.gs 4.0 версиями.</div></div>';
   if(!D.moliya || !D.moliya.length) return tashxisPanel();
   return '';
 }
@@ -2903,7 +3249,8 @@ var IKONKA={
   joy:'<path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>',
   jadval:'<path d="M4 4h16v16H4z"/><path d="M4 9h16M9 9v11"/>',
   kirim:'<path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M4 20h16"/>',
-  chiqim:'<path d="M12 21V9"/><path d="M7 14l5-5 5 5"/><path d="M4 4h16"/>'
+  chiqim:'<path d="M12 21V9"/><path d="M7 14l5-5 5 5"/><path d="M4 4h16"/>',
+  kalit:'<circle cx="8" cy="15" r="4"/><path d="M11 12l9-9M17 6l3 3M15 8l2 2"/>'
 };
 
 /* ══════════════════════════════════════════════════════
@@ -3080,7 +3427,8 @@ function panelSahifa(){
       '</div>'+
     '</div>';
 
-  /* ═══ 4. МОЛИЯ ═══ */
+  /* ═══ 4. МОЛИЯ — фақат admin ═══ */
+  if(!adminMi()) return h;
   h+='<div class="sec"><h2>Молия</h2><p>Кассаларда ҳозир қанча пул бор ва кечаги пул ҳаракати</p></div>';
 
   if(!moliyaUlangan()) return h+'<div class="pv-card"><div class="pv-wait">Молия уланмаган</div></div>';
@@ -3152,6 +3500,184 @@ function panelSahifa(){
   }
 
   return h;
+}
+
+
+/* ══════════════════════════════════════════════════════
+   0.5 НАЗОРАТ — фақат admin
+   Қурилмалар · Журнал · Кодлар
+   ══════════════════════════════════════════════════════ */
+
+function nazoratMi(){ return S.prod==='admin' }
+
+async function nazoratYukla(majburiy){
+  if(!adminMi() || !kirishUlangan() || S.nBand) return;
+  if(D && D.nazorat && !majburiy) return;
+  S.nBand=true; belgi(true); chiz();
+  try{
+    var j=await kirPost({amal:'jurnal',t:AUTH.token});
+    if(!j.ok) throw new Error(j.xato||'Хатолик');
+    if(D){ D.nazorat=j; D.nazoratXato=null }
+  }catch(e){
+    if(D) D.nazoratXato=e.message;
+  }
+  S.nBand=false; belgi(false); chiz();
+}
+
+function nzVaqt(v){ var d=new Date(String(v||'').replace(' ','T')); return isNaN(d)?null:d }
+function nzOldin(v){
+  var d=nzVaqt(v); if(!d) return '—';
+  var f=(Date.now()-d)/60000;
+  if(f<1) return 'ҳозиргина';
+  if(f<60) return Math.floor(f)+' дақиқа олдин';
+  if(f<1440) return Math.floor(f/60)+' соат олдин';
+  if(f<2880) return 'кеча '+('0'+d.getHours()).slice(-2)+':'+('0'+d.getMinutes()).slice(-2);
+  return dfmt(v.slice(0,10))+' '+String(v).slice(11,16);
+}
+function nzOnlayn(v){ var d=nzVaqt(v); return d && (Date.now()-d)<10*60000 }
+function nzRol(r){ return r==='admin'?'<span class="nz-b adm">Admin</span>':r==='xodim'?'<span class="nz-b">Ходим</span>':'' }
+
+function nzHolat(){
+  if(!D || (!D.nazorat && !D.nazoratXato))
+    return '<div class="load"><div class="spin"></div>Журнал юкланмоқда…</div>';
+  if(D.nazoratXato) return '<div class="xato"><b>Журнални олиб бўлмади</b>'+esc(D.nazoratXato)+'</div>';
+  return null;
+}
+
+/* ── Қурилмалар ── */
+function nzQurilmalar(){
+  var h=sarlavha('Назорат — қурилмалар','Ким қайси қурилмадан кирган. Номини бериб, ходимни танинг.','');
+  var x=nzHolat(); if(x) return h+x;
+  var l=(D.nazorat.qurilmalar||[]).slice().sort(function(a,b){
+    return (nzVaqt(b.oxirgi)||0)-(nzVaqt(a.oxirgi)||0) });
+  var men=qurilmaId();
+  var bugun=new Date(); bugun.setHours(0,0,0,0);
+  var onl=l.filter(function(q){ return nzOnlayn(q.oxirgi) }).length;
+  var bug=l.filter(function(q){ var d=nzVaqt(q.oxirgi); return d && d>=bugun }).length;
+  var bl=l.filter(function(q){ return q.blok }).length;
+
+  h+='<div class="nz-sum">'+
+    '<div class="nz-s"><span>Жами қурилма</span><b class="num">'+fmt(l.length)+'</b></div>'+
+    '<div class="nz-s on"><span>Ҳозир онлайн</span><b class="num">'+fmt(onl)+'</b></div>'+
+    '<div class="nz-s"><span>Бугун кирган</span><b class="num">'+fmt(bug)+'</b></div>'+
+    '<div class="nz-s bl"><span>Блокланган</span><b class="num">'+fmt(bl)+'</b></div></div>';
+
+  h+='<div class="sec"><h2>Қурилмалар</h2><p>Охирги фаоллик бўйича · 10 дақиқа ичида фаол бўлса — онлайн</p></div>';
+  if(!l.length) return h+'<div class="empty"><b>Ҳали ҳеч ким кирмаган</b></div>';
+
+  h+='<div class="nz-grid">'+l.map(function(q,i){
+    var siz=q.qid===men, tahrir=S.nomTahrir===q.qid;
+    var nom = tahrir
+      ? '<div class="nz-in" style="flex:1"><input id="nzNomIn" value="'+esc(q.nom)+'" placeholder="Масалан: Шодиёна телефони" maxlength="40">'+
+          '<button class="btn btn-o" data-qsaqla="'+esc(q.qid)+'">Сақлаш</button>'+
+          '<button class="btn" data-qbekor="1">✕</button></div>'
+      : '<div class="nz-nom'+(q.nom?'':' bosh')+'">'+esc(q.nom||'Номсиз қурилма')+'</div>';
+    return '<div class="nz-q'+(q.blok?' blok':'')+'" style="animation-delay:'+Math.min(i,12)*.04+'s">'+
+      '<div class="nz-qh"><i class="nz-dot'+(nzOnlayn(q.oxirgi)?' on':'')+'"></i>'+nom+
+        (tahrir?'':(siz?'<span class="nz-b siz">Сиз</span>':'')+(q.blok?'<span class="nz-b bl">Блок</span>':'')+nzRol(q.rol))+
+      '</div>'+
+      '<div class="nz-qq">'+esc(q.qurilma||'—')+'</div>'+
+      '<div class="nz-qr"><span>Охирги фаоллик</span><b>'+esc(nzOldin(q.oxirgi))+'</b></div>'+
+      '<div class="nz-qr"><span>Биринчи кириш</span><b>'+esc(nzOldin(q.birinchi))+'</b></div>'+
+      '<div class="nz-qr"><span>Киришлар сони</span><b class="num">'+fmt(q.soni)+'</b></div>'+
+      '<div class="nz-qa">'+
+        (tahrir?'':'<button class="btn" data-qnom="'+esc(q.qid)+'">✎ Ном бериш</button>')+
+        '<button class="btn" data-qjur="'+esc(q.qid)+'">Журнали</button>'+
+        (siz?'':'<button class="btn'+(q.blok?'':' xavf')+'" data-qblok="'+esc(q.qid)+'" data-b="'+(q.blok?0:1)+'">'+
+          (q.blok?'Блокдан чиқариш':'Блоклаш')+'</button>')+
+      '</div></div>';
+  }).join('')+'</div>';
+  return h;
+}
+
+/* ── Журнал ── */
+function nzJurnal(){
+  var h=sarlavha('Назорат — журнал','Ким, қачон кирди ва қайси бўлимни очди',
+    '<input type="text" id="qid" placeholder="Ном, қурилма, бўлим…" value="'+esc(S.qidiruv)+'" style="width:210px">');
+  var x=nzHolat(); if(x) return h+x;
+  var nomlar={};
+  (D.nazorat.qurilmalar||[]).forEach(function(q){ nomlar[q.qid]=q.nom });
+  var l=D.nazorat.jurnal||[];
+  if(S.jQid) l=l.filter(function(r){ return r.qid===S.jQid });
+  if(S.qidiruv){
+    var t=S.qidiruv.toLowerCase();
+    l=l.filter(function(r){
+      return [nomlar[r.qid]||r.nom,r.qurilma,r.hodisa,r.bolim,r.rol].join(' ').toLowerCase().indexOf(t)>=0 });
+  }
+  if(S.jQid){
+    var qn=nomlar[S.jQid]||((D.nazorat.qurilmalar||[]).filter(function(q){return q.qid===S.jQid})[0]||{}).qurilma||'қурилма';
+    h+='<button class="nz-flt" data-jtoz="1">Фақат: <b>'+esc(qn)+'</b> ✕</button>';
+  }
+  if(!l.length) return h+'<div class="empty"><b>Ёзув йўқ</b></div>';
+
+  var gr={},t2=[];
+  l.slice(0,400).forEach(function(r){
+    var k=String(r.vaqt).slice(0,10);
+    if(!gr[k]){ gr[k]=[]; t2.push(k) }
+    gr[k].push(r);
+  });
+  var bug=new Date(), kch=new Date(); kch.setDate(kch.getDate()-1);
+  function iso(d){ return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2) }
+  function sar(k){ return k===iso(bug)?'Бугун':k===iso(kch)?'Кеча':dfmt(k) }
+
+  h+='<div class="pv-card">'+t2.map(function(k){
+    return '<div class="nz-jk">'+sar(k)+' · '+gr[k].length+'</div>'+gr[k].map(function(r){
+      var hd=String(r.hodisa||''), cls=/✅/.test(hd)?'ok':/❌|⛔/.test(hd)?'no':/🔑|🚪/.test(hd)?'a':'';
+      var ik=/✅/.test(hd)?'✓':/❌/.test(hd)?'✕':/⛔/.test(hd)?'⛔':/🔑/.test(hd)?'🔑':/🚪/.test(hd)?'🚪':'◉';
+      var kim=nomlar[r.qid]||r.nom||r.qurilma||'—';
+      var matn=hd.replace(/^[✅❌⛔🔑🚪]\s*/,'')+(r.bolim?' — '+r.bolim:'');
+      return '<div class="nz-jr"><div class="nz-jt">'+String(r.vaqt).slice(11,16)+'</div>'+
+        '<div class="nz-ji '+cls+'">'+ik+'</div>'+
+        '<div class="nz-jn"><b>'+esc(kim)+'</b><span>'+esc(matn)+(nomlar[r.qid]&&r.qurilma?' · '+esc(r.qurilma):'')+'</span></div>'+
+        nzRol(r.rol)+'</div>';
+    }).join('');
+  }).join('')+'</div>';
+  if(l.length>400) h+='<div class="sub" style="margin-top:10px">Охирги 400 таси кўрсатилди</div>';
+  if(D.nazorat.jadval) h+='<a class="pv-lnk" href="'+esc(D.nazorat.jadval)+'" target="_blank" rel="noopener" style="margin-top:10px">Тўлиқ журнал — Google Sheets</a>';
+  return h;
+}
+
+/* ── Кодлар ── */
+function nzKodlar(){
+  var h=sarlavha('Назорат — кодлар','Кириш кодларини алмаштириш ва сеансларни бошқариш','');
+  function k(rol,nom,izoh){
+    return '<div class="nz-k"><h3>'+nom+'</h3><p>'+izoh+'</p>'+
+      '<div class="nz-in"><input id="kod_'+rol+'" type="tel" inputmode="numeric" maxlength="6" placeholder="••••••" autocomplete="off">'+
+      '<button class="btn btn-o" data-kodsaqla="'+rol+'">Сақлаш</button></div></div>';
+  }
+  h+='<div class="nz-kg">'+
+    k('xodim','Ходим коди','Ходимлар шу код билан киради. Молия ва «Назорат» уларга кўринмайди.')+
+    k('admin','Admin коди','Ҳамма бўлим, молия ва шу «Назорат» очилади. Ҳеч кимга берманг.')+
+  '</div>';
+  h+='<div class="sec"><h2>Сеанслар</h2><p>Кодни алмаштирсангиз, янги кириш фақат янги код билан бўлади</p></div>'+
+    '<div class="nz-kg">'+
+      '<div class="nz-k xavf"><h3>Ҳаммани чиқариш</h3>'+
+        '<p>Ҳамма қурилмадаги сеанс тугайди — 5 дақиқа ичида ҳамма қайта код сўрайди. Сиз ҳам қайта кирасиз. '+
+        'Код ўғирланган деб ўйласангиз, аввал кодни алмаштиринг, кейин шу тугмани босинг.</p>'+
+        '<button class="btn btn-x" id="chiqarBtn">Ҳаммани чиқариш</button></div>'+
+      '<div class="nz-k"><h3>Қоидалар</h3><p>'+
+        '• Сеанс 12 соат амал қилади.<br>'+
+        '• '+BLOK_DAQIQA+' дақиқа ишлатилмаса экран қулфланади.<br>'+
+        '• 5 марта хато код — қурилма 15 дақиқага блокланади.<br>'+
+        '• Кодлар серверда сақланади, сайт кодида йўқ.</p></div>'+
+    '</div>';
+  return h;
+}
+
+function nazoratSahifa(){
+  if(!adminMi()) return '<div class="empty"><b>Бу бўлим фақат admin учун</b></div>';
+  return S.sahifa==='jurnal' ? nzJurnal() : S.sahifa==='kesim' ? nzKodlar() : nzQurilmalar();
+}
+
+/* ── Admin амаллари ── */
+async function nzAmal(o,xabarOk){
+  try{
+    o.t=AUTH.token;
+    var j=await kirPost(o);
+    if(!j.ok){ xabar(j.xato||'Хатолик',true); return false }
+    if(xabarOk) xabar(xabarOk);
+    return true;
+  }catch(e){ xabar('Серверга уланиб бўлмади',true); return false }
 }
 
 
@@ -3273,7 +3799,7 @@ function aiHolat(){
     return sarlavha('AI 3.0','Хатолик',mobilTugma())+
       '<div class="xato"><b>Серверга уланиб бўлмади</b>'+esc(D.aiXato)+
       '<div style="margin-top:10px;font-size:12.5px">Apps Script: <b>Deploy → Anyone</b> '+
-      'қилинганми ва <b>KALIT_AI</b> иккала жойда бир хилми?</div></div>';
+      'қилинганми ва AI.gs 2.0 версиями?</div></div>';
   if(!D || !D.ai)
     return sarlavha('AI 3.0','Юкланмоқда…',mobilTugma())+
       '<div class="load"><div class="spin"></div>Маълумот юкланмоқда…</div>';
@@ -3394,6 +3920,13 @@ function aiJurnal(){
 
 function menyu(){
   if(panelMi()) return [{p:'umumiy', nom:'Умумий', ik:'chart'}];
+  if(nazoratMi()){
+    var nz=D&&D.nazorat;
+    return [
+      {p:'umumiy', nom:'Қурилмалар', ik:'odam',   son:nz?(nz.qurilmalar||[]).length:null},
+      {p:'jurnal', nom:'Журнал',     ik:'jadval', son:nz?(nz.jurnal||[]).length:null},
+      {p:'kesim',  nom:'Кодлар',     ik:'kalit'}];
+  }
   if(markMi()){
     var kl=(D&&D.marketing)?kSatrlar():[];
     var kb=(D&&D.marketing)?sanaFiltrla(D.marketing):[];
@@ -3430,7 +3963,7 @@ function menyu(){
 function chiz(){
   if(S.xato && !D){
     main.innerHTML='<div class="xato"><b>Серверга уланиб бўлмади</b>'+esc(S.xato)+
-      '<div style="margin-top:10px;font-size:12.5px">Текширинг: Apps Script <b>Deploy → Anyone</b> қилинганми ва <b>КАЛИТ</b> иккала жойда бир хилми.</div></div>'+
+      '<div style="margin-top:10px;font-size:12.5px">Текширинг: Apps Script <b>Deploy → Anyone</b> қилинганми.</div></div>'+
       '<button class="btn" id="qaytaBtn">Қайта уриниш</button>';
     return;
   }
@@ -3438,6 +3971,8 @@ function chiz(){
 
   main.innerHTML = panelMi()
     ? panelSahifa()
+    : nazoratMi()
+    ? nazoratSahifa()
     : markMi()
     ? ( S.sahifa==='umumiy'  ? markUmumiy()  :
         S.sahifa==='menejer' ? markTarget()  :
@@ -3496,7 +4031,10 @@ function tepaga(){ main.scrollTop=0; window.scrollTo(0,0) }
 function sahifaOch(nom){ S.sahifa=nom; S.ochiq=null; S.qidiruv=''; chiz(); tepaga() }
 function produktOch(p){
   if(S.prod===p) return;
+  if((p==='moliya'||p==='admin') && !adminMi()) return;
   S.prod=p;
+  faolYubor(PROD_NOM[p]||p);
+  if(p==='admin') nazoratYukla();
   if(p==='moliya') moliyaYukla();
   if(p==='marketing') markYukla();
   if(p==='ai') aiYukla();
@@ -3516,8 +4054,42 @@ var psw=document.querySelectorAll('#pswitch button');
 for(var i2=0;i2<psw.length;i2++)
   psw[i2].onclick=function(){ produktOch(this.dataset.prod) };
 
-main.addEventListener('click',function(e){
+main.addEventListener('click',async function(e){
   var t;
+  /* ── Назорат (admin) ── */
+  if((t=e.target.closest('[data-qnom]'))){
+    S.nomTahrir=t.dataset.qnom; chiz();
+    var n=document.getElementById('nzNomIn'); if(n){ n.focus(); n.select() }
+    return;
+  }
+  if(e.target.closest('[data-qbekor]')){ S.nomTahrir=null; chiz(); return }
+  if((t=e.target.closest('[data-qsaqla]'))){
+    var inp=document.getElementById('nzNomIn');
+    if(await nzAmal({amal:'nom',qid:t.dataset.qsaqla,nom:inp?inp.value.trim():''},'Ном сақланди')){
+      S.nomTahrir=null; nazoratYukla(true);
+    }
+    return;
+  }
+  if((t=e.target.closest('[data-qblok]'))){
+    var bl=t.dataset.b==='1';
+    if(!confirm(bl?'Бу қурилмани блоклайсизми? У қайта кира олмайди.':'Блокдан чиқарасизми?')) return;
+    if(await nzAmal({amal:'blok',qid:t.dataset.qblok,blok:bl},bl?'Қурилма блокланди':'Блокдан чиқарилди')) nazoratYukla(true);
+    return;
+  }
+  if((t=e.target.closest('[data-qjur]'))){ S.jQid=t.dataset.qjur; sahifaOch('jurnal'); return }
+  if(e.target.closest('[data-jtoz]')){ S.jQid=null; chiz(); return }
+  if((t=e.target.closest('[data-kodsaqla]'))){
+    var rol=t.dataset.kodsaqla, el=document.getElementById('kod_'+rol), v=el?el.value.replace(/\D/g,''):'';
+    if(v.length!==6){ xabar('Код 6 та рақам бўлиши керак',true); return }
+    if(!confirm((rol==='admin'?'Admin':'Ходим')+' кодини '+v+' га алмаштирасизми?')) return;
+    if(await nzAmal({amal:'kod',rol:rol,yangi:v},'Код алмаштирилди')){ if(el) el.value=''; nazoratYukla(true) }
+    return;
+  }
+  if(e.target.closest('#chiqarBtn')){
+    if(!confirm('Ҳамма қурилмадаги сеанс тугайди, сиз ҳам қайта кирасиз. Давом этамизми?')) return;
+    if(await nzAmal({amal:'chiqar'},'Ҳамма чиқарилди')) qulfla('Ҳамма сеанслар тугатилди — қайта киринг');
+    return;
+  }
   if((t=e.target.closest('[data-prod]'))){ produktOch(t.dataset.prod); return }
   if((t=e.target.closest('[data-o]'))){
     S.oraliq=t.dataset.o;
@@ -3583,10 +4155,14 @@ function hammasiYangila(){
   if(markMi())   markYukla(true);
   if(aiMi())     aiYukla(true);
   if(panelMi()){ aiYukla(true); moliyaYukla(true); markYukla(true); }
+  if(nazoratMi()) nazoratYukla(true);
   setTimeout(function(){ S.yangi=false },4000);
 }
 document.getElementById('yangilaBtn').onclick=hammasiYangila;
 document.getElementById('yangilaBtn2').onclick=hammasiYangila;
+document.getElementById('chiqishBtn').onclick=function(){
+  if(confirm('Тизимдан чиқасизми?')) chiqish();
+};
 
 /* ── чап меню: очиш / ёпиш ── */
 function telefonmi(){ return window.matchMedia('(max-width:820px)').matches }
@@ -3639,7 +4215,7 @@ function xabar(m,xato){
   // Асосийси — қора режим. Фойдаланувчи оқни танласагина оқ бўлади.
   temaQoy(v!=='oq',false);
 })();
-boshla();
+kirishBoshla();
 </script>
 </body>
 </html>
