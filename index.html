@@ -741,8 +741,10 @@ body.qulfli .tbar,body.qulfli .app,body.qulfli .bnav{visibility:hidden}
 .qdots.silk{animation:silk .45s cubic-bezier(.36,.07,.19,.97)}
 .qdots.silk i{border-color:rgba(240,121,110,.8)}
 @keyframes silk{10%,90%{transform:translateX(-2px)}20%,80%{transform:translateX(4px)}30%,50%,70%{transform:translateX(-8px)}40%,60%{transform:translateX(8px)}}
-.qx{min-height:20px;font-size:12.5px;color:#F0796E;margin-bottom:14px;padding:0 10px}
-.qx.ok{color:#8A919B}
+.qmsg{height:38px;font-size:12.5px;line-height:1.4;color:#8A919B;margin-bottom:10px;padding:0 10px;
+  display:flex;align-items:center;justify-content:center;gap:9px;text-align:center;overflow:hidden}
+.qmsg.xato{color:#F0796E}
+.qmsg .spin{width:16px;height:16px;border-width:2px;margin:0}
 .qpad{display:grid;grid-template-columns:repeat(3,76px);gap:14px 20px;justify-content:center}
 .qb{width:76px;height:76px;border-radius:50%;border:1px solid rgba(255,255,255,.09);
   background:linear-gradient(160deg,rgba(255,255,255,.07),rgba(255,255,255,.02));
@@ -754,8 +756,6 @@ body.qulfli .tbar,body.qulfli .app,body.qulfli .bnav{visibility:hidden}
 .qb.bo{border-color:transparent;background:none;font-size:13px;color:#8A919B}
 .qb svg{width:26px;height:26px}
 .qb:disabled{opacity:.35;cursor:not-allowed}
-.qband{display:flex;align-items:center;justify-content:center;gap:9px;font-size:12.5px;color:#8A919B;margin-bottom:14px;min-height:20px}
-.qband .spin{width:16px;height:16px;border-width:2px;margin:0}
 .qfoot{margin-top:30px;font-size:11px;color:#5C636C;line-height:1.7}
 .qfoot b{color:#8A919B;font-weight:500}
 
@@ -1035,7 +1035,7 @@ body:not(.admin) [data-prod="admin"]{display:none!important}
    ══════════════════════════════════════════════════════ */
 
 // Кириш (парол, журнал) — Kirish.gs деплойи
-var API_KIRISH = 'https://script.google.com/macros/s/AKfycbw6T9zYKgi9A6MfBbnPdRmAExiLvkQtY9CaGa8ekpG4HmkIuq266DP3UdkdKpnCtNzs/exec';
+var API_KIRISH = 'https://script.google.com/macros/s/AKfycbxN1I4yfczxFeOnKhXz9OHmWVcjXvLfrccTDqWnHOw-oYzDCeTR0mEJHPS0W0osGQwW/exec';
 
 // Сотув жадвали (интенсив + коуч)
 var API = 'https://script.google.com/macros/s/AKfycbzfu9cVpXz50ySk8k_Wcd1RFXlU3myqXv4RaAt6BTs9igrBKPVIM-kEJxHrwY512yz7Fg/exec';
@@ -1117,34 +1117,58 @@ async function kirPost(o){
   return await r.json();
 }
 
-/* ── Экран ── */
+/* ── Экран ──
+   Бир марта чизилади. Рақам босилганда фақат нуқталар ва ёзув янгиланади —
+   экран қайта чизилмайди, шунинг учун сакрамайди. */
 function qulfChiz(){
   var el=document.getElementById('qulf');
-  var dots=''; for(var i=0;i<6;i++) dots+='<i class="'+(i<PIN.length?'on':'')+'"></i>';
-  var o=QULF_BAND||QULF_BLOK||!kirishUlangan();
-  function b(r,t){ return '<button class="qb" data-pin="'+r+'"'+(o?' disabled':'')+'>'+t+'</button>' }
+  var dots=''; for(var i=0;i<6;i++) dots+='<i></i>';
+  function b(r){ return '<button class="qb" type="button" data-pin="'+r+'">'+r+'</button>' }
   var del='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 5H9l-6 7 6 7h12a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1z"/><path d="M18 9l-6 6M12 9l6 6"/></svg>';
-  var xato = !kirishUlangan()
-    ? 'Кириш скрипти ҳали уланмаган (API_KIRISH)'
-    : (QULF_XATO||QULF_IZOH);
   el.innerHTML='<div class="qk">'+
     '<div class="qlogo">RBA</div>'+
     '<div class="qt">Real Business Academy</div>'+
     '<div class="qs">Бошқарув панелига кириш учун кодни теринг</div>'+
     '<div class="qdots" id="qdots">'+dots+'</div>'+
-    (QULF_BAND ? '<div class="qband"><div class="spin"></div>Текширилмоқда…</div>'
-               : '<div class="qx'+(QULF_XATO?'':' ok')+'">'+esc(xato||'')+'</div>')+
-    '<div class="qpad">'+b(1,1)+b(2,2)+b(3,3)+b(4,4)+b(5,5)+b(6,6)+b(7,7)+b(8,8)+b(9,9)+
-      '<span></span>'+b(0,0)+'<button class="qb bo" data-pin="del"'+(o?' disabled':'')+' aria-label="Ўчириш">'+del+'</button></div>'+
+    '<div class="qmsg" id="qmsg"></div>'+
+    '<div class="qpad">'+b(1)+b(2)+b(3)+b(4)+b(5)+b(6)+b(7)+b(8)+b(9)+
+      '<span></span>'+b(0)+'<button class="qb bo" type="button" data-pin="del" aria-label="Ўчириш">'+del+'</button></div>'+
     '<div class="qfoot">Бу қурилма: <b>'+esc(qurilmaNomi())+'</b><br>'+
       'Сеанс 12 соат · '+BLOK_DAQIQA+' дақиқа ишлатилмаса қулфланади</div>'+
   '</div>';
+  qulfYangila();
+}
+
+/** Фақат ўзгарган жойлар: нуқталар, ёзув, тугмалар ҳолати */
+function qulfYangila(){
+  var d=document.getElementById('qdots'); if(!d) return;
+  var n=d.children;
+  for(var i=0;i<n.length;i++) n[i].classList.toggle('on',i<PIN.length);
+  var o=QULF_BAND||QULF_BLOK||!kirishUlangan();
+  var bt=document.querySelectorAll('#qulf [data-pin]');
+  for(var j=0;j<bt.length;j++) bt[j].disabled=o;
+  var m=document.getElementById('qmsg');
+  var matn=!kirishUlangan() ? 'Кириш скрипти ҳали уланмаган (API_KIRISH)' : (QULF_XATO||QULF_IZOH||'');
+  m.className='qmsg'+(QULF_BAND?'':(QULF_XATO?' xato':''));
+  m.innerHTML = QULF_BAND ? '<div class="spin"></div>Текширилмоқда…' : esc(matn);
 }
 
 function qulfKorsat(izoh){
   PIN=''; QULF_XATO=''; QULF_IZOH=izoh||''; QULF_BAND=false;
   document.body.classList.add('qulfli');
   qulfChiz();
+  serverUygot();
+}
+
+/* Код терилаётган пайтда серверлар «уйғонади» (Google скрипти биринчи
+   мурожаатда 2–4 сония секин). Натижада кириш ва маълумот тезроқ келади. */
+var UYGOTILDI=0;
+function serverUygot(){
+  if(Date.now()-UYGOTILDI<4*60000) return;
+  UYGOTILDI=Date.now();
+  [API_KIRISH,API,API_AI,API_MARKETING,API_MOLIYA].forEach(function(u){
+    if(u && u.indexOf('BU_YERGA')<0) fetch(u+'?amal=tekshir').catch(function(){});
+  });
 }
 
 /** Сеансни тугатади (рухсатнома ўчади) ва кириш экранини очади */
@@ -1168,25 +1192,26 @@ function pinBos(r){
   if(r==='del') PIN=PIN.slice(0,-1);
   else if(PIN.length<6) PIN+=String(r);
   QULF_XATO='';
-  qulfChiz();
+  var d=document.getElementById('qdots'); if(d) d.classList.remove('silk');
+  qulfYangila();
   if(PIN.length===6) pinYubor();
 }
 
 async function pinYubor(){
-  QULF_BAND=true; qulfChiz();
+  QULF_BAND=true; qulfYangila();
   var silk=false;
   try{
     var j=await kirPost({amal:'kirish',kod:PIN,qid:qurilmaId(),qurilma:qurilmaNomi()});
     if(j && j.ok){ QULF_BAND=false; kirishOk(j); return }
     QULF_XATO=(j&&j.xato)||'Хатолик';
     if(j && j.qoldi!=null) QULF_XATO+=' · яна '+j.qoldi+' та уриниш';
-    if(j && j.blok){ QULF_BLOK=true; setTimeout(function(){ QULF_BLOK=false; QULF_XATO=''; qulfChiz() },60000) }
+    if(j && j.blok){ QULF_BLOK=true; setTimeout(function(){ QULF_BLOK=false; QULF_XATO=''; qulfYangila() },60000) }
     silk=true;
   }catch(e){
     QULF_XATO='Серверга уланиб бўлмади — интернетни текширинг';
   }
-  PIN=''; QULF_BAND=false; qulfChiz();
-  if(silk){ var d=document.getElementById('qdots'); if(d) d.classList.add('silk') }
+  PIN=''; QULF_BAND=false; qulfYangila();
+  if(silk){ var d=document.getElementById('qdots'); if(d){ d.classList.remove('silk'); void d.offsetWidth; d.classList.add('silk') } }
 }
 
 function rolBelgi(){
