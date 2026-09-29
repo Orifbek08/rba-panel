@@ -1010,25 +1010,42 @@ body:not(.admin) [data-prod="admin"]{display:none!important}
 .kvkf{font-size:11px;color:var(--pc);margin-top:4px;font-weight:600}
 .kvkd{font-size:11.5px;color:var(--muted);margin-top:7px;line-height:1.45}
 
-/* ═══ ВОРОНКА ═══ */
-.vrn{display:flex;flex-direction:column;gap:3px}
-.vq{display:grid;grid-template-columns:minmax(0,1fr) minmax(128px,42%);gap:14px;align-items:stretch;
-  animation:vqKir .45s ease both}
-.vqs{position:relative;min-height:58px}
-.vqi{align-self:center;padding-top:4px;padding-bottom:4px}
-.vqsh{position:absolute;inset:0;background:var(--c);opacity:.92;transition:.2s}
-.vq:hover .vqsh{opacity:1;filter:brightness(1.06)}
-.vqt{position:relative;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;
-  color:var(--bg);line-height:1.1;pointer-events:none}
-.vqt b{font-size:18px;font-weight:700;letter-spacing:-.02em}
-.vqt span{font-size:10.5px;font-weight:600;opacity:.85;margin-top:2px}
-.vqi{min-width:0;border-left:1px dashed var(--line2);padding-left:12px}
-.vqn{display:flex;align-items:center;gap:7px;font-size:13px;font-weight:600;color:var(--ink)}
-.vqn i{width:9px;height:9px;border-radius:3px;background:var(--c);flex-shrink:0}
+/* ═══ ВОРОНКА — учбурчак, тепада кенг, пастда тор ═══ */
+.vrn{display:flex;flex-direction:column;gap:2px}
+.vq{display:grid;grid-template-columns:minmax(0,1fr) minmax(150px,46%);gap:16px;align-items:center;
+  animation:vqKir .4s ease both}
+.vqs{position:relative;height:50px}
+.vqsh{position:absolute;inset:0;background:var(--c);transition:.2s}
+.vq:hover .vqsh{filter:brightness(1.1)}
+.vq.chetda .vqsh{opacity:.35}
+.vqt{position:relative;height:100%;display:flex;align-items:center;justify-content:center;gap:8px;
+  color:var(--bg);pointer-events:none;white-space:nowrap}
+.vq.chetda .vqt{color:var(--ink)}
+.vqt b{font-size:17px;font-weight:700;letter-spacing:-.02em}
+.vqt span{font-size:11.5px;font-weight:700;padding:2px 7px;border-radius:6px;background:rgba(0,0,0,.16)}
+.vqi{min-width:0;padding:3px 0 3px 12px;border-left:2px solid var(--c)}
+.vqn{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.vtk{display:flex;flex-direction:column;gap:10px;margin-top:16px;padding-top:14px;border-top:1px dashed var(--line2)}
+.vtkr{display:flex;gap:10px;align-items:flex-start}
+.vtkr>em{font-style:normal;flex-shrink:0;width:19px;height:19px;border-radius:6px;display:grid;place-items:center;
+  font-size:10.5px;font-weight:700;background:var(--c);color:var(--bg);margin-top:1px}
+.vtkr>div>b{font-size:12.5px;color:var(--ink)}
+.vtkr .vqk{margin-top:5px}
+.vqn{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--ink);line-height:1.25}
+.vqn em{font-style:normal;flex-shrink:0;width:19px;height:19px;border-radius:6px;display:grid;place-items:center;
+  font-size:10.5px;font-weight:700;background:var(--c);color:var(--bg)}
+.vq.chetda .vqn em{color:var(--ink);background:var(--line2)}
 .vqo{font-size:11.5px;color:var(--muted);margin-top:3px}
-.vqo b{color:var(--ink2)}
-.vqy{font-size:11px;color:var(--no);margin-top:3px;line-height:1.35}
-@keyframes vqKir{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.vqo b{color:var(--ink)}
+.vqk{display:flex;flex-wrap:wrap;gap:4px;margin-top:6px}
+.vqk span{font-size:10.5px;padding:2px 7px;border-radius:6px;background:var(--bg2);border:1px solid var(--line);color:var(--muted)}
+.vqk b{color:var(--ink2);font-weight:600}
+.vxl{display:grid;grid-template-columns:1fr auto;align-items:center;gap:2px 12px;margin-top:16px;
+  padding:13px 16px;border-radius:12px;background:var(--bg2);border:1px solid var(--line);border-left:3px solid var(--c)}
+.vxl span{font-weight:600;font-size:13.5px;color:var(--ink)}
+.vxl em{grid-column:1;font-style:normal;font-size:11.5px;color:var(--muted)}
+.vxl b{grid-column:2;grid-row:1/3;font-size:26px;font-weight:700;color:var(--c);letter-spacing:-.03em}
+@keyframes vqKir{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
 
 /* ═══ КОНВЕРСИЯ: таргетолог карталари ═══ */
 .kvtg{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:14px}
@@ -1064,9 +1081,11 @@ body:not(.admin) [data-prod="admin"]{display:none!important}
 
 @media(max-width:1080px){ .kvg{grid-template-columns:1fr} }
 @media(max-width:820px){
-  .vq{grid-template-columns:minmax(0,1fr) 46%;gap:10px}
-  .vqs{min-height:52px}
-  .vqt b{font-size:15.5px}
+  .vq{grid-template-columns:minmax(0,1fr) 52%;gap:10px}
+  .vqs{height:46px}
+  .vqt{flex-direction:column;gap:1px}
+  .vqt b{font-size:14.5px}
+  .vqt span{font-size:10px;padding:0 5px}
   .vqn{font-size:12px}
   .kvtg{grid-template-columns:1fr}
   .kstr{grid-template-columns:minmax(0,1fr) auto auto;gap:4px 10px}
@@ -1558,7 +1577,7 @@ async function markYukla(majburiy){
   S.kBand=true; belgi(true); chiz();
   try{
     var j=await bittaYukla(API_MARKETING+'?amal=lid&t='+encodeURIComponent(AUTH.token)+(S.yangi?'&yangi=1':''));
-    D.marketing=j.lidlarP ? paketOch(j.lidlarP) : (j.lidlar||[]);
+    D.marketing=kHolatTuzat(j.lidlarP ? paketOch(j.lidlarP) : (j.lidlar||[]));
     D.markTashxis=j.tashxis||null;
     D.markVersiya=j.versiya||null;
     D.markXato=null;
@@ -1603,7 +1622,7 @@ function boshla(){
   var bor=null;
   try{ bor=JSON.parse(localStorage.getItem(XOT)||'null') }catch(e){}
   if(bor && !adminMi()){ delete bor.nazorat }
-  if(bor){ D=bor; S.eski=true; chiz(); aloqa(true,''); }
+  if(bor){ D=bor; if(D.marketing) kHolatTuzat(D.marketing); S.eski=true; chiz(); aloqa(true,''); }
   yukla(!!bor);
 }
 
@@ -3101,8 +3120,8 @@ function kJam(l){
 
 /**
  * ИККИ ХИЛ КОНВЕРСИЯ
- *  Мусор лид  = «База» + «Сделка провалена» (сифатсиз) + «Онлайн ёки бизнеси йўқ»
- *  Сифатли лид = жами − мусор
+ *  Сифатсиз лид = «База» + «Сделка провалена» (не качество) + «Кўтармади» + «Бизнеси йўқ»
+ *  Сифатли лид  = жами − сифатсиз
  *  Маркетинг конверсия = сифатли ÷ жами        (таргет қанчалик тоза лид олиб келди)
  *  Сотув конверсия     = сотув ÷ сифатли        (сотув бўлими сифатли лиддан нечтасини сотди)
  *  Умумий конверсия    = сотув ÷ жами
@@ -3197,8 +3216,8 @@ function markUmumiy(){
   h+='<div class="mets">'+
     '<div class="met"><div class="met-l">Жами лид</div><div class="met-v num">'+fmt(j.jami)+'</div>'+
       '<div class="met-d">обработкада '+fmt(j.obrabotka)+' · янги '+fmt(j.yangi)+'</div></div>'+
-    '<div class="met c"><div class="met-l">Мусор лид</div><div class="met-v num">'+fmt(j.musr)+'</div>'+
-      '<div class="met-d">'+kFoiz(j.jami?j.musr/j.jami*100:0)+' · база, сифатсиз, онлайн</div></div>'+
+    '<div class="met c"><div class="met-l">Сифатсиз лид</div><div class="met-v num">'+fmt(j.musr)+'</div>'+
+      '<div class="met-d">'+kFoiz(j.jami?j.musr/j.jami*100:0)+' · база, не качество, кўтармади, бизнеси йўқ</div></div>'+
     '<div class="met" style="--mc:var(--info)"><div class="met-l">Маркетинг конверсия</div><div class="met-v num" style="color:var(--info)">'+kFoiz(j.mkonv)+'</div>'+
       '<div class="met-d">'+fmt(j.sifatli)+' сифатли лид ÷ '+fmt(j.jami)+'</div></div>'+
     '<div class="met k"><div class="met-l">Сотув конверсия</div><div class="met-v num">'+kFoiz(j.skonv)+'</div>'+
@@ -3265,14 +3284,14 @@ function markTarget(){
         'сотув конверсия <b style="color:var(--ok)">'+kFoiz(ochiq.skonv)+'</b> · умумий '+kFoiz(ochiq.konv)+'</div>'+
       '<div class="chips">'+
         '<span class="chip">Жами: <b>'+fmt(ochiq.jami)+'</b></span>'+
-        '<span class="chip c">Мусор <b>'+fmt(ochiq.musr)+'</b></span>'+
+        '<span class="chip c">Сифатсиз <b>'+fmt(ochiq.musr)+'</b></span>'+
         '<span class="chip">Сифатли <b>'+fmt(ochiq.sifatli)+'</b></span>'+
         '<span class="chip">Обработка <b>'+fmt(ochiq.obrabotka)+'</b></span>'+
         '<span class="chip k">Сотув <b>'+fmt(ochiq.sotuv)+'</b></span>'+
       '</div></div><button class="btn" data-yop>Ёпиш</button></div>'+
       '<div class="dbody"><div class="two">'+
         '<div><div class="eb">Маркетинг воронкаси</div>'+kMarkVoronka(ochiq.satrlar,kJam(ochiq.satrlar))+'</div>'+
-        '<div><div class="eb">Сотув воронкаси</div>'+kSotuvVoronka(kJam(ochiq.satrlar))+'</div>'+
+        '<div><div class="eb">Сотув воронкаси</div>'+kSotuvVoronka(kJam(ochiq.satrlar),ochiq.satrlar)+'</div>'+
       '</div></div>'+
       '<div class="dbody"><div class="eb">Лид сифати</div>'+kHolatChiziq(kJam(ochiq.satrlar))+'</div>'+
       '<div class="dbody"><div class="eb">Стадиялар бўйича</div>'+
@@ -3329,101 +3348,111 @@ function markStadiya(){
 
 
 /* ── 15.5 КОНВЕРСИЯ ──────────────────────────────────────
-   Икки хил конверсия ва иккита воронка.
-   Мусор лид   = сифатсиз гуруҳидаги Bitrix стадиялари
-                 («База», «Сделка провалена», «Онлайн ёки бизнеси йўқ»)
+   Сифатсиз лид = «База», «Сделка провалена» (не качество),
+                  «Кўтармади», «Бизнеси йўқ» стадиялари
+   Сифатли лид  = жами − сифатсиз
    Маркетинг конверсия = сифатли лид ÷ жами лид
    Сотув конверсия     = сотув ÷ сифатли лид
    ─────────────────────────────────────────────────────── */
 
-/** Мусор стадиясига қисқа, тушунарли изоҳ */
+/** «Кўтармади» стадияси сервердан «обработка» бўлиб келади — уни сифатсизга ўтказамиз */
+var K_KOTARMADI=/к[ўоу]'?тарма|kotarma|ko.tarma|не\s*бер[её]т|недозвон|трубка/i;
+function kHolatTuzat(l){
+  (l||[]).forEach(function(x){
+    if(x.holat!=='sotuv' && x.holat!=='sifatsiz' && K_KOTARMADI.test(x.stadiya||'')) x.holat='sifatsiz';
+  });
+  return l;
+}
+
+/** Сифатсиз стадиясига қисқа изоҳ */
 function kMusrIzoh(nom){
   var s=String(nom||'').toLowerCase();
   if(/база/.test(s)) return 'база';
-  if(/провал|некачеств|сифатсиз/.test(s)) return 'сифатсиз';
-  if(/онлайн|онлине|online|бизнес/.test(s)) return 'онлайн / бизнеси йўқ';
-  return 'мусор';
-}
-
-/** Стадия номи + изоҳ (агар номнинг ўзидан тушунилмаса): «Сделка провалена (сифатсиз)» */
-function kMusrNom(nom){
-  var iz=kMusrIzoh(nom), s=String(nom||'').toLowerCase();
-  if(iz==='мусор' || s.indexOf(iz.split(' ')[0])>=0) return nom;
-  return nom+' ('+iz+')';
-}
-
-/** Воронка энини ҳисоблаш: 100% дан пастга, лекин энг кичиги ҳам кўринсин */
-function kVEni(v,top){
-  if(!top) return 20;
-  if(v<=0) return 14;
-  return 20+80*Math.pow(v/top,0.55);
+  if(K_KOTARMADI.test(s)) return 'кўтармади';
+  if(/бизнес|онлайн|онлине|online/.test(s)) return 'бизнеси йўқ';
+  if(/провал|некачеств|качеств|сифатсиз/.test(s)) return 'не качество';
+  return 'сифатсиз';
 }
 
 /**
- * Воронка (учбурчак шаклида).
- * q = [{nom, son, rang, yoq:{son,nom}}]  — yoq: шу қатламгача тушиб қолганлар
+ * Воронка қатламлари — иккала воронка учун БИР ХИЛ:
+ *   1) Сифатсиз лидлар (база + не качество + кўтармади + бизнеси йўқ)
+ *   2…) Қолган ҳар бир стадия алоҳида (аввал янги лид, кейин обработка)
+ *   охирги) Сотув — сотув стадиялари ҳаммаси битта қатламда
  */
-function kVoronka(q){
-  var top=q.length?q[0].son:0;
-  if(!top) return bosh('Бу даврда лид йўқ');
-  var en=q.map(function(x){ return kVEni(x.son,top) });
-  // Эн ҳеч қачон ошмасин (воронка фақат торайиб боради)
-  for(var i=1;i<en.length;i++) if(en[i]>en[i-1]) en[i]=en[i-1];
+function kQatlamlar(l){
+  function guruh(h){ return kGuruh(l.filter(function(x){ return x.holat===h }),function(x){ return x.stadiya||'—' }) }
+  function jam(g){ var n=0; g.forEach(function(x){ n+=x.soni }); return n }
+  var sif=guruh('sifatsiz'), yan=guruh('yangi'), obr=guruh('obrabotka'), sot=guruh('sotuv');
 
-  return '<div class="vrn">'+q.map(function(x,i){
-    var w1=en[i], w2=i<en.length-1?en[i+1]:Math.max(10,en[i]*0.7);
-    var a=(50-w1/2).toFixed(2), b=(50+w1/2).toFixed(2),
-        c=(50+w2/2).toFixed(2), d=(50-w2/2).toFixed(2);
-    var f=top?x.son/top*100:0;
-    var old=i>0&&q[i-1].son?x.son/q[i-1].son*100:null;
-    return '<div class="vq" style="--c:'+x.rang+';animation-delay:'+(i*0.08).toFixed(2)+'s">'+
+  var q=[{nom:'Сифатсиз лидлар',son:jam(sif),tur:'sifatsiz',rang:'var(--no)',ichki:sif}];
+
+  var orta=yan.map(function(x){ return {nom:x.nom,son:x.soni,tur:'yangi',rang:'var(--info)'} })
+    .concat(obr.map(function(x){ return {nom:x.nom,son:x.soni,tur:'obrabotka',rang:'var(--a)'} }));
+  // Стадия жуда кўп бўлса — энг кичиклари битта «бошқа стадиялар»га
+  var MAX=6;
+  if(orta.length>MAX){
+    var qol=orta.slice(MAX-1), bq={nom:'Бошқа стадиялар',son:0,tur:'obrabotka',rang:'var(--a)',ichki:[]};
+    qol.forEach(function(x){ bq.son+=x.son; bq.ichki.push({nom:x.nom,soni:x.son}) });
+    orta=orta.slice(0,MAX-1).concat([bq]);
+  }
+  q=q.concat(orta);
+  q.push({nom:'Сотув',son:jam(sot),tur:'sotuv',rang:'var(--ok)',ichki:sot});
+  return q;
+}
+
+/**
+ * Учбурчак воронка. Шакли доим бир хил (тепада кенг → пастда тор),
+ * рақам ва фоиз ҳар бир қатламда ёзилган.
+ *  q    — kQatlamlar() натижаси
+ *  tur  — 'mark' (фоиз жами лиддан) | 'sotuv' (фоиз сифатли лиддан, сифатсиз ҳисобга кирмайди)
+ */
+function kVoronka(q,tur,j){
+  if(!j.jami) return bosh('Бу даврда лид йўқ');
+  var sotuvMi=tur==='sotuv', asos=sotuvMi?j.sifatli:j.jami;
+  var n=q.length, TEP=100, PAST=24;
+  function en(i){ return TEP-(TEP-PAST)*i/n }
+
+  var h='<div class="vrn">'+q.map(function(x,i){
+    var w1=en(i), w2=en(i+1);
+    var a=(50-w1/2).toFixed(2), b=(50+w1/2).toFixed(2), c=(50+w2/2).toFixed(2), d=(50-w2/2).toFixed(2);
+    var chetda=sotuvMi && x.tur==='sifatsiz';
+    var f=chetda?null:(asos?x.son/asos*100:0);
+    return '<div class="vq'+(chetda?' chetda':'')+'" style="--c:'+(chetda?'var(--muted)':x.rang)+';animation-delay:'+(i*0.06).toFixed(2)+'s">'+
       '<div class="vqs">'+
         '<div class="vqsh" style="clip-path:polygon('+a+'% 0,'+b+'% 0,'+c+'% 100%,'+d+'% 100%)"></div>'+
-        '<div class="vqt"><b class="num">'+fmt(x.son)+'</b><span>'+kFoiz(f)+'</span></div>'+
+        '<div class="vqt"><b class="num">'+fmt(x.son)+'</b>'+(f===null?'':'<span>'+kFoiz(f)+'</span>')+'</div>'+
       '</div>'+
       '<div class="vqi">'+
-        '<div class="vqn"><i></i>'+esc(x.nom)+'</div>'+
-        (old!==null?'<div class="vqo">олдингидан <b>'+kFoiz(old)+'</b></div>':'<div class="vqo">бошланғич нуқта · 100%</div>')+
-        (x.yoq&&x.yoq.son?'<div class="vqy">−'+fmt(x.yoq.son)+' · '+esc(x.yoq.nom)+'</div>':'')+
+        '<div class="vqn"><em>'+(i+1)+'</em>'+esc(x.nom)+'</div>'+
+        '<div class="vqo">'+(chetda
+          ? '<b>ҳисобга кирмайди</b>'
+          : (sotuvMi?'сифатли лиддан ':'жами лиддан ')+'<b>'+kFoiz(f)+'</b>')+'</div>'+
       '</div>'+
     '</div>';
   }).join('')+'</div>';
+
+  // Таркиби: бир нечта стадияни ўз ичига олган қатламлар
+  var tk=q.map(function(x,i){ return {x:x,i:i} })
+          .filter(function(o){ return o.x.ichki && o.x.ichki.length });
+  if(tk.length)
+    h+='<div class="vtk">'+tk.map(function(o){
+      return '<div class="vtkr" style="--c:'+o.x.rang+'"><em>'+(o.i+1)+'</em><div><b>'+esc(o.x.nom)+'</b>'+
+        '<div class="vqk">'+o.x.ichki.map(function(s){
+          return '<span>'+esc(s.nom)+' <b>'+fmt(s.soni)+'</b></span>' }).join('')+'</div></div></div>';
+    }).join('')+'</div>';
+
+  // Пастда — шу воронканинг натижаси
+  h+= sotuvMi
+    ? '<div class="vxl" style="--c:var(--ok)"><span>Сотув конверсия</span>'+
+        '<em>'+fmt(j.sotuv)+' сотув ÷ '+fmt(j.sifatli)+' сифатли лид</em><b class="num">'+kFoiz(j.skonv)+'</b></div>'
+    : '<div class="vxl" style="--c:var(--info)"><span>Маркетинг конверсия</span>'+
+        '<em>'+fmt(j.sifatli)+' сифатли ÷ '+fmt(j.jami)+' жами лид</em><b class="num">'+kFoiz(j.mkonv)+'</b></div>';
+  return h;
 }
 
-/** Маркетинг воронкаси: жами → (мусор стадиялари бирма-бир чиқарилади) → сифатли → сотув */
-function kMarkVoronka(l,j){
-  var musr=kGuruh(l.filter(function(x){ return x.holat==='sifatsiz' }),function(x){ return x.stadiya||'—' });
-  // 3 тадан ортиқ мусор стадияси бўлса — қолганлари битта «бошқа мусор»га
-  if(musr.length>3){
-    var qol={nom:'Бошқа мусор стадиялари',soni:0};
-    musr.slice(2).forEach(function(x){ qol.soni+=x.soni });
-    musr=musr.slice(0,2).concat([qol]);
-  }
-  var q=[{nom:'Жами лид',son:j.jami,rang:'var(--no)'}], qoldi=j.jami;
-  musr.forEach(function(m,i){
-    qoldi-=m.soni;
-    var oxirgi=i===musr.length-1;
-    q.push({nom:oxirgi?'Сифатли лид':'Қолган лид',son:qoldi,
-            rang:oxirgi?'var(--info)':'var(--a)',
-            yoq:{son:m.soni,nom:kMusrNom(m.nom)}});
-  });
-  if(!musr.length) q.push({nom:'Сифатли лид',son:j.sifatli,rang:'var(--info)',yoq:{son:0,nom:''}});
-  q.push({nom:'Сотув',son:j.sotuv,rang:'var(--ok)',
-          yoq:{son:j.sifatli-j.sotuv,nom:'сотилмади (обработка / янги)'}});
-  return kVoronka(q);
-}
-
-/** Сотув воронкаси: сифатли → ишланган → сотув */
-function kSotuvVoronka(j){
-  var ishlangan=j.obrabotka+j.sotuv;
-  return kVoronka([
-    {nom:'Сифатли лид',son:j.sifatli,rang:'var(--info)'},
-    {nom:'Ишга олинган',son:ishlangan,rang:'var(--a)',
-      yoq:{son:j.yangi,nom:'янги лид, ҳали ишланмаган'}},
-    {nom:'Сотув',son:j.sotuv,rang:'var(--ok)',
-      yoq:{son:j.obrabotka,nom:'обработкада қолди'}}
-  ]);
-}
+function kMarkVoronka(l,j){ return kVoronka(kQatlamlar(l),'mark',j) }
+function kSotuvVoronka(j,l){ return kVoronka(kQatlamlar(l),'sotuv',j) }
 
 /** Катта фоиз картаси (ҳалқа билан) */
 function kKonvKarta(nom,f,rang,izoh,formula){
@@ -3446,7 +3475,7 @@ function kTargetKonvKarta(x){
         bar(x.skonv,'var(--ok)')+'<em>'+fmt(x.sotuv)+' сотув / '+fmt(x.sifatli)+'</em></div>'+
     '</div>'+
     '<div class="kvtq">'+
-      '<span>мусор <b style="color:var(--no)">'+fmt(x.musr)+'</b> · '+kFoiz(x.jami?x.musr/x.jami*100:0)+'</span>'+
+      '<span>сифатсиз <b style="color:var(--no)">'+fmt(x.musr)+'</b> · '+kFoiz(x.jami?x.musr/x.jami*100:0)+'</span>'+
       '<span>умумий <b>'+kFoiz(x.konv)+'</b></span>'+
     '</div></div>';
 }
@@ -3454,7 +3483,7 @@ function kTargetKonvKarta(x){
 /** Bitrix стадиялари бўйича тўлиқ жадвал (телефонда ҳам ишлайди) */
 function kStadiyaKonv(l,j){
   var tartib=['sifatsiz','yangi','obrabotka','sotuv'];
-  var nom={sifatsiz:'Мусор',yangi:'Янги лид',obrabotka:'Обработка',sotuv:'Сотув'};
+  var nom={sifatsiz:'Сифатсиз',yangi:'Янги лид',obrabotka:'Обработка',sotuv:'Сотув'};
   var h='<div class="kst"><div class="kstr kstb"><span>Стадия</span><span>Гуруҳ</span>'+
         '<span>Лид</span><span>Жамидан</span><span>Сифатлидан</span></div>';
   tartib.forEach(function(g){
@@ -3514,7 +3543,7 @@ function markKonv(){
 
   h+='<div class="kvg">'+
     kKonvKarta('Маркетинг конверсия',j.mkonv,'var(--info)',
-      fmt(j.sifatli)+' сифатли лид · '+fmt(j.musr)+' мусор ('+kFoiz(j.jami?j.musr/j.jami*100:0)+')',
+      fmt(j.sifatli)+' сифатли лид · '+fmt(j.musr)+' сифатсиз ('+kFoiz(j.jami?j.musr/j.jami*100:0)+')',
       'сифатли лид ÷ жами лид')+
     kKonvKarta('Сотув конверсия',j.skonv,'var(--ok)',
       fmt(j.sotuv)+' сотув · '+fmt(j.obrabotka)+' обработкада · '+fmt(j.yangi)+' янги',
@@ -3526,11 +3555,11 @@ function markKonv(){
 
   h+='<div class="two" style="margin-top:6px">'+
      '<div><div class="sec"><h2>Маркетинг воронкаси</h2>'+
-       '<p>Тепада — жами лид. Мусор стадиялари бирма-бир чиқарилади, пастда — сотув</p></div>'+
+       '<p>Тепада — сифатсиз лидлар, ўртада — ҳар бир стадия, пастда — сотув. Фоиз жами лиддан</p></div>'+
        '<div class="panel">'+kMarkVoronka(l,j)+'</div></div>'+
      '<div><div class="sec"><h2>Сотув воронкаси</h2>'+
-       '<p>Фақат сифатли лидлар: нечтаси ишланди ва нечтаси сотилди</p></div>'+
-       '<div class="panel">'+kSotuvVoronka(j)+'</div></div>'+
+       '<p>Худди шу стадиялар, лекин фоиз сифатли лиддан — сифатсизлар ҳисобга кирмайди</p></div>'+
+       '<div class="panel">'+kSotuvVoronka(j,l)+'</div></div>'+
   '</div>';
 
   if(tg.length){
@@ -3545,8 +3574,8 @@ function markKonv(){
   h+=bolim('Bitrix стадиялари бўйича','Ҳар бир стадияда нечта лид ва унинг улуши',kStadiyaKonv(l,j));
 
   h+='<div class="fizoh"><div class="eb">Қандай ҳисобланади</div>'+
-     '<p><b>Мусор лид</b> — «База», «Сделка провалена» (сифатсиз) ва «Онлайн ёки бизнеси йўқ» стадиялари.<br>'+
-     '<b>Маркетинг конверсия</b> = (жами лид − мусор) ÷ жами лид. Масалан 1000 лиддан 500 таси мусор бўлса — 50%.<br>'+
+     '<p><b>Сифатсиз лид</b> — «База», «Сделка провалена» (не качество), «Кўтармади» ва «Бизнеси йўқ» стадиялари.<br>'+
+     '<b>Маркетинг конверсия</b> = (жами лид − сифатсиз) ÷ жами лид. Масалан 1000 лиддан 500 таси сифатсиз бўлса — 50%.<br>'+
      '<b>Сотув конверсия</b> = сотув ÷ сифатли лид. Масалан қолган 500 та сифатли лиддан 50 таси сотилса — 10%.<br>'+
      '<b>Умумий конверсия</b> = сотув ÷ жами лид.</p></div>';
 
@@ -3631,7 +3660,7 @@ function kFiltrIzoh(l,j){
   ];
   return '<div class="fizoh"><div class="eb">Ҳозир нима кўрсатилмоқда</div><div class="fq">'+
     q.map(function(x){ return '<div><span>'+esc(x[0])+'</span><b>'+esc(x[1])+'</b></div>' }).join('')+
-    '</div><p>Маркетинг конверсия = сифатли лид (жами − база, сифатсиз, онлайн/бизнеси йўқ) ÷ жами лид. '+
+    '</div><p>Маркетинг конверсия = сифатли лид (жами − база, не качество, кўтармади, бизнеси йўқ) ÷ жами лид. '+
     'Сотув конверсия = сотув ÷ сифатли лид. '+
     'Сотув стадиялари: Онлайн интенсив, Тошкент, Хужанд, Фаргона, Самарканд, Ош, Шымкент.</p></div>';
 }
