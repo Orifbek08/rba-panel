@@ -1165,7 +1165,7 @@ body:not(.admin) [data-prod="admin"]{display:none!important}
     <button data-prod="praktikum">3 кунлик</button>
     <button data-prod="kouch">Коучинг</button>
     <button data-prod="ai">AI 3.0</button>
-    <button data-prod="turon">Turon club</button>
+    <button data-prod="turon">Турон Клуб</button>
     <button data-prod="moliya">Молия</button>
     <button data-prod="marketing">Маркетинг</button>
     <button data-prod="admin" class="adm-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg>Назорат</button>
@@ -1480,7 +1480,7 @@ var S = {
   eski:false, xato:null, band:false, mBand:false, kBand:false, aBand:false, nBand:false, yangi:false, nomTahrir:null, jQid:null
 };
 
-var PROD_NOM={admin:'Назорат',panel:'Бошқарув панели',praktikum:'3 кунлик',kouch:'Коучинг',ai:'AI 3.0',turon:'Turon club',
+var PROD_NOM={admin:'Назорат',panel:'Бошқарув панели',praktikum:'3 кунлик',kouch:'Коучинг',ai:'AI 3.0',turon:'Турон Клуб',
               moliya:'Молия',marketing:'Маркетинг'};
 
 var XOT='rba_sotuv_v2', TEMA='rba_tema_v1', MENYU='rba_menyu_v1';
@@ -2667,7 +2667,8 @@ function tashxisPanel(){
  * Ҳисоб оддий: кирим − чиқим. Пастда ҳаммасининг йиғиндиси.
  */
 /** Инвестиция кассаси — «жами» қолдиққа қўшилмайди (номида «инвест» бор касса) */
-function invMi(k){ return /инвест|invest/i.test(String(k||'')) }
+/* «Инвестиция», «Интвеститсия», «Инвестция» — ёзилиши ҳар хил бўлиши мумкин */
+function invMi(k){ return /ин[т]?в[еэ]с?т|invest/i.test(String(k||'')) }
 
 function mKassaBlok(l){
   var m={},t=[];
@@ -3761,15 +3762,15 @@ function tSatrlar(){ return (D&&D.turon)?sanaFiltrla(D.turon):[] }
 
 function turonHolat(nom){
   if(!turonUlangan())
-    return sarlavha('Turon club',nom||'Ҳали уланмаган',mobilTugma())+
+    return sarlavha('Турон Клуб',nom||'Ҳали уланмаган',mobilTugma())+
       '<div class="empty"><b>API ҳаволаси қўйилмаган</b>'+
       'Turon.gs ни деплой қилиб, ҳаволани HTML даги <b>API_TURON</b> га қўйинг.</div>';
   if(D && D.turonXato)
-    return sarlavha('Turon club','Хатолик',mobilTugma())+
+    return sarlavha('Турон Клуб','Хатолик',mobilTugma())+
       '<div class="xato"><b>Серверга уланиб бўлмади</b>'+esc(D.turonXato)+
       '<div style="margin-top:10px;font-size:12.5px">Apps Script: <b>Deploy → Anyone</b> қилинганми?</div></div>';
   if(S.tBand || !D || !D.turon)
-    return sarlavha('Turon club','Юкланмоқда…',mobilTugma())+
+    return sarlavha('Турон Клуб','Юкланмоқда…',mobilTugma())+
       '<div class="load"><div class="spin"></div>Маълумот юкланмоқда…</div>';
   return null;
 }
@@ -3978,7 +3979,7 @@ function turonUmumiy(){
   var fao=guruhla(l,function(x){ return x.faoliyat||'Кўрсатилмаган' }).slice(0,10);
   var usl=guruhla(l,function(x){ return x.usul||'Кўрсатилмаган' });
 
-  var o=sarlavha('Turon club — умумий','План, аъзолар, тўловлар ва география',sanaFiltr()+mobilTugma())+
+  var o=sarlavha('Турон Клуб — умумий','План, аъзолар, тўловлар ва география',sanaFiltr()+mobilTugma())+
   '<div class="mets">'+
     '<div class="met o"><div class="met-l">План</div><div class="met-v num">'+fmt(p.reja)+'</div>'+
       '<div class="met-d">факт '+fmt(p.fakt)+' · қолди '+fmt(p.qoldi)+' <span style="opacity:.7">(«План» варағидан)</span></div>'+
@@ -3994,7 +3995,7 @@ function turonUmumiy(){
   o+='<div class="sec"><h2>План · факт · қолди</h2><p>«План» варағидан — план қанчаси бажарилди</p></div>'+
     '<div class="pv-rjg" style="grid-template-columns:minmax(0,420px)">'+
       '<div class="pv-rj jami" style="--pc:'+(p.foiz>=100?'var(--ok)':'var(--a)')+'">'+
-        '<div class="pv-rjn">Turon club</div>'+
+        '<div class="pv-rjn">Турон Клуб</div>'+
         '<div class="pv-rjb">'+halqa(p.foiz,p.foiz>=100?'var(--ok)':'var(--a)',112,11,'<b class="num" style="font-size:30px">'+Math.round(p.foiz)+'%</b>')+
           '<div class="pv-rjs">'+
             '<div><span>План</span><b class="num">'+fmt(p.reja)+'</b></div>'+
@@ -4203,7 +4204,7 @@ function panelSahifa(){
 
   /* ═══ 1. РЕЖА / ФАКТ ═══ */
   // Turon club ҳам план ҳалқаларига қўшилади (сотув сони бўйича)
-  var rjP=PV_PROD.concat(turonUlangan()?[{k:'turon',nom:'Turon club',rang:'#D77B96'}]:[]);
+  var rjP=PV_PROD.concat(turonUlangan()?[{k:'turon',nom:'Турон Клуб',rang:'#D77B96'}]:[]);
   var rj=rjP.map(function(p){ return {p:p, r:pvReja(p.k)} });
   var jr={reja:0,fakt:0};
   rj.forEach(function(x){ jr.reja+=x.r.reja; jr.fakt+=x.r.fakt });
@@ -4305,7 +4306,7 @@ function panelSahifa(){
       (turonUlangan()?(function(){
         var tl=(D&&D.turon)?D.turon.filter(function(x){ return kechaMi(x.sana) }):null, ts=0;
         if(tl) tl.forEach(function(x){ ts+=x.summa||0 });
-        return '<div class="pv-kt" style="--pc:#D77B96"><div class="pv-ktn">Turon club</div>'+
+        return '<div class="pv-kt" style="--pc:#D77B96"><div class="pv-ktn">Турон Клуб</div>'+
           (tl ? '<div class="pv-ktv num">'+fmt(tl.length)+'<small>аъзо</small></div>'+
                 '<div class="pv-ktp"><span>Тўлов</span><b class="num k">'+tPul(ts)+'</b></div>'
               : '<div class="pv-ktw">юкланмоқда…</div>')+'</div>';
