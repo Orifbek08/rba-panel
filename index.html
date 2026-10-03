@@ -1188,6 +1188,51 @@ body:not(.admin) [data-prod="admin"]{display:none!important}
 .oqvm b{color:var(--ink2);font-weight:600}
 .oqyoq{color:var(--muted)!important;font-style:italic;font-weight:400}
 @media(max-width:820px){ .oqis{grid-template-columns:1fr 1fr} .oqi{padding:16px} .oqg{grid-template-columns:1fr} }
+
+/* ═══ ЧАП ПАНЕЛ: ГУРУҲЛАР ═══ */
+.pswitch{background:none;padding:0;gap:6px}
+#pguruh{display:flex;flex-direction:column;gap:6px}
+.pg{background:var(--side2);border:1px solid rgba(255,255,255,.05);border-radius:13px;overflow:hidden;transition:border-color .2s}
+.pg.faol{border-color:rgba(224,160,72,.38)}
+.pswitch .pg-h{display:flex;align-items:center;gap:8px;width:100%;padding:12px 12px;border-radius:0;text-align:left;
+  color:#C9CED6;font-size:13.5px}
+.pswitch .pg-h:hover{background:rgba(255,255,255,.04);color:#fff}
+.pg-h b{font-family:Archivo;font-weight:600;letter-spacing:.01em;flex:1}
+.pg.faol .pg-h b{color:#fff}
+.pg-h em{font-style:normal;font-size:9px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;
+  padding:3px 7px;border-radius:6px;background:rgba(255,255,255,.07);color:#8A919B}
+.pg.jonli .pg-h em{background:rgba(78,203,146,.14);color:#4ECB92}
+.pg.arxiv .pg-h em{background:rgba(255,255,255,.06);color:#7D858F}
+.pg-o{width:14px;height:14px;flex-shrink:0;color:#6E757E;transition:transform .22s}
+.pg.och .pg-o{transform:rotate(180deg);color:#E0A048}
+.pg-b{display:none;flex-direction:column;gap:2px;padding:0 6px 7px}
+.pg.och .pg-b{display:flex;animation:pgOch .22s ease}
+@keyframes pgOch{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+.pswitch .pg-i{display:flex;align-items:center;gap:10px;width:100%;text-align:left;padding:9px 10px;border-radius:9px;
+  font-size:12.5px;color:#9AA1AB}
+.pg-i i{width:6px;height:6px;border-radius:50%;background:currentColor;opacity:.45;margin:0 5px;flex-shrink:0}
+.pg-i svg{width:15px;height:15px;flex-shrink:0;opacity:.85}
+.pg-i span{flex:1}
+.pswitch .pg-i.bosh{color:#D7DBE1;font-weight:600}
+.pswitch .pg-i.yoq{color:#666D77}
+.pg-i.yoq::after{content:"тез орада";font-size:8.5px;letter-spacing:.08em;text-transform:uppercase;color:#5C636C}
+.pswitch .pg-i.on{color:#1A1206}
+.pg-i.on i{opacity:1}
+.pg-i.on::after{color:#1A1206;opacity:.6}
+.pg-i.bosh.yoq::after{display:none}
+.pg-i span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pswitch .adm-btn{margin-top:2px;padding:11px 10px;border-radius:12px}
+
+/* уланмаган бўлим */
+.ulq{border:1px dashed var(--line2);border-radius:18px;padding:46px 22px;text-align:center;background:var(--card)}
+.ulq-i{width:58px;height:58px;border-radius:16px;margin:0 auto 14px;display:grid;place-items:center;
+  background:var(--a-dim);color:var(--a);border:1px solid var(--a-line)}
+.ulq-i svg{width:26px;height:26px}
+.ulq>b{display:block;font-family:Archivo;font-size:18px;color:var(--ink)}
+.ulq p{margin:9px auto 0;max-width:460px;font-size:13px;line-height:1.6;color:var(--muted)}
+.ulq-t{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:20px}
+.pv-rj.ulanmagan{opacity:.6}
+.pv-rj.ulanmagan .pv-rjs span{font-size:12px}
 </style>
 </head>
 <body>
@@ -1215,13 +1260,7 @@ body:not(.admin) [data-prod="admin"]{display:none!important}
 
   <div class="nl">Продуктлар</div>
   <div class="pswitch" id="pswitch">
-    <button data-prod="panel" class="pv-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg>Бошқарув панели</button>
-    <button data-prod="praktikum">3 кунлик</button>
-    <button data-prod="kouch">Коучинг</button>
-    <button data-prod="ai">AI 3.0</button>
-    <button data-prod="turon">Турон Клуб</button>
-    <button data-prod="moliya">Молия</button>
-    <button data-prod="marketing">Маркетинг</button>
+    <div id="pguruh"></div>
     <button data-prod="admin" class="adm-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg>Назорат</button>
   </div>
 
@@ -1537,6 +1576,75 @@ var S = {
 var PROD_NOM={admin:'Назорат',panel:'Бошқарув панели',praktikum:'3 кунлик',kouch:'Коучинг',ai:'AI 3.0',turon:'Турон Клуб',
               moliya:'Молия',marketing:'Маркетинг'};
 
+/* ══════════════════════════════════════════════════════
+   ЧАП ПАНЕЛ — ГУРУҲЛАР
+   Ҳар бир гуруҳ босилганда очилади; ҳар бирининг ўз бошқарув панели бор.
+   tur: 'jonli' — маълумот доим янгиланади · 'arxiv' — ўзгармас (ёпилган поток)
+   yoq:true — жадвал ҳали уланмаган (Sheets тайёр бўлганда уланади)
+   ══════════════════════════════════════════════════════ */
+var GURUH=[
+  {k:'r15', nom:'RBA — 15', tur:'jonli', belgi:'жонли', ich:[
+    {p:'panel',     nom:'Бошқарув панели', bosh:1},
+    {p:'praktikum', nom:'3 кунлик'},
+    {p:'kouch',     nom:'Коучинг'},
+    {p:'marketing', nom:'Маркетинг'},
+    {p:'moliya',    nom:'Молия'}]},
+  {k:'r14', nom:'RBA — 14', tur:'arxiv', belgi:'архив', ich:[
+    {p:'r14_panel',     nom:'Бошқарув панели', bosh:1, yoq:1},
+    {p:'r14_praktikum', nom:'3 кунлик',  yoq:1},
+    {p:'r14_kouch',     nom:'Коучинг',   yoq:1},
+    {p:'r14_marketing', nom:'Маркетинг', yoq:1},
+    {p:'r14_moliya',    nom:'Молия',     yoq:1}]},
+  {k:'r13', nom:'RBA — 13', tur:'arxiv', belgi:'архив', ich:[
+    {p:'r13_panel',     nom:'Бошқарув панели', bosh:1, yoq:1},
+    {p:'r13_praktikum', nom:'3 кунлик',  yoq:1},
+    {p:'r13_kouch',     nom:'Коучинг',   yoq:1},
+    {p:'r13_marketing', nom:'Маркетинг', yoq:1},
+    {p:'r13_moliya',    nom:'Молия',     yoq:1}]},
+  {k:'rbc', nom:'RBC', tur:'jonli', belgi:'клуб', ich:[
+    {p:'rbc_panel',  nom:'Бошқарув панели', bosh:1},
+    {p:'turon',      nom:'Турон Клуб'},
+    {p:'individual', nom:'Индивидуал', yoq:1}]},
+  {k:'ii', nom:'ИИ', tur:'jonli', belgi:'AI', ich:[
+    {p:'ii_panel', nom:'Бошқарув панели', bosh:1},
+    {p:'ai1',      nom:'AI — 1.0', yoq:1},
+    {p:'ai2',      nom:'AI — 2.0', yoq:1},
+    {p:'ai',       nom:'AI — 3.0'}]}
+];
+function guruhTop(p){
+  for(var i=0;i<GURUH.length;i++)
+    for(var j=0;j<GURUH[i].ich.length;j++)
+      if(GURUH[i].ich[j].p===p) return {g:GURUH[i], x:GURUH[i].ich[j]};
+  return null;
+}
+/** Жадвали ҳали уланмаган бўлим */
+function yoqMi(){ var t=guruhTop(S.prod); return !!(t && t.x.yoq) }
+function rbcPanelMi(){ return S.prod==='rbc_panel' }
+function iiPanelMi(){ return S.prod==='ii_panel' }
+GURUH.forEach(function(g){ g.ich.forEach(function(x){
+  PROD_NOM[x.p]=g.nom+' · '+x.nom;
+}) });
+
+var PG_IK='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg>';
+
+/** Чап панелдаги гуруҳларни чизади */
+function guruhChiz(){
+  var el=document.getElementById('pguruh'); if(!el) return;
+  var joriy=guruhTop(S.prod);
+  if(S.gOch===undefined) S.gOch=joriy?joriy.g.k:'r15';
+  el.innerHTML=GURUH.map(function(g){
+    var ochiq=S.gOch===g.k, faol=joriy&&joriy.g.k===g.k;
+    return '<div class="pg'+(ochiq?' och':'')+(faol?' faol':'')+' '+g.tur+'">'+
+      '<button class="pg-h" data-guruh="'+g.k+'"><b>'+g.nom+'</b>'+
+        '<em>'+g.belgi+'</em>'+
+        '<svg class="pg-o" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 9l6 6 6-6"/></svg></button>'+
+      '<div class="pg-b">'+g.ich.map(function(x){
+        return '<button class="pg-i'+(x.bosh?' bosh':'')+(x.yoq?' yoq':'')+(S.prod===x.p?' on':'')+'" data-prod="'+x.p+'">'+
+          (x.bosh?PG_IK:'<i></i>')+'<span>'+x.nom+'</span></button>';
+      }).join('')+'</div></div>';
+  }).join('');
+}
+
 var XOT='rba_sotuv_v2', TEMA='rba_tema_v1', MENYU='rba_menyu_v1';
 var main=document.getElementById('main');
 var RANG=['#C87A21','#2E7D5B','#2F5C8F','#B33A32','#6B5B95','#7A5236','#D9A22B','#3E7D53','#8B8880','#D77B96'];
@@ -1647,7 +1755,9 @@ async function yukla(jim){
   if(markMi())   markYukla();
   if(aiMi())     aiYukla();
   if(turonMi())  turonYukla();
-  if(panelMi() && D){ aiYukla(); moliyaYukla(); markYukla(); turonYukla(); }
+  if(panelMi() && D){ moliyaYukla(); markYukla(); }
+  if(rbcPanelMi()) turonYukla();
+  if(iiPanelMi())  aiYukla();
   if(nazoratMi()) nazoratYukla();
 }
 
@@ -4359,6 +4469,124 @@ function tOquvchiIchi(s){
 }
 
 
+
+/* ══════════════════════════════════════════════════════
+   ГУРУҲ ПАНЕЛЛАРИ — RBC, ИИ ва ҳали уланмаган бўлимлар
+   ══════════════════════════════════════════════════════ */
+
+function pvRjKarta(nom,r,rang,katta,izoh){
+  var ichi='<b class="num" style="font-size:'+(katta?30:22)+'px">'+(izoh?'—':Math.round(r.foiz)+'%')+'</b>';
+  return '<div class="pv-rj'+(katta?' jami':'')+(izoh?' ulanmagan':'')+'" style="--pc:'+rang+'">'+
+    '<div class="pv-rjn">'+esc(nom)+'</div>'+
+    '<div class="pv-rjb">'+halqa(izoh?0:r.foiz,rang,katta?112:84,katta?11:12,ichi)+
+      (izoh?'<div class="pv-rjs"><div><span>'+esc(izoh)+'</span></div></div>'
+           :'<div class="pv-rjs">'+
+              '<div><span>План</span><b class="num">'+fmt(r.reja)+'</b></div>'+
+              '<div><span>Факт</span><b class="num">'+fmt(r.fakt)+'</b></div>'+
+              '<div><span>Қолди</span><b class="num q">'+fmt(r.qoldi)+'</b></div></div>')+
+    '</div></div>';
+}
+
+/** Жадвали ҳали уланмаган бўлим (архив потоклар, Индивидуал, AI 1.0 / 2.0) */
+function ulanmaganSahifa(){
+  var t=guruhTop(S.prod), arxiv=t.g.tur==='arxiv';
+  return sarlavha(t.g.nom+' · '+t.x.nom, arxiv?'Архив — ёпилган поток, маълумоти ўзгармайди':'Янги бўлим','')+
+    '<div class="ulq">'+
+      '<div class="ulq-i">'+(arxiv
+        ?'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 7h18v13H3z"/><path d="M1 3h22v4H1zM10 12h4"/></svg>'
+        :'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>')+'</div>'+
+      '<b>'+esc(t.g.nom+' · '+t.x.nom)+'</b>'+
+      '<p>Бу бўлим учун жадвал (Google Sheets) ҳали уланмаган.<br>Жадвал тайёр бўлганда шу ерда '+
+        (arxiv?'поток якунидаги ўзгармас ҳисобот':'жонли маълумот')+' чиқади.</p>'+
+      '<div class="ulq-t">'+t.g.ich.map(function(x){
+        return '<button class="btn'+(x.p===S.prod?' btn-o':'')+'" data-prodga="'+x.p+'">'+esc(x.nom)+'</button>';
+      }).join('')+'</div>'+
+    '</div>';
+}
+
+/* ── RBC — клублар панели ── */
+function rbcPanelSahifa(){
+  var h=sarlavha('RBC · бошқарув панели','Клублар: Турон Клуб ва Индивидуал','');
+  var tp=tPlan(), bor=D&&D.turon, l=bor?D.turon:[];
+  var jr={reja:tp.reja,fakt:tp.fakt,qoldi:tp.qoldi,foiz:tp.foiz};
+
+  h+='<div class="sec" style="margin-top:4px"><h2>План · факт · қолди</h2><p>Клублар бўйича — сотув (аъзо) сони</p></div>'+
+    '<div class="pv-rjg" style="--n:2">'+
+      pvRjKarta('Жами',jr,jr.foiz>=100?'var(--ok)':'var(--a)',true)+
+      pvRjKarta('Турон Клуб',tp,'#D77B96',false)+
+      pvRjKarta('Индивидуал',null,'#6FA8DC',false,'ҳали уланмаган')+
+    '</div>';
+
+  h+='<div class="sec"><h2>Турон Клуб</h2><p>Аъзолар, тўловлар ва ўқувчилар</p></div>';
+  if(!turonUlangan()) return h+'<div class="pv-card"><div class="pv-wait">Турон Клуб уланмаган</div></div>';
+  if(!bor) return h+'<div class="pv-card">'+pvKutish()+'</div>';
+
+  var jami=0; l.forEach(function(x){ jami+=x.summa||0 });
+  var kecha=l.filter(function(x){ return kechaMi(x.sana) }), ks=0; kecha.forEach(function(x){ ks+=x.summa||0 });
+  var oq=D.turonOq?tOquvchilar():null, fs=[], uch=0;
+  if(oq) oq.forEach(function(o){ uch+=o.sanalar.length; if(o.foiz!=null) fs.push(o.foiz) });
+  var orta=fs.length?fs.reduce(function(a,b){ return a+b },0)/fs.length:null;
+
+  h+='<div class="mets">'+
+    '<div class="met"><div class="met-l">Аъзолар</div><div class="met-v num">'+fmt(l.length)+'</div>'+
+      '<div class="met-d">кеча қўшилди: <b>'+fmt(kecha.length)+'</b></div></div>'+
+    '<div class="met k"><div class="met-l">Тўланган</div><div class="met-v num">'+tPul(jami)+'</div>'+
+      '<div class="met-d">'+(tKurs()?'≈ '+tUsd(jami)+' · ':'')+'кеча '+tPul(ks)+'</div></div>'+
+    '<div class="met"><div class="met-l">Ўқувчилар</div><div class="met-v num">'+(oq?fmt(oq.length):'—')+'</div>'+
+      '<div class="met-d">'+(oq?fmt(uch)+' та учрашув':'учрашув жадвали келмади')+'</div></div>'+
+    '<div class="met o"><div class="met-l">Ўртача тайёрлик</div><div class="met-v num">'+(orta==null?'—':Math.round(orta)+'%')+'</div>'+
+      '<div class="mprog"><i style="width:'+(orta||0)+'%;background:'+tFoizRang(orta)+'"></i></div></div>'+
+  '</div>'+
+  '<div class="ulq-t" style="justify-content:flex-start;margin-top:14px">'+
+    '<button class="btn btn-o" data-prodga="turon">Турон Клубни очиш →</button></div>';
+
+  h+='<div class="sec"><h2>География</h2><p>Аъзолар қайси давлатдан — давлатни босинг</p></div>'+
+     '<div class="panel">'+tXaritaDavlat(tGeo(l))+'</div>';
+
+  h+='<div class="sec"><h2>Индивидуал</h2><p>Якка тартибдаги иш</p></div>'+
+     '<div class="pv-card"><div class="pv-wait">Ҳали уланмаган — жадвал тайёр бўлганда шу ерда чиқади</div></div>';
+  return h;
+}
+
+/* ── ИИ — сунъий интеллект курслари панели ── */
+function iiPanelSahifa(){
+  var h=sarlavha('ИИ · бошқарув панели','AI — 1.0, AI — 2.0 ва AI — 3.0','');
+  var r3=pvReja('ai');
+  h+='<div class="sec" style="margin-top:4px"><h2>План · факт · қолди</h2><p>Ҳар бир AI курси бўйича</p></div>'+
+    '<div class="pv-rjg" style="--n:3">'+
+      pvRjKarta('Жами',r3,r3.foiz>=100?'var(--ok)':'var(--a)',true)+
+      pvRjKarta('AI — 3.0',r3,'#A08FD0',false)+
+      pvRjKarta('AI — 2.0',null,'#6FA8DC',false,'ҳали уланмаган')+
+      pvRjKarta('AI — 1.0',null,'#4ECB92',false,'ҳали уланмаган')+
+    '</div>';
+
+  h+='<div class="sec"><h2>AI — 3.0</h2><p>Сотувлар ва тўловлар</p></div>';
+  if(!aiUlangan()) return h+'<div class="pv-card"><div class="pv-wait">AI — 3.0 уланмаган</div></div>';
+  if(!D || !D.ai)  return h+'<div class="pv-card">'+pvKutish()+'</div>';
+
+  var j=jam(D.ai), kj=jam(D.ai.filter(function(x){ return kechaMi(x.sana) }));
+  h+='<div class="mets">'+
+    '<div class="met"><div class="met-l">Сотувлар</div><div class="met-v num">'+fmt(j.soni)+'</div>'+
+      '<div class="met-d">кеча: <b>'+fmt(kj.soni)+'</b></div></div>'+
+    '<div class="met k"><div class="met-l">Тўланган</div><div class="met-v num">'+pul(j.tolangan)+'</div>'+
+      '<div class="met-d">кеча '+pul(kj.tolangan)+'</div></div>'+
+    '<div class="met"><div class="met-l">Дагавор</div><div class="met-v num">'+pul(j.kelishuv)+'</div>'+
+      '<div class="met-d">жами келишув</div></div>'+
+    '<div class="met c"><div class="met-l">Қарздорлик</div><div class="met-v num">'+pul(j.qarz)+'</div>'+
+      '<div class="met-d">дагаворнинг '+foiz(j.qarz,j.kelishuv)+'%</div></div>'+
+  '</div>'+
+  '<div class="ulq-t" style="justify-content:flex-start;margin-top:14px">'+
+    '<button class="btn btn-o" data-prodga="ai">AI — 3.0 ни очиш →</button></div>';
+
+  var men=guruhla(D.ai,function(x){ return x.menejer });
+  h+=bolim('Менежерлар','AI — 3.0 бўйича ким қанча сотган',
+    ustunlar(men.map(function(x){ return {nom:x.nom,qiy:x.soni,ong:pul(x.tolangan)} })));
+
+  h+='<div class="sec"><h2>AI — 1.0 ва AI — 2.0</h2><p>Олдинги курслар</p></div>'+
+     '<div class="pv-card"><div class="pv-wait">Ҳали уланмаган — жадвал тайёр бўлганда шу ерда чиқади</div></div>';
+  return h;
+}
+
 /* ══════════════════════════════════════════════════════
    12. ЧИЗИШ
    ══════════════════════════════════════════════════════ */
@@ -4384,10 +4612,11 @@ var IKONKA={
 
 function panelMi(){ return S.prod==='panel' }
 
+/* RBA — 15 бошқарув панели: фақат шу поток продуктлари.
+   AI — «ИИ» гуруҳида, Турон Клуб — «RBC» гуруҳида, ҳар бирининг ўз панели бор. */
 var PV_PROD=[
   {k:'praktikum', nom:'3 кунлик', rang:'#E0A048'},
-  {k:'kouch',     nom:'Коучинг',  rang:'#4ECB92'},
-  {k:'ai',        nom:'AI 3.0',   rang:'#A08FD0'}
+  {k:'kouch',     nom:'Коучинг',  rang:'#4ECB92'}
 ];
 
 var HAFTA_KUN=['якшанба','душанба','сешанба','чоршанба','пайшанба','жума','шанба'];
@@ -4447,11 +4676,10 @@ function pvKutish(m){
 
 /* ── Асосий саҳифа ───────────────────────────────────────── */
 function panelSahifa(){
-  var h=sarlavha('Бошқарув панели','Кечаги ҳисобот — '+kechaMatn(),'');
+  var h=sarlavha('RBA — 15 · бошқарув панели','Кечаги ҳисобот — '+kechaMatn(),'');
 
   /* ═══ 1. РЕЖА / ФАКТ ═══ */
-  // Turon club ҳам план ҳалқаларига қўшилади (сотув сони бўйича)
-  var rjP=PV_PROD.concat(turonUlangan()?[{k:'turon',nom:'Турон Клуб',rang:'#D77B96'}]:[]);
+  var rjP=PV_PROD;
   var rj=rjP.map(function(p){ return {p:p, r:pvReja(p.k)} });
   var jr={reja:0,fakt:0};
   rj.forEach(function(x){ jr.reja+=x.r.reja; jr.fakt+=x.r.fakt });
@@ -4550,14 +4778,6 @@ function panelSahifa(){
               '<div class="pv-ktp"><span>Сифатсиз</span><b class="num q">'+fmt(lj.sifatsiz)+'</b></div>'
             : '<div class="pv-ktw">'+(markUlangan()?'юкланмоқда…':'уланмаган')+'</div>')+
       '</div>'+
-      (turonUlangan()?(function(){
-        var tl=(D&&D.turon)?D.turon.filter(function(x){ return kechaMi(x.sana) }):null, ts=0;
-        if(tl) tl.forEach(function(x){ ts+=x.summa||0 });
-        return '<div class="pv-kt" style="--pc:#D77B96"><div class="pv-ktn">Турон Клуб</div>'+
-          (tl ? '<div class="pv-ktv num">'+fmt(tl.length)+'<small>аъзо</small></div>'+
-                '<div class="pv-ktp"><span>Тўлов</span><b class="num k">'+tPul(ts)+(tKurs()&&ts?' · '+tUsd(ts):'')+'</b></div>'
-              : '<div class="pv-ktw">юкланмоқда…</div>')+'</div>';
-      })():'')+
     '</div>';
 
   /* ═══ 4. МОЛИЯ ═══ */
@@ -5055,7 +5275,7 @@ function aiJurnal(){
 
 
 function menyu(){
-  if(panelMi()) return [{p:'umumiy', nom:'Умумий', ik:'chart'}];
+  if(panelMi() || rbcPanelMi() || iiPanelMi() || yoqMi()) return [{p:'umumiy', nom:'Умумий', ik:'chart'}];
   if(nazoratMi()){
     var nz=D&&D.nazorat;
     return [
@@ -5114,7 +5334,13 @@ function chiz(){
   }
   if(!D) return;
 
-  main.innerHTML = panelMi()
+  main.innerHTML = yoqMi()
+    ? ulanmaganSahifa()
+    : rbcPanelMi()
+    ? rbcPanelSahifa()
+    : iiPanelMi()
+    ? iiPanelSahifa()
+    : panelMi()
     ? panelSahifa()
     : nazoratMi()
     ? nazoratSahifa()
@@ -5164,7 +5390,9 @@ function chiz(){
       n[i].classList.toggle('on',b.p===S.sahifa);
     }
   });
-  var p=document.querySelectorAll('#pswitch button');
+  var jg=guruhTop(S.prod); if(jg) S.gOch=jg.g.k;
+  guruhChiz();
+  var p=document.querySelectorAll('#pswitch .adm-btn');
   for(var j=0;j<p.length;j++) p[j].classList.toggle('on',p[j].dataset.prod===S.prod);
 
   var tp=document.getElementById('tbProd');
@@ -5189,7 +5417,9 @@ function produktOch(p){
   if(p==='marketing') markYukla();
   if(p==='ai') aiYukla();
   if(p==='turon') turonYukla();
-  if(p==='panel' && D){ aiYukla(); moliyaYukla(); markYukla(); turonYukla(); }
+  if(p==='panel' && D){ moliyaYukla(); markYukla(); }
+  if(p==='rbc_panel') turonYukla();
+  if(p==='ii_panel') aiYukla();
   // Фильтрни тозалаймиз: акс ҳолда «Бугун» қолиб кетиб,
   // янги бўлим сабабсиз бўм-бўш кўринади.
   S.sahifa='umumiy'; S.ochiq=null; S.qidiruv=''; S.oraliq='hammasi'; S.target='hammasi';
@@ -5202,12 +5432,27 @@ var navlar=document.querySelectorAll('.ni[data-p]');
 for(var i=0;i<navlar.length;i++)
   navlar[i].onclick=function(){ sahifaOch(this.dataset.p) };
 
-var psw=document.querySelectorAll('#pswitch button');
-for(var i2=0;i2<psw.length;i2++)
-  psw[i2].onclick=function(){ produktOch(this.dataset.prod) };
+guruhChiz();
+document.getElementById('pswitch').addEventListener('click',function(e){
+  var t;
+  if((t=e.target.closest('[data-guruh]'))){
+    var k=t.dataset.guruh;
+    if(S.gOch===k){ S.gOch=null; guruhChiz(); return }       // очиқ бўлса — ёпамиз
+    S.gOch=k;
+    var j=guruhTop(S.prod);
+    // Бошқа гуруҳ очилса — ўша гуруҳнинг бошқарув панелига ўтамиз
+    if(!j || j.g.k!==k){
+      var g=GURUH.filter(function(x){ return x.k===k })[0];
+      produktOch(g.ich[0].p);
+    } else guruhChiz();
+    return;
+  }
+  if((t=e.target.closest('[data-prod]'))) produktOch(t.dataset.prod);
+});
 
 main.addEventListener('click',async function(e){
   var t;
+  if((t=e.target.closest('[data-prodga]'))){ produktOch(t.dataset.prodga); return }
   /* ── Turon club: давлат / вилоят танлаш ── */
   if((t=e.target.closest('[data-tdav]'))){
     e.preventDefault();
@@ -5330,7 +5575,9 @@ function hammasiYangila(){
   if(markMi())   markYukla(true);
   if(aiMi())     aiYukla(true);
   if(turonMi())  turonYukla(true);
-  if(panelMi()){ aiYukla(true); moliyaYukla(true); markYukla(true); turonYukla(true); }
+  if(panelMi()){ moliyaYukla(true); markYukla(true); }
+  if(rbcPanelMi()) turonYukla(true);
+  if(iiPanelMi())  aiYukla(true);
   if(nazoratMi()) nazoratYukla(true);
   setTimeout(function(){ S.yangi=false },4000);
 }
@@ -5354,7 +5601,7 @@ document.getElementById('ovl').onclick=function(){ menyuHolat(false) };
 
 /* Телефонда бўлим танлангач меню ўзи ёпилади */
 document.getElementById('side').addEventListener('click',function(e){
-  if(telefonmi() && e.target.closest('.ni[data-p], #pswitch button')) menyuHolat(false);
+  if(telefonmi() && e.target.closest('.ni[data-p], #pswitch [data-prod]')) menyuHolat(false);
 });
 
 /* Дастлабки ҳолат: компьютерда очиқ, телефонда ёпиқ */
