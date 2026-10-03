@@ -1233,6 +1233,11 @@ body:not(.admin) [data-prod="admin"]{display:none!important}
 .ulq-t{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:20px}
 .pv-rj.ulanmagan{opacity:.6}
 .pv-rj.ulanmagan .pv-rjs span{font-size:12px}
+
+/* архив белгиси */
+.arxb{display:flex;align-items:center;gap:8px;margin:-6px 0 16px;padding:8px 13px;border-radius:10px;font-size:12px;
+  background:var(--bg2);border:1px dashed var(--line2);color:var(--muted)}
+.arxb svg{width:14px;height:14px;flex-shrink:0}
 </style>
 </head>
 <body>
@@ -1314,6 +1319,8 @@ var API_MARKETING = 'https://script.google.com/macros/s/AKfycbwCtp5u0u_HaUub73E-
 var API_AI = 'https://script.google.com/macros/s/AKfycbz0utSwXV43iAKqVG0qvzMtuj02ELwM5ueAhsRarSlvpRqssfZY-NC0szcp5uT6Rr1w/exec';
 
 // Turon club — Turon.gs деплой қилингач, ҳаволани шу ерга қўйинг
+// RBA Архив (RBA 13, RBA 14) — Arxiv.gs. Поток ?potok=13|14 билан танланади
+var API_ARXIV = 'https://script.google.com/macros/s/AKfycbwd9GvP83KXJu-pJfAbMGslu-V0rxTF1osOKhG__40cjEbdFolD94RrFOPXlozzNiQ1/exec';
 var API_TURON = 'https://script.google.com/macros/s/AKfycbzO6d494h72JqXKOpDmSmSLWP5x8Zpa_w03QnYSkO61DXPUJ21f9tRMuHPiIi7Os75QAg/exec';
 
 
@@ -1433,7 +1440,7 @@ var UYGOTILDI=0;
 function serverUygot(){
   if(Date.now()-UYGOTILDI<4*60000) return;
   UYGOTILDI=Date.now();
-  [API_KIRISH,API,API_AI,API_MARKETING,API_MOLIYA,API_TURON].forEach(function(u){
+  [API_KIRISH,API,API_AI,API_MARKETING,API_MOLIYA,API_TURON,API_ARXIV].forEach(function(u){
     if(u && u.indexOf('BU_YERGA')<0) fetch(u+'?amal=tekshir').catch(function(){});
   });
 }
@@ -1590,15 +1597,15 @@ var GURUH=[
     {p:'marketing', nom:'Маркетинг'},
     {p:'moliya',    nom:'Молия'}]},
   {k:'r14', nom:'RBA — 14', tur:'arxiv', belgi:'архив', ich:[
-    {p:'r14_panel',     nom:'Бошқарув панели', bosh:1, yoq:1},
-    {p:'r14_praktikum', nom:'3 кунлик',  yoq:1},
-    {p:'r14_kouch',     nom:'Коучинг',   yoq:1},
+    {p:'r14_panel',     nom:'Бошқарув панели', bosh:1},
+    {p:'r14_praktikum', nom:'3 кунлик'},
+    {p:'r14_kouch',     nom:'Коучинг'},
     {p:'r14_marketing', nom:'Маркетинг', yoq:1},
     {p:'r14_moliya',    nom:'Молия',     yoq:1}]},
   {k:'r13', nom:'RBA — 13', tur:'arxiv', belgi:'архив', ich:[
-    {p:'r13_panel',     nom:'Бошқарув панели', bosh:1, yoq:1},
-    {p:'r13_praktikum', nom:'3 кунлик',  yoq:1},
-    {p:'r13_kouch',     nom:'Коучинг',   yoq:1},
+    {p:'r13_panel',     nom:'Бошқарув панели', bosh:1},
+    {p:'r13_praktikum', nom:'3 кунлик'},
+    {p:'r13_kouch',     nom:'Коучинг'},
     {p:'r13_marketing', nom:'Маркетинг', yoq:1},
     {p:'r13_moliya',    nom:'Молия',     yoq:1}]},
   {k:'rbc', nom:'RBC', tur:'jonli', belgi:'клуб', ich:[
@@ -1620,6 +1627,55 @@ function guruhTop(p){
 /** Жадвали ҳали уланмаган бўлим */
 function yoqMi(){ var t=guruhTop(S.prod); return !!(t && t.x.yoq) }
 function rbcPanelMi(){ return S.prod==='rbc_panel' }
+
+/* ── АРХИВ ПОТОКЛАР (RBA 14, RBA 13) ──
+   Бўлим коди «r14_praktikum» кўринишида: олди — поток, кети — асосий бўлим.
+   Сотув саҳифалари ўша-ўша, фақат маълумот манбаи алмашади (DS). */
+function potok(){ var m=/^r(\d+)_/.exec(S.prod||''); return m?m[1]:null }
+function asos(){ return String(S.prod||'').replace(/^r\d+_/,'') }
+/** Жорий поток маълумоти: RBA 15 учун — D, архив учун — D.arx[поток] */
+function DS(){ var pt=potok(); return pt ? ((D&&D.arx&&D.arx[pt])||{}) : (D||{}) }
+function arxPanelMi(){ return !!potok() && asos()==='panel' }
+function arxUlangan(){ return API_ARXIV.indexOf('BU_YERGA')<0 }
+
+async function arxYukla(pt,majburiy){
+  if(!pt || !arxUlangan() || !D) return;
+  S.xBand=S.xBand||{};
+  if(S.xBand[pt]) return;
+  D.arx=D.arx||{};
+  var bor=D.arx[pt];
+  if(bor && bor.praktikum && !bor.xato && !majburiy) return;
+  S.xBand[pt]=true; belgi(true); chiz();
+  try{
+    var j=await bittaYukla(API_ARXIV+'?potok='+pt+'&t='+encodeURIComponent(AUTH.token)+(S.yangi?'&yangi=1':''));
+    D.arx[pt]={
+      praktikum: j.praktikumP?paketOch(j.praktikumP):(j.praktikum||[]),
+      kouch:     j.kouchP?paketOch(j.kouchP):(j.kouch||[]),
+      reja:      j.reja||{praktikum:[],kouch:[]},
+      konversiya:j.konversiya||[],
+      tadbirlar: j.tadbirlar||[],
+      vaqt:      j.vaqt||'', xato:null
+    };
+  }catch(e){
+    D.arx[pt]=D.arx[pt]||{};
+    D.arx[pt].xato=e.message;
+  }
+  S.xBand[pt]=false; belgi(false); saqla(); chiz();
+}
+
+/** Архив бўлими ҳали юкланмаган ёки хато бўлса — шу кўрсатилади */
+function arxHolat(){
+  var pt=potok(); if(!pt) return null;
+  var d=D&&D.arx&&D.arx[pt], t=guruhTop(S.prod);
+  var nom=t?(t.g.nom+' · '+t.x.nom):('RBA — '+pt);
+  if(d && d.praktikum) return null;
+  if(d && d.xato)
+    return '<div class="head"><div><h1>'+esc(nom)+'</h1><div class="sub">Хатолик</div></div></div>'+
+      '<div class="xato"><b>Архив серверига уланиб бўлмади</b>'+esc(d.xato)+
+      '<div style="margin-top:10px;font-size:12.5px">Apps Script: <b>Deploy → Все</b> қилинганми?</div></div>';
+  return '<div class="head"><div><h1>'+esc(nom)+'</h1><div class="sub">Юкланмоқда…</div></div></div>'+
+    '<div class="load"><div class="spin"></div>Архив маълумоти юкланмоқда…</div>';
+}
 function iiPanelMi(){ return S.prod==='ii_panel' }
 GURUH.forEach(function(g){ g.ich.forEach(function(x){
   PROD_NOM[x.p]=g.nom+' · '+x.nom;
@@ -1741,6 +1797,7 @@ async function yukla(jim){
            j.ai=D.ai; j.aiReja=D.aiReja; j.aiVersiya=D.aiVersiya; j.aiXato=D.aiXato;
            j.turon=D.turon; j.turonPlan=D.turonPlan; j.turonVersiya=D.turonVersiya; j.turonXato=D.turonXato;
            j.turonOq=D.turonOq; j.turonOqXato=D.turonOqXato; j.turonKurs=D.turonKurs;
+           j.arx=D.arx;
            j.nazorat=D.nazorat; j.nazoratXato=D.nazoratXato }
     D=j; S.xato=null; S.eski=false;
     aloqa(true,D.vaqt);
@@ -1758,6 +1815,7 @@ async function yukla(jim){
   if(panelMi() && D){ moliyaYukla(); markYukla(); }
   if(rbcPanelMi()) turonYukla();
   if(iiPanelMi())  aiYukla();
+  if(potok())      arxYukla(potok());
   if(nazoratMi()) nazoratYukla();
 }
 
@@ -1842,7 +1900,7 @@ function boshla(){
    5. ҲИСОБ — сана фильтри, гуруҳлаш, жамлаш
    ══════════════════════════════════════════════════════ */
 
-function praktikumMi(){ return S.prod==='praktikum' }
+function praktikumMi(){ return asos()==='praktikum' }
 
 /** Жорий продукт учун кесим: практикумда — шаҳар, коучда — продукт */
 function kesim(){
@@ -1887,7 +1945,8 @@ function sanaFiltrla(barcha){
 
 function satrlar(){
   if(!D) return [];
-  return sanaFiltrla((praktikumMi()?D.praktikum:D.kouch)||[]);
+  var ds=DS();
+  return sanaFiltrla((praktikumMi()?ds.praktikum:ds.kouch)||[]);
 }
 
 /** Жами: сони, суммалар, келмаганлар */
@@ -1922,7 +1981,7 @@ function guruhla(l,ol){
  * Сана фильтрига боғлиқ эмас — варақда қандай бўлса, шундай.
  */
 function konversiya(menejerNomi){
-  var l=(D&&D.konversiya)||[];
+  var l=DS().konversiya||[];
   for(var i=0;i<l.length;i++)
     if(l[i].menejer===menejerNomi) return l[i].sotuv ? l[i] : null;
   return null;
@@ -1950,7 +2009,7 @@ function tartibla(l){
 }
 
 function tadbir(nom){
-  var l=(D&&D.tadbirlar)||[];
+  var l=DS().tadbirlar||[];
   for(var i=0;i<l.length;i++) if(l[i].nom===nom) return l[i];
   return null;
 }
@@ -2152,9 +2211,16 @@ function eskiBelgi(){
 }
 
 function sarlavha(h1,izoh,asbob){
+  var pt=potok(), arxb='';
+  if(pt){
+    if(h1.indexOf('RBA')!==0) h1='RBA — '+pt+' · '+h1;
+    var av=D&&D.arx&&D.arx[pt]&&D.arx[pt].vaqt;
+    arxb='<div class="arxb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 7h18v13H3z"/><path d="M1 3h22v4H1zM10 12h4"/></svg>'+
+      'Архив — ёпилган поток, маълумоти ўзгармайди'+(av?' · ўқилган: '+esc(String(av).slice(0,16)):'')+'</div>';
+  }
   return produktSwitch()+
     '<div class="head"><div><h1>'+esc(h1)+'</h1><div class="sub">'+esc(izoh)+'</div></div>'+
-    '<div class="tools">'+(asbob||'')+'</div></div>'+eskiBelgi();
+    '<div class="tools">'+(asbob||'')+'</div></div>'+arxb+eskiBelgi();
 }
 
 /** Бўш ҳолат — сана фильтри сабаб бўлса, дарҳол тузатиш тугмаси чиқади */
@@ -2202,7 +2268,7 @@ function kunlikRoyxat(l){
 
 function umumiySahifa(){
   var l=satrlar(), j=jam(l);
-  var reja=(D.reja&&D.reja[S.prod])||[];
+  var reja=(DS().reja&&DS().reja[asos()])||[];
   var rJami=0,fJami=0;
   reja.forEach(function(x){ rJami+=x.reja; fJami+=x.fakt });
   var b=foiz(fJami,rJami);
@@ -2265,7 +2331,7 @@ function menejerSahifa(){
 
   if(ochiq) h+=menejerDetal(ochiq);
 
-  if(D.konversiya && D.konversiya.length)
+  if(DS().konversiya && DS().konversiya.length)
     h+='<div class="sub" style="margin:14px 0 0">Конверсия «menedjer konversiya» варағидан олинади '+
        'ва сана фильтрига боғлиқ эмас.</div>';
 
@@ -4504,6 +4570,53 @@ function ulanmaganSahifa(){
     '</div>';
 }
 
+
+/* ── АРХИВ ПОТОК — бошқарув панели (RBA 14, RBA 13) ── */
+function arxPanelSahifa(){
+  var pt=potok(), ds=DS();
+  var h=sarlavha('RBA — '+pt+' · бошқарув панели','Поток якуни: план, сотувлар ва тўловлар','');
+  function rj(k){
+    var l=(ds.reja&&ds.reja[k])||[], o={reja:0,fakt:0};
+    l.forEach(function(x){ o.reja+=x.reja; o.fakt+=x.fakt });
+    o.qoldi=Math.max(0,o.reja-o.fakt); o.foiz=o.reja?o.fakt/o.reja*100:0; return o;
+  }
+  var rp=rj('praktikum'), rk=rj('kouch');
+  var jr={reja:rp.reja+rk.reja,fakt:rp.fakt+rk.fakt};
+  jr.qoldi=Math.max(0,jr.reja-jr.fakt); jr.foiz=jr.reja?jr.fakt/jr.reja*100:0;
+
+  h+='<div class="sec" style="margin-top:4px"><h2>План · факт · қолди</h2><p>«План» варақларидан — поток якунидаги ҳолат</p></div>'+
+    '<div class="pv-rjg" style="--n:2">'+
+      pvRjKarta('Жами',jr,jr.foiz>=100?'var(--ok)':'var(--a)',true)+
+      pvRjKarta('3 кунлик',rp,'#E0A048',false)+
+      pvRjKarta('Коучинг',rk,'#4ECB92',false)+
+    '</div>';
+
+  [['praktikum','3 кунлик','#E0A048'],['kouch','Коучинг','#4ECB92']].forEach(function(q){
+    var l=ds[q[0]]||[], j=jam(l);
+    var men=guruhla(l,function(x){ return x.menejer }).slice(0,8);
+    h+='<div class="sec"><h2>'+q[1]+'</h2><p>Жами '+fmt(j.soni)+' та сотув</p></div>'+
+      '<div class="mets">'+
+        '<div class="met"><div class="met-l">Сотувлар</div><div class="met-v num">'+fmt(j.soni)+'</div>'+
+          '<div class="met-d">'+(j.kelmagan?'келмаганлар: '+fmt(j.kelmagan):'поток давомида')+'</div></div>'+
+        '<div class="met"><div class="met-l">Келишув</div><div class="met-v num">'+pul(j.kelishuv)+'</div>'+
+          '<div class="met-d">жами шартнома суммаси</div></div>'+
+        '<div class="met k"><div class="met-l">Тўланган</div><div class="met-v num">'+pul(j.tolangan)+'</div>'+
+          '<div class="met-d">келишувнинг '+foiz(j.tolangan,j.kelishuv)+'%</div></div>'+
+        '<div class="met c"><div class="met-l">Қарздорлик</div><div class="met-v num">'+pul(j.qarz)+'</div>'+
+          '<div class="met-d">келишувнинг '+foiz(j.qarz,j.kelishuv)+'%</div></div>'+
+      '</div>'+
+      '<div class="two" style="margin-top:16px">'+
+        '<div><div class="sec" style="margin-top:0"><h2>План бажарилиши</h2><p>Ҳар бир РОП бўйича</p></div>'+
+          '<div class="panel">'+rejaUstun((ds.reja&&ds.reja[q[0]])||[])+'</div></div>'+
+        '<div><div class="sec" style="margin-top:0"><h2>Энг яхши менежерлар</h2><p>Сотув сони бўйича, юқори 8 таси</p></div>'+
+          '<div class="panel">'+ustunlar(men.map(function(x){ return {nom:x.nom,qiy:x.soni,ong:pul(x.tolangan)} }))+'</div></div>'+
+      '</div>'+
+      '<div class="ulq-t" style="justify-content:flex-start;margin-top:14px">'+
+        '<button class="btn btn-o" data-prodga="r'+pt+'_'+q[0]+'">'+q[1]+'ни батафсил очиш →</button></div>';
+  });
+  return h;
+}
+
 /* ── RBC — клублар панели ── */
 function rbcPanelSahifa(){
   var h=sarlavha('RBC · бошқарув панели','Клублар: Турон Клуб ва Индивидуал','');
@@ -5275,7 +5388,7 @@ function aiJurnal(){
 
 
 function menyu(){
-  if(panelMi() || rbcPanelMi() || iiPanelMi() || yoqMi()) return [{p:'umumiy', nom:'Умумий', ik:'chart'}];
+  if(panelMi() || rbcPanelMi() || iiPanelMi() || yoqMi() || arxPanelMi() || (potok() && arxHolat())) return [{p:'umumiy', nom:'Умумий', ik:'chart'}];
   if(nazoratMi()){
     var nz=D&&D.nazorat;
     return [
@@ -5334,8 +5447,13 @@ function chiz(){
   }
   if(!D) return;
 
+  var axh=yoqMi()?null:arxHolat();
   main.innerHTML = yoqMi()
     ? ulanmaganSahifa()
+    : axh
+    ? axh
+    : arxPanelMi()
+    ? arxPanelSahifa()
     : rbcPanelMi()
     ? rbcPanelSahifa()
     : iiPanelMi()
@@ -5419,6 +5537,7 @@ function produktOch(p){
   if(p==='turon') turonYukla();
   if(p==='panel' && D){ moliyaYukla(); markYukla(); }
   if(p==='rbc_panel') turonYukla();
+  if(potok()) arxYukla(potok());
   if(p==='ii_panel') aiYukla();
   // Фильтрни тозалаймиз: акс ҳолда «Бугун» қолиб кетиб,
   // янги бўлим сабабсиз бўм-бўш кўринади.
@@ -5578,6 +5697,7 @@ function hammasiYangila(){
   if(panelMi()){ moliyaYukla(true); markYukla(true); }
   if(rbcPanelMi()) turonYukla(true);
   if(iiPanelMi())  aiYukla(true);
+  if(potok())      arxYukla(potok(),true);
   if(nazoratMi()) nazoratYukla(true);
   setTimeout(function(){ S.yangi=false },4000);
 }
