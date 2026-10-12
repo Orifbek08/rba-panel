@@ -1458,7 +1458,7 @@ var UYGOTILDI=0;
 function serverUygot(){
   if(Date.now()-UYGOTILDI<4*60000) return;
   UYGOTILDI=Date.now();
-  [API_KIRISH,API,API_AI,API_MARKETING,API_MOLIYA,API_TURON,API_FORUM,API_ARXIV].forEach(function(u){
+  [API_KIRISH,API,API_AI,API_MARKETING,API_MOLIYA,API_TURON,API_ARXIV].forEach(function(u){
     if(u && u.indexOf('BU_YERGA')<0) fetch(u+'?amal=tekshir').catch(function(){});
   });
 }
@@ -4398,7 +4398,7 @@ async function forumYukla(majburiy){
   if(D.forum && !D.forumXato && !majburiy) return;   // хато бўлган бўлса — қайта уринамиз
   S.fBand=true; belgi(true); chiz();
   try{
-    var j=await bittaYukla(API_FORUM+'?amal=baza&t='+encodeURIComponent(AUTH.token)+(S.yangi?'&yangi=1':''));
+    var j=await bittaYukla(API_FORUM+'?ilova=forum&amal=baza&t='+encodeURIComponent(AUTH.token)+(S.yangi?'&yangi=1':''));
     var bilet=(j.bilet||[]).map(function(x){
       // Умумий функциялар (jam, guruhla, dinamika) учун мослаймиз
       x.tolangan=(x.zaklad||0)+(x.kelib||0); x.kelishuv=x.dogovor||0; x.qarz=x.qarz||0; x.kishi=1; return x;
