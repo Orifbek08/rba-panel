@@ -1611,7 +1611,7 @@ var S = {
   eski:false, xato:null, band:false, mBand:false, kBand:false, aBand:false, nBand:false, yangi:false, nomTahrir:null, jQid:null
 };
 
-var PROD_NOM={admin:'Назорат',panel:'Бошқарув панели',praktikum:'3 кунлик',kouch:'Коучинг',ai:'AI 3.0',turon:'Турон Клуб',forum:'Турон Клуб Форум',forum_mark:'Турон Форум маркетинг',individual:'Индивидуал',
+var PROD_NOM={admin:'Назорат',panel:'Бошқарув панели',praktikum:'3 кунлик',kouch:'Коучинг',ai:'AI 3.0',turon:'Турон Клуб',forum:'Турон Клуб Форум',forum_mark:'Турон Форум маркетинг',yashil_mark:'Маркетинг',yashil_sotuv:'Сотув',individual:'Индивидуал',
               moliya:'Молия',marketing:'Маркетинг'};
 
 /* ══════════════════════════════════════════════════════
@@ -1649,7 +1649,10 @@ var GURUH=[
     {p:'ii_panel', nom:'Бошқарув панели', bosh:1},
     {p:'ai1',      nom:'AI — 1.0', yoq:1},
     {p:'ai2',      nom:'AI — 2.0', yoq:1},
-    {p:'ai',       nom:'AI — 3.0'}]}
+    {p:'ai',       nom:'AI — 3.0'}]},
+  {k:'ym', nom:'Яшил Макон', tur:'jonli', belgi:'уй', ich:[
+    {p:'yashil_sotuv', nom:'Сотув',     yoq:1},
+    {p:'yashil_mark',  nom:'Маркетинг'}]}
 ];
 function guruhTop(p){
   for(var i=0;i<GURUH.length;i++)
@@ -1827,6 +1830,7 @@ async function yukla(jim){
            j.moliyaVersiya=D.moliyaVersiya; j.moliyaXato=D.moliyaXato;
            j.marketing=D.marketing; j.markTashxis=D.markTashxis;
            j.fMark=D.fMark; j.fMarkTashxis=D.fMarkTashxis; j.fMarkXato=D.fMarkXato;
+           j.uMark=D.uMark; j.uMarkTashxis=D.uMarkTashxis; j.uMarkXato=D.uMarkXato;
            j.markVersiya=D.markVersiya; j.markXato=D.markXato;
            j.ai=D.ai; j.aiReja=D.aiReja; j.aiVersiya=D.aiVersiya; j.aiXato=D.aiXato;
            j.turon=D.turon; j.turonPlan=D.turonPlan; j.turonVersiya=D.turonVersiya; j.turonXato=D.turonXato;
@@ -1897,19 +1901,20 @@ async function markYukla(majburiy){
 
 /** Турон Форум маркетинги — ўша Marketing.gs, «Турон форум» варағи (?varaq=forum) */
 async function fMarkYukla(majburiy){
+  var v=kV(); if(!v) return;
   if(!markUlangan() || S.kBand) return;
   if(!D) return;
-  if(D.fMark && !D.fMarkXato && !majburiy) return;
+  if(D[v.d] && !D[v.d+'Xato'] && !majburiy) return;
   S.kBand=true; belgi(true); chiz();
   try{
-    var j=await bittaYukla(API_MARKETING+'?amal=lid&varaq=forum&t='+encodeURIComponent(AUTH.token)+(S.yangi?'&yangi=1':''));
-    if(j.tashxis && j.tashxis.varaq && !/турон|форум/i.test(j.tashxis.varaq))
-      throw new Error('Marketing.gs эски версия — «Турон форум» варағини ўқимаяпти (v3.1 керак)');
-    D.fMark=kHolatTuzat(j.lidlarP ? paketOch(j.lidlarP) : (j.lidlar||[]));
-    D.fMarkTashxis=j.tashxis||null;
-    D.fMarkXato=null;
+    var j=await bittaYukla(API_MARKETING+'?amal=lid&varaq='+v.v+'&t='+encodeURIComponent(AUTH.token)+(S.yangi?'&yangi=1':''));
+    if(j.tashxis && j.tashxis.varaq && !v.re.test(j.tashxis.varaq))
+      throw new Error('Marketing.gs эски версия — «'+v.nom+'» варағини ўқимаяпти (v3.1 керак)');
+    D[v.d]=kHolatTuzat(j.lidlarP ? paketOch(j.lidlarP) : (j.lidlar||[]));
+    D[v.d+'Tashxis']=j.tashxis||null;
+    D[v.d+'Xato']=null;
   }catch(e){
-    D.fMarkXato=e.message;
+    D[v.d+'Xato']=e.message;
   }
   S.kBand=false; belgi(false); saqla(); chiz();
 }
@@ -1948,7 +1953,7 @@ function boshla(){
   var bor=null;
   try{ bor=JSON.parse(localStorage.getItem(XOT)||'null') }catch(e){}
   if(bor && !adminMi()){ delete bor.nazorat }
-  if(bor){ D=bor; if(D.marketing) kHolatTuzat(D.marketing); if(D.fMark) kHolatTuzat(D.fMark); S.eski=true; chiz(); aloqa(true,''); }
+  if(bor){ D=bor; if(D.marketing) kHolatTuzat(D.marketing); if(D.fMark) kHolatTuzat(D.fMark); if(D.uMark) kHolatTuzat(D.uMark); S.eski=true; chiz(); aloqa(true,''); }
   yukla(!!bor);
 }
 
@@ -2275,7 +2280,7 @@ function sarlavha(h1,izoh,asbob){
     arxb='<div class="arxb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 7h18v13H3z"/><path d="M1 3h22v4H1zM10 12h4"/></svg>'+
       'Архив — ёпилган поток, маълумоти ўзгармайди'+(av?' · ўқилган: '+esc(String(av).slice(0,16)):'')+'</div>';
   }
-  if(S.prod==='forum_mark' && h1.indexOf('Турон')<0) h1='Турон Форум · '+h1;
+  var kvs=K_VARAQ[S.prod]; if(kvs && h1.indexOf(kvs.pre.split(' ·')[0])<0) h1=kvs.pre+h1;
   return produktSwitch()+
     '<div class="head"><div><h1>'+esc(h1)+'</h1><div class="sub">'+esc(izoh)+'</div></div>'+
     '<div class="tools">'+(asbob||'')+'</div></div>'+arxb+eskiBelgi();
@@ -3434,13 +3439,19 @@ function moliyaJurnal(){
    «Лидлар қаердан келди ва нечтаси сотувга айланди?»
    ══════════════════════════════════════════════════════ */
 
-function markMi(){ return S.prod==='marketing' || S.prod==='forum_mark' }
+function markMi(){ return S.prod==='marketing' || !!K_VARAQ[S.prod] }
 /* Турон Форум маркетинги — ўша саҳифалар, фақат маълумот манбаи бошқа
    («Marketing RBA 15» жадвалидаги «Турон форум» варағи) */
-function kFor(){ return S.prod==='forum_mark' }
-function kD(){ return D ? (kFor()?D.fMark:D.marketing) : null }
-function kT(){ return D ? (kFor()?D.fMarkTashxis:D.markTashxis) : null }
-function kX(){ return D ? (kFor()?D.fMarkXato:D.markXato) : null }
+/* Қўшимча маркетинг варақлари: бўлим коди → варақ (?varaq=…) ва D ичидаги жойи */
+var K_VARAQ={
+  forum_mark:  {v:'forum', d:'fMark', nom:'Турон форум', pre:'Турон Форум · ', re:/турон|форум/i},
+  yashil_mark: {v:'uy',    d:'uMark', nom:'Уй',          pre:'Яшил Макон · ',  re:/^\s*уй/i}
+};
+function kV(){ return K_VARAQ[S.prod]||null }
+function kFor(){ return !!kV() }
+function kD(){ var v=kV(); return D ? (v?D[v.d]:D.marketing) : null }
+function kT(){ var v=kV(); return D ? (v?D[v.d+'Tashxis']:D.markTashxis) : null }
+function kX(){ var v=kV(); return D ? (v?D[v.d+'Xato']:D.markXato) : null }
 
 var MK_NOM={yangi:'Янги лид',sifatsiz:'Сифатсиз',sotuv:'Сотув',obrabotka:'Обработкада'};
 var MK_RANG={yangi:'var(--info)',sifatsiz:'var(--no)',sotuv:'var(--ok)',obrabotka:'var(--a)'};
@@ -3933,7 +3944,7 @@ function markKonv(){
 /* ── 15.4 ЛИДЛАР ─────────────────────────────────────── */
 
 function markJurnal(){
-  var h=sarlavha('Лидлар','«'+(kFor()?'Турон форум':'3 кунлик')+'» варағидаги ёзувлар',
+  var h=sarlavha('Лидлар','«'+(kFor()?kV().nom:'3 кунлик')+'» варағидаги ёзувлар',
     '<input type="text" id="qid" placeholder="Стадия, манба, менежер…" value="'+esc(S.qidiruv)+'" style="width:200px">'+
     sanaFiltr()+mobilTugma());
   var b=kBoshHolat();
@@ -5089,7 +5100,7 @@ function pvRjKarta(nom,r,rang,katta,izoh){
 /** Жадвали ҳали уланмаган бўлим (архив потоклар, Индивидуал, AI 1.0 / 2.0) */
 function ulanmaganSahifa(){
   var t=guruhTop(S.prod), arxiv=t.g.tur==='arxiv';
-  return sarlavha(t.g.nom+' · '+t.x.nom, arxiv?'Архив — ёпилган поток, маълумоти ўзгармайди':'Янги бўлим','')+
+  return sarlavha(t.x.nom.indexOf(t.g.nom)===0?t.x.nom:t.g.nom+' · '+t.x.nom, arxiv?'Архив — ёпилган поток, маълумоти ўзгармайди':'Янги бўлим','')+
     '<div class="ulq">'+
       '<div class="ulq-i">'+(arxiv
         ?'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 7h18v13H3z"/><path d="M1 3h22v4H1zM10 12h4"/></svg>'
@@ -6086,7 +6097,7 @@ function produktOch(p){
   faolYubor(PROD_NOM[p]||p);
   if(p==='admin') nazoratYukla();
   if(p==='moliya') moliyaYukla();
-  if(p==='marketing' || p==='forum_mark') markYukla();
+  if(p==='marketing' || K_VARAQ[p]) markYukla();
   if(p==='ai') aiYukla();
   if(p==='turon') turonYukla();
   if(p==='panel' && D){ moliyaYukla(); markYukla(); }
@@ -6118,7 +6129,9 @@ document.getElementById('pswitch').addEventListener('click',function(e){
     // Бошқа гуруҳ очилса — ўша гуруҳнинг бошқарув панелига ўтамиз
     if(!j || j.g.k!==k){
       var g=GURUH.filter(function(x){ return x.k===k })[0];
-      produktOch(g.ich[0].p);
+      // Биринчи уланган бўлим (бошқарув панели ёки, у бўлмаса, биринчи тайёр бўлим)
+      var bir=g.ich.filter(function(x){ return !x.yoq })[0]||g.ich[0];
+      produktOch(bir.p);
     } else guruhChiz();
     return;
   }
