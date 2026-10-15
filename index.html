@@ -1185,6 +1185,31 @@ body:not(.admin) [data-prod="admin"]{display:none!important}
 .ymx b{color:var(--c);margin-right:5px}
 @media(max-width:820px){ .ymtr{grid-template-columns:1fr auto} .ymtb{grid-column:1/-1;order:3} .ymbg{grid-template-columns:1fr} }
 
+/* ИТ услуга */
+.itoyg{display:grid;grid-template-columns:repeat(var(--n,3),1fr);gap:12px}
+.itoy{background:linear-gradient(162deg,var(--card2),var(--card) 60%);border:1px solid var(--line);border-top:3px solid var(--c);border-radius:14px;padding:14px 15px 12px}
+.itoy.joriy{box-shadow:0 0 0 1px var(--a-line),0 8px 24px rgba(0,0,0,.18)}
+.itoyh{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:8px}
+.itoyh b{font-family:Archivo;font-size:15px;color:var(--ink)}
+.itoyh em{font-style:normal;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--a);background:var(--a-dim);border:1px solid var(--a-line);padding:2px 7px;border-radius:6px}
+.itoyb{display:flex;align-items:center;gap:12px}
+.itoyb .pv-rjs{flex:1;margin-top:0}
+.itoyt{display:flex;flex-wrap:wrap;gap:5px;margin-top:11px;padding-top:10px;border-top:1px dashed var(--line)}
+.itoyt span{display:inline-flex;align-items:center;gap:5px;font-size:11px;color:var(--muted);background:var(--bg2);border:1px solid var(--line);border-radius:7px;padding:3px 8px}
+.itoyt span i{width:7px;height:7px;border-radius:50%;background:var(--c)}
+.itoyt span b{color:var(--ink)}
+.itoyt .itbosh{font-style:italic;background:none;border:none;padding-left:0}
+.itoyf{margin-top:8px;font-size:11.5px;color:var(--muted)}
+.itp{display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+.itp i{width:8px;height:8px;border-radius:50%;background:var(--c);flex:none}
+.itpd{display:inline-block;width:7px;height:7px;border-radius:50%;margin:0 4px 0 2px}
+.itt th,.itt td{white-space:nowrap}
+.itt tr.itj td{font-weight:700;color:var(--ink);border-top:2px solid var(--line2)}
+.itt tr.itpl td{color:var(--muted);font-size:12px}
+.itx{grid-template-columns:1.6fr 1fr}
+@media(max-width:1100px){ .itoyg{grid-template-columns:repeat(2,1fr)} .itx{grid-template-columns:1fr} }
+@media(max-width:820px){ .itoyg{grid-template-columns:1fr} }
+
 /* аъзолар рўйхати */
 .tal{display:flex;flex-direction:column;gap:7px;max-height:520px;overflow:auto}
 .tar{display:flex;align-items:center;gap:12px;justify-content:space-between;background:var(--bg2);
@@ -1405,6 +1430,7 @@ var API_AI = 'https://script.google.com/macros/s/AKfycbz0utSwXV43iAKqVG0qvzMtuj0
 var API_ARXIV = 'https://script.google.com/macros/s/AKfycbyQJlJEDa_dBe2qu3MEbLnoDlrLwZuJl7tK8XNg-PdOAo8gOa1rpQ3MeIFEau4yE9cq/exec';
 var API_IND   = 'https://script.google.com/macros/s/AKfycbwWM5Q6Sm24Rc5ftHl6jsJDmd1__2lWDi0i4YXOVzhhWGkojeS_4dGq4w2HL3YoNrBu7w/exec';   // Individual.gs — Индивидуал ўқувчилар
 var API_FORUM = 'https://script.google.com/macros/s/AKfycbwCtjeLFkhMUUaIWpWh_gsUGMsFoNAeDk79MzOsuGSCqykYER3ALhZxdYcJiXbqdVdr/exec';   // Forum.gs — Турон Клуб Форум
+var API_IT    = 'BU_YERGA_HAVOLA';   // ITxizmat.gs — ИТ услуга
 var API_YM    = 'https://script.google.com/macros/s/AKfycbzvPSlLoHVkRwdkAkSddunq_NjBnQbiWPvPjmCz9WkZPmoFLjLlLg75-W3hmjeUo7AJwA/exec';   // YashilMakon.gs — Яшил Макон сотуви
 var API_TURON = 'https://script.google.com/macros/s/AKfycbzO6d494h72JqXKOpDmSmSLWP5x8Zpa_w03QnYSkO61DXPUJ21f9tRMuHPiIi7Os75QAg/exec';
 
@@ -1694,6 +1720,8 @@ var GURUH=[
   /* Молия — ҳамма продуктга умумий, шунинг учун алоҳида (yakka — очилмайди, ўзи бўлим) */
   {k:'moliya', nom:'Молия', tur:'jonli', belgi:'касса', yakka:1, ich:[
     {p:'moliya', nom:'Молия'}]},
+  {k:'it', nom:'ИТ услуга', tur:'jonli', belgi:'IT', yakka:1, ich:[
+    {p:'it', nom:'ИТ услуга'}]},
   {k:'rbc', nom:'RBC', tur:'jonli', belgi:'клуб', ich:[
     {p:'rbc_panel',  nom:'Бошқарув панели', bosh:1},
     {p:'turon',      nom:'Турон Клуб'},
@@ -1931,7 +1959,7 @@ async function yukla(jim){
            j.turon=D.turon; j.turonPlan=D.turonPlan; j.turonVersiya=D.turonVersiya; j.turonXato=D.turonXato;
            j.turonOq=D.turonOq; j.turonOqXato=D.turonOqXato; j.turonKurs=D.turonKurs;
            j.forum=D.forum; j.forumXato=D.forumXato; j.ind=D.ind; j.indXato=D.indXato;
-           j.ym=D.ym; j.ymXato=D.ymXato;
+           j.ym=D.ym; j.ymXato=D.ymXato; j.it=D.it; j.itXato=D.itXato;
            j.arx=D.arx;
            j.nazorat=D.nazorat; j.nazoratXato=D.nazoratXato }
     D=j; S.xato=null; S.eski=false;
@@ -1952,6 +1980,7 @@ async function yukla(jim){
   if(forumMi())    forumYukla();
   if(indMi())      indYukla();
   if(ymMi())       ymYukla();
+  if(itMi())       itYukla();
   if(iiPanelMi())  aiYukla();
   if(potok())      arxYukla(potok());
   if(nazoratMi()) nazoratYukla();
@@ -4554,6 +4583,181 @@ function tKursMatn(){
 
 
 /* ══════════════════════════════════════════════════════
+   19. ИТ УСЛУГА — битта саҳифа
+   «ИТ хисоботи» жадвали → ITxizmat.gs
+   5 та продукт · ҳар ойга план (сервердан, долларда) · ойлар алоҳида
+   ══════════════════════════════════════════════════════ */
+
+function itMi(){ return S.prod==='it' }
+function itUlangan(){ return API_IT.indexOf('BU_YERGA')<0 }
+
+async function itYukla(majburiy){
+  if(!itUlangan() || S.itBand) return;
+  if(!D) return;
+  if(D.it && !D.itXato && !majburiy) return;
+  S.itBand=true; belgi(true); chizL('it');
+  try{
+    var j=await bittaYukla(API_IT+'?amal=baza&t='+encodeURIComponent(AUTH.token)+(S.yangi?'&yangi=1':''));
+    D.it={tushum:(j.tushum||[]).map(function(x){ x.tolangan=x.summa||0; x.kelishuv=x.summa||0; x.qarz=0; x.kishi=1; return x }),
+          plan:+j.plan||5000, valyuta:j.valyuta||'$', turlar:j.turlar||[], versiya:j.versiya||null, vaqt:j.vaqt||null, tashxis:j.tashxis||null};
+    D.itXato=null;
+  }catch(e){
+    D.itXato=e.message;
+  }
+  S.itBand=false; belgi(false); saqla(); chizL('it');
+}
+
+function itHolat(){
+  if(!itUlangan())
+    return sarlavha('ИТ услуга','Ҳали уланмаган',mobilTugma())+
+      '<div class="empty"><b>API ҳаволаси қўйилмаган</b>'+
+      'ITxizmat.gs ни деплой қилиб, ҳаволани HTML даги <b>API_IT</b> га қўйинг.</div>';
+  if(D && D.itXato && !D.it)
+    return sarlavha('ИТ услуга','Хатолик',mobilTugma())+
+      '<div class="xato"><b>Серверга уланиб бўлмади</b>'+esc(D.itXato)+
+      '<div style="margin-top:10px;font-size:12.5px">Apps Script: <b>Deploy → Anyone</b> қилинганми? JADVAL_ID тўғрими?</div></div>';
+  if(!D || !D.it)
+    return sarlavha('ИТ услуга','Юкланмоқда…',mobilTugma())+
+      '<div class="load"><div class="spin"></div>Маълумот юкланмоқда…</div>';
+  return null;
+}
+
+/* Продукт ранглари — жадвалдаги рангларга яқин */
+var IT_RANG={
+  'Дашборт':'#C0524A', 'Автоматлаштириш':'#C9962A', 'Битрикс24':'#2F6FA8',
+  'Битрикс24 литсензия':'#2E9670', 'Бошқа продукт':'#6F7B8A'
+};
+function itRang(t){ return IT_RANG[t]||'var(--a)' }
+function itPul(n){ return (n<0?'-':'')+'$'+fmt(Math.abs(n||0)) }
+function itOyKalit(s){ return s&&s.length>=7 ? s.slice(0,7) : '' }
+function itOyNom(k){ var y=k.slice(0,4), m=+k.slice(5,7)-1; var n=OY_NOM[m]||k; return n.charAt(0).toUpperCase()+n.slice(1)+' '+y }
+function itHozirOy(){ var d=new Date(); return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2) }
+
+/** Ойлар: маълумотдаги биринчи ойдан жорий ойгача (бўш ойлар ҳам) */
+function itOylar(l){
+  var hozir=itHozirOy(), bor={}, min=hozir;
+  l.forEach(function(x){ var k=itOyKalit(x.sana); if(k){ bor[k]=1; if(k<min) min=k } });
+  var out=[], y=+min.slice(0,4), m=+min.slice(5,7), hy=+hozir.slice(0,4), hm=+hozir.slice(5,7);
+  for(var i=0;i<36;i++){
+    var k=y+'-'+('0'+m).slice(-2);
+    out.push(k);
+    if(y===hy && m===hm) break;
+    m++; if(m>12){ m=1; y++ }
+  }
+  return out;
+}
+
+/** Ой бўйича жам: {kalit, nom, fakt, soni, foiz, qoldi, joriy} */
+function itOyJam(l,plan){
+  var oy=itOylar(l), m={};
+  oy.forEach(function(k){ m[k]={kalit:k,nom:itOyNom(k),fakt:0,soni:0,tur:{},joriy:k===itHozirOy()} });
+  l.forEach(function(x){ var k=itOyKalit(x.sana); if(!m[k]) return; m[k].fakt+=x.summa||0; m[k].soni++; m[k].tur[x.tur]=(m[k].tur[x.tur]||0)+(x.summa||0) });
+  return oy.map(function(k){ var o=m[k]; o.reja=plan; o.qoldi=Math.max(0,plan-o.fakt); o.foiz=plan?o.fakt/plan*100:0; return o });
+}
+
+/** Продуктлар тартиби: сервердаги рўйхат + жадвалда учраган бошқалари */
+function itTurlar(l){
+  var t=(D.it.turlar||[]).slice(), bor={};
+  t.forEach(function(x){ bor[x]=1 });
+  l.forEach(function(x){ if(!bor[x.tur]){ bor[x.tur]=1; t.push(x.tur) } });
+  return t;
+}
+
+function itFoizRang(f){ return f>=100?'var(--ok)':f>=50?'var(--a)':'var(--no)' }
+
+function itUmumiy(){
+  var h=itHolat(); if(h) return h;
+  var it=D.it, l=it.tushum, plan=it.plan;
+  var jami=0; l.forEach(function(x){ jami+=x.summa||0 });
+  var oylar=itOyJam(l,plan), joriy=oylar[oylar.length-1];
+  var sanasiz=l.filter(function(x){ return !itOyKalit(x.sana) }).length;
+  var bajarilgan=oylar.filter(function(o){ return o.fakt>=plan }).length;
+  var otgan=oylar.filter(function(o){ return !o.joriy });
+  var orta=otgan.length?otgan.reduce(function(a,o){ return a+o.fakt },0)/otgan.length:joriy.fakt;
+  var turlar=itTurlar(l);
+  var tj={}; l.forEach(function(x){ tj[x.tur]=(tj[x.tur]||0)+(x.summa||0) });
+  var eng=turlar.slice().sort(function(a,b){ return (tj[b]||0)-(tj[a]||0) })[0];
+
+  var o=sarlavha('ИТ услуга — умумий',turlar.length+' та продукт · ҳар ойга план '+itPul(plan)+' · суммалар долларда',mobilTugma());
+
+  o+='<div class="mets">'+
+    '<div class="met o"><div class="met-l">Шу ой · '+esc(joriy.nom)+'</div><div class="met-v num">'+itPul(joriy.fakt)+'</div>'+
+      '<div class="met-d">план '+itPul(plan)+' · '+(joriy.fakt>=plan?'<b style="color:var(--ok)">бажарилди ✓</b>':'қолди <b>'+itPul(joriy.qoldi)+'</b>')+' · '+fmt(joriy.soni)+' та тушум</div>'+
+      '<div class="mprog"><i style="width:'+Math.min(100,joriy.foiz)+'%;background:'+itFoizRang(joriy.foiz)+'"></i></div></div>'+
+    '<div class="met k"><div class="met-l">Жами тушум</div><div class="met-v num">'+itPul(jami)+'</div>'+
+      '<div class="met-d">'+fmt(l.length)+' та тушум · '+fmt(oylar.length)+' ой'+(sanasiz?' · <span style="color:var(--no)">'+fmt(sanasiz)+' таси санасиз</span>':'')+'</div></div>'+
+    '<div class="met"><div class="met-l">Ўртача ойлик</div><div class="met-v num">'+itPul(orta)+'</div>'+
+      '<div class="met-d">план бажарилган ойлар: <b>'+fmt(bajarilgan)+' / '+fmt(oylar.length)+'</b></div></div>'+
+    '<div class="met"><div class="met-l">Энг кўп тушум</div><div class="met-v num" style="font-size:17px;white-space:normal;line-height:1.2">'+esc(eng||'—')+'</div>'+
+      '<div class="met-d">'+(eng?itPul(tj[eng])+' · жамининг '+kFoiz(jami?tj[eng]/jami*100:0):'')+'</div></div>'+
+  '</div>';
+
+  // ── Ойлар: ҳар бири алоҳида — план · факт · қолди ──
+  o+='<div class="sec"><h2>Ойлар бўйича план · факт · қолди</h2><p>Ҳар ойга план '+itPul(plan)+' — ҳамма продукт бирга</p></div>'+
+    '<div class="itoyg" style="--n:'+Math.min(4,oylar.length)+'">'+oylar.map(function(m){
+      var r=itFoizRang(m.foiz);
+      var tl=Object.keys(m.tur).sort(function(a,b){ return m.tur[b]-m.tur[a] });
+      return '<div class="itoy'+(m.joriy?' joriy':'')+'" style="--c:'+r+'">'+
+        '<div class="itoyh"><b>'+esc(m.nom)+'</b>'+(m.joriy?'<em>жорий ой</em>':'')+'</div>'+
+        '<div class="itoyb">'+halqa(m.foiz,r,96,10,'<b class="num" style="font-size:22px">'+(m.foiz>=10||!m.foiz?Math.round(m.foiz):m.foiz.toFixed(1))+'%</b>')+
+          '<div class="pv-rjs">'+
+            '<div><span>План</span><b class="num">'+itPul(m.reja)+'</b></div>'+
+            '<div><span>Факт</span><b class="num" style="color:'+r+'">'+itPul(m.fakt)+'</b></div>'+
+            '<div><span>Қолди</span><b class="num q">'+(m.fakt>=plan?'<span style="color:var(--ok)">✓ ошди '+itPul(m.fakt-plan)+'</span>':itPul(m.qoldi))+'</b></div>'+
+          '</div></div>'+
+        '<div class="itoyt">'+(tl.length?tl.map(function(t){
+            return '<span style="--c:'+itRang(t)+'"><i></i>'+esc(t)+' <b>'+itPul(m.tur[t])+'</b></span>';
+          }).join(''):'<span class="itbosh">бу ойда тушум йўқ</span>')+'</div>'+
+        '<div class="itoyf">'+fmt(m.soni)+' та тушум</div>'+
+      '</div>';
+    }).join('')+'</div>';
+
+  // ── Продуктлар × ойлар ──
+  var oyJ={}; oylar.forEach(function(m){ oyJ[m.kalit]=m });
+  o+='<div class="sec"><h2>Продуктлар бўйича</h2><p>Ҳар бир продукт ҳар ойда қанча тушум берди</p></div>'+
+    '<div class="two itx">'+
+    '<div class="panel" style="padding:0;overflow:hidden"><div class="tscroll"><table class="tbl itt"><thead><tr><th>Продукт</th>'+
+      oylar.map(function(m){ return '<th style="text-align:right'+(m.joriy?';color:var(--a)':'')+'">'+esc(m.nom.split(' ')[0])+'</th>' }).join('')+
+      '<th style="text-align:right">Жами</th></tr></thead><tbody>'+
+      turlar.map(function(t){
+        return '<tr><td><span class="itp" style="--c:'+itRang(t)+'"><i></i>'+esc(t)+'</span></td>'+
+          oylar.map(function(m){ var v=m.tur[t]||0; return '<td class="num" style="text-align:right;'+(v?'':'color:var(--muted)')+'">'+(v?itPul(v):'—')+'</td>' }).join('')+
+          '<td class="num" style="text-align:right;font-weight:600">'+itPul(tj[t]||0)+'</td></tr>';
+      }).join('')+
+      '<tr class="itj"><td>Жами</td>'+oylar.map(function(m){ return '<td class="num" style="text-align:right">'+itPul(m.fakt)+'</td>' }).join('')+
+        '<td class="num" style="text-align:right">'+itPul(jami)+'</td></tr>'+
+      '<tr class="itpl"><td>План</td>'+oylar.map(function(m){ return '<td class="num" style="text-align:right">'+itPul(plan)+'</td>' }).join('')+
+        '<td class="num" style="text-align:right">'+itPul(plan*oylar.length)+'</td></tr>'+
+      '<tr class="itpl"><td>Бажарилди</td>'+oylar.map(function(m){ return '<td class="num" style="text-align:right;color:'+itFoizRang(m.foiz)+'">'+kFoiz(m.foiz)+'</td>' }).join('')+
+        '<td class="num" style="text-align:right;color:'+itFoizRang(jami/(plan*oylar.length)*100)+'">'+kFoiz(jami/(plan*oylar.length)*100)+'</td></tr>'+
+      '</tbody></table></div></div>'+
+    '<div class="panel">'+ustunlar(turlar.filter(function(t){ return tj[t] }).sort(function(a,b){ return tj[b]-tj[a] }).map(function(t){
+        return {nom:t,qiy:tj[t],ong:kFoiz(jami?tj[t]/jami*100:0)} }))+'</div>'+
+    '</div>';
+
+  // ── Ҳамма тушумлар ──
+  var ro=l.slice().sort(function(a,b){ return (b.sana||'').localeCompare(a.sana||'') });
+  o+='<div class="sec"><h2>Тушумлар</h2><p>'+fmt(l.length)+' та ёзув — янгидан эскига</p></div>'+
+    '<div class="tw"><div class="tscroll"><table class="tbl"><thead><tr><th>№</th><th>Сана</th><th>Ф.И</th><th>Тури</th><th style="text-align:right">Сумма</th></tr></thead><tbody>'+
+    ro.map(function(x){
+      return '<tr><td class="num" style="color:var(--muted)">'+esc(x.raqam||'—')+'</td>'+
+        '<td class="num" style="color:var(--muted);white-space:nowrap">'+(x.sana?dfmt(x.sana):'<span style="color:var(--no)">санасиз</span>')+'</td>'+
+        '<td style="font-weight:500;color:var(--ink)">'+esc(x.fio)+'</td>'+
+        '<td><span class="itp" style="--c:'+itRang(x.tur)+'"><i></i>'+esc(x.tur)+'</span></td>'+
+        '<td class="num" style="text-align:right;font-weight:600;color:var(--green)">'+itPul(x.summa)+'</td></tr>';
+    }).join('')+'</tbody></table></div></div>'+
+    '<div class="jfaqat"><div class="tal">'+ro.map(function(x){
+      return '<div class="tar"><div><b>'+esc(x.fio)+'</b><span>'+(x.sana?dfmt(x.sana):'санасиз')+' · <i class="itpd" style="background:'+itRang(x.tur)+'"></i>'+esc(x.tur)+'</span></div>'+
+        '<em class="num">'+itPul(x.summa)+'</em></div>';
+    }).join('')+'</div></div>';
+
+  o+='<div class="fizoh" style="margin-top:16px"><div class="eb">Ҳозир нима кўрсатилмоқда</div>'+
+    '<p>«ИТ хисоботи» жадвали'+(it.tashxis&&it.tashxis.oqilgan?' — '+it.tashxis.oqilgan.map(function(v){ return '«'+esc(v.varaq)+'»' }).join(', '):'')+
+    '. Ойлар: маълумотдаги биринчи ойдан жорий ойгача. План ҳар ойга '+itPul(plan)+' — ITxizmat.gs даги <b>PLAN_OYLIK</b> дан.</p></div>';
+  return o;
+}
+
+/* ══════════════════════════════════════════════════════
    18. ЯШИЛ МАКОН — СОТУВ (уй-жой)
    «Яшил макон» жадвали → YashilMakon.gs
    Ҳар бир қатор = битта харидор (Сони — нечта хонадон)
@@ -6311,6 +6515,7 @@ function aiJurnal(){
 
 
 function menyu(){
+  if(itMi()) return [{p:'umumiy', nom:'Умумий', ik:'chart'}];
   if(panelMi() || rbcPanelMi() || iiPanelMi() || yoqMi() || arxPanelMi() || (potok() && arxHolat())) return [{p:'umumiy', nom:'Умумий', ik:'chart'}];
   if(nazoratMi()){
     var nz=D&&D.nazorat;
@@ -6423,6 +6628,8 @@ function chiz(){
     ? ( S.sahifa==='umumiy' ? aiUmumiy() : aiJurnal() )
     : indMi()
     ? ( S.sahifa==='oquvchi' ? indOquvchilar() : indUmumiy() )
+    : itMi()
+    ? itUmumiy()
     : ymMi()
     ? ( S.sahifa==='jurnal'  ? ymSotuvlar() :
         S.sahifa==='kesim'   ? ymBloklar()  : ymUmumiy() )
@@ -6500,6 +6707,7 @@ function produktOch(p){
   if(p==='rbc_panel'){ turonYukla(); forumYukla(); indYukla(); }
   if(p==='forum') forumYukla();
   if(p==='yashil_sotuv') ymYukla();
+  if(p==='it') itYukla();
   if(p==='individual') indYukla();
   if(potok()) arxYukla(potok());
   if(p==='ii_panel') aiYukla();
@@ -6692,6 +6900,8 @@ var YUKLOVCHI=[
      kerak:function(){ return indMi()||rbcPanelMi() }, xato:function(){ return D&&D.indXato }},
   {k:'ym',         nom:'Яшил Макон сотув',      f:function(){ return ymYukla(true) },
      kerak:function(){ return ymMi() }, xato:function(){ return D&&D.ymXato }},
+  {k:'it',         nom:'ИТ услуга',             f:function(){ return itYukla(true) },
+     kerak:function(){ return itMi() }, xato:function(){ return D&&D.itXato }},
   {k:'arx14',      nom:'RBA — 14 архив',        f:function(){ return arxYukla('14',true) },
      kerak:function(){ return potok()==='14' }, xato:function(){ return D&&D.arx&&D.arx['14']&&D.arx['14'].xato }},
   {k:'arx13',      nom:'RBA — 13 архив',        f:function(){ return arxYukla('13',true) },
@@ -6710,6 +6920,7 @@ function yuklovchiUlangan(y){
   if(y.k==='forum') return forumUlangan();
   if(y.k==='ind') return indUlangan();
   if(y.k==='ym') return ymUlangan();
+  if(y.k==='it') return itUlangan();
   if(y.k==='arx14'||y.k==='arx13') return arxUlangan();
   if(y.k==='nazorat') return adminMi() && kirishUlangan();
   return true;
