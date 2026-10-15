@@ -3657,8 +3657,25 @@ function kBoshHolat(){
   if(!markUlangan())
     return '<div class="empty"><b>Маркетинг уланмаган</b>HTML файлдаги <b>API_MARKETING</b> га '+
            'Marketing.gs дан чиққан ҳаволани қўйинг.</div>';
-  if(D && kX())
-    return '<div class="xato"><b>Маркетинг серверига уланиб бўлмади</b>'+esc(kX())+'</div>';
+  if(D && kX()){
+    // Хато сабабини тушунтирамиз ва қайта уриниш тугмаси
+    var x=String(kX()||''), izoh='';
+    if(/failed to fetch|networkerror|load failed/i.test(x)) izoh='Интернет узилди ёки Apps Script деплойида «Доступ: Все» қилинмаган.';
+    else if(/unexpected token|not valid json|json/i.test(x)) izoh='Ҳавола JSON эмас, HTML қайтаряпти — деплой «Новая версия» қилинмаган ёки лойиҳада бошқа doGet бор.';
+    else if(/эски версия/i.test(x)) izoh='Marketing.gs ни янги версияга кўтариб, «Управление развертываниями → ✏ → Новая версия» қилинг.';
+    else if(/варағи топилмади/i.test(x)) izoh='Жадвалда шу номли варақ йўқ — номини текширинг (скриптдаги VARAQ рўйхатига қўшиш мумкин).';
+    else if(/устун топилмади/i.test(x)) izoh='Варақнинг сарлавҳа қаторида керакли устун йўқ («Дата начала», «Стадия сделки»).';
+    else if(/exceeded|timeout|time out|вақт/i.test(x)) izoh='Сервер жуда узоқ ишлади — бир оздан кейин қайта уриниб кўринг.';
+    var eski=kD()&&kD().length;
+    var blok='<div class="xato"><b>Маркетинг серверига уланиб бўлмади</b>'+esc(x)+
+      (izoh?'<div style="margin-top:8px;font-size:12.5px;color:var(--ink2)">'+izoh+'</div>':'')+
+      '<div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap;align-items:center">'+
+        '<button class="btn btn-o" data-kqayta>Қайта уриниш</button>'+
+        (eski?'<span style="font-size:12px;color:var(--muted)">Пастда охирги муваффақиятли юкланган маълумот кўрсатилмоқда</span>':'')+
+      '</div></div>';
+    if(!eski) return blok;
+    return {eski:blok};                                   // эски маълумот бор — саҳифа чизилади, тепада огоҳлантириш
+  }
   if(!kD() || !kD().length) return kTashxis();
   return '';
 }
@@ -3708,6 +3725,7 @@ function markUmumiy(){
   var h=sarlavha('Маркетинг — умумий','Лидлар, сифати ва конверсияси',
     sanaFiltr()+mobilTugma());
   var b=kBoshHolat();
+  if(b && b.eski){ h+=b.eski; b='' }           // хато, лекин эски маълумот бор — огоҳлантириб давом этамиз
   if(b) return h+b;
 
   var barcha=sanaFiltrla(kD());
@@ -3761,6 +3779,7 @@ function markTarget(){
   var h=sarlavha('Таргетологлар','Ким қанча лид олиб келди — батафсил учун босинг',
     sanaFiltr()+mobilTugma());
   var b=kBoshHolat();
+  if(b && b.eski){ h+=b.eski; b='' }           // хато, лекин эски маълумот бор — огоҳлантириб давом этамиз
   if(b) return h+b;
 
   var l=sanaFiltrla(kD());
@@ -3815,6 +3834,7 @@ function markStadiya(){
   var h=sarlavha('Стадиялар','Лидлар қайси босқичда турибди',
     sanaFiltr()+mobilTugma());
   var b=kBoshHolat();
+  if(b && b.eski){ h+=b.eski; b='' }           // хато, лекин эски маълумот бор — огоҳлантириб давом этамиз
   if(b) return h+b;
 
   var l=kSatrlar();
@@ -4036,6 +4056,7 @@ function markKonv(){
   var h=sarlavha('Конверсия','Маркетинг конверсия (ишланган лиддан) ва сотув конверсия (ҳамма лиддан)',
     sanaFiltr()+mobilTugma());
   var b=kBoshHolat();
+  if(b && b.eski){ h+=b.eski; b='' }           // хато, лекин эски маълумот бор — огоҳлантириб давом этамиз
   if(b) return h+b;
 
   var l=kSatrlar(), j=kJam(l);
@@ -4095,6 +4116,7 @@ function markJurnal(){
     '<input type="text" id="qid" placeholder="Стадия, манба, менежер…" value="'+esc(S.qidiruv)+'" style="width:200px">'+
     sanaFiltr()+mobilTugma());
   var b=kBoshHolat();
+  if(b && b.eski){ h+=b.eski; b='' }           // хато, лекин эски маълумот бор — огоҳлантириб давом этамиз
   if(b) return h+b;
 
   var l=kSatrlar();
@@ -6848,6 +6870,7 @@ main.addEventListener('click',async function(e){
   if(e.target.closest('#mTema')){ temaQoy(!qoraMi(),true); chiz(); return }
   if(e.target.closest('#mYangila')||e.target.closest('#eskiYangila')){ hammasiYangila(); return }
   if(e.target.closest('#qaytaBtn')){ yukla(); return }
+  if(e.target.closest('[data-kqayta]')){ markYukla(true); return }
   if(e.target.closest('[data-yop]')){ S.ochiq=null; chiz(); return }
   if((t=e.target.closest('[data-men]'))||(t=e.target.closest('[data-kes]'))){
     var nomi=t.dataset.men||t.dataset.kes;
