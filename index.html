@@ -3663,6 +3663,7 @@ function kBoshHolat(){
     if(/failed to fetch|networkerror|load failed/i.test(x)) izoh='Интернет узилди ёки Apps Script деплойида «Доступ: Все» қилинмаган.';
     else if(/unexpected token|not valid json|json/i.test(x)) izoh='Ҳавола JSON эмас, HTML қайтаряпти — деплой «Новая версия» қилинмаган ёки лойиҳада бошқа doGet бор.';
     else if(/эски версия/i.test(x)) izoh='Marketing.gs ни янги версияга кўтариб, «Управление развертываниями → ✏ → Новая версия» қилинг.';
+    else if(/illegal spreadsheet|spreadsheet id|not found|openById|JADVAL_ID/i.test(x)) izoh='Скриптдаги JADVAL_ID нотўғри — жадвал ҳаволасини браузердан нусха олиб, тўлиқ қўйинг ва «Новая версия» қилинг.';
     else if(/варағи топилмади/i.test(x)) izoh='Жадвалда шу номли варақ йўқ — номини текширинг (скриптдаги VARAQ рўйхатига қўшиш мумкин).';
     else if(/устун топилмади/i.test(x)) izoh='Варақнинг сарлавҳа қаторида керакли устун йўқ («Дата начала», «Стадия сделки»).';
     else if(/exceeded|timeout|time out|вақт/i.test(x)) izoh='Сервер жуда узоқ ишлади — бир оздан кейин қайта уриниб кўринг.';
