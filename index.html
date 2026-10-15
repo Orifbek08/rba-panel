@@ -1249,6 +1249,17 @@ body.yoOch .yo{display:flex;animation:yoKir .22s ease}
 .yo-kut{display:flex;gap:5px;align-items:center;padding:12px 16px}
 .yo-kut i{width:7px;height:7px;border-radius:50%;background:var(--muted);animation:p 1.1s infinite}
 .yo-kut i:nth-child(2){animation-delay:.18s}.yo-kut i:nth-child(3){animation-delay:.36s}
+.yo-tez{display:flex;flex-direction:column;gap:3px;margin:0 0 9px;padding:7px 9px;border-radius:9px;background:var(--card);border:1px dashed var(--line2);font-size:11.5px;color:var(--ink2);line-height:1.45}
+.yo-tez span b{color:var(--ink);font-weight:700}
+.yo-sk{display:flex;flex-direction:column;gap:6px;margin:4px 0 12px}
+.yo-sk i{display:block;height:9px;border-radius:5px;background:linear-gradient(90deg,var(--line) 25%,var(--line2) 50%,var(--line) 75%);background-size:200% 100%;animation:yoSk 1.2s infinite}
+.yo-sk i:nth-child(2){width:78%}.yo-sk i:nth-child(3){width:55%}
+@keyframes yoSk{0%{background-position:200% 0}100%{background-position:-200% 0}}
+.yo-hq{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--a);margin-left:7px;animation:p 1.1s infinite;vertical-align:middle}
+.yo-tk{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.yo-tk button{font-size:11.5px;padding:4px 10px;border-radius:999px;border:1px solid var(--a-line);background:var(--a-dim);color:var(--a);cursor:pointer;font-family:inherit;text-align:left;line-height:1.35}
+.yo-tk button:hover{filter:brightness(1.06)}
+.yo-m i{color:var(--muted)}
 .yo-f{display:flex;gap:8px;padding:12px 16px;border-top:1px solid var(--line);align-items:flex-end;background:var(--card)}
 .yo-f textarea{flex:1;resize:none;min-height:42px;max-height:120px;padding:10px 12px;border-radius:11px;border:1px solid var(--line);
   background:var(--bg2);color:var(--ink);font:inherit;font-size:13.5px;line-height:1.4}
@@ -1462,6 +1473,8 @@ body.yangilanmoqda #yangilaBtn svg,body.yangilanmoqda #yangilaBtn2 svg{animation
     <button data-yo="s" data-savol="Ҳозир нимага диққат қилишим керак? Энг муҳим 3 та нарса.">Диққат керак</button>
     <button data-yo="s" data-savol="Маркетингда аҳвол қандай: лидлар сифати ва конверсия?">Маркетинг</button>
     <button data-yo="s" data-savol="Қарздорлик қаерда кўп ва нима қилиш керак?">Қарздорлик</button>
+    <button data-yo="s" data-savol="Қайси менежер олдинда, ким орқада — шу ой? Ким 7 кундан бери сотмаган?">Менежерлар</button>
+    <button data-yo="s" data-savol="Молия: шу ой кирим-чиқим ўтган ойга нисбатан қандай, кассаларда қанча пул бор?">Молия</button>
     <button data-yo="toza">Тозалаш</button>
   </div>
   <div class="yo-b" id="yoB"></div>
@@ -4674,41 +4687,187 @@ function tKursMatn(){
 
 /* ══════════════════════════════════════════════════════
    20. AI ЁРДАМЧИ (Claude) — Yordamchi.gs
-   Панел жадвални юбормайди: фақат ўзи ҳисоблаган қисқа рақамларни (yoKontekst)
-   ва саволни юборади. Калит серверда. Жавоб — пастки ўнгдаги ойнада.
+   Панел жадвални юбормайди: фақат ўзи ҳисоблаган рақамлар + таҳлил (yoKontekst)
+   ва саволни юборади. Калит серверда. Жавоб — ўнгдаги ойнада.
+   Тезлик: ойна очилганда бўлимлар ОРҚА ФОНДА ПАРАЛЛЕЛ юкланади; савол фақат
+   ўзига керак бўлимни кутади; хулоса 4 қисмга бўлиниб, ҳар қисм келиши билан чиқади.
    ══════════════════════════════════════════════════════ */
 
 var YO_SAQ='rba_yo_v1';
 function yoUlangan(){ return API_YORDAMCHI.indexOf('BU_YERGA')<0 }
 
-/* ── Панел ҳисоблаган рақамлар — Claude учун контекст ── */
+/* Эрталабки хулоса қисмлари — ҳар бири алоҳида сўров, келиши билан чизилади */
+var YO_QISM=[{q:1,nom:'Кеча — нима бўлди'},{q:2,nom:'План ҳолати'},{q:3,nom:'Диққат'},{q:4,nom:'Бугун — қадамлар'}];
+
+/* Савол → қайси бўлим маълумоти керак (юклаш учун; топилмаса — ҳаммаси) */
+var YO_YONAL=[
+  {k:'asosiy',     re:/3\s*кун|3\s*kun|уч\s*кун|uch\s*kun|интенсив|intensiv|коуч|kouch|coach|сотув|sotuv|план|plan|менежер|menejer|\bроп\b|\brop\b|шаҳар|shahar|қарз|qarz|поток|potok|\brba\b|прогноз|prognoz|ўқувчи|o'?quvchi|талаба|talaba/i},
+  {k:'marketing',  re:/маркет|market|\bлид|\blid|lead|таргет|target|реклам|reklam|bitrix|битрикс|конверс|konvers|сифатсиз|sifatsiz|воронк|voronk|заявка|zayavka/i},
+  {k:'moliya',     re:/молия|moliya|\bпул|\bpul|касса|kassa|кирим|kirim|чиқим|chiqim|харажат|xarajat|даромад|daromad|қолдиқ|qoldiq|баланс|balans|финанс|finans|сўм|so'?m\b|тушум|tushum|расход|доход/i},
+  {k:'turon',      re:/турон|turon|клуб|klub|аъзо|a'?zo/i},
+  {k:'forum',      re:/форум|forum|билет|bilet|меҳмон|mehmon/i},
+  {k:'forum_mark', re:/форум\s*марк|forum\s*mark|форум.*лид|forum.*lid/i},
+  {k:'ind',        re:/индивид|individ|куратор|kurator/i},
+  {k:'ai',         re:/\bai\b|\bии\b|сунъий|sun.?iy|\bкурс|\bkurs/i},
+  {k:'ym',         re:/яшил|yashil|макон|makon|\bуй\b|\buy\b|хонадон|xonadon|квартир|kvartir|қурилиш|qurilish/i},
+  {k:'yashil_mark',re:/уй\s*марк|uy\s*mark|яшил.*марк|yashil.*mark/i},
+  {k:'it',         re:/\bит\b|\bit\b|услуг|uslug|дашбор|dashboard|сайт|sayt|\bбот\b|\bbot\b|\bcrm\b|срм/i}
+];
+function yoKerakBolimlar(savol){
+  var s=' '+String(savol||'')+' ', k=[];
+  YO_YONAL.forEach(function(y){ if(y.re.test(s)) k.push(y.k) });
+  return k.length?k:null;                                   // null — умумий савол: ҳамма бўлим
+}
+
+/* ── Санa ёрдамчилари ── */
+function yoKunFarq(sana){ var d=sanaOqi(sana); if(!d) return null; d.setHours(0,0,0,0); var t=new Date(); t.setHours(0,0,0,0); return Math.round((t-d)/864e5) }
+function yoOraliq(l,a,b){ return (l||[]).filter(function(x){ var f=yoKunFarq(x.sana); return f!=null&&f>=a&&f<=b }) }   // a..b кун олдин (1,7 = кечадан 7 кун)
+function yoFoizFarq(yangi,eski){ if(!eski) return yangi?'янги':'0'; var f=Math.round((yangi-eski)/eski*100); return (f>0?'+':'')+f+'%' }
+function yoR1(v){ return Math.round((v||0)*10)/10 }
+function yoOyda(l,y,m){ return (l||[]).filter(function(x){ var d=sanaOqi(x.sana); return d&&d.getFullYear()===y&&d.getMonth()===m }) }
+function yoOtganOyShuKungacha(l,y,m,kunOy){ var om=new Date(y,m-1,1); return (l||[]).filter(function(x){ var d=sanaOqi(x.sana); return d&&d.getFullYear()===om.getFullYear()&&d.getMonth()===om.getMonth()&&d.getDate()<=kunOy }) }
+function yoQisqaPul(n,v){
+  n=Math.round(n||0);
+  if(v==='$'||v==='USD') return (n<0?'−$':'$')+fmt(Math.abs(n));
+  var a=Math.abs(n), s=a>=1e9?(a/1e9).toFixed(a>=1e10?0:1)+' млрд':a>=1e6?(a/1e6).toFixed(a>=1e7?0:1)+' млн':fmt(a);
+  return (n<0?'−':'')+s+' сўм';
+}
+
+/* ── Таҳлил: сотув рўйхати (3 кунлик, Коучинг, AI) — суръат, тренд, менежерлар, қарз ── */
+function yoSotuvTahlil(l,r,hozir){
+  var y=hozir.getFullYear(), m=hozir.getMonth(), kunOy=hozir.getDate(), kunJami=new Date(y,m+1,0).getDate();
+  var oy=yoOyda(l,y,m), jo=jam(oy), h7=yoOraliq(l,1,7), o7=yoOraliq(l,8,14), j7=jam(h7), j14=jam(o7), ja=jam(yoOtganOyShuKungacha(l,y,m,kunOy));
+  var oyFoiz=Math.round(kunOy/kunJami*100), qolgan=kunJami-kunOy, kunlik=jo.soni/Math.max(1,kunOy);
+  var t={oyFoiz:oyFoiz, kunigaOrtacha:yoR1(kunlik), prognoz:Math.round(kunlik*kunJami),
+    kecha:{sotuv:jam(yoOraliq(l,1,1)).soni},
+    hafta7:{sotuv:j7.soni,tolangan:Math.round(j7.tolangan)}, oldingi7:{sotuv:j14.soni,tolangan:Math.round(j14.tolangan)}, haftaFarq:yoFoizFarq(j7.soni,j14.soni),
+    otganOyShuKungacha:{sotuv:ja.soni,tolangan:Math.round(ja.tolangan)}, oyFarq:yoFoizFarq(jo.soni,ja.soni)};
+  if(r&&r.reja){
+    var f=Math.round(r.foiz)-oyFoiz;
+    t.planFoiz=Math.round(r.foiz); t.farqPP=f; t.surat=f>=5?'олдинда':f<=-5?'орқада':'планда';
+    t.kunigaKerak=yoR1(r.qoldi/Math.max(1,qolgan+1)); t.prognozFoiz=Math.round(t.prognoz/r.reja*100);
+  }
+  var men=guruhla(oy.filter(function(x){ return x.menejer }),function(x){ return x.menejer });
+  if(men.length){
+    t.menejer={eng:men[0].nom+' ('+men[0].soni+' сотув, $'+fmt(men[0].tolangan)+')'};
+    if(men.length>1){ var k=men[men.length-1]; t.menejer.kuchsiz=k.nom+' ('+k.soni+')' }
+    var faol={}, bor7={};
+    yoOraliq(l,1,30).forEach(function(x){ if(x.menejer) faol[x.menejer]=1 });
+    h7.forEach(function(x){ if(x.menejer) bor7[x.menejer]=1 });
+    var jim=Object.keys(faol).filter(function(n){ return !bor7[n] });
+    if(jim.length) t.menejer.jim7kun=jim.slice(0,6);                 // 30 кунда сотган, лекин охирги 7 кунда йўқ
+  }
+  var qz=l.filter(function(x){ return x.qarz>0 });
+  if(qz.length){ var qj=jam(qz);
+    t.qarz={jami:Math.round(qj.qarz),kishi:qz.length,
+      menejerTop:guruhla(qz,function(x){ return x.menejer||'—' }).sort(function(a,b){ return b.qarz-a.qarz }).slice(0,3).map(function(g){ return {nom:g.nom,qarz:Math.round(g.qarz),kishi:g.soni} })} }
+  if(jo.kelmagan) t.kelmaganShuOy=jo.kelmagan;
+  return t;
+}
+
+/* ── Таҳлил: маркетинг лидлари ── */
+function yoMarkTahlil(l,hozir){
+  var y=hozir.getFullYear(), m=hozir.getMonth(), kunOy=hozir.getDate();
+  var oy=yoOyda(l,y,m), jo=kJam(oy), h7=yoOraliq(l,1,7), o7=yoOraliq(l,8,14), j7=kJam(h7), j14=kJam(o7);
+  var eski=l.filter(function(x){ var f=yoKunFarq(x.sana); return x.holat==='yangi'&&f!=null&&f>=3 }).length;
+  var t={kechaLid:kJam(yoOraliq(l,1,1)).jami, kunigaOrtachaLid:yoR1(jo.jami/Math.max(1,kunOy)),
+    hafta7:{lid:j7.jami,sotuv:j7.sotuv,sifatsizFoiz:Math.round(j7.sfoiz),mkonv:yoR1(j7.mkonv)},
+    oldingi7:{lid:j14.jami,sotuv:j14.sotuv,sifatsizFoiz:Math.round(j14.sfoiz),mkonv:yoR1(j14.mkonv)},
+    lidFarq:yoFoizFarq(j7.jami,j14.jami), sifatsizFarqPP:Math.round(j7.sfoiz-j14.sfoiz), eskiYangiLid3kun:eski};
+  var ku=kTargetlar(oy).filter(function(x){ return x.jami>=10 && x.mkonv<jo.mkonv*0.5 }).map(function(x){ return {nom:x.nom,lid:x.jami,mkonv:yoR1(x.mkonv)} });
+  if(ku.length) t.targetKuchsiz=ku.slice(0,3);
+  var mn=guruhla(oy.map(function(x){ return {k:x.manba||'—',kelishuv:0,tolangan:0,qarz:0} }),function(x){ return x.k }).slice(0,4).map(function(g){ return {nom:g.nom,lid:g.soni} });
+  if(mn.length) t.manbaTop=mn;
+  return t;
+}
+
+/* ── Таҳлил: молия (бир валюта) ── */
+function yoMoliyaTahlil(l,hozir){
+  var y=hozir.getFullYear(), m=hozir.getMonth(), kunOy=hozir.getDate();
+  var oy=yoOyda(l,y,m), jo=mJam(oy), ja=mJam(yoOtganOyShuKungacha(l,y,m,kunOy)), h7=mJam(yoOraliq(l,1,7));
+  var t={otganOyShuKungacha:{kirim:Math.round(ja.kirim),chiqim:Math.round(ja.chiqim)}, kirimFarq:yoFoizFarq(jo.kirim,ja.kirim), chiqimFarq:yoFoizFarq(jo.chiqim,ja.chiqim),
+    kunlikChiqimOrtacha:Math.round(jo.chiqim/Math.max(1,kunOy)), hafta7:{kirim:Math.round(h7.kirim),chiqim:Math.round(h7.chiqim)}};
+  var ch=oy.filter(function(x){ return x.tip==='chiqim' }).sort(function(a,b){ return b.summa-a.summa })[0];
+  if(ch) t.engKattaChiqimShuOy={nom:ch.stadiya||ch.asosiy||'—',summa:Math.round(ch.summa),sana:ch.sana};
+  return t;
+}
+
+/* ── Тренд: оддий рўйхат (аъзолар, билетлар, ўқувчилар) ── */
+function yoTrend(l){
+  if(!(l||[]).some(function(x){ return x.sana })) return null;
+  var h7=yoOraliq(l,1,7).length, o7=yoOraliq(l,8,14).length;
+  return {kecha:yoOraliq(l,1,1).length,hafta7:h7,oldingi7:o7,haftaFarq:yoFoizFarq(h7,o7)};
+}
+
+/* ── Сигналлар — панел ўзи топган энг муҳим огоҳлантиришлар (Claude «Диққат»да ишлатади) ── */
+function yoSignallar(K){
+  var s=[];
+  function q(d,m){ s.push({d:d,m:m}) }
+  function sotuvSig(n,b,v){
+    var t=b&&b.tahlil; if(!t) return;
+    if(b.plan){
+      if(t.surat==='орқада') q('xavf',n+': план '+b.fakt+'/'+b.plan+' ('+t.planFoiz+'%), ой '+t.oyFoiz+'% ўтди → '+Math.abs(t.farqPP)+' п.п. орқада; прогноз '+t.prognoz+' ('+t.prognozFoiz+'%), етиш учун кунига '+t.kunigaKerak+' сотув керак (ҳозир '+t.kunigaOrtacha+')');
+      else if(t.surat==='олдинда') q('yaxshi',n+': план суръатидан '+t.farqPP+' п.п. олдинда ('+b.fakt+'/'+b.plan+', '+t.planFoiz+'%)');
+    }
+    if(t.kecha.sotuv===0 && t.kunigaOrtacha>=0.5) q('diqqat',n+': кеча сотув бўлмади (кунлик ўртача '+t.kunigaOrtacha+')');
+    if(t.oldingi7.sotuv>=5 && t.hafta7.sotuv<t.oldingi7.sotuv*0.7) q('diqqat',n+': охирги 7 кун '+t.hafta7.sotuv+' сотув, олдинги 7 кун '+t.oldingi7.sotuv+' ('+t.haftaFarq+')');
+    else if(t.oldingi7.sotuv>=5 && t.hafta7.sotuv>t.oldingi7.sotuv*1.3) q('yaxshi',n+': ҳафталик сотув ўсди — '+t.hafta7.sotuv+' (олдинги '+t.oldingi7.sotuv+', '+t.haftaFarq+')');
+    if(t.menejer&&t.menejer.jim7kun) q('diqqat',n+': 7 кундан бери сотув қилмаган менежерлар — '+t.menejer.jim7kun.join(', '));
+    if(t.qarz&&t.qarz.jami>0) q('diqqat',n+': қарз '+yoQisqaPul(t.qarz.jami,v)+' ('+t.qarz.kishi+' киши), энг кўп — '+t.qarz.menejerTop[0].nom+' '+yoQisqaPul(t.qarz.menejerTop[0].qarz,v));
+    if(t.kelmaganShuOy>=3) q('diqqat',n+': шу ой '+t.kelmaganShuOy+' киши келмаган');
+  }
+  if(K.rba15){ sotuvSig('3 кунлик',K.rba15['3 кунлик'],'$'); sotuvSig('Коучинг',K.rba15['Коучинг'],'$') }
+  if(K.ai) sotuvSig('AI 3.0',K.ai,'$');
+  function markSig(n,b){
+    var t=b&&b.tahlil; if(!t) return;
+    if(t.eskiYangiLid3kun>=5) q('xavf',n+': '+t.eskiYangiLid3kun+' та янги лид 3 кундан бери ишланмаган');
+    if(t.sifatsizFarqPP>=8 && t.hafta7.lid>=10) q('diqqat',n+': сифатсиз лид улуши ошди — '+t.hafta7.sifatsizFoiz+'% (олдинги ҳафта '+t.oldingi7.sifatsizFoiz+'%)');
+    if(t.oldingi7.lid>=10 && t.hafta7.lid<t.oldingi7.lid*0.7) q('diqqat',n+': лид оқими камайди — 7 кунда '+t.hafta7.lid+' (олдинги '+t.oldingi7.lid+', '+t.lidFarq+')');
+    if(t.targetKuchsiz) q('diqqat',n+': конверсияси пастлар — '+t.targetKuchsiz.map(function(x){ return x.nom+' ('+x.lid+' лид, '+x.mkonv+'%)' }).join(', '));
+    if(b.shuOy&&b.shuOy.jami>=20&&b.shuOy.sifatsizFoiz>=50) q('diqqat',n+': шу ой лидларнинг '+Math.round(b.shuOy.sifatsizFoiz)+'% сифатсиз');
+  }
+  markSig('Маркетинг',K.marketing); markSig('Турон форум маркетинг',K.forumMarketing); markSig('Уй маркетинг',K.yashilMarketing);
+  if(K.moliya){ ['som','usd'].forEach(function(v){ var b=K.moliya[v], t=b&&b.tahlil; if(!t) return; var vl=v==='usd'?'$':'сўм';
+    if(b.shuOy.chiqim>b.shuOy.kirim && b.shuOy.kirim>0) q('diqqat','Молия ('+vl+'): шу ой чиқим киримдан кўп — '+yoQisqaPul(b.shuOy.chiqim,vl)+' / '+yoQisqaPul(b.shuOy.kirim,vl));
+    if(t.otganOyShuKungacha.kirim>0 && b.shuOy.kirim<t.otganOyShuKungacha.kirim*0.75) q('diqqat','Молия ('+vl+'): кирим ўтган ойнинг шу кунига нисбатан '+t.kirimFarq+' ('+yoQisqaPul(b.shuOy.kirim,vl)+' / '+yoQisqaPul(t.otganOyShuKungacha.kirim,vl)+')');
+    else if(t.otganOyShuKungacha.kirim>0 && b.shuOy.kirim>t.otganOyShuKungacha.kirim*1.25) q('yaxshi','Молия ('+vl+'): кирим ўтган ойга нисбатан '+t.kirimFarq);
+  }) }
+  if(K.turon&&K.turon.oquvchilar&&K.turon.oquvchilar.muddatiOtganVazifa>0) q('diqqat','Турон ўқувчилар: муддати ўтган вазифалар — '+K.turon.oquvchilar.muddatiOtganVazifa);
+  if(K.forum&&K.forum.plan){ var ff=K.forum; if(ff.planFoiz<50) q('diqqat','Форум: билет '+ff.fakt+'/'+ff.plan+' ('+ff.planFoiz+'%), қолди '+ff.qoldi+(ff.trend?'; 7 кунда '+ff.trend.hafta7+' билет ('+ff.trend.haftaFarq+')':'')); if(ff.qarz>0) q('diqqat','Форум: билет қарзи $'+fmt(ff.qarz)) }
+  if(K.individual&&K.individual.qarz>0) q('diqqat','Индивидуал: қарз $'+fmt(K.individual.qarz)+' ('+K.individual.qarzdorlar+' ўқувчи)');
+  if(K.itUsluga){ var jo=(K.itUsluga.oylar||[]).filter(function(o){ return o.joriy })[0]; if(jo&&jo.planFoiz<50) q('diqqat','ИТ услуга: '+jo.oy+' $'+fmt(jo.fakt)+' / $'+fmt(K.itUsluga.planOylik)+' ('+jo.planFoiz+'%)') }
+  var tartib={xavf:0,diqqat:1,yaxshi:2};
+  return s.sort(function(a,b){ return tartib[a.d]-tartib[b.d] }).slice(0,14);
+}
+
+/* ── Панел ҳисоблаган рақамлар + таҳлил — Claude учун контекст ── */
 function yoKontekst(){
   var hozir=new Date(), y=hozir.getFullYear(), m=hozir.getMonth();
   var kunOy=hozir.getDate(), kunJami=new Date(y,m+1,0).getDate();
   var kecha=kechaSana();
   function iso(d){ return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2) }
-  function oyda(l){ return (l||[]).filter(function(x){ var d=sanaOqi(x.sana); return d&&d.getFullYear()===y&&d.getMonth()===m }) }
-  function kechagi(l){ return (l||[]).filter(function(x){ return kechaMi(x.sana) }) }
-  function prognoz(f){ return kunOy?Math.round(f/kunOy*kunJami):0 }
-  function r1(v){ return Math.round((v||0)*10)/10 }
+  function oyda(l){ return yoOyda(l,y,m) }
+  function kechagi(l){ return yoOraliq(l,1,1) }
   function top(l,ol,n,qosh){ return guruhla(l,ol).slice(0,n||5).map(function(g){ var o={nom:g.nom,soni:g.soni,tolangan:Math.round(g.tolangan)}; if(g.qarz) o.qarz=Math.round(g.qarz); if(qosh) qosh(o,g); return o }) }
   function sotuvBlok(l,r){
     var jo=jam(oyda(l)), jk=jam(kechagi(l)), jh=jam(l);
     var o={jami:{sotuv:jh.soni,tolangan:Math.round(jh.tolangan),qarz:Math.round(jh.qarz)},
-      shuOy:{sotuv:jo.soni,tolangan:Math.round(jo.tolangan),qarz:Math.round(jo.qarz),prognozOyOxiri:prognoz(jo.soni)},
+      shuOy:{sotuv:jo.soni,tolangan:Math.round(jo.tolangan),qarz:Math.round(jo.qarz)},
       kecha:{sotuv:jk.soni,tolangan:Math.round(jk.tolangan),menejerlar:top(kechagi(l),function(x){ return x.menejer },5)},
       menejerlarShuOy:top(oyda(l),function(x){ return x.menejer },6)};
-    if(r){ o.plan=r.reja; o.fakt=r.fakt; o.qoldi=r.qoldi; o.planFoiz=Math.round(r.foiz) }
+    if(r&&r.reja){ o.plan=r.reja; o.fakt=r.fakt; o.qoldi=r.qoldi; o.planFoiz=Math.round(r.foiz) }
+    o.tahlil=yoSotuvTahlil(l,r,hozir);
     return o;
   }
   function markBlok(l){
-    function j(q){ var a=kJam(q); return {jami:a.jami,yangi:a.yangi,obrabotka:a.obrabotka,sifatsiz:a.sifatsiz,sotuv:a.sotuv,mkonv:r1(a.mkonv),skonv:r1(a.skonv),sifatsizFoiz:r1(a.sfoiz)} }
+    function j(q){ var a=kJam(q); return {jami:a.jami,yangi:a.yangi,obrabotka:a.obrabotka,sifatsiz:a.sifatsiz,sotuv:a.sotuv,mkonv:yoR1(a.mkonv),skonv:yoR1(a.skonv),sifatsizFoiz:yoR1(a.sfoiz)} }
     return {jami:j(l), shuOy:j(oyda(l)), kecha:j(kechagi(l)),
-      targetologlarShuOy:kTargetlar(oyda(l)).slice(0,6).map(function(t){ return {nom:t.nom,lid:t.jami,sotuv:t.sotuv,sifatsiz:t.sifatsiz,mkonv:r1(t.mkonv),skonv:r1(t.skonv)} })};
+      targetologlarShuOy:kTargetlar(oyda(l)).slice(0,6).map(function(t){ return {nom:t.nom,lid:t.jami,sotuv:t.sotuv,sifatsiz:t.sifatsiz,mkonv:yoR1(t.mkonv),skonv:yoR1(t.skonv)} }),
+      tahlil:yoMarkTahlil(l,hozir)};
   }
 
-  var K={sana:iso(hozir), hafta:HAFTA_KUN[hozir.getDay()], oy:OY_NOM[m]+' '+y, kunOy:kunOy, kunJami:kunJami, kecha:iso(kecha),
-         ochiqBolim:PROD_NOM[S.prod]||S.prod, izoh:'pul: rba15/ai/forum/individual — $, turon/moliya(UZS)/yashilMakon — сўм; prognozOyOxiri = шу ой факти ÷ ўтган кун × ойдаги кун'};
+  var K={sana:iso(hozir), hafta:HAFTA_KUN[hozir.getDay()], oy:OY_NOM[m]+' '+y, kunOy:kunOy, kunJami:kunJami, oyFoiz:Math.round(kunOy/kunJami*100), kecha:iso(kecha)+' ('+HAFTA_KUN[kecha.getDay()]+')',
+         izoh:'pul: rba15/ai/forum/individual/itUsluga — $, turon/moliya.som/yashilMakon — сўм. tahlil: oyFoiz — ойнинг ўтган қисми %, surat — план суръати (planFoiz − oyFoiz = farqPP), kunigaKerak — планга етиш учун қолган кунларда кунига керак сотув, prognoz — шу суръатда ой охири, hafta7/oldingi7 — охирги 7 кун ва ундан олдинги 7 кун, otganOyShuKungacha — ўтган ойнинг шу кунигача, menejer.jim7kun — 30 кунда сотган лекин 7 кундан бери сотмаган, eskiYangiLid3kun — 3 кундан бери ишланмаган янги лидлар. signallar: d = xavf (хавф) / diqqat / yaxshi.'};
   if(!D) return K;
 
   if(D.praktikum||D.kouch){
@@ -4731,7 +4890,8 @@ function yoKontekst(){
         kecha:{kirim:Math.round(jk.kirim),chiqim:Math.round(jk.chiqim)},
         kassaQoldiqUmumiy:umumiy, kassalar:kl.slice(0,8),
         kirimShuOyTop:mGuruh(oyda(l).filter(function(x){ return x.tip==='kirim' }),function(x){ return x.asosiy }).slice(0,5).map(function(g){ return {nom:g.nom,summa:Math.round(g.summa)} }),
-        chiqimShuOyTop:mGuruh(oyda(l).filter(function(x){ return x.tip==='chiqim' }),function(x){ return x.asosiy }).slice(0,5).map(function(g){ return {nom:g.nom,summa:Math.round(g.summa)} })};
+        chiqimShuOyTop:mGuruh(oyda(l).filter(function(x){ return x.tip==='chiqim' }),function(x){ return x.asosiy }).slice(0,5).map(function(g){ return {nom:g.nom,summa:Math.round(g.summa)} }),
+        tahlil:yoMoliyaTahlil(l,hozir)};
     });
   }
   if(D.ai) K.ai=sotuvBlok(D.ai,pvReja('ai'));
@@ -4739,8 +4899,8 @@ function yoKontekst(){
     var tp=tPlan(), tl=D.turon, ts=0; tl.forEach(function(x){ ts+=x.summa||0 });
     var to=oyda(tl), tos=0; to.forEach(function(x){ tos+=x.summa||0 });
     K.turon={plan:tp.reja,fakt:tp.fakt,qoldi:tp.qoldi,planFoiz:Math.round(tp.foiz),azolar:tl.length,tolanganSom:Math.round(ts),
-      shuOy:{azo:to.length,tolanganSom:Math.round(tos)},kecha:{azo:kechagi(tl).length},
-      davlatlar:top(tl,function(x){ return x.davlat||'—' },5),kursUsd:tKurs()||null};
+      shuOy:{azo:to.length,tolanganSom:Math.round(tos)},kecha:{azo:kechagi(tl).length},trend:yoTrend(tl),
+      davlatlar:top(tl.map(function(x){ return {k:x.davlat||'—',kelishuv:0,tolangan:x.summa||0,qarz:0} }),function(x){ return x.k },5),kursUsd:tKurs()||null};
     if(D.turonOq){ var oq=tOquvchilar(), fs=[], otg=0, told=0; oq.forEach(function(o){ if(o.foiz!=null) fs.push(o.foiz); otg+=o.otgan; told+=o.toldirilmagan });
       K.turon.oquvchilar={soni:oq.length,ortaTayyorlikFoiz:fs.length?Math.round(fs.reduce(function(a,b){ return a+b },0)/fs.length):null,muddatiOtganVazifa:otg,toldirilmaganVazifa:told} }
   }
@@ -4748,7 +4908,7 @@ function yoKontekst(){
     var fp=fPlan(), fb=D.forum.bilet, ft=0, fq=0; fb.forEach(function(x){ ft+=x.tolangan||0; fq+=x.qarz||0 });
     K.forum={plan:fp.reja,fakt:fp.fakt,qoldi:fp.qoldi,planFoiz:Math.round(fp.foiz),bilet:fb.length,mehmon:D.forum.mehmon.length,kelibTolaydigan:D.forum.kelib.length,
       jamiKeladi:fb.length+D.forum.mehmon.length+D.forum.kelib.length,tolangan:Math.round(ft),qarz:Math.round(fq),
-      shuOy:{bilet:oyda(fb).length},kecha:{bilet:kechagi(fb).length},
+      shuOy:{bilet:oyda(fb).length},kecha:{bilet:kechagi(fb).length},trend:yoTrend(fb),
       kimKiritgan:top(fb,function(x){ return x.kiritgan||'—' },5)};
   }
   if(D.fMark) K.forumMarketing=markBlok(D.fMark);
@@ -4756,13 +4916,13 @@ function yoKontekst(){
   if(D.ind){
     var ip=iPlan(), ij=iJam(D.ind.oquvchi);
     K.individual={plan:ip.reja,fakt:ip.fakt,qoldi:ip.qoldi,planFoiz:Math.round(ip.foiz),tolangan:Math.round(ij.tolov),kelishuv:Math.round(ij.kelishuv),qarz:Math.round(ij.qarz),
-      ortaIshFoiz:ij.orta==null?null:Math.round(ij.orta),qarzdorlar:D.ind.oquvchi.filter(function(x){ return x.qarz>0 }).length,
-      kuratorlar:guruhla(D.ind.oquvchi.map(function(x){ return {k:iKurNom(x.kurator),tolangan:x.tolov||0,qarz:x.qarz||0} }),function(x){ return x.k }).slice(0,6).map(function(g){ return {nom:g.nom,oquvchi:g.soni} })};
+      ortaIshFoiz:ij.orta==null?null:Math.round(ij.orta),qarzdorlar:D.ind.oquvchi.filter(function(x){ return x.qarz>0 }).length,trend:yoTrend(D.ind.oquvchi),
+      kuratorlar:guruhla(D.ind.oquvchi.map(function(x){ return {k:iKurNom(x.kurator),kelishuv:0,tolangan:x.tolov||0,qarz:x.qarz||0} }),function(x){ return x.k }).slice(0,6).map(function(g){ return {nom:g.nom,oquvchi:g.soni,qarz:Math.round(g.qarz)} })};
   }
   if(D.ym){
     var yj=ymJam(D.ym.sotuv);
     K.yashilMakon={valyuta:D.ym.valyuta,xonadon:yj.soni,xaridor:D.ym.sotuv.length,jamiQiymat:Math.round(yj.jami),tolangan:Math.round(yj.tolagan),qoldiq:Math.round(yj.qoldiq),
-      oylikTushum:Math.round(yj.oylik),shuOy:{xonadon:oyda(D.ym.sotuv).length}};
+      tolanganFoiz:Math.round(yj.foiz),oylikTushum:Math.round(yj.oylik),shuOy:{xonadon:oyda(D.ym.sotuv).length},trend:yoTrend(D.ym.sotuv)};
   }
   if(D.it){
     var it=itOyJam(D.it.tushum,D.it.plan), itj=0; D.it.tushum.forEach(function(x){ itj+=x.summa||0 });
@@ -4770,15 +4930,56 @@ function yoKontekst(){
   }
   var yuq=YUKLOVCHI.filter(function(y){ return y.yo!==false && (!y.admin||adminMi()) && yuklovchiUlangan(y) && y.bor && !y.bor() }).map(function(y){ return y.nom });
   if(yuq.length) K.yuklanmagan=yuq;
+  var sg=yoSignallar(K); if(sg.length) K.signallar=sg;
   return K;
 }
 
+/* ── Тез рақамлар — савол тегишли бўлим(лар)нинг асосий рақамлари, жавобдан олдин дарҳол чиқади ── */
+function yoTez(keys,K){
+  if(!keys||!K) return [];
+  var out=[];
+  function sot(nom,b,v){
+    if(!b) return;
+    var t=b.tahlil||{}, s=nom;
+    if(b.plan) s+=' · план '+fmt(b.plan)+' · факт '+fmt(b.fakt)+' ('+b.planFoiz+'%) · ой '+t.oyFoiz+'% ўтди'+(t.surat?' · '+(t.surat==='планда'?'планда':t.surat+' '+Math.abs(t.farqPP)+' п.п.'):'')+(t.prognoz!=null?' · прогноз '+t.prognoz:'');
+    else s+=' · шу ой '+fmt(b.shuOy.sotuv)+' сотув · '+yoQisqaPul(b.shuOy.tolangan,v);
+    s+=' · кеча '+fmt(b.kecha.sotuv);
+    out.push(s);
+  }
+  function mark(nom,b){ if(!b) return; var t=b.tahlil||{}; out.push(nom+' · шу ой '+fmt(b.shuOy.jami)+' лид · сотув '+fmt(b.shuOy.sotuv)+' · конв '+b.shuOy.mkonv+'% · сифатсиз '+Math.round(b.shuOy.sifatsizFoiz)+'% · кеча '+fmt(t.kechaLid||b.kecha.jami)+' лид'+(t.eskiYangiLid3kun?' · ишланмаган '+t.eskiYangiLid3kun:'')) }
+  keys.forEach(function(k){
+    if(k==='asosiy'&&K.rba15){ sot('3 кунлик',K.rba15['3 кунлик'],'$'); sot('Коучинг',K.rba15['Коучинг'],'$') }
+    if(k==='ai') sot('AI 3.0',K.ai,'$');
+    if(k==='marketing') mark('Маркетинг',K.marketing);
+    if(k==='forum_mark') mark('Турон форум марк.',K.forumMarketing);
+    if(k==='yashil_mark') mark('Уй марк.',K.yashilMarketing);
+    if(k==='moliya'&&K.moliya) ['som','usd'].forEach(function(v){ var b=K.moliya[v]; if(!b) return; var vl=v==='usd'?'$':'сўм';
+      out.push('Молия ('+vl+') · шу ой кирим '+yoQisqaPul(b.shuOy.kirim,vl)+' · чиқим '+yoQisqaPul(b.shuOy.chiqim,vl)+' · кассалар '+yoQisqaPul(b.kassaQoldiqUmumiy,vl)+(b.tahlil?' · кирим ўтган ойга '+b.tahlil.kirimFarq:'')) });
+    if(k==='turon'&&K.turon){ var t=K.turon; out.push('Турон Клуб · аъзо '+fmt(t.azolar)+(t.plan?' · план '+fmt(t.plan)+' ('+t.planFoiz+'%)':'')+' · шу ой '+fmt(t.shuOy.azo)+' · кеча '+fmt(t.kecha.azo)+' · '+yoQisqaPul(t.tolanganSom,'сўм')) }
+    if(k==='forum'&&K.forum){ var f=K.forum; out.push('Форум · билет '+fmt(f.fakt)+'/'+fmt(f.plan)+' ('+f.planFoiz+'%) · меҳмон '+fmt(f.mehmon)+' · келиб тўлайди '+fmt(f.kelibTolaydigan)+' · тўланган $'+fmt(f.tolangan)+(f.qarz?' · қарз $'+fmt(f.qarz):'')) }
+    if(k==='ind'&&K.individual){ var i=K.individual; out.push('Индивидуал · '+fmt(i.fakt)+'/'+fmt(i.plan)+' ('+i.planFoiz+'%) · тўланган $'+fmt(i.tolangan)+' · қарз $'+fmt(i.qarz)+' ('+i.qarzdorlar+' киши)') }
+    if(k==='ym'&&K.yashilMakon){ var y=K.yashilMakon; out.push('Яшил Макон · '+fmt(y.xonadon)+' хонадон · жами '+yoQisqaPul(y.jamiQiymat,'сўм')+' · тўланган '+y.tolanganFoiz+'% · қолдиқ '+yoQisqaPul(y.qoldiq,'сўм')) }
+    if(k==='it'&&K.itUsluga){ var jo=(K.itUsluga.oylar||[]).filter(function(o){ return o.joriy })[0]; if(jo) out.push('ИТ услуга · '+jo.oy+' $'+fmt(jo.fakt)+' / $'+fmt(K.itUsluga.planOylik)+' ('+jo.planFoiz+'%) · жами $'+fmt(K.itUsluga.jami)) }
+  });
+  var bor={}; return out.filter(function(s){ if(bor[s]) return false; bor[s]=1; return true }).slice(0,5);
+}
+
 /* ── Ойна ── */
-function yoTarixOqi(){ try{ return JSON.parse(localStorage.getItem(YO_SAQ)||'[]') }catch(e){ return [] } }
+function yoTarixOqi(){
+  try{
+    var t=JSON.parse(localStorage.getItem(YO_SAQ)||'[]');
+    // ярим қолган хабарлар (саҳифа янгиланган) — тугалланган деб белгилаймиз
+    return t.filter(function(m){ if(m.jarayon){ m.jarayon=false; if(!m.matn&&m.qism) m.matn=m.qism.filter(function(q){ return q.matn }).map(function(q){ return '### '+q.nom+'\n'+q.matn }).join('\n\n') } return !!m.matn });
+  }catch(e){ return [] }
+}
 function yoSaqla(){ try{ localStorage.setItem(YO_SAQ,JSON.stringify(S.yoTarix.slice(-30))) }catch(e){} }
 function yoHolatYoz(t){ var e=document.getElementById('yoHolat'); if(e) e.textContent=t||'панелдаги рақамлар асосида · Claude' }
+var yoVaqtT=null;
+function yoVaqtBoshla(m){ clearInterval(yoVaqtT); var t0=Date.now(); yoHolatYoz(m); yoVaqtT=setInterval(function(){ yoHolatYoz(m+' · '+Math.round((Date.now()-t0)/1000)+' с') },1000) }
+function yoVaqtTugat(){ clearInterval(yoVaqtT); yoVaqtT=null; yoHolatYoz('') }
 function yoOch(){
   document.body.classList.add('yoOch'); yoChiz();
+  yoOldindanYukla();                                        // бўлимлар орқа фонда тайёрлансин — савол тез жавоб олади
   if(!telefonmi()) setTimeout(function(){ var i=document.getElementById('yoIn'); if(i) i.focus() },60);
 }
 function yoYop(){ document.body.classList.remove('yoOch') }
@@ -4796,7 +4997,7 @@ function yoMd(t){
     out.push('<p>'+l+'</p>');
   });
   yop();
-  return out.join('').replace(/\*\*(.+?)\*\*/g,'<b>$1</b>').replace(/`([^`]+)`/g,'<code>$1</code>');
+  return out.join('').replace(/\*\*(.+?)\*\*/g,'<b>$1</b>').replace(/(^|[\s(>])_([^_\n]{2,}?)_(?=[\s.,;:!?)<]|$)/g,'$1<i>$2</i>').replace(/`([^`]+)`/g,'<code>$1</code>');
 }
 
 function yoChiz(){
@@ -4809,12 +5010,24 @@ function yoChiz(){
       (yoUlangan()?'':'<p style="color:var(--no)">Yordamchi.gs ҳали уланмаган — HTML даги <b>API_YORDAMCHI</b> га ҳаволани қўйинг.</p>')+'</div>';
     return;
   }
-  b.innerHTML=t.map(function(m){
+  var oxirgiA=-1; t.forEach(function(m,i){ if(m.rol==='assistant'&&!m.xato) oxirgiA=i });
+  b.innerHTML=t.map(function(m,i){
     if(m.xato) return '<div class="yo-m x">'+esc(m.matn)+'</div>';
     if(m.rol==='user') return '<div class="yo-m u">'+esc(m.matn)+'</div>';
+    var h='<div class="yo-m a">';
+    if(m.tez&&m.tez.length) h+='<div class="yo-tez">'+m.tez.map(function(s){ return '<span>'+esc(s).replace(/^([^·]+)·/,'<b>$1</b>·')+'</span>' }).join('')+'</div>';
+    if(m.jarayon){
+      if(m.qism) h+=m.qism.map(function(q){ return '<h4>'+esc(q.nom)+(q.matn==null?'<i class="yo-hq"></i>':'')+'</h4>'+(q.matn==null?'<div class="yo-sk"><i></i><i></i><i></i></div>':yoMd(q.matn)) }).join('');
+      else h+='<div class="yo-kut"><i></i><i></i><i></i></div>';
+      return h+'</div>';
+    }
+    h+=yoMd(m.matn);
+    if(i===oxirgiA && m.takliflar && m.takliflar.length && !S.yoBand)
+      h+='<div class="yo-tk">'+m.takliflar.map(function(s){ return '<button data-yosavol="'+esc(s)+'">'+esc(s)+'</button>' }).join('')+'</div>';
     var tok=m.tok&&m.tok.input_tokens?' · '+fmt(m.tok.input_tokens+(m.tok.output_tokens||0))+' токен':'';
-    return '<div class="yo-m a">'+yoMd(m.matn)+'<small>'+String(m.vaqt?new Date(m.vaqt).toTimeString().slice(0,5):'')+(m.kesh?' · кэшдан':'')+tok+'</small></div>';
-  }).join('')+(S.yoBand?'<div class="yo-m a yo-kut"><i></i><i></i><i></i></div>':'');
+    h+='<small>'+String(m.vaqt?new Date(m.vaqt).toTimeString().slice(0,5):'')+(m.kesh?' · кэшдан':'')+(m.davom?' · '+m.davom+' с':'')+tok+'</small>';
+    return h+'</div>';
+  }).join('');
   b.scrollTop=b.scrollHeight;
 }
 
@@ -4825,43 +5038,97 @@ async function yoPost(o){
   return j;
 }
 
-/** Ёрдамчига керак бўлим юкланмаган бўлса — аввал юклаймиз (жимгина, кетма-кет) */
-async function yoHammasiYukla(){
+/* ── Бўлимларни юклаш: параллел, керагини кутиб ── */
+function yoRoyxat(keys){
+  return YUKLOVCHI.filter(function(y){ return y.yo!==false && (!y.admin||adminMi()) && yuklovchiUlangan(y) && y.bor && !y.bor() && (!keys||keys.indexOf(y.k)>=0) });
+}
+function yoKut(y,ms){ return new Promise(function(res){ var t0=Date.now(); (function p(){ if(y.bor()||y.xato()||Date.now()-t0>ms) return res(); setTimeout(p,250) })() }) }
+async function yoBirYukla(y){
+  try{ await y.f() }catch(e){}
+  if(!y.bor()&&!y.xato()) await yoKut(y,25000);             // юкловчи банд бўлса (бошқа жойдан чақирилган) — тугашини кутамиз
+}
+/** keys — керак бўлимлар (null — ҳаммаси). Ҳаммаси бир вақтда юкланади. */
+async function yoYukla(keys){
   if(!D) return;
-  var kerak=YUKLOVCHI.filter(function(y){ return y.yo!==false && (!y.admin||adminMi()) && yuklovchiUlangan(y) && y.bor && !y.bor() });
-  if(!kerak.length) return;
-  S.orqa=true;
-  for(var i=0;i<kerak.length;i++){
-    yoHolatYoz('маълумот йиғилмоқда · '+kerak[i].nom+' '+(i+1)+'/'+kerak.length);
-    try{ await kerak[i].f() }catch(e){}
-  }
-  S.orqa=false; belgi(false);
+  var ro=yoRoyxat(keys); if(!ro.length) return;
+  var ozim=!S.orqa; if(ozim) S.orqa=true;                   // саҳифани қайта чизмаймиз (chizL фақат керагини чизади)
+  var n=0; yoHolatYoz('маълумот йиғилмоқда · 0/'+ro.length);
+  await Promise.all(ro.map(function(y){ return yoBirYukla(y).then(function(){ n++; yoHolatYoz('маълумот йиғилмоқда · '+n+'/'+ro.length) }) }));
+  if(ozim && !S.yangilanmoqda) S.orqa=false;
+  belgi(false);
+}
+/** Ойна очилганда — ҳамма бўлим орқа фонда, бир марта */
+function yoOldindanYukla(){
+  if(!D || S.yoPre || S.yangilanmoqda || !yoUlangan()) return;
+  if(!yoRoyxat(null).length) return;
+  S.yoPre=yoYukla(null).catch(function(){}).then(function(){ S.yoPre=null; if(!S.yoBand) yoHolatYoz('') });
+}
+
+/* ── Савол ── */
+async function yoSavolYubor(savol){
+  var keys=yoKerakBolimlar(savol), t0=Date.now();
+  var m={rol:'assistant',matn:'',jarayon:true,vaqt:Date.now()};
+  S.yoTarix.push({rol:'user',matn:savol,vaqt:Date.now()}); S.yoTarix.push(m);
+  S.yoBand=true; yoSaqla(); yoChiz();
+  try{
+    if(!D) await yoKut({bor:function(){ return !!D },xato:function(){ return S.xato }},20000);   // асосий маълумот ҳали келмаган бўлса
+    m.tez=yoTez(keys,yoKontekst()); yoChiz();                // бор рақамлар — дарҳол
+    if(keys) await yoYukla(keys); else { if(S.yoPre) await S.yoPre; await yoYukla(null) }
+    var K=yoKontekst(); m.tez=yoTez(keys,K); yoChiz();        // юклангандан кейин тўлиқ
+    yoVaqtBoshla('Claude таҳлил қилмоқда');
+    var tarix=S.yoTarix.slice(0,-2).filter(function(x){ return !x.xato&&x.matn }).slice(-8).map(function(x){ return {rol:x.rol,matn:x.matn} });
+    var j=await yoPost({amal:'savol',t:AUTH.token,savol:savol,tarix:tarix,kontekst:K,
+      eTibor:{ochiqBolim:PROD_NOM[S.prod]||S.prod,bolimlar:keys||[],ekran:m.tez||[]}});
+    m.matn=j.javob; m.takliflar=j.takliflar||[]; m.tok=j.usage; m.kesh=!!j.kesh;
+  }catch(e){ m.xato=true; m.matn=e.message }
+  m.jarayon=false; m.davom=Math.round((Date.now()-t0)/1000);
+  S.yoBand=false; yoVaqtTugat(); yoSaqla(); yoChiz();
+}
+
+/* ── Эрталабки хулоса — 4 қисм, ҳар бири келиши билан чиқади ── */
+async function yoXulosaYubor(){
+  var t0=Date.now();
+  var m={rol:'assistant',matn:'',jarayon:true,vaqt:Date.now(),tok:{input_tokens:0,output_tokens:0},qism:YO_QISM.map(function(q){ return {q:q.q,nom:q.nom,matn:null} })};
+  S.yoTarix.push({rol:'user',matn:'☀ Эрталабки хулоса',vaqt:Date.now()}); S.yoTarix.push(m);
+  S.yoBand=true; yoSaqla(); yoChiz();
+  var kesh=0;
+  try{
+    if(!D) await yoKut({bor:function(){ return !!D },xato:function(){ return S.xato }},20000);
+    if(S.yoPre) await S.yoPre;
+    await yoYukla(null);
+    var K=yoKontekst();
+    yoVaqtBoshla('Claude хулоса ёзмоқда');
+    function qism(i){
+      return yoPost({amal:'xulosa',qism:m.qism[i].q,t:AUTH.token,kontekst:K}).then(function(j){
+        m.qism[i].matn=j.javob||''; if(j.takliflar&&j.takliflar.length) m.takliflar=j.takliflar;
+        if(j.usage){ m.tok.input_tokens+=j.usage.input_tokens||0; m.tok.output_tokens+=j.usage.output_tokens||0 }
+        if(j.kesh) kesh++;
+      },function(e){ if(e&&e.message&&/рухсат|кириш|сеанс/i.test(e.message)) throw e; m.qism[i].matn='_'+(e.message||'хато')+'_' }).then(function(){ yoChiz() });
+    }
+    var birinchi=qism(0);
+    await Promise.race([birinchi,new Promise(function(r){ setTimeout(r,3000) })]);   // 1-қисм контекстни кэшга ёзсин, кейин қолгани параллел
+    await Promise.all([birinchi,qism(1),qism(2),qism(3)]);
+    m.kesh=kesh===m.qism.length;
+  }catch(e){ m.xato=true; m.matn=e.message }
+  if(!m.xato) m.matn=m.qism.map(function(q){ return '### '+q.nom+'\n'+(q.matn||'—') }).join('\n\n');
+  m.jarayon=false; m.davom=Math.round((Date.now()-t0)/1000);
+  S.yoBand=false; yoVaqtTugat(); yoSaqla(); yoChiz();
 }
 
 async function yoYubor(savol,amal){
   if(S.yoBand) return;
   amal=amal||'savol';
   if(!yoUlangan()){ S.yoTarix.push({rol:'assistant',matn:'Yordamchi.gs ҳали уланмаган — HTML даги API_YORDAMCHI га ҳаволани қўйинг.',xato:true,vaqt:Date.now()}); yoChiz(); return }
-  if(amal==='savol'){ savol=String(savol||'').trim(); if(!savol) return; S.yoTarix.push({rol:'user',matn:savol,vaqt:Date.now()}) }
-  else S.yoTarix.push({rol:'user',matn:'☀ Эрталабки хулоса',vaqt:Date.now()});
-  S.yoBand=true; yoSaqla(); yoChiz();
   var inp=document.getElementById('yoIn'); if(inp){ inp.value=''; inp.style.height='' }
-  try{
-    await yoHammasiYukla();
-    yoHolatYoz('Claude ўйламоқда…');
-    var tarix=S.yoTarix.slice(0,-1).filter(function(m){ return !m.xato }).slice(-8).map(function(m){ return {rol:m.rol,matn:m.matn} });
-    var j=await yoPost({amal:amal,t:AUTH.token,savol:savol||'',tarix:amal==='savol'?tarix:[],kontekst:yoKontekst()});
-    S.yoTarix.push({rol:'assistant',matn:j.javob,vaqt:Date.now(),tok:j.usage,kesh:!!j.kesh});
-  }catch(e){
-    S.yoTarix.push({rol:'assistant',matn:e.message,xato:true,vaqt:Date.now()});
-  }
-  S.yoBand=false; yoHolatYoz(''); yoSaqla(); yoChiz();
+  if(amal==='xulosa') return yoXulosaYubor();
+  savol=String(savol||'').trim(); if(!savol) return;
+  return yoSavolYubor(savol);
 }
 
 function yoBoshla(){
   S.yoTarix=yoTarixOqi(); S.yoBand=false;
   var fab=document.getElementById('yoFab'), yop=document.getElementById('yoYop'), ovl=document.getElementById('yoOvl'),
-      yub=document.getElementById('yoYubor'), inp=document.getElementById('yoIn'), chips=document.getElementById('yoChips'), sb=document.getElementById('yoSideBtn');
+      yub=document.getElementById('yoYubor'), inp=document.getElementById('yoIn'), chips=document.getElementById('yoChips'), sb=document.getElementById('yoSideBtn'), bb=document.getElementById('yoB');
   if(!fab) return;
   fab.onclick=yoOch; if(sb) sb.onclick=function(){ yoOch(); if(telefonmi()) menyuHolat(false) };
   yop.onclick=yoYop; ovl.onclick=yoYop;
@@ -4874,6 +5141,7 @@ function yoBoshla(){
     else if(b.dataset.yo==='toza'){ if(S.yoBand) return; S.yoTarix=[]; yoSaqla(); yoChiz() }
     else yoYubor(b.dataset.savol,'savol');
   });
+  bb.addEventListener('click',function(e){ var b=e.target.closest('[data-yosavol]'); if(b) yoYubor(b.dataset.yosavol,'savol') });
   document.addEventListener('keydown',function(e){ if(e.key==='Escape' && document.body.classList.contains('yoOch')) yoYop() });
 }
 
