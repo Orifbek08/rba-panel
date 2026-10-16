@@ -1781,18 +1781,18 @@ var PROD_NOM={admin:'Назорат',panel:'Бошқарув панели',prakt
    yoq:true — жадвал ҳали уланмаган (Sheets тайёр бўлганда уланади)
    ══════════════════════════════════════════════════════ */
 var GURUH=[
-  {k:'rba', nom:'RBA', tur:'jonli', belgi:'потоклар', ich:[
-    {k:'r15', pt:'15', nomi:'RBA — 15', nom:'15-поток', tur:'jonli', belgi:'жонли', ich:[
+  {k:'rba', nom:'RBA', tur:'jonli', belgi:'коучинглар', ich:[
+    {k:'r15', pt:'15', nomi:'RBA — 15', nom:'15-коуч', tur:'jonli', belgi:'жонли', ich:[
       {p:'panel',     nom:'Бошқарув панели', bosh:1},
       {p:'praktikum', nom:'3 кунлик'},
       {p:'kouch',     nom:'Коучинг'},
       {p:'marketing', nom:'Маркетинг'}]},
-    {k:'r14', pt:'14', nomi:'RBA — 14', nom:'14-поток', tur:'arxiv', belgi:'архив', ich:[
+    {k:'r14', pt:'14', nomi:'RBA — 14', nom:'14-коуч', tur:'arxiv', belgi:'архив', ich:[
       {p:'r14_panel',     nom:'Бошқарув панели', bosh:1},
       {p:'r14_praktikum', nom:'3 кунлик'},
       {p:'r14_kouch',     nom:'Коучинг'},
       {p:'r14_marketing', nom:'Маркетинг', yoq:1}]},
-    {k:'r13', pt:'13', nomi:'RBA — 13', nom:'13-поток', tur:'arxiv', belgi:'архив', ich:[
+    {k:'r13', pt:'13', nomi:'RBA — 13', nom:'13-коуч', tur:'arxiv', belgi:'архив', ich:[
       {p:'r13_panel',     nom:'Бошқарув панели', bosh:1},
       {p:'r13_praktikum', nom:'3 кунлик'},
       {p:'r13_kouch',     nom:'Коучинг'},
@@ -2486,7 +2486,7 @@ function sarlavha(h1,izoh,asbob){
     if(h1.indexOf('RBA')!==0) h1='RBA — '+pt+' · '+h1;
     var av=D&&D.arx&&D.arx[pt]&&D.arx[pt].vaqt;
     arxb='<div class="arxb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 7h18v13H3z"/><path d="M1 3h22v4H1zM10 12h4"/></svg>'+
-      'Архив — ёпилган поток, маълумоти ўзгармайди'+(av?' · ўқилган: '+esc(String(av).slice(0,16)):'')+'</div>';
+      'Архив — ёпилган коуч, маълумоти ўзгармайди'+(av?' · ўқилган: '+esc(String(av).slice(0,16)):'')+'</div>';
   }
   var kvs=K_VARAQ[S.prod]; if(kvs && h1.indexOf(kvs.pre.split(' ·')[0])<0) h1=kvs.pre+h1;
   return produktSwitch()+
@@ -6249,7 +6249,7 @@ function ulanmaganSahifa(){
 /* ── АРХИВ ПОТОК — бошқарув панели (RBA 14, RBA 13) ── */
 function arxPanelSahifa(){
   var pt=potok(), ds=DS();
-  var h=sarlavha('RBA — '+pt+' · бошқарув панели','Поток якуни: план, сотувлар ва тўловлар','');
+  var h=sarlavha('RBA — '+pt+' · бошқарув панели','Коуч якуни: план, сотувлар ва тўловлар','');
   function rj(k){
     var l=(ds.reja&&ds.reja[k])||[], o={reja:0,fakt:0};
     l.forEach(function(x){ o.reja+=x.reja; o.fakt+=x.fakt });
@@ -6259,7 +6259,7 @@ function arxPanelSahifa(){
   var jr={reja:rp.reja+rk.reja,fakt:rp.fakt+rk.fakt};
   jr.qoldi=Math.max(0,jr.reja-jr.fakt); jr.foiz=jr.reja?jr.fakt/jr.reja*100:0;
 
-  h+='<div class="sec" style="margin-top:4px"><h2>План · факт · қолди</h2><p>«План» варақларидан — поток якунидаги ҳолат</p></div>'+
+  h+='<div class="sec" style="margin-top:4px"><h2>План · факт · қолди</h2><p>«План» варақларидан — коуч якунидаги ҳолат</p></div>'+
     '<div class="pv-rjg" style="--n:2">'+
       pvRjKarta('Жами',jr,jr.foiz>=100?'var(--ok)':'var(--a)',true)+
       pvRjKarta('3 кунлик',rp,'#E0A048',false)+
@@ -6272,7 +6272,7 @@ function arxPanelSahifa(){
     h+='<div class="sec"><h2>'+q[1]+'</h2><p>Жами '+fmt(j.soni)+' та сотув</p></div>'+
       '<div class="mets">'+
         '<div class="met"><div class="met-l">Сотувлар</div><div class="met-v num">'+fmt(j.soni)+'</div>'+
-          '<div class="met-d">'+(j.kelmagan?'келмаганлар: '+fmt(j.kelmagan):'поток давомида')+'</div></div>'+
+          '<div class="met-d">'+(j.kelmagan?'келмаганлар: '+fmt(j.kelmagan):'коуч давомида')+'</div></div>'+
         '<div class="met"><div class="met-l">Келишув</div><div class="met-v num">'+pul(j.kelishuv)+'</div>'+
           '<div class="met-d">жами шартнома суммаси</div></div>'+
         '<div class="met k"><div class="met-l">Тўланган</div><div class="met-v num">'+pul(j.tolangan)+'</div>'+
