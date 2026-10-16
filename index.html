@@ -1183,19 +1183,18 @@ body:not(.admin) [data-prod="admin"]{display:none!important}
 .ymq>div{display:flex;flex-wrap:wrap;gap:6px}
 .ymx{font-size:11.5px;padding:3px 8px;border-radius:7px;border:1px solid var(--c);color:var(--ink2);background:var(--bg2)}
 .ymxw{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:14px;align-items:start;margin-top:4px}
-.ymxm{padding:10px;--lawn:#25402f;--lawn2:#2e4d39;--road:#3a4149;--roadEdge:#232830;--mline:#aeb7c1;--park:#2d3339;--bld:#c4573b;--bld2:#e06c4d;--bldS:#6e2d1c;--oth:#5c646e;--othS:#363c44;--pg:#c99a4e;--pg2:#6f4f16;--pgG:#345f41;--tp:#4a525b;--tree:#1f5a33;--tree2:#4ea062;--mink:#f1ece2;--mcard:#15181d}
-body.oq .ymxm{--lawn:#cfe4bf;--lawn2:#bfd9ad;--road:#e3e7eb;--roadEdge:#c3c9d0;--mline:#ffffff;--park:#d4d9df;--bld:#c9573c;--bld2:#e4684a;--bldS:#8a3b26;--oth:#a7b0ba;--othS:#737c86;--pg:#efd394;--pg2:#8a6117;--pgG:#b4d6a0;--tp:#b9c1ca;--tree:#4a9a5c;--tree2:#8fd39b;--mink:#1c1c1c;--mcard:#ffffff}
-.ymxs{display:block;width:100%;height:auto;border-radius:10px}
-.ymxt{font-family:Archivo,sans-serif;font-size:10.5px;letter-spacing:.03em}.ymxtb{font-size:12px;font-weight:700;letter-spacing:.02em}.ymxh1{font-size:26px;font-weight:800;letter-spacing:.12em}
-.ymxb{cursor:pointer;outline:none;transition:transform .15s;transform-box:fill-box;transform-origin:center}
-.ymxb .ymxr{fill:var(--bld);stroke:var(--bldS);stroke-width:1;transition:fill .15s}
-.ymxb:hover{transform:translateY(-2px)}.ymxb:hover .ymxr,.ymxb:focus-visible .ymxr{fill:var(--bld2)}
-.ymxb.on .ymxr{fill:var(--bld2);stroke:var(--a);stroke-width:3}
-.ymxb .ymxc{fill:#fff;opacity:.94}.ymxb.on .ymxc{fill:var(--a)}
-.ymxb .ymxn{font-family:"JetBrains Mono",monospace;font-size:12px;font-weight:700;fill:#1b1b1b;pointer-events:none}
+.ymxm{padding:8px;background:#e6e8e1;border-color:#c9cdc4}
+.ymxs{display:block;width:100%;height:auto;border-radius:8px;box-shadow:0 1px 0 rgba(0,0,0,.06)}
+.ymxt{font-family:Archivo,sans-serif;font-size:10.5px;letter-spacing:.03em}.ymxtb{font-size:11.5px;font-weight:700;letter-spacing:.02em}.ymxh1{font-size:24px;font-weight:800;letter-spacing:.14em}
+.ymxb{cursor:pointer;outline:none}
+.ymxb .ymxr{fill:#d6372d;stroke:#1a0d0b;stroke-width:1.4;transition:fill .15s}
+.ymxb:hover .ymxr,.ymxb:focus-visible .ymxr{fill:#ef5a4e}
+.ymxb.on .ymxr{fill:#ff6a5b;stroke:#1a0d0b;stroke-width:2.2}
+.ymxb .ymxc{fill:#fff;stroke:#1a0d0b;stroke-width:1.2}.ymxb.on .ymxc{fill:#ffd86b}
+.ymxb .ymxn{font-family:"JetBrains Mono",monospace;font-size:11.5px;font-weight:700;fill:#1a0d0b;pointer-events:none}
 .ymxo{cursor:default}
 .ymxinfo{display:flex;flex-wrap:wrap;gap:8px;margin:2px 0 12px}.ymxinfo span{font-size:12px;padding:5px 11px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink2)}
-.ymxl{display:flex;flex-wrap:wrap;gap:12px;margin-top:9px;font-size:11.5px;color:var(--muted)}
+.ymxl{display:flex;flex-wrap:wrap;gap:12px;margin:9px 4px 2px;font-size:11.5px;color:#3a4046}
 .ymxl span{display:inline-flex;align-items:center;gap:6px}.ymxl i{width:12px;height:12px;border-radius:3px;display:inline-block}
 .ymxk{padding:14px}
 .ymxh{display:flex;align-items:flex-start;gap:10px;margin-bottom:8px}.ymxh>div{flex:1;min-width:0}
@@ -1205,7 +1204,7 @@ body.oq .ymxm{--lawn:#cfe4bf;--lawn2:#bfd9ad;--road:#e3e7eb;--roadEdge:#c3c9d0;-
 .ymxq span{grid-column:1/-1;font-size:11px;color:var(--muted)}
 .ymxi{margin-top:12px;font-size:12px;color:var(--muted);line-height:1.5;padding:10px;border:1px dashed var(--line2);border-radius:10px}
 .ymxs2{margin-top:12px;font-size:12.5px;color:var(--ink2);line-height:1.5}.ymxs2 div{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}
-@media(max-width:820px){ .ymxw{grid-template-columns:1fr} .ymxm{overflow-x:auto} .ymxs{min-width:900px} }
+@media(max-width:820px){ .ymxw{grid-template-columns:1fr} .ymxm{overflow-x:auto} .ymxs{min-width:980px} }
 .ymx b{color:var(--c);margin-right:5px}
 @media(max-width:820px){ .ymtr{grid-template-columns:1fr auto} .ymtb{grid-column:1/-1;order:3} .ymbg{grid-template-columns:1fr} }
 
@@ -5566,65 +5565,82 @@ function ymBloklar(){
 }
 
 /* ── ХАРИТА — Яшил Макон бош режаси (SVG) ──
-   Бош режа чизмасидан тўлиқ кўчирилган: чапда автотураргоҳ, кириш ва бошқа қурувчининг
-   П-симон биноси (рангсиз, рақамсиз); ўнгда бизнинг 9 бино — 23 блок:
-   тепада 3 + 4, ўртада 5 жуфт (пастки блок каттароқ), ўнг ёнда 1 жуфт, пастда 3 + бурчак.
-   Блокни босса — ўнгдаги карта; рақамлар (хонадон, м², хоналар) кейин уланади.
-   Координаталар — чизма нисбатларидан (viewBox 1500 × 860). */
+   Чизмадан (бош режа фотоси) кўчирилган, координаталар — чизма нисбатида (viewBox 0 0 1664 840).
+   Услуб — лойиҳа чизмасиники: оч қоғоз, яшил газон, кулранг йўллар ва оқ автотураргоҳ чизиқлари,
+   сариқ бордюр, қизил бинолар (бизники — рақамли), кулранг бинолар (бошқа қурувчи — рақамсиз).
+   Бизники: 9 бино — 23 блок. Блокни босса — ўнгдаги карта. Рақамлаш шартли (жадвалга мосланади). */
 var YM_XARITA={
-  w:1500, h:860,
-  chegara:'M213 44 L643 37 L643 136 L1462 136 L1486 470 L1460 808 L560 848 L322 738 L151 296 Z',
-  // йўллар: d — марказ чизиғи, q — кенглик
+  w:1664, h:840,
+  chegara:'M118 72 L480 58 L480 160 L1605 200 L1548 648 L1600 676 L1582 818 L560 838 L430 802 L330 772 L232 702 L160 600 L104 440 L48 300 L48 236 L76 160 Z',
   yollar:[
-    {d:'M500 190 H1450', q:26},            // тепа йўл
-    {d:'M500 190 V785', q:22},             // чап (ҳалқа)
-    {d:'M1450 190 L1468 470 L1446 775', q:26},   // ўнг (чегара бўйлаб)
-    {d:'M500 785 L1446 775', q:26},        // пастки йўл
-    {d:'M500 334 H1460', q:20},            // 1-ички йўл
-    {d:'M500 620 H1456', q:20},            // 2-ички йўл
-    {d:'M937 190 V620', q:18},             // марказий йўл
-    {d:'M500 334 L446 300 L440 215', q:16},     // ҳовли йўли — автотураргоҳга
-    {d:'M212 150 L118 250', q:32, kirish:true},  // кириш йўли (чап)
-    {d:'M560 38 V190', q:28, kirish:true}         // кириш йўли (тепа)
+    {d:'M478 265 H1565', q:20},                               // тепа йўл
+    {d:'M478 265 V806', q:18},                                // чап ҳалқа
+    {d:'M1565 265 L1525 650 L1570 680 L1555 806', q:20},      // ўнг ҳалқа (чегара бўйлаб, пастда буриш)
+    {d:'M478 806 H1555', q:20},                               // паст йўл
+    {d:'M478 396 H1548', q:16},                               // 1-ички йўл
+    {d:'M478 666 H1553', q:16},                               // 2-ички йўл
+    {d:'M1002 265 V666', q:14},                               // марказий йўл
+    {d:'M617 420 V640', q:12},{d:'M1190 420 V640', q:12},    // ҳовли йўллари (автотураргоҳ орасида)
+    {d:'M70 250 H478', q:16},                                 // автотураргоҳ ости йўли
+    {d:'M250 388 H478', q:14},{d:'M250 388 V598', q:14},{d:'M250 598 H478', q:14},   // майдонча атрофи
+    {d:'M250 598 L205 672', q:14},                            // икки кулранг бино орасидаги йўл
+    {d:'M70 252 L102 430 L158 588 L214 690 L330 762 L478 806', q:16},   // ташқи йўл (чегара бўйлаб)
+    {d:'M0 300 L70 250', q:28, kirish:true},                  // кириш (ғарб)
+    {d:'M400 60 L400 20', q:22, kirish:true}                  // кириш (шимол, майдон орқали)
   ],
-  // автотураргоҳлар: тўғри тўртбурчак (x,y,w,h, yon g/v) ёки polygon
+  // автотураргоҳ майдонлари: x,y,w,h (yon g — чизиқлар вертикал, v — горизонтал) ёки poly
   park:[
-    {poly:'215,49 436,45 436,182 187,199', yon:'g', katta:true},
-    {x:520,y:204,w:912,h:13,yon:'g'},
-    {x:520,y:313,w:404,h:13,yon:'g'},{x:952,y:313,w:490,h:13,yon:'g'},
-    {x:520,y:342,w:404,h:13,yon:'g'},{x:952,y:342,w:488,h:13,yon:'g'},
-    {x:520,y:599,w:404,h:13,yon:'g'},{x:952,y:599,w:486,h:13,yon:'g'},
-    {x:520,y:628,w:404,h:13,yon:'g'},{x:952,y:628,w:484,h:13,yon:'g'},
-    {x:520,y:757,w:910,h:13,yon:'g'},
-    {x:596,y:367,w:62,h:226,yon:'v'},{x:1062,y:367,w:70,h:226,yon:'v'},{x:1364,y:367,w:70,h:226,yon:'v'}
+    {poly:'124,84 318,76 318,122 474,130 474,240 70,244', yon:'g', katta:true},
+    {x:600,y:240,w:940,h:14,yon:'g'},{x:600,y:276,w:940,h:12,yon:'g'},
+    {x:600,y:377,w:390,h:11,yon:'g'},{x:1016,y:377,w:520,h:11,yon:'g'},
+    {x:600,y:405,w:390,h:11,yon:'g'},{x:1016,y:405,w:520,h:11,yon:'g'},
+    {x:600,y:648,w:390,h:11,yon:'g'},{x:1016,y:648,w:530,h:11,yon:'g'},
+    {x:600,y:675,w:390,h:11,yon:'g'},{x:1016,y:675,w:530,h:11,yon:'g'},
+    {x:560,y:788,w:990,h:11,yon:'g'},
+    {x:566,y:420,w:44,h:220,yon:'v'},{x:624,y:420,w:44,h:220,yon:'v'},
+    {x:1140,y:420,w:44,h:220,yon:'v'},{x:1197,y:420,w:44,h:220,yon:'v'},
+    {x:958,y:420,w:34,h:220,yon:'v'},{x:1012,y:420,w:38,h:220,yon:'v'},
+    {x:1498,y:420,w:20,h:220,yon:'v'},
+    {x:258,y:398,w:40,h:192,yon:'v'},{x:430,y:398,w:38,h:192,yon:'v'},
+    {x:302,y:352,w:156,h:28,yon:'g'}
   ],
-  oyingoh:[{x:764,y:367,w:42,h:206},{x:1226,y:367,w:36,h:206},{x:440,y:122,w:44,h:146}],
-  maydon:{cx:392,cy:440,r:72},                       // болалар майдончаси (катта, чапда)
-  tp:{x:522,y:236,w:36,h:30},                        // техник бино
-  // бинолар: biz — бизники (рақамланади), bloklar — ҳар блок polygon (x,y,w,h ёки poly)
+  oyingoh:[{x:788,y:420,w:52,h:220},{x:1355,y:420,w:40,h:220},{x:426,y:192,w:40,h:150,strip:true}],
+  maydon:{x:302,y:428,w:124,h:150},                          // катта болалар майдончаси (чапда)
+  sport:[{x:605,y:416,w:30,h:44},{x:800,y:606,w:28,h:34},{x:1180,y:596,w:26,h:36},{x:304,y:398,w:50,h:26}],
+  plaza:'322,64 478,60 478,128 322,122',                      // шимолий кириш майдони (штрих)
   binolar:[
-    {id:'u1', nom:'П-симон бино · тепа',   biz:false, bloklar:[{poly:'208,246 282,236 286,305 214,316'},{poly:'282,236 356,225 360,293 286,305'},{poly:'356,225 429,214 434,282 360,293'}]},
-    {id:'u2', nom:'П-симон бино · чап',    biz:false, bloklar:[{poly:'214,318 262,306 296,415 248,427'},{poly:'248,427 296,415 330,524 282,536'},{poly:'282,536 330,524 364,633 316,645'}]},
-    {id:'u3', nom:'П-симон бино · паст',   biz:false, bloklar:[{poly:'335,623 414,633 404,723 325,713'},{poly:'414,633 492,643 482,732 404,723'},{poly:'492,643 571,652 560,742 482,732'}]},
-    {id:'u4', nom:'Пастки бино (чап)',     biz:false, bloklar:[{x:566,y:648,w:110,h:99},{x:676,y:648,w:110,h:99},{x:786,y:648,w:110,h:99}]},
-    {id:'b1', nom:'1-бино', biz:true, bloklar:[{x:607,y:224,w:102,h:88},{x:709,y:224,w:102,h:88},{x:811,y:224,w:101,h:88}]},
-    {id:'b2', nom:'2-бино', biz:true, bloklar:[{x:970,y:224,w:103,h:88},{x:1073,y:224,w:103,h:88},{x:1176,y:224,w:103,h:88},{x:1279,y:224,w:104,h:88}]},
-    {id:'b3', nom:'3-бино', biz:true, juft:true, bloklar:[{x:522,y:367,w:62,h:88},{x:522,y:455,w:62,h:138}]},
-    {id:'b4', nom:'4-бино', biz:true, juft:true, bloklar:[{x:669,y:367,w:62,h:88},{x:669,y:455,w:62,h:138}]},
-    {id:'b5', nom:'5-бино', biz:true, juft:true, bloklar:[{x:834,y:367,w:62,h:88},{x:834,y:455,w:62,h:138}]},
-    {id:'b6', nom:'6-бино', biz:true, juft:true, bloklar:[{x:983,y:367,w:66,h:88},{x:983,y:455,w:66,h:138}]},
-    {id:'b7', nom:'7-бино', biz:true, juft:true, bloklar:[{x:1140,y:367,w:58,h:88},{x:1140,y:455,w:58,h:138}]},
-    {id:'b8', nom:'8-бино', biz:true, juft:true, bloklar:[{x:1288,y:367,w:62,h:88},{x:1288,y:455,w:62,h:138}]},
-    {id:'b9', nom:'9-бино', biz:true, bloklar:[{x:937,y:648,w:103,h:99},{x:1040,y:648,w:103,h:99},{x:1143,y:648,w:103,h:99},{x:1246,y:648,w:104,h:99,burchak:true}]}
+    {id:'u1', nom:'Бошқа қурувчи · 1', biz:false, plot:'100,322 370,272 382,334 110,382', bloklar:[{poly:'100,322 190,305 201,366 110,382'},{poly:'190,305 280,289 291,350 201,366'},{poly:'280,289 370,272 382,334 291,350'}]},
+    {id:'u2', nom:'Бошқа қурувчи · 2', biz:false, plot:'97,395 160,369 258,609 195,635', bloklar:[{poly:'97,395 160,369 193,449 130,475'},{poly:'130,475 193,449 226,529 163,555'},{poly:'163,555 226,529 258,609 195,635'}]},
+    {id:'u3', nom:'Бошқа қурувчи · 3', biz:false, plot:'294,626 504,713 480,771 270,684', bloklar:[{poly:'294,626 364,655 340,713 270,684'},{poly:'364,655 434,684 410,742 340,713'},{poly:'434,684 504,713 480,771 410,742'}]},
+    {id:'u4', nom:'Бошқа қурувчи · 4', biz:false, bloklar:[{x:550,y:695,w:130,h:85},{x:680,y:695,w:130,h:85},{x:810,y:695,w:130,h:85}]},
+    {id:'b1', nom:'1-бино', biz:true, bloklar:[{x:605,y:300,w:122,h:70},{x:727,y:300,w:122,h:70},{x:849,y:300,w:121,h:70}]},
+    {id:'b2', nom:'2-бино', biz:true, bloklar:[{x:1030,y:300,w:126,h:70},{x:1156,y:300,w:126,h:70},{x:1282,y:300,w:126,h:70},{x:1408,y:300,w:127,h:70}]},
+    {id:'b3', nom:'3-бино', biz:true, juft:true, bloklar:[{x:488,y:420,w:60,h:90},{x:488,y:514,w:60,h:126}]},
+    {id:'b4', nom:'4-бино', biz:true, juft:true, bloklar:[{x:682,y:420,w:60,h:90},{x:682,y:514,w:60,h:126}]},
+    {id:'b5', nom:'5-бино', biz:true, juft:true, bloklar:[{x:882,y:420,w:60,h:90},{x:882,y:514,w:60,h:126}]},
+    {id:'b6', nom:'6-бино', biz:true, juft:true, bloklar:[{x:1062,y:420,w:60,h:90},{x:1062,y:514,w:60,h:126}]},
+    {id:'b7', nom:'7-бино', biz:true, juft:true, bloklar:[{x:1250,y:420,w:60,h:90},{x:1250,y:514,w:60,h:126}]},
+    {id:'b8', nom:'8-бино', biz:true, juft:true, bloklar:[{x:1432,y:420,w:60,h:90},{x:1432,y:514,w:60,h:126}]},
+    {id:'b9', nom:'9-бино', biz:true, bloklar:[{x:995,y:695,w:124,h:85},{x:1119,y:695,w:124,h:85},{x:1243,y:695,w:124,h:85},{x:1367,y:695,w:123,h:85,burchak:true}]}
   ]
 };
-/** Polygon нуқталари */
 function ymxNuqta(b){
   if(b.poly) return b.poly.split(' ').map(function(p){ var a=p.split(','); return [+a[0],+a[1]] });
   return [[b.x,b.y],[b.x+b.w,b.y],[b.x+b.w,b.y+b.h],[b.x,b.y+b.h]];
 }
 function ymxMarkaz(pts){ var x=0,y=0; pts.forEach(function(p){ x+=p[0]; y+=p[1] }); return [x/pts.length,y/pts.length] }
 function ymxPath(pts,dx,dy){ dx=dx||0; dy=dy||0; return 'M'+pts.map(function(p){ return (p[0]+dx).toFixed(1)+' '+(p[1]+dy).toFixed(1) }).join('L')+'Z' }
+/** Конвекс polygon'ни d масофага ташқарига кенгайтириш (бордюр учун): ҳар қирра параллел силжитилиб, кесишмалари олинади */
+function ymxOffset(pts,d){
+  var n=pts.length, s=0; for(var i=0;i<n;i++){ var a=pts[i], b=pts[(i+1)%n]; s+=a[0]*b[1]-b[0]*a[1] }
+  var yo=s>0?1:-1, chiz=[];
+  for(var j=0;j<n;j++){ var p=pts[j], q=pts[(j+1)%n], dx=q[0]-p[0], dy=q[1]-p[1], l=Math.sqrt(dx*dx+dy*dy)||1, nx=yo*dy/l*d, ny=-yo*dx/l*d; chiz.push([[p[0]+nx,p[1]+ny],[q[0]+nx,q[1]+ny]]) }
+  var out=[];
+  for(var k=0;k<n;k++){ var A=chiz[(k+n-1)%n], B=chiz[k], x1=A[0][0],y1=A[0][1],x2=A[1][0],y2=A[1][1],x3=B[0][0],y3=B[0][1],x4=B[1][0],y4=B[1][1];
+    var den=(x1-x2)*(y3-y4)-(y1-y2)*(x3-x4); if(Math.abs(den)<1e-6){ out.push(B[0]); continue }
+    var t=((x1-x3)*(y3-y4)-(y1-y3)*(x3-x4))/den; out.push([x1+t*(x2-x1),y1+t*(y2-y1)]) }
+  return out;
+}
 /** Бизнинг блоклар: {n, bino, pts, joy} — рақам тартиби: тепа 1–7, ўрта жуфтлар 8–17, ўнг жуфт 18–19, паст 20–23 */
 function ymxBloklar(){
   var out=[], n=0;
@@ -5650,78 +5666,100 @@ function ymXaritaSvg(){
   var X=YM_XARITA, W=X.w, H=X.h, s='';
   s+='<svg class="ymxs" viewBox="0 0 '+W+' '+H+'" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Яшил Макон бош режаси">';
   s+='<defs>'+
-    '<pattern id="ymxPk" width="10" height="13" patternUnits="userSpaceOnUse"><path d="M5 1v11" style="stroke:var(--mline)" stroke-width="1" opacity=".5"/></pattern>'+
-    '<pattern id="ymxPkV" width="13" height="10" patternUnits="userSpaceOnUse"><path d="M1 5h11" style="stroke:var(--mline)" stroke-width="1" opacity=".5"/></pattern>'+
-    '<pattern id="ymxPkL" width="12" height="22" patternUnits="userSpaceOnUse"><path d="M6 2v18" style="stroke:var(--mline)" stroke-width="1" opacity=".55"/><path d="M0 11h12" style="stroke:var(--mline)" stroke-width="1" opacity=".35"/></pattern>'+
-    '<pattern id="ymxHatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path d="M0 0v8" style="stroke:var(--mline)" stroke-width="1" opacity=".22"/></pattern>'+
-    '<pattern id="ymxGrass" width="22" height="22" patternUnits="userSpaceOnUse"><circle cx="5" cy="6" r="1" style="fill:var(--lawn2)"/><circle cx="16" cy="15" r="1" style="fill:var(--lawn2)"/></pattern>'+
-    '<filter id="ymxSh" x="-10%" y="-10%" width="125%" height="135%"><feDropShadow dx="0" dy="3" stdDeviation="2.4" flood-color="#000" flood-opacity=".35"/></filter>'+
-    '<filter id="ymxShT" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="1" dy="1.5" stdDeviation="1" flood-color="#000" flood-opacity=".35"/></filter>'+
-    '<linearGradient id="ymxRoof" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".14"/><stop offset=".5" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".1"/></linearGradient>'+
+    '<pattern id="ymxPk" width="9" height="14" patternUnits="userSpaceOnUse"><path d="M4.5 1v12" stroke="#fff" stroke-width="1.2"/></pattern>'+
+    '<pattern id="ymxPkV" width="14" height="9" patternUnits="userSpaceOnUse"><path d="M1 4.5h12" stroke="#fff" stroke-width="1.2"/></pattern>'+
+    '<pattern id="ymxPkL" width="10" height="26" patternUnits="userSpaceOnUse"><path d="M5 1v24" stroke="#fff" stroke-width="1.2"/><path d="M0 13h10" stroke="#fff" stroke-width="1" opacity=".7"/></pattern>'+
+    '<pattern id="ymxHatch" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path d="M0 0v7" stroke="#3a4046" stroke-width="1" opacity=".35"/></pattern>'+
+    '<pattern id="ymxPlaza" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path d="M0 0v6" stroke="#5b6166" stroke-width="1.2" opacity=".6"/></pattern>'+
+    '<pattern id="ymxGrass" width="16" height="16" patternUnits="userSpaceOnUse"><path d="M3 9l1.5-3M11 13l1.5-3" stroke="#6daa4e" stroke-width="1" opacity=".55"/></pattern>'+
+    '<filter id="ymxSh" x="-10%" y="-10%" width="125%" height="135%"><feDropShadow dx="1.5" dy="2.5" stdDeviation="1.6" flood-color="#000" flood-opacity=".3"/></filter>'+
+    '<linearGradient id="ymxRoof" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".12"/><stop offset="1" stop-color="#000" stop-opacity=".08"/></linearGradient>'+
     '</defs>';
-  // Атроф — хира контур чизиқлар (чизмадаги рельеф каби)
-  s+='<g opacity=".16" fill="none" style="stroke:var(--mink)" stroke-width="1">'+
-     '<path d="M640 20 C 800 60, 1000 10, 1200 50 S 1450 60, 1500 30"/><path d="M700 90 C 900 120, 1100 70, 1300 105 S 1460 110, 1500 90"/><path d="M20 520 C 60 600, 120 700, 260 800"/></g>';
-  // Майдон
-  s+='<path d="'+X.chegara+'" style="fill:var(--lawn)"/><path d="'+X.chegara+'" fill="url(#ymxGrass)"/>'+
-     '<path d="'+X.chegara+'" fill="none" style="stroke:var(--a)" stroke-width="1.6" stroke-dasharray="10 6" opacity=".6"/>';
+  // Қоғоз ва атроф — рельеф чизиқлари, нуқталар (чизмадагидек)
+  s+='<rect width="'+W+'" height="'+H+'" fill="#edefe8"/>';
+  s+='<g fill="none" stroke="#9aa0a6" stroke-width="1" opacity=".55">'+
+     '<path d="M520 30 C 700 70, 900 15, 1100 60 S 1400 50, 1660 90"/><path d="M560 110 C 760 140, 960 80, 1160 120 S 1450 130, 1664 150"/>'+
+     '<path d="M1180 20 C 1250 60, 1350 40, 1420 90 S 1560 120, 1660 60"/><path d="M0 500 C 30 600, 80 700, 190 790 S 330 840, 420 836"/>'+
+     '<path d="M1600 240 C 1640 400, 1620 600, 1650 820"/></g>';
+  var r=5; function rnd(){ r=(r*1103515245+12345)&0x7fffffff; return r/0x7fffffff }
+  s+='<g fill="#5f656b" opacity=".6">'; for(var i=0;i<90;i++){ var px=500+rnd()*1160, py=14+rnd()*140; s+='<circle cx="'+px.toFixed(0)+'" cy="'+py.toFixed(0)+'" r="1.1"/>'+(i%6===0?'<text x="'+(px+3).toFixed(0)+'" y="'+(py+3).toFixed(0)+'" font-size="6" font-family="JetBrains Mono,monospace">'+(468+Math.round(rnd()*9))+'.'+Math.round(rnd()*9)+'</text>':'') } s+='</g>';
+  // Майдон (газон) + чегара
+  s+='<path d="'+X.chegara+'" fill="#8fcb6b"/><path d="'+X.chegara+'" fill="url(#ymxGrass)"/>'+
+     '<path d="'+X.chegara+'" fill="none" stroke="#d7261f" stroke-width="2.2"/><path d="'+X.chegara+'" fill="none" stroke="#fff" stroke-width="1" stroke-dasharray="6 5" opacity=".7"/>';
+  // Шимолий кириш майдони (штрих)
+  s+='<polygon points="'+X.plaza+'" fill="#b9bfc3"/><polygon points="'+X.plaza+'" fill="url(#ymxPlaza)"/><polygon points="'+X.plaza+'" fill="none" stroke="#4e5459" stroke-width="1"/>';
   // Йўллар
   X.yollar.forEach(function(y){
-    s+='<path d="'+y.d+'" fill="none" style="stroke:var(--roadEdge)" stroke-width="'+(y.q+3)+'" stroke-linejoin="round" stroke-linecap="round" opacity=".55"/>'+
-       '<path d="'+y.d+'" fill="none" style="stroke:var(--road)" stroke-width="'+y.q+'" stroke-linejoin="round" stroke-linecap="round"/>';
-    if(y.q>=20 && !y.kirish) s+='<path d="'+y.d+'" fill="none" style="stroke:var(--mline)" stroke-width="1.2" stroke-dasharray="12 10" opacity=".45"/>';
+    s+='<path d="'+y.d+'" fill="none" stroke="#9fa6ac" stroke-width="'+(y.q+2.5)+'" stroke-linejoin="round" stroke-linecap="round"/>'+
+       '<path d="'+y.d+'" fill="none" stroke="#d3d7da" stroke-width="'+y.q+'" stroke-linejoin="round" stroke-linecap="round"/>';
+    if(y.q>=16 && !y.kirish) s+='<path d="'+y.d+'" fill="none" stroke="#fff" stroke-width="1" stroke-dasharray="9 7" opacity=".9"/>';
   });
   // Автотураргоҳлар
   X.park.forEach(function(p){
     if(p.poly){
-      s+='<polygon points="'+p.poly+'" style="fill:var(--park)"/><polygon points="'+p.poly+'" fill="url(#ymxPkL)"/>'+
-         '<polygon points="'+p.poly+'" fill="none" style="stroke:var(--roadEdge)" stroke-width="1.5"/>';
-      var c=ymxMarkaz(ymxNuqta(p)); s+='<text x="'+c[0]+'" y="'+(c[1]+5)+'" text-anchor="middle" class="ymxt ymxtb" style="fill:var(--mink)" opacity=".55">P</text>';
+      s+='<polygon points="'+p.poly+'" fill="#cdd2d6" stroke="#9fa6ac" stroke-width="1"/><polygon points="'+p.poly+'" fill="url(#ymxPkL)"/>';
+      var c=ymxMarkaz(ymxNuqta(p)); s+='<circle cx="'+c[0]+'" cy="'+c[1]+'" r="11" fill="#fff" stroke="#3b4147" stroke-width="1"/><text x="'+c[0]+'" y="'+(c[1]+4)+'" text-anchor="middle" class="ymxt ymxtb" fill="#1f2328">P</text>';
     }else{
-      s+='<rect x="'+p.x+'" y="'+p.y+'" width="'+p.w+'" height="'+p.h+'" style="fill:var(--park)"/>'+
-         '<rect x="'+p.x+'" y="'+p.y+'" width="'+p.w+'" height="'+p.h+'" fill="url(#'+(p.yon==='v'?'ymxPkV':'ymxPk')+')"/>';
-      if(p.yon==='v') s+='<text x="'+(p.x+p.w/2)+'" y="'+(p.y+p.h/2+4)+'" text-anchor="middle" class="ymxt" style="fill:var(--mink)" opacity=".5">P</text>';
+      s+='<rect x="'+p.x+'" y="'+p.y+'" width="'+p.w+'" height="'+p.h+'" fill="#cdd2d6"/><rect x="'+p.x+'" y="'+p.y+'" width="'+p.w+'" height="'+p.h+'" fill="url(#'+(p.yon==='v'?'ymxPkV':'ymxPk')+')"/>';
     }
   });
+  // Автотураргоҳ ичидаги ўтиш йўллари
+  s+='<path d="M92 138 H470 M80 196 H470" fill="none" stroke="#d3d7da" stroke-width="11"/>';
+  // Спорт / техник майдончалар (чизмадаги X белгили катаклар)
+  X.sport.forEach(function(q){ s+='<rect x="'+q.x+'" y="'+q.y+'" width="'+q.w+'" height="'+q.h+'" fill="#e4e7ea" stroke="#3b4147" stroke-width="1"/><path d="M'+q.x+' '+q.y+'l'+q.w+' '+q.h+'M'+(q.x+q.w)+' '+q.y+'l-'+q.w+' '+q.h+'" stroke="#3b4147" stroke-width=".8"/>' });
   // Ўйингоҳлар
   X.oyingoh.forEach(function(o){
     var cx=o.x+o.w/2, cy=o.y+o.h/2;
-    s+='<rect x="'+o.x+'" y="'+o.y+'" width="'+o.w+'" height="'+o.h+'" rx="7" style="fill:var(--pg);stroke:var(--pg2)" stroke-width="1.5"/>'+
-       '<g fill="none" style="stroke:var(--pg2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">'+
-       '<circle cx="'+cx+'" cy="'+(cy-46)+'" r="7"/><path d="M'+(cx-9)+' '+(cy-2)+'l9-16 9 16z"/>'+
-       '<path d="M'+(cx-10)+' '+(cy+38)+'h20M'+(cx-7)+' '+(cy+26)+'v12M'+(cx+7)+' '+(cy+26)+'v12"/></g>';
+    if(o.strip){
+      s+='<rect x="'+o.x+'" y="'+o.y+'" width="'+o.w+'" height="'+o.h+'" rx="3" fill="#9ed47f" stroke="#f1c232" stroke-width="2"/>';
+      [0,1,2,3].forEach(function(i){ s+='<circle cx="'+cx+'" cy="'+(o.y+22+i*34)+'" r="11" fill="#f2c94c" stroke="#7a5a10" stroke-width="1"/><circle cx="'+cx+'" cy="'+(o.y+22+i*34)+'" r="4" fill="#7a5a10"/>' });
+      return;
+    }
+    s+='<rect x="'+o.x+'" y="'+o.y+'" width="'+o.w+'" height="'+o.h+'" fill="#e6c074" stroke="#f1c232" stroke-width="2"/>'+
+       '<g fill="none" stroke="#8a2a1c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">'+
+       '<circle cx="'+cx+'" cy="'+(cy-70)+'" r="6"/><path d="M'+(cx-8)+' '+(cy-18)+'l8-16 8 16z"/><path d="M'+(cx-9)+' '+(cy+32)+'h18M'+(cx-6)+' '+(cy+22)+'v10M'+(cx+6)+' '+(cy+22)+'v10"/><circle cx="'+cx+'" cy="'+(cy+75)+'" r="6"/></g>'+
+       '<g fill="#c0392b"><circle cx="'+(o.x+8)+'" cy="'+(o.y+10)+'" r="3"/><circle cx="'+(o.x+o.w-8)+'" cy="'+(o.y+o.h-10)+'" r="3"/></g>';
   });
-  // Катта болалар майдончаси (чапда)
+  // Катта болалар майдончаси
   var m=X.maydon;
-  s+='<circle cx="'+m.cx+'" cy="'+m.cy+'" r="'+m.r+'" style="fill:var(--pgG)"/><circle cx="'+m.cx+'" cy="'+m.cy+'" r="'+m.r+'" fill="none" style="stroke:var(--pg2)" stroke-width="1.5" stroke-dasharray="4 4" opacity=".7"/>'+
-     '<g style="fill:var(--pg);stroke:var(--pg2)" stroke-width="1.5"><circle cx="'+(m.cx-28)+'" cy="'+(m.cy-22)+'" r="16"/><circle cx="'+(m.cx+22)+'" cy="'+(m.cy-28)+'" r="12"/><circle cx="'+(m.cx+26)+'" cy="'+(m.cy+18)+'" r="18"/><circle cx="'+(m.cx-22)+'" cy="'+(m.cy+26)+'" r="13"/><rect x="'+(m.cx-10)+'" y="'+(m.cy-8)+'" width="20" height="16" rx="3"/></g>'+
-     '<text x="'+m.cx+'" y="'+(m.cy+m.r+16)+'" text-anchor="middle" class="ymxt" style="fill:var(--mink)" opacity=".8">болалар майдончаси</text>';
-  // Техник бино
-  s+='<rect x="'+X.tp.x+'" y="'+X.tp.y+'" width="'+X.tp.w+'" height="'+X.tp.h+'" rx="2" style="fill:var(--tp);stroke:var(--roadEdge)" stroke-width="1"/>'+
-     '<text x="'+(X.tp.x+X.tp.w/2)+'" y="'+(X.tp.y+X.tp.h/2+4)+'" text-anchor="middle" class="ymxt" style="fill:var(--mink)" opacity=".8">ТП</text>';
-  // Дарахтлар — йўл ёқалари ва газонлар (жойлашуви доимий)
-  var r=11; function rnd(){ r=(r*1103515245+12345)&0x7fffffff; return r/0x7fffffff }
+  s+='<rect x="'+m.x+'" y="'+m.y+'" width="'+m.w+'" height="'+m.h+'" rx="10" fill="#a8d88a" stroke="#f1c232" stroke-width="2"/>'+
+     '<g fill="#f2c94c" stroke="#7a5a10" stroke-width="1.2"><circle cx="'+(m.x+34)+'" cy="'+(m.y+34)+'" r="19"/><circle cx="'+(m.x+88)+'" cy="'+(m.y+40)+'" r="15"/><circle cx="'+(m.x+44)+'" cy="'+(m.y+96)+'" r="14"/><circle cx="'+(m.x+92)+'" cy="'+(m.y+104)+'" r="22"/><circle cx="'+(m.x+22)+'" cy="'+(m.y+132)+'" r="9"/></g>'+
+     '<g fill="#2b2b2b"><circle cx="'+(m.x+34)+'" cy="'+(m.y+34)+'" r="5"/><rect x="'+(m.x+84)+'" y="'+(m.y+36)+'" width="8" height="8"/><path d="M'+(m.x+86)+' '+(m.y+112)+'l6-14 6 14z"/><circle cx="'+(m.x+44)+'" cy="'+(m.y+96)+'" r="4"/></g>'+
+     '<g fill="none" stroke="#6b8f3e" stroke-width="1.2" stroke-dasharray="3 3"><path d="M'+(m.x+10)+' '+(m.y+70)+' C '+(m.x+60)+' '+(m.y+60)+', '+(m.x+70)+' '+(m.y+130)+', '+(m.x+116)+' '+(m.y+140)+'"/></g>';
+  // Дарахтлар — йўл ёқалари (чизмадаги каби қаторлар)
   var dar=[];
-  for(var x=660;x<1450;x+=30) dar.push([x+rnd()*8,158+rnd()*6]);                      // тепа яшил ҳошия
-  for(var x2=520;x2<1440;x2+=34) dar.push([x2+rnd()*8,808+rnd()*4-(x2-520)*0.012]);    // паст
-  [[240,224],[300,214],[360,204],[420,196]].forEach(function(p){ dar.push([p[0],p[1]]) });  // парковка ости
-  for(var y=380;y<590;y+=28){ [[748,0],[818,0],[906,0],[958,0],[1210,0],[1270,0]].forEach(function(p){ dar.push([p[0]+rnd()*6,y+rnd()*10]) }) }
-  for(var y2=250;y2<760;y2+=34) dar.push([1478-(y2-250)*0.02+rnd()*4,y2+rnd()*8]);     // ўнг чегара
-  [[170,300],[192,345],[214,392],[236,440],[258,488],[280,536],[302,584],[324,632],[346,680],[372,722],[420,742],[470,760],[520,780],[200,120],[185,170],[176,225]].forEach(function(p){ dar.push(p) });
-  [[330,372],[460,386],[470,500],[345,512],[470,330],[500,160],[480,100],[470,60]].forEach(function(p){ dar.push(p) });
-  dar.forEach(function(p){ s+='<g filter="url(#ymxShT)"><circle cx="'+p[0].toFixed(1)+'" cy="'+p[1].toFixed(1)+'" r="5.5" style="fill:var(--tree)"/><circle cx="'+(p[0]-1.4).toFixed(1)+'" cy="'+(p[1]-1.4).toFixed(1)+'" r="2.8" style="fill:var(--tree2)"/></g>' });
-  // Бинолар: девор (2.5D) + том; бошқа қурувчиники — кулранг, штрих, рақамсиз
+  for(var x=600;x<1560;x+=22) dar.push([x+rnd()*6,210+rnd()*4]);
+  for(var x1=600;x1<1560;x1+=22) dar.push([x1+rnd()*6,232+rnd()*3]);
+  for(var x2=560;x2<1560;x2+=24) dar.push([x2+rnd()*6,824+rnd()*3]);
+  for(var y=300;y<640;y+=24){ [[558,0],[676,0],[752,0],[776,0],[950,0],[1136,0],[1245,0],[1320,0],[1343,0],[1404,0],[1424,0],[1510,0]].forEach(function(p){ if(y>=412) dar.push([p[0]+rnd()*4,y+rnd()*8]) }) }
+  for(var y2=420;y2<640;y2+=26) dar.push([1537-(y2-412)*0.1+rnd()*3,y2]);
+  for(var y3=680;y3<790;y3+=26) dar.push([1548+rnd()*4,y3]);
+  [[590,250],[760,250],[1180,250],[1300,250],[1500,250],[1100,250],[1380,250],[940,250],[1240,250]].forEach(function(p){ dar.push(p) });
+  [[98,310],[118,296],[140,282],[162,270],[186,258]].forEach(function(p){ dar.push(p) });
+  [[70,330],[88,375],[108,420],[128,465],[150,508],[172,552],[196,596],[222,640],[250,684],[290,722],[334,752],[380,776],[426,796],[470,814]].forEach(function(p){ dar.push(p) });
+  [[64,270],[90,236],[108,160],[100,110],[160,70],[230,62],[300,58]].forEach(function(p){ dar.push(p) });
+  [[270,376],[300,376],[330,374],[360,372],[390,370],[420,368],[450,366]].forEach(function(p){ dar.push([p[0],p[1]-12]) });
+  [[520,300],[520,330],[520,360],[560,300],[560,340],[590,340]].forEach(function(p){ dar.push(p) });
+  dar.forEach(function(p){ s+='<circle cx="'+p[0].toFixed(1)+'" cy="'+p[1].toFixed(1)+'" r="4.2" fill="#3b8a45" stroke="#1f5a2a" stroke-width=".8"/><circle cx="'+(p[0]-1).toFixed(1)+'" cy="'+(p[1]-1).toFixed(1)+'" r="1.6" fill="#7fcf7f"/>' });
+  // Бинолар: сариқ бордюр (участка), соя, том, бўлимлар; бошқа қурувчи — кулранг штрих, рақамсиз
   var nomer=0;
   X.binolar.forEach(function(b){
-    var pts=[]; b.bloklar.forEach(function(bl){ pts=pts.concat(ymxNuqta(bl)) });
-    // девор: ҳар блок polygon'и пастга-ўнгга силжитилган
+    var hamma=[]; b.bloklar.forEach(function(bl){ hamma=hamma.concat(ymxNuqta(bl)) });
+    // участка чегараси (сариқ бордюр) — бино атрофида
+    var xs=hamma.map(function(p){ return p[0] }), ys=hamma.map(function(p){ return p[1] });
+    if(b.plot){
+      s+='<path d="'+ymxPath(ymxOffset(ymxNuqta({poly:b.plot}),7))+'" fill="#9ed47f" stroke="#f1c232" stroke-width="2.2" stroke-linejoin="round"/>';
+    }else{
+      var x0=Math.min.apply(null,xs)-7, y0=Math.min.apply(null,ys)-7, x1=Math.max.apply(null,xs)+7, y1=Math.max.apply(null,ys)+7;
+      s+='<rect x="'+x0+'" y="'+y0+'" width="'+(x1-x0)+'" height="'+(y1-y0)+'" fill="#9ed47f" stroke="#f1c232" stroke-width="2.2"/>';
+    }
     s+='<g filter="url(#ymxSh)">';
-    b.bloklar.forEach(function(bl){ s+='<path d="'+ymxPath(ymxNuqta(bl),5,7)+'" style="fill:var(--'+(b.biz?'bldS':'othS')+')"/>' });
+    b.bloklar.forEach(function(bl){ s+='<path d="'+ymxPath(ymxNuqta(bl))+'" fill="'+(b.biz?'#2a1512':'#3a4046')+'"/>' });
     s+='</g>';
     b.bloklar.forEach(function(bl,i){
       var p=ymxNuqta(bl), c=ymxMarkaz(p), d=ymxPath(p);
       if(!b.biz){
-        s+='<g class="ymxo"><title>'+esc(b.nom+' — бошқа қурувчи')+'</title><path d="'+d+'" style="fill:var(--oth);stroke:var(--othS)" stroke-width="1"/><path d="'+d+'" fill="url(#ymxHatch)"/><path d="'+d+'" fill="url(#ymxRoof)" pointer-events="none"/></g>';
+        s+='<g class="ymxo"><title>'+esc(b.nom+' — бошқа қурувчи')+'</title><path d="'+d+'" fill="#a9afb4" stroke="#3a4046" stroke-width="1.4"/><path d="'+d+'" fill="url(#ymxHatch)"/></g>';
         return;
       }
       nomer++;
@@ -5729,27 +5767,24 @@ function ymXaritaSvg(){
       s+='<g class="ymxb'+(on?' on':'')+'" data-ymblok="'+nomer+'" tabindex="0" role="button" aria-label="'+esc(b.nom+', '+nomer+'-блок')+'">'+
          '<title>'+esc(b.nom+' · '+nomer+'-блок'+(sot?' · сотилган '+sot:''))+'</title>'+
          '<path class="ymxr" d="'+d+'"/><path d="'+d+'" fill="url(#ymxRoof)" pointer-events="none"/>'+
-         '<circle cx="'+c[0].toFixed(1)+'" cy="'+c[1].toFixed(1)+'" r="12" class="ymxc"/>'+
-         '<text x="'+c[0].toFixed(1)+'" y="'+(c[1]+4.3).toFixed(1)+'" text-anchor="middle" class="ymxn">'+nomer+'</text>'+
-         (b.juft?'<rect x="'+(p[0][0]-1).toFixed(1)+'" y="'+(c[1]-4).toFixed(1)+'" width="3" height="8" style="fill:var(--bldS)" pointer-events="none"/>':'<rect x="'+(c[0]-4).toFixed(1)+'" y="'+(p[3][1]-2).toFixed(1)+'" width="8" height="3" style="fill:var(--bldS)" pointer-events="none"/>')+
-         (sot?'<circle cx="'+(p[1][0]-9).toFixed(1)+'" cy="'+(p[1][1]+9).toFixed(1)+'" r="4" style="fill:var(--ok);stroke:#fff" stroke-width="1"><title>сотилган: '+sot+'</title></circle>':'')+
+         '<circle cx="'+c[0].toFixed(1)+'" cy="'+c[1].toFixed(1)+'" r="11" class="ymxc"/>'+
+         '<text x="'+c[0].toFixed(1)+'" y="'+(c[1]+4).toFixed(1)+'" text-anchor="middle" class="ymxn">'+nomer+'</text>'+
+         (sot?'<circle cx="'+(p[1][0]-8).toFixed(1)+'" cy="'+(p[1][1]+8).toFixed(1)+'" r="4" fill="#1f9d55" stroke="#fff" stroke-width="1"><title>сотилган: '+sot+'</title></circle>':'')+
          '</g>';
     });
-    // блоклар орасидаги чизиқ
-    for(var i=1;i<b.bloklar.length;i++){ var a=ymxNuqta(b.bloklar[i]); s+='<path d="M'+a[0][0]+' '+a[0][1]+'L'+a[3][0]+' '+a[3][1]+'" style="stroke:var('+(b.biz?'--bldS':'--othS')+')" stroke-width="1.6" opacity=".8" pointer-events="none"/>' }
+    for(var i=1;i<b.bloklar.length;i++){ var a=ymxNuqta(b.bloklar[i]); s+='<path d="M'+a[0][0]+' '+a[0][1]+'L'+a[3][0]+' '+a[3][1]+'" stroke="#1a0d0b" stroke-width="2.4" pointer-events="none"/>' }
     if(b.biz){
       var f=ymxNuqta(b.bloklar[0]);
-      if(b.juft) s+='<text x="'+(f[0][0]+(f[1][0]-f[0][0])/2)+'" y="'+(f[0][1]-7)+'" text-anchor="middle" class="ymxt ymxtb" style="fill:var(--mink)" opacity=".85">'+esc(b.nom)+'</text>';
-      else s+='<text x="'+f[0][0]+'" y="'+(f[0][1]-7)+'" class="ymxt ymxtb" style="fill:var(--mink)" opacity=".85">'+esc(b.nom)+'</text>';
+      s+='<text x="'+(b.juft?f[0][0]+30:f[0][0]+2)+'" y="'+(f[0][1]-11)+'" '+(b.juft?'text-anchor="middle"':'')+' class="ymxt ymxtb" fill="#1f2328">'+esc(b.nom)+'</text>';
     }
   });
-  s+='<text x="300" y="520" class="ymxt ymxtb" style="fill:var(--mink)" opacity=".55" transform="rotate(-70 300 520)">бошқа қурувчи</text>';
-  // Кириш, компас, сарлавҳа, масштаб
-  s+='<g transform="translate(96,262)"><path d="M0 0l30 -18v36z" style="fill:var(--a)"/><text x="-6" y="30" class="ymxt ymxtb" style="fill:var(--mink)">кириш</text></g>'+
-     '<g transform="translate(560,20)"><path d="M-18 0h36l-18 26z" style="fill:var(--a)"/><text x="26" y="14" class="ymxt ymxtb" style="fill:var(--mink)">кириш</text></g>'+
-     '<g transform="translate(1440,60)"><circle r="22" style="fill:var(--mcard);stroke:var(--mline)" stroke-width="1" opacity=".95"/><path d="M0 -15l6 15-6-4-6 4z" style="fill:var(--a)"/><path d="M0 15l6-15-6 4-6-4z" style="fill:var(--mink)" opacity=".35"/><text y="36" text-anchor="middle" class="ymxt" style="fill:var(--mink)" opacity=".75">Ш</text></g>'+
-     '<g transform="translate(700,60)"><text class="ymxt ymxh1" style="fill:var(--mink)">ЯШИЛ МАКОН</text><text y="18" class="ymxt" style="fill:var(--mink)" opacity=".7">турар-жой мажмуаси · бош режа</text></g>'+
-     '<g transform="translate(30,790)"><path d="M0 0h120" style="stroke:var(--mink)" stroke-width="2"/><path d="M0 -5v10M60 -5v10M120 -5v10" style="stroke:var(--mink)" stroke-width="1.5"/><text y="20" class="ymxt" style="fill:var(--mink)" opacity=".7">масштаб шартли</text></g>';
+  s+='<text x="150" y="520" class="ymxt ymxtb" fill="#3a4046" opacity=".85" transform="rotate(-68 150 520)">бошқа қурувчи</text>';
+  // Кириш белгилари, компас, сарлавҳа, масштаб
+  s+='<g transform="translate(14,286)"><path d="M0 0l26 -14v28z" fill="#d7261f"/><text x="-2" y="26" class="ymxt ymxtb" fill="#1f2328">кириш</text></g>'+
+     '<g transform="translate(400,14)"><path d="M-14 0h28l-14 22z" fill="#d7261f"/><text x="20" y="12" class="ymxt ymxtb" fill="#1f2328">кириш</text></g>'+
+     '<g transform="translate(1230,60)"><text class="ymxt ymxh1" fill="#1f2328">ЯШИЛ МАКОН</text><text y="20" class="ymxt" fill="#1f2328" opacity=".75">турар-жой мажмуаси · бош режа</text>'+
+       '<g transform="translate(300,-20)"><circle r="22" fill="#fff" stroke="#3b4147" stroke-width="1"/><path d="M0 -15l6 15-6-4-6 4z" fill="#d7261f"/><path d="M0 15l6-15-6 4-6-4z" fill="#1f2328" opacity=".35"/><text y="36" text-anchor="middle" class="ymxt" fill="#1f2328" opacity=".8">Ш</text></g></g>'+
+     '<g transform="translate(26,820)"><rect width="120" height="6" fill="#fff" stroke="#1f2328" stroke-width="1"/><rect x="30" width="30" height="6" fill="#1f2328"/><rect x="90" width="30" height="6" fill="#1f2328"/><text y="-4" class="ymxt" fill="#1f2328" opacity=".75">масштаб шартли</text></g>';
   return s+'</svg>';
 }
 
@@ -5762,7 +5797,7 @@ function ymXaritaKarta(){
       q('Бизнинг бинолар',biz.length,'тепада 3 + 4 · ўртада 5 × 2 · ўнг ёнда 2 · пастда 3 + бурчак')+
       q('Блоклар',bl.length,'рақамлаш шартли: 1–'+bl.length+' (чапдан ўнгга, тепадан пастга)')+
       q('Бошқа қурувчи',boshqa.length+' бино','чапда, кулранг — рақамсиз')+
-      q('Болалар майдончаси',YM_XARITA.oyingoh.length+1,'')+
+      q('Болалар майдончаси',4,'')+
       '<div class="ymxi">Хонадонлар сони, м² ва хоналар бўйича маълумот кейинги босқичда уланади — жадвал тайёр бўлгач ҳар блок ўз рақамларини кўрсатади.</div>';
   }
   var sot=ymxSotuvlar(k.n), j=ymJam(sot);
@@ -5781,7 +5816,7 @@ function ymXarita(){
   var o=sarlavha('Яшил Макон · Харита','Бош режа: бинолар ва блоклар — блокни босинг',mobilTugma());
   o+='<div class="ymxinfo"><span>2 навбатли қурилиш</span><span>4 та болалар майдончаси · 2 512 м²</span><span>1 585 та автотураргоҳ ўрни</span><span>'+ymxBloklar().length+' та блок — бизники</span></div>';
   o+='<div class="ymxw"><div class="panel ymxm" id="ymxMap">'+ymXaritaSvg()+
-       '<div class="ymxl"><span><i style="background:var(--bld)"></i>бизнинг бинолар</span><span><i style="background:var(--oth)"></i>бошқа қурувчи</span><span><i style="background:var(--pg)"></i>болалар майдончаси</span><span><i style="background:var(--road)"></i>йўл</span><span><i style="background:var(--park)"></i>автотураргоҳ</span><span><i style="background:var(--ok);border-radius:50%"></i>сотув бор</span></div></div>'+
+       '<div class="ymxl"><span><i style="background:#d6372d"></i>бизнинг бинолар</span><span><i style="background:#a9afb4"></i>бошқа қурувчи</span><span><i style="background:#e6c074"></i>болалар майдончаси</span><span><i style="background:#d3d7da"></i>йўл · автотураргоҳ</span><span><i style="background:#f1c232;height:3px"></i>бордюр</span><span><i style="background:#1f9d55;border-radius:50%"></i>сотув бор</span></div></div>'+
      '<div class="panel ymxk" id="ymxKarta">'+ymXaritaKarta()+'</div></div>';
   return o;
 }
