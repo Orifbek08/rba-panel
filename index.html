@@ -1219,6 +1219,12 @@ body:not(.admin) [data-prod="admin"]{display:none!important}
 .itoyh{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:8px}
 .itoyh b{font-family:Archivo;font-size:15px;color:var(--ink)}
 .itoyh em{font-style:normal;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--a);background:var(--a-dim);border:1px solid var(--a-line);padding:2px 7px;border-radius:6px}
+.itoy.kelgusi{border-style:dashed;opacity:.82}.itoyh em.k{color:var(--muted);background:var(--bg2);border-color:var(--line)}
+.itlp{padding:16px}.itlo{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.itlm{padding:10px 12px;border:1px solid var(--line);border-radius:11px;background:var(--bg2)}.itlm.joriy{border-color:var(--a-line);box-shadow:0 0 0 1px var(--a-line)}
+.itlm b{display:block;font-family:Archivo;font-size:13px;color:var(--ink);margin-bottom:6px}.itlm .mprog{margin:0 0 6px}.itlm span{font-size:12.5px;color:var(--ink)}.itlm span em{font-style:normal;color:var(--muted)}
+.itll{margin-top:14px;border-top:1px solid var(--line)}.itll>div{display:grid;grid-template-columns:92px 1fr auto;gap:10px;padding:8px 0;border-bottom:1px solid var(--line);font-size:13px;align-items:center}
+.itll b{color:var(--ink);font-weight:500}.itll em{font-style:normal;font-weight:600;color:var(--green)}
 .itoyb{display:flex;align-items:center;gap:12px}
 .itoyb .pv-rjs{flex:1;margin-top:0}
 .itoyt{display:flex;flex-wrap:wrap;gap:5px;margin-top:11px;padding-top:10px;border-top:1px dashed var(--line)}
@@ -4952,8 +4958,11 @@ function yoKontekst(){
       tolanganFoiz:Math.round(yj.foiz),oylikTushum:Math.round(yj.oylik),shuOy:{xonadon:oyda(D.ym.sotuv).length},trend:yoTrend(D.ym.sotuv)};
   }
   if(D.it){
-    var it=itOyJam(D.it.tushum,D.it.plan), itj=0; D.it.tushum.forEach(function(x){ itj+=x.summa||0 });
-    K.itUsluga={planOylik:D.it.plan,jami:Math.round(itj),oylar:it.map(function(o){ return {oy:o.nom,fakt:Math.round(o.fakt),planFoiz:Math.round(o.foiz),tushumSoni:o.soni,joriy:o.joriy||undefined,produktlar:o.tur} })};
+    var itl=itAsosiy(), it=itOyJam(itl,D.it.plan).filter(function(o){ return !o.kelgusi }), itj=0; itl.forEach(function(x){ itj+=x.summa||0 });
+    var itll=itLits(), itlo=itOyJam(itll,D.it.plan,true).filter(function(o){ return !o.kelgusi }), itlj=0; itll.forEach(function(x){ itlj+=x.summa||0 });
+    K.itUsluga={planOylik:itJoriy(it).reja,planKelgusi:itPlanJadval(),jami:Math.round(itj),izoh:'лицензиясиз; лицензия алоҳида',
+      oylar:it.map(function(o){ return {oy:o.nom,plan:o.reja,fakt:Math.round(o.fakt),planFoiz:Math.round(o.foiz),tushumSoni:o.soni,joriy:o.joriy||undefined,produktlar:o.tur} }),
+      litsenziya:{planOylik:itPlanLits(),jami:Math.round(itlj),shuOy:Math.round(itJoriy(itlo).fakt),oylar:itlo.map(function(o){ return {oy:o.nom,fakt:Math.round(o.fakt),planFoiz:Math.round(o.foiz)} })}};
   }
   var yuq=YUKLOVCHI.filter(function(y){ return y.yo!==false && (!y.admin||adminMi()) && yuklovchiUlangan(y) && y.bor && !y.bor() }).map(function(y){ return y.nom });
   if(yuq.length) K.yuklanmagan=yuq;
@@ -5189,7 +5198,8 @@ async function itYukla(majburiy){
   try{
     var j=await bittaYukla(API_IT+'?amal=baza&t='+encodeURIComponent(AUTH.token)+(S.yangi?'&yangi=1':''));
     D.it={tushum:(j.tushum||[]).map(function(x){ x.tolangan=x.summa||0; x.kelishuv=x.summa||0; x.qarz=0; x.kishi=1; return x }),
-          plan:+j.plan||5000, valyuta:j.valyuta||'$', turlar:j.turlar||[], versiya:j.versiya||null, vaqt:j.vaqt||null, tashxis:j.tashxis||null};
+          plan:+j.plan||5000, planOylar:j.planOylar||null, planLits:+j.planLits||null, valyuta:j.valyuta||'$', turlar:j.turlar||[], versiya:j.versiya||null, vaqt:j.vaqt||null, tashxis:j.tashxis||null};
+    itToza();
     D.itXato=null;
   }catch(e){
     D.itXato=e.message;
@@ -5223,31 +5233,61 @@ function itOyKalit(s){ return s&&s.length>=7 ? s.slice(0,7) : '' }
 function itOyNom(k){ var y=k.slice(0,4), m=+k.slice(5,7)-1; var n=OY_NOM[m]||k; return n.charAt(0).toUpperCase()+n.slice(1)+' '+y }
 function itHozirOy(){ var d=new Date(); return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2) }
 
-/** Ойлар: маълумотдаги биринчи ойдан жорий ойгача (бўш ойлар ҳам) */
+/* ── Планлар ──
+   Асосий план ой бўйича ($): рўйхатда йўқ ой учун ундан олдинги энг яқин ойники олинади,
+   ҳеч бири бўлмаса — сервердаги PLAN_OYLIK (5000). Сервер planOylar юборса — у устун.
+   Битрикс24 лицензия — АЛОҲИДА: асосий планга ва жамига кирмайди, ўз плани IT_PLAN_LITS. */
+var IT_PLAN_OYLAR={'2026-11':7000,'2026-12':10000};
+var IT_LITS='Битрикс24 литсензия';
+var IT_PLAN_LITS=400;
+function itPlanJadval(){ return (D&&D.it&&D.it.planOylar)||IT_PLAN_OYLAR }
+function itPlanOy(k,asos){ var p=itPlanJadval(), v=asos; Object.keys(p).sort().forEach(function(x){ if(x<=k) v=+p[x]||v }); return v }
+function itPlanLits(){ return (D&&D.it&&D.it.planLits)||IT_PLAN_LITS }
+function itLitsMi(x){ return x.tur===IT_LITS }
+
+/* Продукт номини бир кўринишга келтириш — жадвалда ҳар хил ёзилган бўлса (лотин ҳарф аралаш, бўшлиқ, қ/к) иккита бўлиб қолмасин */
+var IT_TUR_K=[[IT_LITS,['литсенз','лиценз','litsenz','licen']],['Битрикс24',['битрикс','bitrix']],['Дашборт',['дашбор','dashb']],
+              ['Автоматлаштириш',['автомат','avtomat']],['Бошқа продукт',['бошка','boshqa','другой','other','продукт','produkt','product']]];
+function itTurNorm(s){ return String(s==null?'':s).toLowerCase().replace(/ў/g,'у').replace(/қ/g,'к').replace(/ғ/g,'г').replace(/ҳ/g,'х').replace(/ё/g,'е').replace(/[^а-яa-z0-9]/g,'') }
+function itTurTozala(t){
+  var n=itTurNorm(t); if(!n) return 'Кўрсатилмаган';
+  var n2=n.replace(/[abcehkmoptxy]/g,function(c){ return {a:'а',b:'в',c:'с',e:'е',h:'н',k:'к',m:'м',o:'о',p:'р',t:'т',x:'х',y:'у'}[c]||c });   // лотин ўхшаш ҳарфлар
+  for(var i=0;i<IT_TUR_K.length;i++) for(var j=0;j<IT_TUR_K[i][1].length;j++){ var k=IT_TUR_K[i][1][j]; if(n.indexOf(k)>=0||n2.indexOf(k)>=0) return IT_TUR_K[i][0] }
+  var serv=(D&&D.it&&D.it.turlar)||[]; for(var q=0;q<serv.length;q++) if(itTurNorm(serv[q])===n||itTurNorm(serv[q])===n2) return serv[q];
+  return String(t).trim();
+}
+/** Юкланган (ёки сақлангандан олинган) рўйхатни бир марта тозалайди */
+function itToza(){ if(!D||!D.it||D.it.toza) return; D.it.tushum.forEach(function(x){ x.tur=itTurTozala(x.tur) }); D.it.toza=1 }
+function itAsosiy(){ itToza(); return D.it.tushum.filter(function(x){ return !itLitsMi(x) }) }
+function itLits(){ itToza(); return D.it.tushum.filter(itLitsMi) }
+
+/** Ойлар: маълумотдаги биринчи ойдан жорий ойгача (бўш ойлар ҳам) + плани белгиланган келгуси ойлар */
 function itOylar(l){
-  var hozir=itHozirOy(), bor={}, min=hozir;
-  l.forEach(function(x){ var k=itOyKalit(x.sana); if(k){ bor[k]=1; if(k<min) min=k } });
-  var out=[], y=+min.slice(0,4), m=+min.slice(5,7), hy=+hozir.slice(0,4), hm=+hozir.slice(5,7);
-  for(var i=0;i<36;i++){
+  var hozir=itHozirOy(), min=hozir, max=hozir;
+  l.forEach(function(x){ var k=itOyKalit(x.sana); if(k && k<min) min=k });
+  Object.keys(itPlanJadval()).forEach(function(k){ if(k>max) max=k });
+  var out=[], y=+min.slice(0,4), m=+min.slice(5,7);
+  for(var i=0;i<48;i++){
     var k=y+'-'+('0'+m).slice(-2);
     out.push(k);
-    if(y===hy && m===hm) break;
+    if(k>=max) break;
     m++; if(m>12){ m=1; y++ }
   }
   return out;
 }
 
-/** Ой бўйича жам: {kalit, nom, fakt, soni, foiz, qoldi, joriy} */
-function itOyJam(l,plan){
-  var oy=itOylar(l), m={};
-  oy.forEach(function(k){ m[k]={kalit:k,nom:itOyNom(k),fakt:0,soni:0,tur:{},joriy:k===itHozirOy()} });
+/** Ой бўйича жам: {kalit, nom, fakt, soni, reja, foiz, qoldi, joriy, kelgusi}; lits — лицензия режими (ўз плани) */
+function itOyJam(l,plan,lits,oyManba){
+  var hozir=itHozirOy(), oy=itOylar(oyManba||l), m={};
+  oy.forEach(function(k){ m[k]={kalit:k,nom:itOyNom(k),fakt:0,soni:0,tur:{},joriy:k===hozir,kelgusi:k>hozir} });
   l.forEach(function(x){ var k=itOyKalit(x.sana); if(!m[k]) return; m[k].fakt+=x.summa||0; m[k].soni++; m[k].tur[x.tur]=(m[k].tur[x.tur]||0)+(x.summa||0) });
-  return oy.map(function(k){ var o=m[k]; o.reja=plan; o.qoldi=Math.max(0,plan-o.fakt); o.foiz=plan?o.fakt/plan*100:0; return o });
+  return oy.map(function(k){ var o=m[k]; o.reja=lits?itPlanLits():itPlanOy(k,plan); o.qoldi=Math.max(0,o.reja-o.fakt); o.foiz=o.reja?o.fakt/o.reja*100:0; return o });
 }
+function itJoriy(oylar){ return oylar.filter(function(o){ return o.joriy })[0]||oylar[oylar.length-1] }
 
-/** Продуктлар тартиби: сервердаги рўйхат + жадвалда учраган бошқалари */
+/** Продуктлар тартиби: сервердаги рўйхат (лицензиясиз) + жадвалда учраган бошқалари */
 function itTurlar(l){
-  var t=(D.it.turlar||[]).slice(), bor={};
+  var t=(D.it.turlar||[]).filter(function(x){ return x!==IT_LITS }), bor={};
   t.forEach(function(x){ bor[x]=1 });
   l.forEach(function(x){ if(!bor[x.tur]){ bor[x.tur]=1; t.push(x.tur) } });
   return t;
@@ -5257,48 +5297,51 @@ function itFoizRang(f){ return f>=100?'var(--ok)':f>=50?'var(--a)':'var(--no)' }
 
 function itUmumiy(){
   var h=itHolat(); if(h) return h;
-  var it=D.it, l=it.tushum, plan=it.plan;
+  var it=D.it, l=itAsosiy(), ll=itLits(), plan=it.plan;
   var jami=0; l.forEach(function(x){ jami+=x.summa||0 });
-  var oylar=itOyJam(l,plan), joriy=oylar[oylar.length-1];
+  var oylar=itOyJam(l,plan), joriy=itJoriy(oylar);
+  var hozirgi=oylar.filter(function(o){ return !o.kelgusi }), kelgusi=oylar.filter(function(o){ return o.kelgusi });
+  var planJami=0; hozirgi.forEach(function(o){ planJami+=o.reja });
   var sanasiz=l.filter(function(x){ return !itOyKalit(x.sana) }).length;
-  var bajarilgan=oylar.filter(function(o){ return o.fakt>=plan }).length;
-  var otgan=oylar.filter(function(o){ return !o.joriy });
+  var bajarilgan=hozirgi.filter(function(o){ return o.fakt>=o.reja }).length;
+  var otgan=hozirgi.filter(function(o){ return !o.joriy });
   var orta=otgan.length?otgan.reduce(function(a,o){ return a+o.fakt },0)/otgan.length:joriy.fakt;
   var turlar=itTurlar(l);
   var tj={}; l.forEach(function(x){ tj[x.tur]=(tj[x.tur]||0)+(x.summa||0) });
   var eng=turlar.slice().sort(function(a,b){ return (tj[b]||0)-(tj[a]||0) })[0];
+  var planMatn=oylar.filter(function(o){ return o.joriy||o.kelgusi }).map(function(o){ return o.nom.split(' ')[0].toLowerCase()+' '+itPul(o.reja) }).join(' → ');
 
-  var o=sarlavha('ИТ услуга — умумий',turlar.length+' та продукт · ҳар ойга план '+itPul(plan)+' · суммалар долларда',mobilTugma());
+  var o=sarlavha('ИТ услуга — умумий',turlar.length+' та продукт · план: '+planMatn+' · лицензия алоҳида ('+itPul(itPlanLits())+'/ой)',mobilTugma());
 
   o+='<div class="mets">'+
     '<div class="met o"><div class="met-l">Шу ой · '+esc(joriy.nom)+'</div><div class="met-v num">'+itPul(joriy.fakt)+'</div>'+
-      '<div class="met-d">план '+itPul(plan)+' · '+(joriy.fakt>=plan?'<b style="color:var(--ok)">бажарилди ✓</b>':'қолди <b>'+itPul(joriy.qoldi)+'</b>')+' · '+fmt(joriy.soni)+' та тушум</div>'+
+      '<div class="met-d">план '+itPul(joriy.reja)+' · '+(joriy.fakt>=joriy.reja?'<b style="color:var(--ok)">бажарилди ✓</b>':'қолди <b>'+itPul(joriy.qoldi)+'</b>')+' · '+fmt(joriy.soni)+' та тушум</div>'+
       '<div class="mprog"><i style="width:'+Math.min(100,joriy.foiz)+'%;background:'+itFoizRang(joriy.foiz)+'"></i></div></div>'+
     '<div class="met k"><div class="met-l">Жами тушум</div><div class="met-v num">'+itPul(jami)+'</div>'+
-      '<div class="met-d">'+fmt(l.length)+' та тушум · '+fmt(oylar.length)+' ой'+(sanasiz?' · <span style="color:var(--no)">'+fmt(sanasiz)+' таси санасиз</span>':'')+'</div></div>'+
+      '<div class="met-d">'+fmt(l.length)+' та тушум · '+fmt(hozirgi.length)+' ой · лицензиясиз'+(sanasiz?' · <span style="color:var(--no)">'+fmt(sanasiz)+' таси санасиз</span>':'')+'</div></div>'+
     '<div class="met"><div class="met-l">Ўртача ойлик</div><div class="met-v num">'+itPul(orta)+'</div>'+
-      '<div class="met-d">план бажарилган ойлар: <b>'+fmt(bajarilgan)+' / '+fmt(oylar.length)+'</b></div></div>'+
+      '<div class="met-d">план бажарилган ойлар: <b>'+fmt(bajarilgan)+' / '+fmt(hozirgi.length)+'</b></div></div>'+
     '<div class="met"><div class="met-l">Энг кўп тушум</div><div class="met-v num" style="font-size:17px;white-space:normal;line-height:1.2">'+esc(eng||'—')+'</div>'+
       '<div class="met-d">'+(eng?itPul(tj[eng])+' · жамининг '+kFoiz(jami?tj[eng]/jami*100:0):'')+'</div></div>'+
   '</div>';
 
   // ── Ойлар: ҳар бири алоҳида — план · факт · қолди ──
-  o+='<div class="sec"><h2>Ойлар бўйича план · факт · қолди</h2><p>Ҳар ойга план '+itPul(plan)+' — ҳамма продукт бирга</p></div>'+
+  o+='<div class="sec"><h2>Ойлар бўйича план · факт · қолди</h2><p>Асосий продуктлар бирга (лицензиясиз) · ҳар ойнинг ўз плани'+(kelgusi.length?' · келгуси ойлар — режа':'')+'</p></div>'+
     '<div class="itoyg" style="--n:'+Math.min(4,oylar.length)+'">'+oylar.map(function(m){
-      var r=itFoizRang(m.foiz);
+      var r=m.kelgusi?'var(--muted)':itFoizRang(m.foiz);
       var tl=Object.keys(m.tur).sort(function(a,b){ return m.tur[b]-m.tur[a] });
-      return '<div class="itoy'+(m.joriy?' joriy':'')+'" style="--c:'+r+'">'+
-        '<div class="itoyh"><b>'+esc(m.nom)+'</b>'+(m.joriy?'<em>жорий ой</em>':'')+'</div>'+
-        '<div class="itoyb">'+halqa(m.foiz,r,96,10,'<b class="num" style="font-size:22px">'+(m.foiz>=10||!m.foiz?Math.round(m.foiz):m.foiz.toFixed(1))+'%</b>')+
+      return '<div class="itoy'+(m.joriy?' joriy':'')+(m.kelgusi?' kelgusi':'')+'" style="--c:'+r+'">'+
+        '<div class="itoyh"><b>'+esc(m.nom)+'</b>'+(m.joriy?'<em>жорий ой</em>':m.kelgusi?'<em class="k">режа</em>':'')+'</div>'+
+        '<div class="itoyb">'+halqa(m.foiz,r,96,10,'<b class="num" style="font-size:22px">'+(m.kelgusi?'—':(m.foiz>=10||!m.foiz?Math.round(m.foiz):m.foiz.toFixed(1))+'%')+'</b>')+
           '<div class="pv-rjs">'+
             '<div><span>План</span><b class="num">'+itPul(m.reja)+'</b></div>'+
-            '<div><span>Факт</span><b class="num" style="color:'+r+'">'+itPul(m.fakt)+'</b></div>'+
-            '<div><span>Қолди</span><b class="num q">'+(m.fakt>=plan?'<span style="color:var(--ok)">✓ ошди '+itPul(m.fakt-plan)+'</span>':itPul(m.qoldi))+'</b></div>'+
+            '<div><span>Факт</span><b class="num" style="color:'+r+'">'+(m.kelgusi?'—':itPul(m.fakt))+'</b></div>'+
+            '<div><span>Қолди</span><b class="num q">'+(m.kelgusi?itPul(m.reja):m.fakt>=m.reja?'<span style="color:var(--ok)">✓ ошди '+itPul(m.fakt-m.reja)+'</span>':itPul(m.qoldi))+'</b></div>'+
           '</div></div>'+
         '<div class="itoyt">'+(tl.length?tl.map(function(t){
             return '<span style="--c:'+itRang(t)+'"><i></i>'+esc(t)+' <b>'+itPul(m.tur[t])+'</b></span>';
-          }).join(''):'<span class="itbosh">бу ойда тушум йўқ</span>')+'</div>'+
-        '<div class="itoyf">'+fmt(m.soni)+' та тушум</div>'+
+          }).join(''):'<span class="itbosh">'+(m.kelgusi?'ҳали бошланмаган':'бу ойда тушум йўқ')+'</span>')+'</div>'+
+        '<div class="itoyf">'+(m.kelgusi?'план '+itPul(m.reja):fmt(m.soni)+' та тушум')+'</div>'+
       '</div>';
     }).join('')+'</div>';
 
@@ -5316,18 +5359,34 @@ function itUmumiy(){
       }).join('')+
       '<tr class="itj"><td>Жами</td>'+oylar.map(function(m){ return '<td class="num" style="text-align:right">'+itPul(m.fakt)+'</td>' }).join('')+
         '<td class="num" style="text-align:right">'+itPul(jami)+'</td></tr>'+
-      '<tr class="itpl"><td>План</td>'+oylar.map(function(m){ return '<td class="num" style="text-align:right">'+itPul(plan)+'</td>' }).join('')+
-        '<td class="num" style="text-align:right">'+itPul(plan*oylar.length)+'</td></tr>'+
-      '<tr class="itpl"><td>Бажарилди</td>'+oylar.map(function(m){ return '<td class="num" style="text-align:right;color:'+itFoizRang(m.foiz)+'">'+kFoiz(m.foiz)+'</td>' }).join('')+
-        '<td class="num" style="text-align:right;color:'+itFoizRang(jami/(plan*oylar.length)*100)+'">'+kFoiz(jami/(plan*oylar.length)*100)+'</td></tr>'+
+      '<tr class="itpl"><td>План</td>'+oylar.map(function(m){ return '<td class="num" style="text-align:right">'+itPul(m.reja)+'</td>' }).join('')+
+        '<td class="num" style="text-align:right">'+itPul(planJami)+'</td></tr>'+
+      '<tr class="itpl"><td>Бажарилди</td>'+oylar.map(function(m){ return '<td class="num" style="text-align:right;color:'+(m.kelgusi?'var(--muted)':itFoizRang(m.foiz))+'">'+(m.kelgusi?'—':kFoiz(m.foiz))+'</td>' }).join('')+
+        '<td class="num" style="text-align:right;color:'+itFoizRang(planJami?jami/planJami*100:0)+'">'+kFoiz(planJami?jami/planJami*100:0)+'</td></tr>'+
       '</tbody></table></div></div>'+
     '<div class="panel">'+ustunlar(turlar.filter(function(t){ return tj[t] }).sort(function(a,b){ return tj[b]-tj[a] }).map(function(t){
         return {nom:t,qiy:tj[t],ong:kFoiz(jami?tj[t]/jami*100:0)} }))+'</div>'+
     '</div>';
 
-  // ── Ҳамма тушумлар ──
+  // ── Битрикс24 лицензия — алоҳида (асосий планга кирмайди) ──
+  var lo=itOyJam(ll,plan,true,it.tushum).filter(function(m){ return !m.kelgusi }), lj=itJoriy(lo), ljami=0; ll.forEach(function(x){ ljami+=x.summa||0 });
+  var lbaj=lo.filter(function(m){ return m.fakt>=m.reja }).length;
+  o+='<div class="sec itlit"><h2>Битрикс24 лицензия — алоҳида</h2><p>Асосий планга ва жамига кирмайди · ҳар ойга ўз плани '+itPul(itPlanLits())+'</p></div>'+
+    '<div class="panel itlp">'+
+      '<div class="mets" style="margin:0 0 14px">'+
+        '<div class="met o"><div class="met-l">Шу ой · '+esc(lj.nom)+'</div><div class="met-v num">'+itPul(lj.fakt)+'</div>'+
+          '<div class="met-d">план '+itPul(lj.reja)+' · '+(lj.fakt>=lj.reja?'<b style="color:var(--ok)">бажарилди ✓</b>':'қолди <b>'+itPul(lj.qoldi)+'</b>')+'</div>'+
+          '<div class="mprog"><i style="width:'+Math.min(100,lj.foiz)+'%;background:'+itFoizRang(lj.foiz)+'"></i></div></div>'+
+        '<div class="met k"><div class="met-l">Жами лицензия</div><div class="met-v num">'+itPul(ljami)+'</div><div class="met-d">'+fmt(ll.length)+' та тўлов</div></div>'+
+        '<div class="met"><div class="met-l">План бажарилган ойлар</div><div class="met-v num">'+fmt(lbaj)+' / '+fmt(lo.length)+'</div><div class="met-d">ҳар ой '+itPul(itPlanLits())+' бўйича</div></div>'+
+      '</div>'+
+      '<div class="itlo">'+lo.map(function(m){ var r=itFoizRang(m.foiz); return '<div class="itlm'+(m.joriy?' joriy':'')+'"><b>'+esc(m.nom.split(' ')[0])+'</b><div class="mprog"><i style="width:'+Math.min(100,m.foiz)+'%;background:'+r+'"></i></div><span class="num">'+itPul(m.fakt)+' <em>/ '+itPul(m.reja)+'</em></span></div>' }).join('')+'</div>'+
+      (ll.length?'<div class="itll">'+ll.slice().sort(function(a,b){ return (b.sana||'').localeCompare(a.sana||'') }).map(function(x){ return '<div><span class="num" style="color:var(--muted)">'+(x.sana?dfmt(x.sana):'санасиз')+'</span><b>'+esc(x.fio)+'</b><em class="num">'+itPul(x.summa)+'</em></div>' }).join('')+'</div>':'<div class="itbosh" style="margin-top:10px">Лицензия тўлови ҳали йўқ</div>')+
+    '</div>';
+
+  // ── Ҳамма тушумлар (асосий продуктлар) ──
   var ro=l.slice().sort(function(a,b){ return (b.sana||'').localeCompare(a.sana||'') });
-  o+='<div class="sec"><h2>Тушумлар</h2><p>'+fmt(l.length)+' та ёзув — янгидан эскига</p></div>'+
+  o+='<div class="sec"><h2>Тушумлар</h2><p>'+fmt(l.length)+' та ёзув (лицензиясиз) — янгидан эскига</p></div>'+
     '<div class="tw"><div class="tscroll"><table class="tbl"><thead><tr><th>№</th><th>Сана</th><th>Ф.И</th><th>Тури</th><th style="text-align:right">Сумма</th></tr></thead><tbody>'+
     ro.map(function(x){
       return '<tr><td class="num" style="color:var(--muted)">'+esc(x.raqam||'—')+'</td>'+
@@ -5343,7 +5402,8 @@ function itUmumiy(){
 
   o+='<div class="fizoh" style="margin-top:16px"><div class="eb">Ҳозир нима кўрсатилмоқда</div>'+
     '<p>«ИТ хисоботи» жадвали'+(it.tashxis&&it.tashxis.oqilgan?' — '+it.tashxis.oqilgan.map(function(v){ return '«'+esc(v.varaq)+'»' }).join(', '):'')+
-    '. Ойлар: маълумотдаги биринчи ойдан жорий ойгача. План ҳар ойга '+itPul(plan)+' — ITxizmat.gs даги <b>PLAN_OYLIK</b> дан.</p></div>';
+    '. Ойлар: маълумотдаги биринчи ойдан плани белгиланган охирги ойгача. Асосий план: '+planMatn+' (олдинги ойлар '+itPul(plan)+'). '+
+    'Битрикс24 лицензия асосий планга кирмайди — ўз плани '+itPul(itPlanLits())+'/ой. Продукт номлари бир кўринишга келтирилади (лотин/кирилл аралаш ёзилса ҳам битта продукт).</p></div>';
   return o;
 }
 
