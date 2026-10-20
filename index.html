@@ -5872,6 +5872,7 @@ function crmNazorat(){
   var o=sarlavha('CRM · '+c.voronka.nom,'Битрикс24 кунлик назорат · ҳолат '+esc((c.vaqt||'').slice(11,16))+(bugun?' — кун ҳали тугамаган':'')+' · фақат ўқилди, Битрикс24 да ҳеч нарса ўзгартирилмади','<input type="text" id="qid" placeholder="Менежер бўйича қидириш" value="'+esc(S.qidiruv)+'" style="width:180px">'+mobilTugma());
   o+=crmBosh();
   if(c.tashxis&&c.tashxis.xato) o+='<div class="xato" style="margin-bottom:12px"><b>Баъзи блоклар юкланмади</b>'+c.tashxis.xato.map(esc).join('<br>')+'</div>';
+  if(c.tashxis&&c.tashxis.topilmadi) o+='<div class="fizoh" style="margin:0 0 12px"><div class="eb">Номи топилмаган ходимлар</div><p>ID '+esc(c.tashxis.topilmadi.join(', '))+' — Битрикс24 user.get уларни қайтармади (вебхук эгаси админ эмас ёки ходим экстранетда). Қўнғироқ/битимлари ҳисобда, фақат номи йўқ.</p></div>';
 
   o+='<div class="mets">'+
     '<div class="met"><div class="met-l">Қўнғироқ</div><div class="met-v num">'+fmt(c.qongiroqlar.jami)+'</div><div class="met-d">'+(c.qongiroqlar.voronkada?'шу воронка бўйича <b>'+fmt(c.qongiroqlar.voronkada)+'</b> · ':'')+fmt(c.qongiroqlar.daqiqa)+' дақиқа</div></div>'+
@@ -5891,7 +5892,8 @@ function crmNazorat(){
     '<th style="text-align:right">Ишлар</th><th style="text-align:right">Очиқ</th></tr></thead><tbody>'+
     m.map(function(x){
       var qizil=x.ishlagan && x.suhbat<c.kamSuhbat, kls=!x.faol?'crmo':qizil?'crmq':'';
-      var belgi=!x.faol?'<em class="crmb o">ўчирилган</em>':(!x.ishlagan?'<em class="crmb o">ишламаган</em>':(bugun&&!x.bugunKirgan?'<em class="crmb">кирмаган</em>':''));
+      var kunFarq=(x.kirish&&!x.nomsiz)?Math.round((kalD(c.sana)-kalD(x.kirish.slice(0,10)))/864e5):null;
+      var belgi=!x.faol?'<em class="crmb o">ўчирилган</em>':(!x.ishlagan?'<em class="crmb o">ишламаган</em>':(kunFarq!=null&&kunFarq>=2?'<em class="crmb" title="охирги кириши '+esc(x.kirish)+'">'+kunFarq+' кун кирмаган</em>':''));
       return '<tr class="'+kls+'"><td><b>'+esc(x.nom)+'</b>'+belgi+(x.lavozim?'<small>'+esc(x.lavozim)+'</small>':'')+'</td>'+
         '<td class="num" style="text-align:right">'+fmt(x.qongiroq)+'</td><td class="num" style="text-align:right">'+fmt(x.mijoz)+'</td><td class="num" style="text-align:right;font-weight:600">'+fmt(x.suhbat)+'</td>'+
         '<td><div class="crmbar"><i style="width:'+(x.ulush||0)+'%"></i><span class="num">'+(x.ulush==null?'—':x.ulush+'%')+'</span></div></td>'+
