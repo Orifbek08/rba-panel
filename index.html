@@ -1234,6 +1234,58 @@ body:not(.admin) [data-prod="admin"]{display:none!important}
 .itstrip button:hover{border-color:var(--line2);background:var(--bg2)}.itstrip button.on{border-color:var(--a);background:var(--a-dim);color:var(--ink)}.itstrip button.kelgusi{border-style:dashed}
 .itstrip .itsb{width:100%;height:34px;border-radius:6px;background:var(--bg2);display:flex;align-items:flex-end;overflow:hidden}.itstrip .itsb i{display:block;width:100%;border-radius:6px 6px 0 0}
 .itstrip b{font-size:11.5px;font-family:Archivo}.itstrip small{font-size:10.5px;color:var(--muted)}.itstrip button.joriy b{color:var(--a)}
+/* ── Календар ── */
+.kalnav{display:flex;align-items:center;gap:6px;margin:2px 0 10px}.kalnav .btn{padding:6px 11px}.kalnav b{font-family:Archivo;font-size:16px;color:var(--ink);margin-left:8px}
+.kalch{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.kalchip{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;padding:5px 10px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink2);cursor:pointer;font-family:inherit}
+.kalchip i{width:9px;height:9px;border-radius:50%;background:var(--c,#999)}.kalchip small{color:var(--muted);font-size:10.5px}
+.kalchip.och{opacity:.45;text-decoration:line-through}.kalchip.x i{background:var(--muted)}
+.kalbugun{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-bottom:12px}
+.kalbugun>div{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 13px}
+.kalbugun em{display:block;font-style:normal;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:3px}
+.kalbugun b{display:block;font-family:Archivo;font-size:15px;color:var(--ink)}.kalbugun span{font-size:12px;color:var(--muted)}.kalhav{cursor:pointer}.kalhav:hover{color:var(--a)}
+.kalw{padding:0;overflow:hidden}
+.kalg{display:flex;flex-direction:column;min-width:0}
+.kalg-h,.kalg-a,.kalg-b{display:grid;grid-template-columns:54px repeat(7,minmax(0,1fr))}
+.kalg-h{border-bottom:1px solid var(--line)}.kalg-d{padding:9px 6px;text-align:center;border-left:1px solid var(--line)}
+.kalg-d small{display:block;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}.kalg-d b{font-family:Archivo;font-size:17px;color:var(--ink)}
+.kalg-d.bugun b{display:inline-block;background:var(--a);color:#1A1206;border-radius:8px;padding:0 7px}
+.kalg-a{border-bottom:1px solid var(--line);background:var(--bg2)}.kalg-ad{display:flex;flex-direction:column;gap:2px;padding:4px 3px;border-left:1px solid var(--line);min-height:26px}
+.kalg-a .kalg-c small{display:block;padding:6px 4px;font-size:9.5px;color:var(--muted);text-align:right}
+.kalg-b{position:relative}.kalg-b .kalg-c{position:relative}.kalg-b .kalg-c span{position:absolute;right:6px;transform:translateY(-7px);font-size:10px;color:var(--muted);font-family:"JetBrains Mono",monospace}
+.kalg-kun{position:relative;border-left:1px solid var(--line)}.kalg-kun.bugun{background:var(--a-dim)}
+.kalg-kun>i{position:absolute;left:0;right:0;height:1px;background:var(--line);opacity:.7}
+.kalhozir{position:absolute;left:0;right:0;height:2px;background:var(--no);z-index:3}.kalhozir::before{content:"";position:absolute;left:-4px;top:-3px;width:8px;height:8px;border-radius:50%;background:var(--no)}
+.kale{position:absolute;z-index:2;text-align:left;border:none;border-left:3px solid var(--c);border-radius:6px;background:color-mix(in srgb,var(--c) 22%,var(--card));color:var(--ink);padding:3px 6px;overflow:hidden;cursor:pointer;font-family:inherit;box-shadow:0 1px 0 rgba(0,0,0,.15);transition:filter .15s}
+.kale:hover{filter:brightness(1.12);z-index:4}.kale.on{outline:2px solid var(--a);z-index:5}.kale.xz{opacity:.6}
+.kale small{display:block;font-size:9.5px;color:var(--ink2);font-family:"JetBrains Mono",monospace;line-height:1.2}.kale b{display:block;font-size:11.5px;font-weight:600;line-height:1.25;overflow:hidden;text-overflow:ellipsis}.kale span{display:block;font-size:10px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.kale.a{position:static;padding:2px 6px;font-size:11px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block;width:100%}
+.kaldt{margin-bottom:12px;border-left:4px solid var(--c)}.kaldh{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:8px}
+.kaldh b{display:block;font-family:Archivo;font-size:18px;color:var(--ink)}.kaldh span{font-size:12.5px;color:var(--muted)}
+.kalq{display:grid;grid-template-columns:110px 1fr;gap:8px;padding:6px 0;border-top:1px solid var(--line);font-size:13px}.kalq em{font-style:normal;color:var(--muted)}.kalq span{color:var(--ink)}
+.kalkt{display:inline-flex;align-items:center;gap:5px;font-size:12px;padding:2px 8px;border-radius:999px;background:var(--bg2);border:1px solid var(--line)}.kalkt i{width:8px;height:8px;border-radius:50%;background:var(--c)}
+.kalkp{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-bottom:12px}
+.kalkp button{position:relative;padding:7px 2px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--ink2);font-family:inherit;cursor:pointer}
+.kalkp small{display:block;font-size:9.5px;text-transform:uppercase;color:var(--muted)}.kalkp b{font-family:Archivo;font-size:16px;color:var(--ink)}.kalkp i{position:absolute;top:4px;right:5px;font-style:normal;font-size:9px;background:var(--a);color:#1A1206;border-radius:999px;padding:0 4px;font-weight:700}
+.kalkp button.on{border-color:var(--a);background:var(--a-dim)}.kalkp button.bugun b{color:var(--a)}
+.kalkh{display:flex;justify-content:space-between;align-items:baseline;margin:14px 0 8px}.kalkh b{font-family:Archivo;font-size:15px;color:var(--ink)}.kalkh span{font-size:12px;color:var(--muted)}
+.kalbosh{padding:18px;border:1px dashed var(--line2);border-radius:12px;color:var(--muted);text-align:center;font-size:13px}
+.kall{display:flex;flex-direction:column;gap:6px}
+.kalr{display:grid;grid-template-columns:62px 4px 1fr;gap:10px;align-items:center;width:100%;text-align:left;padding:9px 12px;border-radius:12px;border:1px solid var(--line);background:var(--card);cursor:pointer;font-family:inherit;color:var(--ink)}
+.kalr:hover{border-color:var(--line2);background:var(--bg2)}.kalr.on{border-color:var(--a)}.kalr.xz{opacity:.6}
+.kalr em{font-style:normal;font-family:"JetBrains Mono",monospace;font-size:12.5px;color:var(--ink)}.kalr em small{display:block;font-size:10.5px;color:var(--muted)}
+.kalr i{width:4px;height:34px;border-radius:2px;background:var(--c)}.kalr div b{display:block;font-size:13.5px;font-weight:600}.kalr div span{font-size:11.5px;color:var(--muted);display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.kalo{padding:0;overflow:hidden}.kaloh{display:grid;grid-template-columns:repeat(7,1fr);border-bottom:1px solid var(--line)}.kaloh span{padding:8px 6px;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-align:center}
+.kalog{display:grid;grid-template-columns:repeat(7,minmax(0,1fr))}
+.kalod{min-height:96px;padding:5px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:2px}.kalod:nth-child(7n){border-right:none}
+.kalod.boshqa{opacity:.4}.kalod.bugun{background:var(--a-dim)}
+.kalon{align-self:flex-start;font-family:Archivo;font-size:12.5px;font-weight:700;color:var(--ink);background:none;border:none;cursor:pointer;padding:2px 6px;border-radius:7px}.kalon:hover{background:var(--bg2)}.kalod.bugun .kalon{background:var(--a);color:#1A1206}
+.kaloe{display:flex;align-items:center;gap:4px;width:100%;text-align:left;border:none;background:color-mix(in srgb,var(--c) 20%,var(--card));color:var(--ink);border-radius:5px;padding:2px 5px;font-size:10.5px;cursor:pointer;font-family:inherit;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.35}
+.kaloe i{width:6px;height:6px;border-radius:50%;background:var(--c);flex:none}.kaloe small{color:var(--muted);font-family:"JetBrains Mono",monospace;font-size:9.5px}.kaloe.xz{opacity:.6}
+.kalom{align-self:flex-start;border:none;background:none;color:var(--a);font-size:10.5px;cursor:pointer;padding:1px 5px;font-family:inherit;font-weight:700}
+.kalagenda{display:flex;flex-direction:column;gap:12px}.kalag{display:grid;grid-template-columns:64px 1fr;gap:12px}.kalagd{text-align:center;padding-top:6px}.kalagd b{display:block;font-family:Archivo;font-size:24px;color:var(--ink);line-height:1}.kalagd span{font-size:10.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;line-height:1.3}
+.kalag.bugun .kalagd b{color:var(--a)}.kalagl{display:flex;flex-direction:column;gap:6px}
+@media(max-width:820px){ .kalnav b{font-size:14px;margin-left:4px} .kalod{min-height:70px;padding:3px} .kaloe small{display:none} .kalag{grid-template-columns:50px 1fr;gap:8px} .kalq{grid-template-columns:90px 1fr} }
 @media(max-width:820px){ .itsw{grid-template-columns:34px minmax(0,1fr) 34px;gap:5px} .itswb{height:56px;font-size:26px} .itswr{grid-template-columns:1fr 1fr;gap:6px 10px} .itswr b{font-size:15px} .itswc{padding:12px 11px 11px} .itswh{flex-wrap:wrap;gap:6px} .itswh b{font-size:17px;margin-right:4px} .itswc .halqa-w{width:88px!important;height:88px!important} .itswc .halqa-w svg{width:88px;height:88px} .itswc .halqa-m b{font-size:19px!important} .itoyb{gap:8px} }
 .itlp{padding:16px}.itlo{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
 .itlm{padding:10px 12px;border:1px solid var(--line);border-radius:11px;background:var(--bg2)}.itlm.joriy{border-color:var(--a-line);box-shadow:0 0 0 1px var(--a-line)}
@@ -1564,6 +1616,7 @@ var API_FORUM = 'https://script.google.com/macros/s/AKfycbwCtjeLFkhMUUaIWpWh_gsU
 var API_IT    = 'https://script.google.com/macros/s/AKfycbzesgvjxdcTipBeU5XEqziTzMJm92SM3TJo0TtoqizoVJlHsTxyTP4ybxDTYRlLrFD1hA/exec';   // ITxizmat.gs — ИТ услуга
 var API_YORDAMCHI = 'https://script.google.com/macros/s/AKfycbxcOFm31P5bkI1V2higcUuXBkX2B8XYf7xDkRoSyhvVG4w_MSVkDwAetbf9rv74TIWj/exec';   // Yordamchi.gs — AI ёрдамчи (Claude)
 var API_YM    = 'https://script.google.com/macros/s/AKfycbzvPSlLoHVkRwdkAkSddunq_NjBnQbiWPvPjmCz9WkZPmoFLjLlLg75-W3hmjeUo7AJwA/exec';   // YashilMakon.gs — Яшил Макон сотуви
+var API_KALENDAR = 'BU_YERGA_HAVOLA';   // Kalendar.gs — Google Calendar (Битрикс24 синхрони билан)
 var API_TURON = 'https://script.google.com/macros/s/AKfycbzO6d494h72JqXKOpDmSmSLWP5x8Zpa_w03QnYSkO61DXPUJ21f9tRMuHPiIi7Os75QAg/exec';
 
 
@@ -1882,8 +1935,8 @@ var GURUH=[
   /* Янги бўлимлар — жадвали кейин уланади */
   {k:'crm', nom:'CRM', tur:'yangi', belgi:'тез орада', yakka:1, ich:[
     {p:'crm', nom:'CRM', yoq:1}]},
-  {k:'kalendar', nom:'Календар', tur:'yangi', belgi:'тез орада', yakka:1, ich:[
-    {p:'kalendar', nom:'Календар', yoq:1}]}
+  {k:'kalendar', nom:'Календар', tur:'jonli', belgi:'google', yakka:1, ich:[
+    {p:'kalendar', nom:'Календар'}]}
 ];
 /** Бўлим қайси гуруҳда: {g — энг тепа гуруҳ, sg — бевосита ота гуруҳ (тепа бўлса null), x — бўлим, yol — тепадан бўлимгача йўл} */
 function guruhTop(p){
@@ -4771,7 +4824,8 @@ var YO_YONAL=[
   {k:'ai',         re:/\bai\b|\bии\b|сунъий|sun.?iy|\bкурс|\bkurs/i},
   {k:'ym',         re:/яшил|yashil|макон|makon|\bуй\b|\buy\b|хонадон|xonadon|квартир|kvartir|қурилиш|qurilish/i},
   {k:'yashil_mark',re:/уй\s*марк|uy\s*mark|яшил.*марк|yashil.*mark/i},
-  {k:'it',         re:/\bит\b|\bit\b|услуг|uslug|дашбор|dashboard|сайт|sayt|\bбот\b|\bbot\b|\bcrm\b|срм/i}
+  {k:'it',         re:/\bит\b|\bit\b|услуг|uslug|дашбор|dashboard|сайт|sayt|\bбот\b|\bbot\b|\bcrm\b|срм/i},
+  {k:'kal',        re:/календар|kalendar|тадбир|tadbir|учрашув|uchrashuv|йиғилиш|yig.?ilish|мажлис|majlis|эртага|ertaga|бугун нима|bugun nima|жадвал|jadval|режа.?да/i}
 ];
 function yoKerakBolimlar(savol){
   var s=' '+String(savol||'')+' ', k=[];
@@ -4991,6 +5045,13 @@ function yoKontekst(){
       oylar:it.map(function(o){ return {oy:o.nom,plan:o.reja,fakt:Math.round(o.fakt),planFoiz:Math.round(o.foiz),tushumSoni:o.soni,joriy:o.joriy||undefined,produktlar:o.tur} }),
       litsenziya:{planOylik:itPlanLits(),jami:Math.round(itlj),shuOy:Math.round(itJoriy(itlo).fakt),oylar:itlo.map(function(o){ return {oy:o.nom,fakt:Math.round(o.fakt),planFoiz:Math.round(o.foiz)} })}};
   }
+  if(D.kal){
+    var kb=kalBugun(), ke=kalKunQosh(kb,1), kl=kalRoyxat();
+    var kt=function(t){ var o={vaqt:t.kun?'кун бўйи':kalSoat(t.boshi)+'–'+kalSoat(t.oxiri),nom:t.nom,kalendar:t.kalendar}; if(t.joy) o.joy=t.joy; if(t.mehmon) o.ishtirokchilar=t.mehmon.slice(0,6); return o };
+    var hb=kalHaftaBoshi(kb), haftaSoni=0; for(var hi=0;hi<7;hi++) haftaSoni+=kalKunlik(kalKunQosh(hb,hi),kl).length;
+    K.kalendar={bugun:kalKunlik(kb,kl).map(kt),ertaga:kalKunlik(ke,kl).map(kt),shuHaftaSoni:haftaSoni,
+      keyingi7kun:(function(){ var a=[]; for(var i=2;i<9;i++){ var d=kalKunQosh(kb,i); kalKunlik(d,kl).forEach(function(t){ if(!t.xizmat && a.length<12) a.push({sana:d,vaqt:t.kun?'кун бўйи':kalSoat(t.boshi),nom:t.nom}) }) } return a })()};
+  }
   var yuq=YUKLOVCHI.filter(function(y){ return y.yo!==false && (!y.admin||adminMi()) && yuklovchiUlangan(y) && y.bor && !y.bor() }).map(function(y){ return y.nom });
   if(yuq.length) K.yuklanmagan=yuq;
   var sg=yoSignallar(K); if(sg.length) K.signallar=sg;
@@ -5022,6 +5083,7 @@ function yoTez(keys,K){
     if(k==='forum'&&K.forum){ var f=K.forum; out.push('Форум · билет '+fmt(f.fakt)+'/'+fmt(f.plan)+' ('+f.planFoiz+'%) · меҳмон '+fmt(f.mehmon)+' · келиб тўлайди '+fmt(f.kelibTolaydigan)+' · тўланган $'+fmt(f.tolangan)+(f.qarz?' · қарз $'+fmt(f.qarz):'')) }
     if(k==='ind'&&K.individual){ var i=K.individual; out.push('Индивидуал · '+fmt(i.fakt)+'/'+fmt(i.plan)+' ('+i.planFoiz+'%) · тўланган $'+fmt(i.tolangan)+' · қарз $'+fmt(i.qarz)+' ('+i.qarzdorlar+' киши)') }
     if(k==='ym'&&K.yashilMakon){ var y=K.yashilMakon; out.push('Яшил Макон · '+fmt(y.xonadon)+' хонадон · жами '+yoQisqaPul(y.jamiQiymat,'сўм')+' · тўланган '+y.tolanganFoiz+'% · қолдиқ '+yoQisqaPul(y.qoldiq,'сўм')) }
+    if(k==='kal'&&K.kalendar){ var kk=K.kalendar; out.push('Календар · бугун '+kk.bugun.length+' та тадбир'+(kk.bugun.length?': '+kk.bugun.slice(0,3).map(function(t){ return t.vaqt+' '+t.nom }).join(' · '):'')+' · эртага '+kk.ertaga.length+' та') }
     if(k==='it'&&K.itUsluga){ var jo=(K.itUsluga.oylar||[]).filter(function(o){ return o.joriy })[0]; if(jo) out.push('ИТ услуга · '+jo.oy+' $'+fmt(jo.fakt)+' / $'+fmt(K.itUsluga.planOylik)+' ('+jo.planFoiz+'%) · жами $'+fmt(K.itUsluga.jami)) }
   });
   var bor={}; return out.filter(function(s){ if(bor[s]) return false; bor[s]=1; return true }).slice(0,5);
@@ -5471,6 +5533,222 @@ function itLitsenziya(){
   '</div>';
   o+='<div class="fizoh" style="margin-top:16px"><div class="eb">Изоҳ</div><p>Жадвалда тури «Битрикс24 литсензия» (лицензия) деб ёзилган тушумлар шу ерга тушади. Асосий ИТ планига ва жамига қўшилмайди. План ҳар ойга '+itPul(itPlanLits())+'.</p></div>';
   return o;
+}
+
+/* ══════════════════════════════════════════════════════
+   21. КАЛЕНДАР — Google Calendar (Kalendar.gs)
+   Ҳафта (вақт тўри) · Ой · Рўйхат. Битрикс24 календарлари Google'га синхрон,
+   шунинг учун манба — Google. Тадбирни босса — тафсилот картаси.
+   ══════════════════════════════════════════════════════ */
+
+function kalMi(){ return S.prod==='kalendar' }
+function kalUlangan(){ return API_KALENDAR.indexOf('BU_YERGA')<0 }
+
+async function kalYukla(majburiy){
+  if(!kalUlangan() || S.kalBand) return;
+  if(!D) return;
+  if(D.kal && !D.kalXato && !majburiy) return;
+  S.kalBand=true; belgi(true); chizL('kal');
+  try{
+    var j=await bittaYukla(API_KALENDAR+'?amal=baza&t='+encodeURIComponent(AUTH.token)+(S.yangi?'&yangi=1':''));
+    D.kal={tadbirlar:j.tadbirlar||[], kalendarlar:j.kalendarlar||[], bugun:j.bugun||null, dan:j.dan||null, gacha:j.gacha||null,
+           vaqt:j.vaqt||null, versiya:j.versiya||null, tashxis:j.tashxis||null};
+    D.kalXato=null;
+  }catch(e){
+    D.kalXato=e.message;
+  }
+  S.kalBand=false; belgi(false); saqla(); chizL('kal');
+}
+
+function kalHolat(){
+  if(!kalUlangan())
+    return sarlavha('Календар','Ҳали уланмаган',mobilTugma())+
+      '<div class="empty"><b>API ҳаволаси қўйилмаган</b>'+
+      'Kalendar.gs ни (календарлар турган Google аккаунтда) деплой қилиб, ҳаволани HTML даги <b>API_KALENDAR</b> га қўйинг.</div>';
+  if(D && D.kalXato && !D.kal)
+    return sarlavha('Календар','Хатолик',mobilTugma())+
+      '<div class="xato"><b>Календар серверига уланиб бўлмади</b>'+esc(D.kalXato)+
+      '<div style="margin-top:10px;font-size:12.5px">Apps Script: <b>Deploy → Все</b> қилинганми? kalSinov ишлаганми?</div></div>';
+  if(!D || !D.kal)
+    return sarlavha('Календар','Юкланмоқда…',mobilTugma())+
+      '<div class="load"><div class="spin"></div>Календар юкланмоқда…</div>';
+  return null;
+}
+
+/* ── Сана ёрдамчилари ── */
+function kalD(s){ var m=/^(\d{4})-(\d{2})-(\d{2})(?:T(\d{2}):(\d{2}))?/.exec(s||''); return m?new Date(+m[1],+m[2]-1,+m[3],+(m[4]||0),+(m[5]||0)):null }
+function kalISO(d){ return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2) }
+function kalBugun(){ return kalISO(new Date()) }
+function kalKunQosh(iso,n){ var d=kalD(iso); d.setDate(d.getDate()+n); return kalISO(d) }
+function kalHaftaBoshi(iso){ var d=kalD(iso); d.setDate(d.getDate()-((d.getDay()+6)%7)); return kalISO(d) }   // душанбадан
+function kalDaq(s){ var m=/T(\d{2}):(\d{2})/.exec(s||''); return m?(+m[1])*60+(+m[2]):0 }
+function kalSoat(s){ return (s||'').slice(11,16) }
+function kalKunMatn(iso,qisqa){ var d=kalD(iso); return d.getDate()+' '+OY_NOM[d.getMonth()]+(qisqa?'':', '+HAFTA_KUN[d.getDay()]) }
+function kalVaqtMatn(t){
+  if(t.kun){ var k=kalKunQosh(t.oxiri,-1); return k===t.boshi.slice(0,10)?'кун бўйи':'кун бўйи · '+kalKunMatn(t.boshi.slice(0,10),1)+' – '+kalKunMatn(k,1) }
+  var b=t.boshi.slice(0,10), o=t.oxiri.slice(0,10);
+  return kalSoat(t.boshi)+'–'+kalSoat(t.oxiri)+(b!==o?' ('+kalKunMatn(o,1)+' гача)':'');
+}
+function kalRangi(t){ var k=D.kal.kalendarlar.filter(function(c){ return c.nom===t.kalendar })[0]; return (k&&k.rang)||t.rang||'#4285F4' }
+function kalKunlik(iso,l){            // шу кунга тегишли тадбирлар (кун бўйи: бошидан охиригача, oxiri кирмайди)
+  return l.filter(function(t){ return t.kun ? (t.boshi.slice(0,10)<=iso && iso<t.oxiri.slice(0,10)) : t.boshi.slice(0,10)===iso })
+          .sort(function(a,b){ return (b.kun?1:0)-(a.kun?1:0) || (a.boshi<b.boshi?-1:a.boshi>b.boshi?1:0) });
+}
+/** Фильтр: яширилган календарлар ва хизмат тадбирлари */
+function kalRoyxat(){
+  var ya=S.kalYashir||{};
+  return D.kal.tadbirlar.filter(function(t){
+    if(t.xizmat && !S.kalXizmat) return false;
+    return !(t.kalendarlar||[t.kalendar]).every(function(k){ return ya[k] });
+  });
+}
+function kalQidir(l){
+  if(!S.qidiruv) return l; var q=S.qidiruv.toLowerCase();
+  return l.filter(function(t){ return [t.nom,t.joy,t.izoh,(t.mehmon||[]).join(' '),t.kalendar].join(' ').toLowerCase().indexOf(q)>=0 });
+}
+
+/* ── Умумий қисмлар ── */
+function kalNav(tur){
+  var kun=S.kalKun||kalBugun(), d=kalD(kun), sar;
+  if(tur==='oy') sar=OY_NOM[d.getMonth()].charAt(0).toUpperCase()+OY_NOM[d.getMonth()].slice(1)+' '+d.getFullYear();
+  else { var b=kalHaftaBoshi(kun), o=kalKunQosh(b,6), db=kalD(b), dox=kalD(o);
+    sar=db.getDate()+(db.getMonth()===dox.getMonth()?'':' '+OY_NOM[db.getMonth()])+' – '+dox.getDate()+' '+OY_NOM[dox.getMonth()]+' '+dox.getFullYear() }
+  return '<div class="kalnav"><button class="btn" data-kalkun="'+(tur==='oy'?'oy-1':'prev')+'" aria-label="Олдинги">‹</button>'+
+    '<button class="btn" data-kalkun="bugun">Бугун</button>'+
+    '<button class="btn" data-kalkun="'+(tur==='oy'?'oy+1':'next')+'" aria-label="Кейинги">›</button><b>'+esc(sar)+'</b></div>';
+}
+function kalChiplar(){
+  var ya=S.kalYashir||{}, l=D.kal.tadbirlar, son={};
+  l.forEach(function(t){ (t.kalendarlar||[t.kalendar]).forEach(function(k){ son[k]=(son[k]||0)+1 }) });
+  return '<div class="kalch">'+D.kal.kalendarlar.map(function(c){
+      return '<button class="kalchip'+(ya[c.nom]?' och':'')+'" data-kalk="'+esc(c.nom)+'" style="--c:'+esc(c.rang)+'"><i></i>'+esc(c.nom)+'<small>'+fmt(son[c.nom]||0)+'</small></button>';
+    }).join('')+
+    '<button class="kalchip x'+(S.kalXizmat?'':' och')+'" data-kalx="1"><i></i>обед · ужин</button></div>';
+}
+/** Танланган тадбир картаси */
+function kalTafsilot(l){
+  if(!S.kalOchiq) return '';
+  var t=l.filter(function(x){ return x.id===S.kalOchiq })[0]; if(!t) return '';
+  var r=kalRangi(t), b=t.boshi.slice(0,10), db=kalD(b);
+  function q(n,v){ return v?'<div class="kalq"><em>'+n+'</em><span>'+v+'</span></div>':'' }
+  return '<div class="detail kaldt" style="--c:'+esc(r)+'">'+
+    '<div class="kaldh"><div><b>'+esc(t.nom)+'</b><span>'+esc(HAFTA_KUN[db.getDay()]+', '+kalKunMatn(b,1)+' '+db.getFullYear()+' · '+kalVaqtMatn(t))+(t.takror?' · такрорланувчи':'')+'</span></div>'+
+      '<button class="btn btn-o" data-kalyop="1" style="padding:4px 9px;font-size:11.5px">Ёпиш</button></div>'+
+    q('Календар',(t.kalendarlar||[t.kalendar]).map(function(k){ var c=D.kal.kalendarlar.filter(function(x){ return x.nom===k })[0]; return '<span class="kalkt" style="--c:'+esc(c?c.rang:r)+'"><i></i>'+esc(k)+'</span>' }).join(' '))+
+    q('Жой',t.joy?esc(t.joy):'')+
+    q('Иштирокчилар',t.mehmon?esc(t.mehmon.join(', ')):'')+
+    q('Яратган',t.yaratgan?esc(t.yaratgan):'')+
+    q('Тавсиф',t.izoh?esc(t.izoh).replace(/\n/g,'<br>'):'')+
+  '</div>';
+}
+
+/* ── ҲАФТА ── */
+function kalHafta(){
+  var h=kalHolat(); if(h) return h;
+  var kun=S.kalKun||kalBugun(), bosh=kalHaftaBoshi(kun), bugun=kalBugun(), l=kalRoyxat();
+  var kunlar=[0,1,2,3,4,5,6].map(function(i){ return kalKunQosh(bosh,i) });
+  var o=sarlavha('Календар','Google Calendar · '+D.kal.kalendarlar.length+' та календар · '+fmt(D.kal.tadbirlar.length)+' та тадбир',mobilTugma());
+  o+=kalNav('hafta')+kalChiplar()+kalTafsilot(l);
+
+  // Бугун хулосаси
+  var bt=kalKunlik(bugun,l), hozirDaq=new Date().getHours()*60+new Date().getMinutes();
+  var keyingi=bt.filter(function(t){ return !t.kun && kalDaq(t.boshi)>=hozirDaq })[0];
+  var hozirgi=bt.filter(function(t){ return !t.kun && kalDaq(t.boshi)<=hozirDaq && kalDaq(t.oxiri)>hozirDaq })[0];
+  o+='<div class="kalbugun"><div><em>Бугун · '+esc(kalKunMatn(bugun))+'</em><b>'+fmt(bt.length)+' та тадбир</b></div>'+
+     (hozirgi?'<div><em>Ҳозир кетяпти</em><b data-kale="'+esc(hozirgi.id)+'" class="kalhav">'+esc(hozirgi.nom)+'</b><span>'+kalVaqtMatn(hozirgi)+'</span></div>':'')+
+     (keyingi?'<div><em>Кейингиси</em><b data-kale="'+esc(keyingi.id)+'" class="kalhav">'+esc(keyingi.nom)+'</b><span>'+kalSoat(keyingi.boshi)+'</span></div>':(!hozirgi&&bt.length?'<div><em>Кейингиси</em><b>бугунги тадбирлар тугади</b></div>':''))+
+     '</div>';
+
+  if(telefonmi()){
+    // Телефон: кун танлаш + ўша куннинг рўйхати
+    o+='<div class="kalkp">'+kunlar.map(function(k){ var d=kalD(k), n=kalKunlik(k,l).length;
+        return '<button data-kalkun="'+k+'" class="'+(k===kun?'on':'')+(k===bugun?' bugun':'')+'"><small>'+HAFTA_KUN[d.getDay()].slice(0,2)+'</small><b>'+d.getDate()+'</b>'+(n?'<i>'+n+'</i>':'')+'</button>' }).join('')+'</div>';
+    o+=kalKunRoyxat(kun,l,true);
+    return o;
+  }
+
+  // Компьютер: вақт тўри
+  var sd=8, sg=20;
+  kunlar.forEach(function(k){ kalKunlik(k,l).forEach(function(t){ if(t.kun) return; sd=Math.min(sd,Math.floor(kalDaq(t.boshi)/60)); var og=kalDaq(t.oxiri), ok=t.oxiri.slice(0,10)!==k?24:Math.ceil(og/60); sg=Math.max(sg,ok) }) });
+  sd=Math.max(0,sd); sg=Math.min(24,Math.max(sg,sd+8));
+  var SOAT=48, balandlik=(sg-sd)*SOAT;
+  var kunBoyi=kunlar.some(function(k){ return kalKunlik(k,l).some(function(t){ return t.kun }) });
+  o+='<div class="panel kalw"><div class="kalg" style="--n:'+(sg-sd)+';--h:'+SOAT+'px">'+
+    '<div class="kalg-h"><div class="kalg-c"></div>'+kunlar.map(function(k){ var d=kalD(k); return '<div class="kalg-d'+(k===bugun?' bugun':'')+'"><small>'+HAFTA_KUN[d.getDay()]+'</small><b>'+d.getDate()+'</b></div>' }).join('')+'</div>'+
+    (kunBoyi?'<div class="kalg-a"><div class="kalg-c"><small>кун бўйи</small></div>'+kunlar.map(function(k){ return '<div class="kalg-ad">'+kalKunlik(k,l).filter(function(t){ return t.kun }).map(function(t){ return '<button class="kale a'+(S.kalOchiq===t.id?' on':'')+'" data-kale="'+esc(t.id)+'" style="--c:'+esc(kalRangi(t))+'">'+esc(t.nom)+'</button>' }).join('')+'</div>' }).join('')+'</div>':'')+
+    '<div class="kalg-b" style="height:'+balandlik+'px">'+
+      '<div class="kalg-c">'+(function(){ var s=''; for(var i=sd;i<sg;i++) s+='<span style="top:'+((i-sd)*SOAT)+'px">'+('0'+i).slice(-2)+':00</span>'; return s })()+'</div>'+
+      kunlar.map(function(k){
+        var evs=kalKunlik(k,l).filter(function(t){ return !t.kun }).map(function(t){ var b=kalDaq(t.boshi), e=t.oxiri.slice(0,10)!==k?24*60:kalDaq(t.oxiri); return {t:t,b:b,e:Math.max(e,b+30)} });
+        // устма-уст тушганлар — ёнма-ён
+        var qator=[]; evs.forEach(function(x){ var j=0; while(qator[j] && qator[j]>x.b) j++; qator[j]=x.e; x.l=j });
+        var n=Math.max(1,qator.length);
+        var s='<div class="kalg-kun'+(k===bugun?' bugun':'')+'">';
+        for(var i=sd;i<sg;i++) s+='<i style="top:'+((i-sd)*SOAT)+'px"></i>';
+        if(k===bugun && hozirDaq>=sd*60 && hozirDaq<=sg*60) s+='<u class="kalhozir" style="top:'+((hozirDaq-sd*60)/60*SOAT)+'px"></u>';
+        evs.forEach(function(x){ var top=(x.b-sd*60)/60*SOAT, hh=Math.max(22,(x.e-x.b)/60*SOAT-2), r=kalRangi(x.t);
+          s+='<button class="kale'+(S.kalOchiq===x.t.id?' on':'')+(x.t.xizmat?' xz':'')+'" data-kale="'+esc(x.t.id)+'" style="--c:'+esc(r)+';top:'+top+'px;height:'+hh+'px;left:'+(x.l*100/n)+'%;width:calc('+(100-x.l*100/n)+'% - 3px);z-index:'+(2+x.l)+'" title="'+esc(x.t.nom+' · '+kalVaqtMatn(x.t))+'">'+
+            '<small>'+kalSoat(x.t.boshi)+(hh>40?'–'+kalSoat(x.t.oxiri):'')+'</small><b>'+esc(x.t.nom)+'</b>'+(hh>58&&x.t.joy?'<span>'+esc(x.t.joy)+'</span>':'')+'</button>' });
+        return s+'</div>';
+      }).join('')+
+    '</div></div></div>';
+  return o;
+}
+
+/** Бир куннинг рўйхати (телефон ҳафтаси ва кун кўриниши учун) */
+function kalKunRoyxat(kun,l,sarlavhasiz){
+  var evs=kalKunlik(kun,l), d=kalD(kun);
+  var h=sarlavhasiz?'':'<div class="kalkh"><b>'+esc(HAFTA_KUN[d.getDay()]+', '+kalKunMatn(kun,1))+'</b><span>'+fmt(evs.length)+' та</span></div>';
+  if(!evs.length) return h+'<div class="kalbosh">Бу кунда тадбир йўқ</div>';
+  return h+'<div class="kall">'+evs.map(function(t){ return '<button class="kalr'+(S.kalOchiq===t.id?' on':'')+(t.xizmat?' xz':'')+'" data-kale="'+esc(t.id)+'" style="--c:'+esc(kalRangi(t))+'">'+
+      '<em>'+(t.kun?'кун бўйи':kalSoat(t.boshi)+'<small>'+kalSoat(t.oxiri)+'</small>')+'</em><i></i><div><b>'+esc(t.nom)+'</b><span>'+esc([t.kalendar,t.joy].filter(Boolean).join(' · '))+'</span></div></button>' }).join('')+'</div>';
+}
+
+/* ── ОЙ ── */
+function kalOy(){
+  var h=kalHolat(); if(h) return h;
+  var kun=S.kalKun||kalBugun(), d=kalD(kun), y=d.getFullYear(), m=d.getMonth(), bugun=kalBugun(), l=kalRoyxat();
+  var bosh=kalHaftaBoshi(kalISO(new Date(y,m,1))), oxir=kalISO(new Date(y,m+1,0));
+  var kunlar=[], k=bosh; while(k<=oxir || kunlar.length%7){ kunlar.push(k); k=kalKunQosh(k,1); if(kunlar.length>42) break }
+  var o=sarlavha('Календар · Ой','Кунни босинг — ўша ҳафта очилади',mobilTugma())+kalNav('oy')+kalChiplar()+kalTafsilot(l);
+  var oySoni=0; kunlar.forEach(function(x){ if(x.slice(0,7)===kalISO(new Date(y,m,1)).slice(0,7)) oySoni+=kalKunlik(x,l).length });
+  o+='<div class="panel kalo"><div class="kaloh">'+['Ду','Се','Чо','Па','Жу','Ша','Як'].map(function(n){ return '<span>'+n+'</span>' }).join('')+'</div><div class="kalog">'+
+    kunlar.map(function(x){ var dd=kalD(x), evs=kalKunlik(x,l), bosqa=dd.getMonth()!==m, max=telefonmi()?2:3;
+      return '<div class="kalod'+(bosqa?' boshqa':'')+(x===bugun?' bugun':'')+'"><button class="kalon" data-kalkun="'+x+'" data-kalsah="umumiy">'+dd.getDate()+'</button>'+
+        evs.slice(0,max).map(function(t){ return '<button class="kaloe'+(t.xizmat?' xz':'')+'" data-kale="'+esc(t.id)+'" style="--c:'+esc(kalRangi(t))+'" title="'+esc(t.nom)+'"><i></i>'+(t.kun?'':'<small>'+kalSoat(t.boshi)+'</small>')+esc(t.nom)+'</button>' }).join('')+
+        (evs.length>max?'<button class="kalom" data-kalkun="'+x+'" data-kalsah="umumiy">+'+(evs.length-max)+'</button>':'')+'</div>' }).join('')+
+    '</div></div>'+
+    '<div class="fizoh" style="margin-top:14px"><div class="eb">Ой</div><p>Шу ойда '+fmt(oySoni)+' та тадбир. Ранглар — Google календарлари рангида; «обед · ужин» хизмат тадбирлари тепадаги тугма билан ёқилади.</p></div>';
+  return o;
+}
+
+/* ── РЎЙХАТ (келгуси) ── */
+function kalRoyxatSahifa(){
+  var h=kalHolat(); if(h) return h;
+  var bugun=kalBugun(), l=kalQidir(kalRoyxat());
+  var kel=l.filter(function(t){ return (t.kun?t.oxiri.slice(0,10)>bugun:t.boshi.slice(0,10)>=bugun) });
+  var o=sarlavha('Календар · Рўйхат','Бугундан бошлаб келгуси тадбирлар',
+    '<input type="text" id="qid" placeholder="Тадбир, жой, одам…" value="'+esc(S.qidiruv)+'" style="width:190px">'+mobilTugma())+kalChiplar()+kalTafsilot(l);
+  if(!kel.length) return o+'<div class="empty"><b>Келгуси тадбир йўқ</b>'+(S.qidiruv?'Қидирув бўйича топилмади.':'')+'</div>';
+  var kunlar=[], bor={};
+  kel.forEach(function(t){ var k=t.kun?(t.boshi.slice(0,10)<bugun?bugun:t.boshi.slice(0,10)):t.boshi.slice(0,10); if(!bor[k]){ bor[k]=1; kunlar.push(k) } });
+  kunlar.sort();
+  o+='<div class="kalagenda">'+kunlar.map(function(k){ var d=kalD(k), evs=kalKunlik(k,l).filter(function(t){ return kel.indexOf(t)>=0 });
+      return '<div class="kalag'+(k===bugun?' bugun':'')+'"><div class="kalagd"><b>'+d.getDate()+'</b><span>'+HAFTA_KUN[d.getDay()]+'<br>'+OY_NOM[d.getMonth()]+'</span></div><div class="kalagl">'+
+        evs.map(function(t){ return '<button class="kalr'+(S.kalOchiq===t.id?' on':'')+(t.xizmat?' xz':'')+'" data-kale="'+esc(t.id)+'" style="--c:'+esc(kalRangi(t))+'"><em>'+(t.kun?'кун бўйи':kalSoat(t.boshi)+'<small>'+kalSoat(t.oxiri)+'</small>')+'</em><i></i><div><b>'+esc(t.nom)+'</b><span>'+esc([t.kalendar,t.joy,(t.mehmon||[]).slice(0,3).join(', ')].filter(Boolean).join(' · '))+'</span></div></button>' }).join('')+
+        '</div></div>' }).join('')+'</div>';
+  return o;
+}
+
+/** Навигация: prev/next (ҳафта), oy-1/oy+1, bugun, ёки ISO сана */
+function kalKunTanla(v,sah){
+  var kun=S.kalKun||kalBugun();
+  if(v==='bugun') kun=kalBugun();
+  else if(v==='prev') kun=kalKunQosh(kun,-7);
+  else if(v==='next') kun=kalKunQosh(kun,7);
+  else if(v==='oy-1'||v==='oy+1'){ var d=kalD(kun); d.setDate(1); d.setMonth(d.getMonth()+(v==='oy+1'?1:-1)); kun=kalISO(d) }
+  else if(/^\d{4}-\d{2}-\d{2}$/.test(v)) kun=v;
+  S.kalKun=kun; if(sah) S.sahifa=sah; chiz();
 }
 
 /* ══════════════════════════════════════════════════════
@@ -6840,7 +7118,8 @@ var IKONKA={
   chiqim:'<path d="M12 21V9"/><path d="M7 14l5-5 5 5"/><path d="M4 4h16"/>',
   kalit:'<circle cx="8" cy="15" r="4"/><path d="M11 12l9-9M17 6l3 3M15 8l2 2"/>',
   voronka:'<path d="M3 4h18l-7 8v6l-4 2v-8z"/>',
-  xarita:'<path d="M3 6l6-3 6 3 6-3v15l-6 3-6-3-6 3z"/><path d="M9 3v15M15 6v15"/>'
+  xarita:'<path d="M3 6l6-3 6 3 6-3v15l-6 3-6-3-6 3z"/><path d="M9 3v15M15 6v15"/>',
+  kalendar:'<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/>'
 };
 
 /* ══════════════════════════════════════════════════════
@@ -7528,6 +7807,7 @@ function aiJurnal(){
 
 
 function menyu(){
+  if(kalMi()){ var kb=(D&&D.kal)?kalKunlik(kalBugun(),kalRoyxat()).length:undefined; return [{p:'umumiy', nom:'Ҳафта', ik:'kalendar', son:kb},{p:'kesim', nom:'Ой', ik:'jadval'},{p:'jurnal', nom:'Рўйхат', ik:'chart'}] }
   if(itMi()){ var il=(D&&D.it)?itLits().length:undefined; return [{p:'umumiy', nom:'Умумий', ik:'chart'},{p:'kesim', nom:'Лицензия', ik:'kalit', son:il}] }
   if(panelMi() || rbcPanelMi() || iiPanelMi() || yoqMi() || arxPanelMi() || (potok() && arxHolat())) return [{p:'umumiy', nom:'Умумий', ik:'chart'}];
   if(nazoratMi()){
@@ -7644,6 +7924,8 @@ function chiz(){
     ? ( S.sahifa==='oquvchi' ? indOquvchilar() : indUmumiy() )
     : itMi()
     ? ( S.sahifa==='kesim' ? itLitsenziya() : itUmumiy() )
+    : kalMi()
+    ? ( S.sahifa==='kesim' ? kalOy() : S.sahifa==='jurnal' ? kalRoyxatSahifa() : kalHafta() )
     : ymMi()
     ? ( S.sahifa==='jurnal'  ? ymSotuvlar() :
         S.sahifa==='menejer' ? ymXarita()   :
@@ -7727,6 +8009,7 @@ function produktOch(p){
   if(p==='forum') forumYukla();
   if(p==='yashil_sotuv') ymYukla();
   if(p==='it') itYukla();
+  if(p==='kalendar') kalYukla();
   if(p==='individual') indYukla();
   if(potok()) arxYukla(potok());
   if(p==='ii_panel') aiYukla();
@@ -7861,6 +8144,11 @@ main.addEventListener('click',async function(e){
   if(e.target.closest('[data-kqayta]')){ markYukla(true); return }
   if((t=e.target.closest('[data-ymblok]'))){ ymBlokTanla(t.dataset.ymblok); return }
   if((t=e.target.closest('[data-itoy]'))){ itOyTanla(t.dataset.itoy,false); return }
+  if((t=e.target.closest('[data-kale]'))){ S.kalOchiq = S.kalOchiq===t.dataset.kale ? null : t.dataset.kale; chiz(); setTimeout(function(){ var d=document.querySelector('.kaldt'); if(d) d.scrollIntoView({behavior:'smooth',block:'nearest'}) },40); return }
+  if(e.target.closest('[data-kalyop]')){ S.kalOchiq=null; chiz(); return }
+  if((t=e.target.closest('[data-kalkun]'))){ kalKunTanla(t.dataset.kalkun,t.dataset.kalsah); return }
+  if((t=e.target.closest('[data-kalk]'))){ if(!S.kalYashir) S.kalYashir={}; var kn=t.dataset.kalk; if(S.kalYashir[kn]) delete S.kalYashir[kn]; else S.kalYashir[kn]=1; chiz(); return }
+  if(e.target.closest('[data-kalx]')){ S.kalXizmat=!S.kalXizmat; chiz(); return }
   if((t=e.target.closest('[data-itoyl]'))){ itOyTanla(t.dataset.itoyl,true); return }
   if(e.target.closest('[data-yop]')){ S.ochiq=null; chiz(); return }
   if((t=e.target.closest('[data-men]'))||(t=e.target.closest('[data-kes]'))){
@@ -7921,6 +8209,8 @@ var YUKLOVCHI=[
      kerak:function(){ return ymMi() }, xato:function(){ return D&&D.ymXato }},
   {k:'it',         nom:'ИТ услуга',             f:function(){ return itYukla(true) }, bor:function(){ return !!(D&&D.it) },
      kerak:function(){ return itMi() }, xato:function(){ return D&&D.itXato }},
+  {k:'kal',        nom:'Календар',              f:function(){ return kalYukla(true) }, bor:function(){ return !!(D&&D.kal) },
+     kerak:function(){ return kalMi() }, xato:function(){ return D&&D.kalXato }},
   {k:'arx14',      nom:'RBA — 14 архив',        f:function(){ return arxYukla('14',true) }, yo:false,
      kerak:function(){ return potok()==='14' }, xato:function(){ return D&&D.arx&&D.arx['14']&&D.arx['14'].xato }},
   {k:'arx13',      nom:'RBA — 13 архив',        f:function(){ return arxYukla('13',true) }, yo:false,
@@ -7940,6 +8230,7 @@ function yuklovchiUlangan(y){
   if(y.k==='ind') return indUlangan();
   if(y.k==='ym') return ymUlangan();
   if(y.k==='it') return itUlangan();
+  if(y.k==='kal') return kalUlangan();
   if(y.k==='arx14'||y.k==='arx13') return arxUlangan();
   if(y.k==='nazorat') return adminMi() && kirishUlangan();
   return true;
