@@ -2186,6 +2186,7 @@ async function yukla(jim){
            j.turonOq=D.turonOq; j.turonOqXato=D.turonOqXato; j.turonKurs=D.turonKurs;
            j.forum=D.forum; j.forumXato=D.forumXato; j.ind=D.ind; j.indXato=D.indXato;
            j.ym=D.ym; j.ymXato=D.ymXato; j.it=D.it; j.itXato=D.itXato;
+           j.kal=D.kal; j.kalXato=D.kalXato; j.crm=D.crm; j.crmXato=D.crmXato;
            j.arx=D.arx;
            j.nazorat=D.nazorat; j.nazoratXato=D.nazoratXato }
     D=j; S.xato=null; S.eski=false;
@@ -2207,6 +2208,8 @@ async function yukla(jim){
   if(indMi())      indYukla();
   if(ymMi())       ymYukla();
   if(itMi())       itYukla();
+  if(kalMi())      kalYukla();
+  if(crmMi())      crmYukla();
   if(iiPanelMi())  aiYukla();
   if(potok())      arxYukla(potok());
   if(nazoratMi()) nazoratYukla();
@@ -5224,7 +5227,7 @@ async function yoYukla(keys){
   var ozim=!S.orqa; if(ozim) S.orqa=true;                   // саҳифани қайта чизмаймиз (chizL фақат керагини чизади)
   var n=0; yoHolatYoz('маълумот йиғилмоқда · 0/'+ro.length);
   await Promise.all(ro.map(function(y){ return yoBirYukla(y).then(function(){ n++; yoHolatYoz('маълумот йиғилмоқда · '+n+'/'+ro.length) }) }));
-  if(ozim && !S.yangilanmoqda) S.orqa=false;
+  if(ozim && !S.yangilanmoqda && !S.fonda) S.orqa=false;
   belgi(false);
 }
 /** Ойна очилганда — ҳамма бўлим орқа фонда, бир марта */
@@ -8411,7 +8414,7 @@ main.addEventListener('input',function(e){
    ══════════════════════════════════════════════════════ */
 var YUKLOVCHI=[
   {k:'asosiy',     nom:'RBA — 15',              f:function(){ return yukla(true) }, bor:function(){ return !!(D&&(D.praktikum||D.kouch)) },
-     kerak:function(){ return true },  xato:function(){ return S.xato||(S.eski?'сақланган ҳолат':null) }},
+     kerak:function(){ return !S.prod || S.prod==='panel' || S.prod==='praktikum' || S.prod==='kouch' },  xato:function(){ return S.xato||(S.eski?'сақланган ҳолат':null) }},
   {k:'moliya',     nom:'Молия',                 f:function(){ return moliyaYukla(true) }, bor:function(){ return !!(D&&D.moliya) },
      kerak:function(){ return moliyaMi()||panelMi() }, xato:function(){ return D&&D.moliyaXato }},
   {k:'marketing',  nom:'Маркетинг',             f:function(){ return markYukla(true,'marketing') }, bor:function(){ return !!(D&&D.marketing) },
@@ -8466,35 +8469,38 @@ function yangiHolat(matn){ var e=document.getElementById('liveT'); if(e) e.textC
 async function hammasiYangila(){
   if(S.yangilanmoqda){ xabar('Янгиланмоқда — кутинг…'); return }
   if(!D){ yukla(false); return }
-  S.yangilanmoqda=true; S.yangi=true;     // S.yangi — сервердаги кэшни четлаб ўтамиз
+  S.yangilanmoqda=true; S.yangi=true;     // S.yangi — сервердаги кэшни четлаб ўтамиз (фақат шу саҳифа учун)
   document.body.classList.add('yangilanmoqda');
   var tx=document.querySelector('#yangilaBtn span'); if(tx) tx.textContent='Янгиланмоқда…';
 
   var hamma=YUKLOVCHI.filter(function(y){ return (!y.admin||adminMi()) && yuklovchiUlangan(y) });
   var avval=hamma.filter(function(y){ return y.kerak() });
-  var keyin=hamma.filter(function(y){ return !y.kerak() });
 
-  // 1) жорий саҳифа — аввал, параллел
+  // 1) очиқ саҳифа — аввал, параллел, янги маълумот билан
   xabar('Янгиланмоқда…');
-  yangiHolat('янгиланмоқда · шу саҳифа');
+  yangiHolat('янгиланмоқда · '+avval.map(function(y){ return y.nom }).join(', '));
   await Promise.all(avval.map(function(y){ return Promise.resolve().then(y.f).catch(function(){}) }));
   if(!S.band) saqla();
-
-  // 2) қолган ҳамма бўлим — бирма-бир, саҳифани қайта чизмасдан (chizL фақат керагини чизади)
-  S.orqa=true;
-  for(var i=0;i<keyin.length;i++){
-    var y=keyin[i];
-    belgi(true); yangiHolat('янгиланмоқда · '+y.nom+' '+(i+1)+'/'+keyin.length);
-    try{ await y.f() }catch(e){}
-  }
-  S.orqa=false; S.yangi=false; S.yangilanmoqda=false;
-  belgi(false); document.body.classList.remove('yangilanmoqda');
+  S.yangi=false; S.yangilanmoqda=false;
+  document.body.classList.remove('yangilanmoqda');
   if(tx) tx.textContent='Янгилаш';
   if(D) aloqa(true,D.vaqt);
-
-  var xato=hamma.filter(function(y){ return y.xato() }).map(function(y){ return y.nom });
+  var xato=avval.filter(function(y){ return y.xato() }).map(function(y){ return y.nom });
   if(xato.length) xabar('Янгиланди · хато: '+xato.join(', '),true);
-  else xabar('Ҳаммаси янгиланди ✓ ('+hamma.length+' та бўлим)');
+  else xabar('Янгиланди ✓ · '+avval.map(function(y){ return y.nom }).join(', '));
+
+  // 2) қолган бўлимлар — фонда, бирма-бир, сервер кэши билан (тез), саҳифани қайта чизмасдан.
+  //    Фойдаланувчи бошқа бўлимга ўтса — ўша бўлим ўзи юкланади; фон кетаётганда яна «Янгилаш» босса — 1-қадам қайта ишлайди.
+  if(S.fonda) return;
+  S.fonda=true; S.orqa=true;
+  var keyin=hamma.filter(function(y){ return avval.indexOf(y)<0 });
+  for(var i=0;i<keyin.length;i++){
+    var y=keyin[i]; if(y.kerak()) continue;
+    belgi(true); yangiHolat('фонда · '+y.nom+' '+(i+1)+'/'+keyin.length);
+    try{ await y.f() }catch(e){}
+  }
+  S.orqa=false; S.fonda=false; belgi(false);
+  if(D) aloqa(true,D.vaqt);
 }
 document.getElementById('yangilaBtn').onclick=hammasiYangila;
 document.getElementById('yangilaBtn2').onclick=hammasiYangila;
