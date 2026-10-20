@@ -1396,6 +1396,7 @@ body.yoOch .yo{display:flex;animation:yoKir .22s ease}
 .pg.och>.pg-h>.pg-o{transform:rotate(180deg);color:#E0A048}
 /* якка бўлим (Молия): гуруҳ кўринишида, лекин очилмайди */
 .pswitch .pg.yakka .pg-h.on{background:linear-gradient(145deg,var(--a2),var(--a))}
+.pg.yangi .pg-h em{background:rgba(255,255,255,.06);color:#7D858F}.pg.yakka.yangi .pg-h b{color:#9AA1AB}
 .pg.yakka .pg-h.on b,.pg.yakka .pg-h.on em{color:#1A1206}
 .pg.yakka .pg-h.on em{background:rgba(0,0,0,.12)}
 /* RBA ичидаги потоклар */
@@ -1877,7 +1878,12 @@ var GURUH=[
   {k:'ym', nom:'Яшил Макон', tur:'jonli', belgi:'уй', ich:[
     {p:'yashil_sotuv',    nom:'Сотув'},
     {p:'yashil_mark',     nom:'Маркетинг'},
-    {p:'yashil_qurilish', nom:'Қурилиш', yoq:1}]}
+    {p:'yashil_qurilish', nom:'Қурилиш', yoq:1}]},
+  /* Янги бўлимлар — жадвали кейин уланади */
+  {k:'crm', nom:'CRM', tur:'yangi', belgi:'тез орада', yakka:1, ich:[
+    {p:'crm', nom:'CRM', yoq:1}]},
+  {k:'kalendar', nom:'Календар', tur:'yangi', belgi:'тез орада', yakka:1, ich:[
+    {p:'kalendar', nom:'Календар', yoq:1}]}
 ];
 /** Бўлим қайси гуруҳда: {g — энг тепа гуруҳ, sg — бевосита ота гуруҳ (тепа бўлса null), x — бўлим, yol — тепадан бўлимгача йўл} */
 function guruhTop(p){
