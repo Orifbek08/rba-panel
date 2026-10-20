@@ -5924,7 +5924,7 @@ function crmNazorat(){
   if(!c.ogoh.length) o+='<div class="kalbosh">Огоҳлантириш йўқ — ҳамма ишлаган ✓</div>';
   else o+='<div class="crmog">'+c.ogoh.map(function(x){ return '<div class="crmo-r '+x.d+'"><em>'+(x.d==='jiddiy'?'жиддий':'диққат')+'</em><div><b>'+esc(x.nom)+'</b> '+esc(x.matn)+'</div></div>' }).join('')+'</div>';
 
-  o+='<div class="fizoh" style="margin-top:16px"><div class="eb">Тушунчалар</div><p>«Суҳбат» — мижоз кўтарган ва гаплашув '+c.suhbatSoniya+' сониядан узун. «Мижоз» — ноёб телефон рақами. Стадия устунлари — шу куни ўша стадияга ўтказилган битимлар сони. «Ишлар» — Битрикс24 да шу куни яратилган ишлар (қўнғироқ, учрашув, вазифа). «Очиқ» — воронкада ёпилмаган битимлар. Қўнғироқлар ҳамма воронка бўйича, қолгани танланган воронка бўйича.'+(c.ochiq.kesildi?' ⚠ Очиқ битимлар жуда кўп — рўйхат чекланди.':'')+'</p></div>';
+  o+='<div class="fizoh" style="margin-top:16px"><div class="eb">Тушунчалар</div><p>«Суҳбат» — мижоз кўтарган ва гаплашув '+c.suhbatSoniya+' сониядан узун. «Мижоз» — ноёб телефон рақами. Стадия устунлари — шу куни ўша стадияга ўтказилган битимлар сони. «Ишлар» — Битрикс24 да шу куни яратилган ишлар (қўнғироқ, учрашув, вазифа). «Очиқ» — воронкада ёпилмаган битимлар. Қўнғироқлар ҳамма воронка бўйича, қолгани танланган воронка бўйича.'+(c.ochiq.vaqt?' Очиқ битимлар кесими ҳар 30 дақиқада янгиланади (ҳолат '+esc(c.ochiq.vaqt.slice(11,16))+').':'')+(c.ochiq.kesildi?' ⚠ Очиқ битимлар жуда кўп — рўйхат чекланди.':'')+'</p></div>';
   return o;
 }
 
@@ -5932,7 +5932,7 @@ function crmNazorat(){
 function crmVoronka(){
   var h=crmHolat(); if(h) return h;
   var c=crmD(), st=c.stadiyalar.filter(function(s){ return s.sem==='P' }), eng=Math.max.apply(null,st.map(function(s){ return s.ochiq }).concat([1]));
-  var o=sarlavha('CRM · '+c.voronka.nom+' — воронка','Очиқ битимлар стадиялар бўйича · шу куни ўтказишлар',mobilTugma())+crmBosh();
+  var o=sarlavha('CRM · '+c.voronka.nom+' — воронка','Очиқ битимлар стадиялар бўйича'+(c.ochiq.vaqt?' (ҳолат '+esc(c.ochiq.vaqt.slice(11,16))+', 30 дақ кэш)':'')+' · шу куни ўтказишлар',mobilTugma())+crmBosh();
   o+='<div class="mets">'+
     '<div class="met o"><div class="met-l">Очиқ битимлар</div><div class="met-v num">'+fmt(c.ochiq.jami)+'</div><div class="met-d">'+fmt(st.length)+' та стадияда</div></div>'+
     '<div class="met"><div class="met-l">Стадия ўтказишлар</div><div class="met-v num">'+fmt(c.otkazishlar)+'</div><div class="met-d">шу куни</div></div>'+
