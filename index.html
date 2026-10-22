@@ -1286,39 +1286,6 @@ body:not(.admin) [data-prod="admin"]{display:none!important}
 .kalagenda{display:flex;flex-direction:column;gap:12px}.kalag{display:grid;grid-template-columns:64px 1fr;gap:12px}.kalagd{text-align:center;padding-top:6px}.kalagd b{display:block;font-family:Archivo;font-size:24px;color:var(--ink);line-height:1}.kalagd span{font-size:10.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;line-height:1.3}
 .kalag.bugun .kalagd b{color:var(--a)}.kalagl{display:flex;flex-direction:column;gap:6px}
 @media(max-width:820px){ .kalnav b{font-size:14px;margin-left:4px} .kalod{min-height:70px;padding:3px} .kaloe small{display:none} .kalag{grid-template-columns:50px 1fr;gap:8px} .kalq{grid-template-columns:90px 1fr} }
-/* ── CRM (Битрикс24) ── */
-.crmnav{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 14px;margin:2px 0 14px}
-.crmv{display:flex;flex-wrap:wrap;gap:6px}.crmv .kalchip{padding:6px 12px;font-size:12px}
-.crmv .kalchip.on{border-color:var(--a-line);background:var(--a-dim);color:var(--ink);font-weight:600}
-.crmt td small{display:block;font-size:10.5px;color:var(--muted);font-weight:400;margin-top:1px}
-.crmt tr.crmq td{background:var(--no-dim)}.crmt tr.crmq td:first-child{box-shadow:inset 3px 0 0 var(--no)}
-.crmt tr.crmo td{color:var(--muted)}.crmt tr.crmo td b{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--no)}
-.crmb{display:inline-block;font-style:normal;font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;padding:1px 6px;border-radius:999px;margin-left:7px;vertical-align:middle;background:var(--a-dim);color:var(--a);border:1px solid var(--a-line)}
-.crmb.o{background:var(--no-dim);color:var(--no);border-color:var(--no-line)}
-.crmbar{display:flex;align-items:center;gap:8px;min-width:110px}.crmbar i{display:block;height:6px;border-radius:6px;background:linear-gradient(90deg,var(--ok),var(--a));max-width:70px;flex:none}
-.crmbar span{font-size:12px;color:var(--ink2)}
-.crmk{display:flex;flex-direction:column;gap:8px}
-.crmkc{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:11px 13px}.crmkc.q{border-color:var(--no-line);background:var(--no-dim)}.crmkc.o{opacity:.6}
-.crmkh{display:flex;align-items:center;margin-bottom:8px}.crmkh b{font-size:14px;color:var(--ink)}
-.crmkg{display:grid;grid-template-columns:repeat(4,1fr);gap:6px 8px}.crmkg em{display:block;font-style:normal;font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}.crmkg b{font-family:Archivo;font-size:15px;color:var(--ink)}
-.crml{display:flex;flex-direction:column}
-.crmr{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr) auto 12px;gap:14px;align-items:center;padding:11px 16px;border-bottom:1px solid var(--line);text-decoration:none;color:var(--ink);transition:background .15s}
-.crmr:last-child{border-bottom:none}.crmr:hover{background:var(--hover)}
-.crmr div b{display:block;font-size:13.5px;font-weight:600}.crmr div span{display:block;font-size:11.5px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.crmr em{font-style:normal;font-size:12.5px;color:var(--ink2);text-align:right;white-space:nowrap}.crmr em small{display:block;font-size:11px;color:var(--ok)}
-.crmr::after{content:"↗";color:var(--muted);font-size:12px}a.btn{text-decoration:none}
-.crmog{display:flex;flex-direction:column;gap:8px}
-.crmo-r{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:start;padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:var(--card);font-size:13px;color:var(--ink2);line-height:1.5}
-.crmo-r em{font-style:normal;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;padding:3px 8px;border-radius:999px;margin-top:2px}
-.crmo-r.jiddiy{border-color:var(--no-line);background:var(--no-dim)}.crmo-r.jiddiy em{background:var(--no);color:#1A0C0A}
-.crmo-r.diqqat em{background:var(--a);color:#1A1206}.crmo-r b{color:var(--ink)}
-.crmst{display:flex;flex-direction:column;gap:9px}
-.crmsr{display:grid;grid-template-columns:minmax(120px,190px) 1fr 54px 48px;gap:12px;align-items:center;font-size:13px}
-.crmsr em{font-style:normal;color:var(--ink2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.crmsr.ol em{color:var(--ok)}
-.crmsb{height:10px;border-radius:6px;background:var(--prog);overflow:hidden}.crmsb i{display:block;height:100%;border-radius:6px;background:var(--a);transition:width .5s}.crmsr.ol .crmsb i{background:var(--ok)}
-.crmsr b{text-align:right;color:var(--ink);font-size:13.5px}.crmsr span{text-align:right;color:var(--muted);font-size:12px}
-.crmhav{color:var(--a);text-decoration:none;font-weight:600}.crmhav:hover{text-decoration:underline}
-@media(max-width:820px){ .crmnav{flex-direction:column;align-items:stretch} .crmkg{grid-template-columns:repeat(3,1fr)} .crmr{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"a c" "b c";gap:4px 8px;padding:10px 12px} .crmr>div:first-child{grid-area:a} .crmr>div:nth-child(2){grid-area:b} .crmr em{grid-area:c;align-self:center} .crmr::after{display:none} .crmsr{grid-template-columns:90px 1fr 44px 40px;gap:8px} }
 @media(max-width:820px){ .itsw{grid-template-columns:34px minmax(0,1fr) 34px;gap:5px} .itswb{height:56px;font-size:26px} .itswr{grid-template-columns:1fr 1fr;gap:6px 10px} .itswr b{font-size:15px} .itswc{padding:12px 11px 11px} .itswh{flex-wrap:wrap;gap:6px} .itswh b{font-size:17px;margin-right:4px} .itswc .halqa-w{width:88px!important;height:88px!important} .itswc .halqa-w svg{width:88px;height:88px} .itswc .halqa-m b{font-size:19px!important} .itoyb{gap:8px} }
 .itlp{padding:16px}.itlo{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
 .itlm{padding:10px 12px;border:1px solid var(--line);border-radius:11px;background:var(--bg2)}.itlm.joriy{border-color:var(--a-line);box-shadow:0 0 0 1px var(--a-line)}
@@ -1721,7 +1688,6 @@ var API_IT    = 'https://script.google.com/macros/s/AKfycbzesgvjxdcTipBeU5XEqziT
 var API_YORDAMCHI = 'https://script.google.com/macros/s/AKfycbxcOFm31P5bkI1V2higcUuXBkX2B8XYf7xDkRoSyhvVG4w_MSVkDwAetbf9rv74TIWj/exec';   // Yordamchi.gs — AI ёрдамчи (Claude)
 var API_YM    = 'https://script.google.com/macros/s/AKfycbzvPSlLoHVkRwdkAkSddunq_NjBnQbiWPvPjmCz9WkZPmoFLjLlLg75-W3hmjeUo7AJwA/exec';   // YashilMakon.gs — Яшил Макон сотуви
 var API_KALENDAR = 'https://script.google.com/macros/s/AKfycbxQthbfWQYVveesUtQP-pXk-k4fDP7vGcfHMqkVrOV72xHMyMppLtK-KXNJqs9u54exWg/exec';   // Kalendar.gs — Google Calendar (Битрикс24 синхрони билан)
-var API_CRM      = 'https://script.google.com/macros/s/AKfycbzIW--XV4Arxel8xQnSj1Fn3ieRRZvXXRjWE5zF0VcJTF4QJASrxtwSgp2v9TWBqH2LUQ/exec';   // Crm.gs — Битрикс24 кунлик назорат (вебхук фақат серверда)
 var API_TURON = 'https://script.google.com/macros/s/AKfycbzO6d494h72JqXKOpDmSmSLWP5x8Zpa_w03QnYSkO61DXPUJ21f9tRMuHPiIi7Os75QAg/exec';
 
 
@@ -2037,8 +2003,6 @@ var GURUH=[
     {p:'yashil_sotuv',    nom:'Сотув'},
     {p:'yashil_mark',     nom:'Маркетинг'},
     {p:'yashil_qurilish', nom:'Қурилиш', yoq:1}]},
-  {k:'crm', nom:'CRM', tur:'jonli', belgi:'битрикс24', yakka:1, ich:[
-    {p:'crm', nom:'CRM'}]},
   {k:'kalendar', nom:'Календар', tur:'jonli', belgi:'google', yakka:1, ich:[
     {p:'kalendar', nom:'Календар'}]}
 ];
@@ -2257,7 +2221,7 @@ async function yukla(jim){
            j.turonOq=D.turonOq; j.turonOqXato=D.turonOqXato; j.turonKurs=D.turonKurs; j.turonProfil=D.turonProfil;
            j.forum=D.forum; j.forumXato=D.forumXato; j.ind=D.ind; j.indXato=D.indXato;
            j.ym=D.ym; j.ymXato=D.ymXato; j.it=D.it; j.itXato=D.itXato;
-           j.kal=D.kal; j.kalXato=D.kalXato; j.crm=D.crm; j.crmXato=D.crmXato; j.yuk=D.yuk;
+           j.kal=D.kal; j.kalXato=D.kalXato; j.yuk=D.yuk;
            j.arx=D.arx;
            j.nazorat=D.nazorat; j.nazoratXato=D.nazoratXato }
     D=j; S.xato=null; S.eski=false; yangilandi('asosiy');
@@ -2280,7 +2244,6 @@ async function yukla(jim){
   if(ymMi())       ymYukla();
   if(itMi())       itYukla();
   if(kalMi())      kalYukla();
-  if(crmMi())      crmYukla();
   if(iiPanelMi())  aiYukla();
   if(potok())      arxYukla(potok());
   if(nazoratMi()) nazoratYukla();
@@ -2393,6 +2356,7 @@ function boshla(){
   var bor=null;
   try{ bor=JSON.parse(localStorage.getItem(XOT)||'null') }catch(e){}
   if(bor && !adminMi()){ delete bor.nazorat }
+  if(bor){ delete bor.crm; delete bor.crmXato }
   if(bor){ D=bor; if(D.marketing) kHolatTuzat(D.marketing); if(D.fMark) kHolatTuzat(D.fMark); if(D.uMark) kHolatTuzat(D.uMark); S.eski=true; chiz(); aloqa(true,''); }
   yukla(!!bor).then(eskirganYangila);
 }
@@ -4944,8 +4908,7 @@ var YO_YONAL=[
   {k:'ym',         re:/яшил|yashil|макон|makon|\bуй\b|\buy\b|хонадон|xonadon|квартир|kvartir|қурилиш|qurilish/i},
   {k:'yashil_mark',re:/уй\s*марк|uy\s*mark|яшил.*марк|yashil.*mark/i},
   {k:'it',         re:/\bит\b|\bit\b|услуг|uslug|дашбор|dashboard|сайт|sayt|\bбот\b|\bbot\b|\bcrm\b|срм/i},
-  {k:'kal',        re:/календар|kalendar|тадбир|tadbir|учрашув|uchrashuv|йиғилиш|yig.?ilish|мажлис|majlis|эртага|ertaga|бугун нима|bugun nima|жадвал|jadval|режа.?да/i},
-  {k:'crm',        re:/\bcrm\b|срм|битрикс|bitrix|қўнғироқ|qo.?ng.?iroq|звонок|суҳбат|suhbat|менежер|menejer|оламан|olaman|воронка|voronka|лид|lid\b|ишламаяпти|ishlamayapti|ким ишла/i}
+  {k:'kal',        re:/календар|kalendar|тадбир|tadbir|учрашув|uchrashuv|йиғилиш|yig.?ilish|мажлис|majlis|эртага|ertaga|бугун нима|bugun nima|жадвал|jadval|режа.?да/i}
 ];
 function yoKerakBolimlar(savol){
   var s=' '+String(savol||'')+' ', k=[];
@@ -5172,16 +5135,6 @@ function yoKontekst(){
     K.kalendar={bugun:kalKunlik(kb,kl).map(kt),ertaga:kalKunlik(ke,kl).map(kt),shuHaftaSoni:haftaSoni,
       keyingi7kun:(function(){ var a=[]; for(var i=2;i<9;i++){ var d=kalKunQosh(kb,i); kalKunlik(d,kl).forEach(function(t){ if(!t.xizmat && a.length<12) a.push({sana:d,vaqt:t.kun?'кун бўйи':kalSoat(t.boshi),nom:t.nom}) }) } return a })()};
   }
-  if(D.crm && D.crm.m){
-    // Фақат бугунги кун бўйича (қайси воронка бўлса ҳам)
-    var ck=Object.keys(D.crm.m).filter(function(k){ return k.split('|')[1]===kalBugun() })[0], cc=ck&&D.crm.m[ck];
-    if(cc) K.crm={voronka:cc.voronka.nom,sana:cc.sana,holatVaqti:(cc.vaqt||'').slice(11,16),qongiroq:cc.qongiroqlar.jami,suhbat:cc.qongiroqlar.suhbat,daqiqa:cc.qongiroqlar.daqiqa,
-      olaman:cc.olaman.length,sotuv:cc.olaman.filter(function(x){ return x.sotuv }).length,ochiqBitim:cc.ochiq.jami,stadiyaOtkazish:cc.otkazishlar,
-      menejerlar:cc.menejerlar.map(function(x){ return {nom:x.nom,qongiroq:x.qongiroq,suhbat:x.suhbat,ulush:x.ulush,daqiqa:x.daqiqa,olaman:x.olaman,ochiq:x.ochiq,ishlagan:x.ishlagan,faol:x.faol} }),
-      olamanDeganlar:cc.olaman.slice(0,10).map(function(x){ return {bitim:x.id,manba:x.manba,menejer:x.menejer,stadiya:x.stadiya,vaqt:x.vaqt} }),
-      ogoh:cc.ogoh.map(function(x){ return (x.d==='jiddiy'?'ЖИДДИЙ: ':'Диққат: ')+x.nom+' — '+x.matn }),
-      izoh:'суҳбат = '+cc.suhbatSoniya+' сониядан узун гаплашув; қўнғироқлар барча воронка бўйича'};
-  }
   var yuq=YUKLOVCHI.filter(function(y){ return y.yo!==false && (!y.admin||adminMi()) && yuklovchiUlangan(y) && y.bor && !y.bor() }).map(function(y){ return y.nom });
   if(yuq.length) K.yuklanmagan=yuq;
   var sg=yoSignallar(K); if(sg.length) K.signallar=sg;
@@ -5214,7 +5167,6 @@ function yoTez(keys,K){
     if(k==='ind'&&K.individual){ var i=K.individual; out.push('Индивидуал · '+fmt(i.fakt)+'/'+fmt(i.plan)+' ('+i.planFoiz+'%) · тўланган $'+fmt(i.tolangan)+' · қарз $'+fmt(i.qarz)+' ('+i.qarzdorlar+' киши)') }
     if(k==='ym'&&K.yashilMakon){ var y=K.yashilMakon; out.push('Яшил Макон · '+fmt(y.xonadon)+' хонадон · жами '+yoQisqaPul(y.jamiQiymat,'сўм')+' · тўланган '+y.tolanganFoiz+'% · қолдиқ '+yoQisqaPul(y.qoldiq,'сўм')) }
     if(k==='kal'&&K.kalendar){ var kk=K.kalendar; out.push('Календар · бугун '+kk.bugun.length+' та тадбир'+(kk.bugun.length?': '+kk.bugun.slice(0,3).map(function(t){ return t.vaqt+' '+t.nom }).join(' · '):'')+' · эртага '+kk.ertaga.length+' та') }
-    if(k==='crm'&&K.crm){ var cr=K.crm; out.push('CRM · '+cr.voronka+' · қўнғироқ '+fmt(cr.qongiroq)+' · суҳбат '+fmt(cr.suhbat)+' · «Оламан» '+fmt(cr.olaman)+(cr.ogoh.length?' · огоҳ '+fmt(cr.ogoh.length):' · ҳамма ишлаган')) }
     if(k==='it'&&K.itUsluga){ var jo=(K.itUsluga.oylar||[]).filter(function(o){ return o.joriy })[0]; if(jo) out.push('ИТ услуга · '+jo.oy+' $'+fmt(jo.fakt)+' / $'+fmt(K.itUsluga.planOylik)+' ('+jo.planFoiz+'%) · жами $'+fmt(K.itUsluga.jami)) }
   });
   var bor={}; return out.filter(function(s){ if(bor[s]) return false; bor[s]=1; return true }).slice(0,5);
@@ -5881,175 +5833,6 @@ function kalKunTanla(v,sah){
   else if(/^\d{4}-\d{2}-\d{2}$/.test(v)) kun=v;
   S.kalKun=kun; if(sah) S.sahifa=sah; chiz();
 }
-
-/* ══════════════════════════════════════════════════════
-   22. CRM — Битрикс24 кунлик назорат (Crm.gs)
-   Воронка · сана бўйича: менежерлар (қўнғироқ, суҳбат, стадия ўтказишлар, очиқ битимлар),
-   «Оламан» деганлар, ким ишламаяпти, қўнғироқ ёзувлари, воронка ҳолати.
-   ══════════════════════════════════════════════════════ */
-
-function crmMi(){ return S.prod==='crm' }
-function crmUlangan(){ return API_CRM.indexOf('BU_YERGA')<0 }
-function crmKalit(){ return (S.crmV||'')+'|'+(S.crmSana||kalBugun()) }
-function crmD(){ return D&&D.crm&&D.crm.m&&D.crm.m[crmKalit()] }
-
-async function crmYukla(majburiy){
-  if(!crmUlangan() || S.crmBand) return;
-  if(!D) return;
-  if(!D.crm) D.crm={m:{}};
-  var kalit=crmKalit();
-  if(D.crm.m[kalit] && !D.crmXato && !majburiy) return;
-  S.crmBand=true; belgi(true); chizL('crm');
-  try{
-    var u=API_CRM+'?amal=baza&t='+encodeURIComponent(AUTH.token)+'&sana='+encodeURIComponent(S.crmSana||kalBugun())+(S.crmV?'&v='+encodeURIComponent(S.crmV):'')+(S.yangi||majburiy?'&yangi=1':'');
-    var j=await bittaYukla(u);
-    if(!j || !j.menejerlar || !j.qongiroqlar || !j.voronka) throw new Error('Сервер CRM маълумотини қайтармади — API_CRM га Crm.gs ҳаволаси қўйилганми?');
-    if(!S.crmV && j.voronka) S.crmV=j.voronka.id;              // сервер танлаган воронка
-    D.crm.m[crmKalit()]=j; D.crm.voronkalar=j.voronkalar||D.crm.voronkalar||[]; D.crm.portal=j.portal||D.crm.portal;
-    // эски кэшни чеклаймиз (охирги 8 та)
-    var kl=Object.keys(D.crm.m); if(kl.length>8) delete D.crm.m[kl[0]];
-    D.crmXato=null; yangilandi('crm');
-  }catch(e){
-    D.crmXato=e.message;
-  }
-  S.crmBand=false; belgi(false); saqla(); chizL('crm');
-}
-
-function crmHolat(){
-  if(!crmUlangan())
-    return sarlavha('CRM','Ҳали уланмаган',mobilTugma())+
-      '<div class="empty"><b>API ҳаволаси қўйилмаган</b>Crm.gs ни деплой қилиб, ҳаволани HTML даги <b>API_CRM</b> га қўйинг.</div>';
-  if(D && D.crmXato && !crmD())
-    return sarlavha('CRM','Хатолик',mobilTugma())+crmBosh()+
-      '<div class="xato"><b>CRM серверига уланиб бўлмади</b>'+esc(D.crmXato)+
-      '<div style="margin-top:10px;font-size:12.5px">Apps Script: <b>Deploy → Все</b> қилинганми? crmSinov ишлаганми? Вебхукда crm · user · telephony рухсатлари борми?</div>'+
-      '<div style="margin-top:12px"><button class="btn btn-o" data-crmqayta="1">Қайта уриниш</button></div></div>';
-  if(!D || !crmD())
-    return sarlavha('CRM','Юкланмоқда…',mobilTugma())+crmBosh()+
-      '<div class="load"><div class="spin"></div>Битрикс24 дан маълумот йиғилмоқда — 10–40 сония (очиқ битимлар кўп бўлса узоқроқ)…</div>';
-  return null;
-}
-
-/* ── Воронка чиплари + сана навигацияси ── */
-function crmBosh(){
-  var vs=(D&&D.crm&&D.crm.voronkalar)||[], sana=S.crmSana||kalBugun(), bugun=kalBugun();
-  var d=kalD(sana);
-  return '<div class="crmnav">'+
-    '<div class="crmv">'+vs.map(function(v){ return '<button class="kalchip'+(v.id===S.crmV?' on':'')+'" data-crmv="'+esc(v.id)+'">'+esc(v.nom)+'</button>' }).join('')+'</div>'+
-    '<div class="kalnav" style="margin:0"><button class="btn" data-crmsana="prev" aria-label="Олдинги кун">‹</button><button class="btn" data-crmsana="bugun"'+(sana===bugun?' disabled':'')+'>Бугун</button>'+
-      '<button class="btn" data-crmsana="next"'+(sana>=bugun?' disabled':'')+' aria-label="Кейинги кун">›</button><b>'+esc(HAFTA_KUN[d.getDay()]+', '+kalKunMatn(sana,1)+' '+d.getFullYear())+'</b></div></div>';
-}
-function crmSanaTanla(v){
-  var s=S.crmSana||kalBugun();
-  if(v==='bugun') s=kalBugun(); else if(v==='prev') s=kalKunQosh(s,-1); else if(v==='next') s=kalKunQosh(s,1); else if(/^\d{4}-\d{2}-\d{2}$/.test(v)) s=v;
-  if(s>kalBugun()) s=kalBugun();
-  S.crmSana=s; S.crmOchiq=null; chiz(); crmYukla();
-}
-function crmVTanla(v){ S.crmV=v; S.crmOchiq=null; chiz(); crmYukla() }
-function crmBitimHavola(id){ return ((D.crm&&D.crm.portal)||'')+'/crm/deal/details/'+id+'/' }
-function crmDaq(s){ s=+s||0; return Math.floor(s/60)+':'+('0'+(s%60)).slice(-2) }
-
-/* ── НАЗОРАТ ── */
-function crmNazorat(){
-  var h=crmHolat(); if(h) return h;
-  var c=crmD(), q=(S.qidiruv||'').toLowerCase(), m=q?c.menejerlar.filter(function(x){ return x.nom.toLowerCase().indexOf(q)>=0 }):c.menejerlar, bugun=c.bugun;
-  var jiddiy=c.ogoh.filter(function(x){ return x.d==='jiddiy' }), ogohOchiq=0; c.ogoh.forEach(function(x){ ogohOchiq+=x.ochiq||0 });
-  var sotuv=c.olaman.filter(function(x){ return x.sotuv }).length;
-  var o=sarlavha('CRM · '+c.voronka.nom,'Битрикс24 кунлик назорат · ҳолат '+esc((c.vaqt||'').slice(11,16))+(bugun?' — кун ҳали тугамаган':'')+' · фақат ўқилди, Битрикс24 да ҳеч нарса ўзгартирилмади','<input type="text" id="qid" placeholder="Менежер бўйича қидириш" value="'+esc(S.qidiruv)+'" style="width:180px">'+mobilTugma());
-  o+=crmBosh();
-  if(c.tashxis&&c.tashxis.xato) o+='<div class="xato" style="margin-bottom:12px"><b>Баъзи блоклар юкланмади</b>'+c.tashxis.xato.map(esc).join('<br>')+'</div>';
-  if(c.tashxis&&c.tashxis.topilmadi) o+='<div class="fizoh" style="margin:0 0 12px"><div class="eb">Номи топилмаган ходимлар</div><p>ID '+esc(c.tashxis.topilmadi.join(', '))+' — Битрикс24 user.get уларни қайтармади (вебхук эгаси админ эмас ёки ходим экстранетда). Қўнғироқ/битимлари ҳисобда, фақат номи йўқ.</p></div>';
-
-  o+='<div class="mets">'+
-    '<div class="met"><div class="met-l">Қўнғироқ</div><div class="met-v num">'+fmt(c.qongiroqlar.jami)+'</div><div class="met-d">'+(c.qongiroqlar.voronkada?'шу воронка бўйича <b>'+fmt(c.qongiroqlar.voronkada)+'</b> · ':'')+fmt(c.qongiroqlar.daqiqa)+' дақиқа</div></div>'+
-    '<div class="met k"><div class="met-l">Суҳбат ('+c.suhbatSoniya+' с дан узун)</div><div class="met-v num">'+fmt(c.qongiroqlar.suhbat)+'</div><div class="met-d">қўнғироқларнинг '+kFoiz(c.qongiroqlar.jami?c.qongiroqlar.suhbat/c.qongiroqlar.jami*100:0)+'</div>'+
-      '<div class="mprog"><i style="width:'+(c.qongiroqlar.jami?Math.min(100,c.qongiroqlar.suhbat/c.qongiroqlar.jami*100):0)+'%;background:var(--ok)"></i></div></div>'+
-    '<div class="met o"><div class="met-l">«Оламан» деди</div><div class="met-v num">'+fmt(c.olaman.length)+'</div><div class="met-d">тўлов тури юборилди / интенсивга ёзилди'+(sotuv?' · <b style="color:var(--ok)">'+fmt(sotuv)+' сотув</b>':'')+'</div></div>'+
-    '<div class="met '+(jiddiy.length?'c':'')+'"><div class="met-l">Ишламаган менежер</div><div class="met-v num">'+fmt(c.ogoh.length)+'</div><div class="met-d">'+(c.ogoh.length?'жиддий '+fmt(jiddiy.length)+' · уларда '+fmt(ogohOchiq)+' та очиқ битим':'ҳамма ишлаган ✓')+'</div></div>'+
-  '</div>';
-
-  // Менежерлар жадвали — стадия устунлари: шу кун ўтказиш бўлган стадиялар (янги лиддан ташқари), 5 тагача
-  var stUst=c.stadiyalar.filter(function(s){ return s.otkazildi && s.tartib!==0 && !/янги|new|новый/i.test(s.nom) }).slice(0,5);
-  if(!stUst.length) stUst=c.stadiyalar.filter(function(s){ return s.olaman }).slice(0,3);
-  var engQ=Math.max.apply(null,m.map(function(x){ return x.qongiroq }).concat([1]));
-  o+='<div class="sec"><h2>Менежерлар бўйича</h2><p>Қўнғироқ · мижоз (ноёб рақам) · суҳбат · стадия ўтказишлар · очиқ битимлар. <span style="color:var(--no)">Қизил</span> — '+c.kamSuhbat+' тадан кам суҳбат</p></div>';
-  o+='<div class="tw"><div class="tscroll"><table class="tbl crmt"><thead><tr><th>Менежер</th><th style="text-align:right">Қўнғироқ</th><th style="text-align:right">Мижоз</th><th style="text-align:right">Суҳбат</th><th>Улуш</th><th style="text-align:right">Дақиқа</th>'+
-    stUst.map(function(s){ return '<th style="text-align:right" title="'+esc(s.nom)+'">'+esc(s.nom)+'</th>' }).join('')+
-    '<th style="text-align:right">Ишлар</th><th style="text-align:right">Очиқ</th></tr></thead><tbody>'+
-    m.map(function(x){
-      var qizil=x.ishlagan && x.suhbat<c.kamSuhbat, kls=!x.faol?'crmo':qizil?'crmq':'';
-      var kunFarq=(x.kirish&&!x.nomsiz)?Math.round((kalD(c.sana)-kalD(x.kirish.slice(0,10)))/864e5):null;
-      var belgi=!x.faol?'<em class="crmb o">ўчирилган</em>':(!x.ishlagan?'<em class="crmb o">ишламаган</em>':(kunFarq!=null&&kunFarq>=2?'<em class="crmb" title="охирги кириши '+esc(x.kirish)+'">'+kunFarq+' кун кирмаган</em>':''));
-      return '<tr class="'+kls+'"><td><b>'+esc(x.nom)+'</b>'+belgi+(x.lavozim?'<small>'+esc(x.lavozim)+'</small>':'')+'</td>'+
-        '<td class="num" style="text-align:right">'+fmt(x.qongiroq)+'</td><td class="num" style="text-align:right">'+fmt(x.mijoz)+'</td><td class="num" style="text-align:right;font-weight:600">'+fmt(x.suhbat)+'</td>'+
-        '<td><div class="crmbar"><i style="width:'+(x.ulush||0)+'%"></i><span class="num">'+(x.ulush==null?'—':x.ulush+'%')+'</span></div></td>'+
-        '<td class="num" style="text-align:right">'+fmt(x.daqiqa)+'</td>'+
-        stUst.map(function(s){ var v=x.stadiya[s.id]||0; return '<td class="num" style="text-align:right;'+(v?(s.olaman?'color:var(--ok);font-weight:700':''):'color:var(--muted)')+'">'+(v||'—')+'</td>' }).join('')+
-        '<td class="num" style="text-align:right">'+(x.ishlar||'—')+'</td><td class="num" style="text-align:right;color:'+(x.ochiq>=100?'var(--a)':'var(--ink2)')+'">'+fmt(x.ochiq)+'</td></tr>';
-    }).join('')+'</tbody></table></div></div>';
-  // телефон — карталар
-  o+='<div class="jfaqat"><div class="crmk">'+m.map(function(x){
-      var qizil=x.ishlagan && x.suhbat<c.kamSuhbat;
-      return '<div class="crmkc'+(!x.faol?' o':qizil?' q':'')+'"><div class="crmkh"><b>'+esc(x.nom)+'</b>'+(!x.faol?'<em class="crmb o">ўчирилган</em>':!x.ishlagan?'<em class="crmb o">ишламаган</em>':'')+'</div>'+
-        '<div class="crmkg"><div><em>Қўнғироқ</em><b class="num">'+fmt(x.qongiroq)+'</b></div><div><em>Суҳбат</em><b class="num">'+fmt(x.suhbat)+'</b></div><div><em>Улуш</em><b class="num">'+(x.ulush==null?'—':x.ulush+'%')+'</b></div><div><em>Дақиқа</em><b class="num">'+fmt(x.daqiqa)+'</b></div>'+
-          '<div><em>Оламан</em><b class="num" style="color:var(--ok)">'+fmt(x.olaman)+'</b></div><div><em>Ишлар</em><b class="num">'+fmt(x.ishlar)+'</b></div><div><em>Очиқ</em><b class="num">'+fmt(x.ochiq)+'</b></div></div></div>';
-    }).join('')+'</div></div>';
-
-  // Оламан деганлар
-  o+='<div class="sec"><h2>«Оламан» деганлар'+(bugun?' (бугун)':'')+'</h2><p>Тўлов тури юборилган ёки навбатдаги интенсивга ёзилган битимлар — Битрикс24 да очилади</p></div>';
-  if(!c.olaman.length) o+='<div class="kalbosh">Бу кунда бундай битим йўқ</div>';
-  else o+='<div class="panel" style="padding:4px 0"><div class="crml">'+c.olaman.map(function(x){
-      return '<a class="crmr" href="'+esc(x.havola)+'" target="_blank" rel="noopener"><div><b>№'+esc(x.id)+'</b><span>'+esc(x.manba||x.nom)+'</span></div><div><b>'+esc(x.menejer)+'</b><span>'+esc(x.stadiya)+(x.sotuv?' ✓':'')+'</span></div><em class="num">'+esc(x.vaqt)+(x.summa?'<small>'+fmt(x.summa)+'</small>':'')+'</em></a>';
-    }).join('')+'</div></div>';
-
-  // Ким ишламаяпти
-  o+='<div class="sec"><h2>Ким ишламаяпти</h2><p>Очиқ битими бор, лекин қўнғироқ ҳам, иш ҳам йўқ</p></div>';
-  if(!c.ogoh.length) o+='<div class="kalbosh">Огоҳлантириш йўқ — ҳамма ишлаган ✓</div>';
-  else o+='<div class="crmog">'+c.ogoh.map(function(x){ return '<div class="crmo-r '+x.d+'"><em>'+(x.d==='jiddiy'?'жиддий':'диққат')+'</em><div><b>'+esc(x.nom)+'</b> '+esc(x.matn)+'</div></div>' }).join('')+'</div>';
-
-  o+='<div class="fizoh" style="margin-top:16px"><div class="eb">Тушунчалар</div><p>«Суҳбат» — мижоз кўтарган ва гаплашув '+c.suhbatSoniya+' сониядан узун. «Мижоз» — ноёб телефон рақами. Стадия устунлари — шу куни ўша стадияга ўтказилган битимлар сони. «Ишлар» — Битрикс24 да шу куни яратилган ишлар (қўнғироқ, учрашув, вазифа). «Очиқ» — воронкада ёпилмаган битимлар. Қўнғироқлар ҳамма воронка бўйича, қолгани танланган воронка бўйича.'+(c.ochiq.vaqt?' Очиқ битимлар кесими ҳар 30 дақиқада янгиланади (ҳолат '+esc(c.ochiq.vaqt.slice(11,16))+').':'')+(c.ochiq.kesildi?' ⚠ Очиқ битимлар жуда кўп — рўйхат чекланди.':'')+'</p></div>';
-  return o;
-}
-
-/* ── ВОРОНКА ── */
-function crmVoronka(){
-  var h=crmHolat(); if(h) return h;
-  var c=crmD(), st=c.stadiyalar.filter(function(s){ return s.sem==='P' }), eng=Math.max.apply(null,st.map(function(s){ return s.ochiq }).concat([1]));
-  var o=sarlavha('CRM · '+c.voronka.nom+' — воронка','Очиқ битимлар стадиялар бўйича'+(c.ochiq.vaqt?' (ҳолат '+esc(c.ochiq.vaqt.slice(11,16))+', 30 дақ кэш)':'')+' · шу куни ўтказишлар',mobilTugma())+crmBosh();
-  o+='<div class="mets">'+
-    '<div class="met o"><div class="met-l">Очиқ битимлар</div><div class="met-v num">'+fmt(c.ochiq.jami)+'</div><div class="met-d">'+fmt(st.length)+' та стадияда</div></div>'+
-    '<div class="met"><div class="met-l">Стадия ўтказишлар</div><div class="met-v num">'+fmt(c.otkazishlar)+'</div><div class="met-d">шу куни</div></div>'+
-    '<div class="met k"><div class="met-l">«Оламан»</div><div class="met-v num">'+fmt(c.olaman.length)+'</div><div class="met-d">тўлов тури / интенсив</div></div>'+
-    '<div class="met"><div class="met-l">Ишлар</div><div class="met-v num">'+fmt(c.ishlar)+'</div><div class="met-d">шу куни яратилган</div></div></div>';
-  o+='<div class="sec"><h2>Стадиялар</h2><p>Чап — очиқ битимлар сони, ўнг — шу куни шу стадияга ўтказилганлар</p></div>'+
-    '<div class="panel"><div class="crmst">'+st.map(function(s){ return '<div class="crmsr'+(s.olaman?' ol':'')+'"><em>'+esc(s.nom)+'</em><div class="crmsb"><i style="width:'+Math.max(2,s.ochiq/eng*100)+'%"></i></div><b class="num">'+fmt(s.ochiq)+'</b><span class="num">'+(s.otkazildi?'+'+fmt(s.otkazildi):'—')+'</span></div>' }).join('')+'</div></div>';
-  var mo=c.menejerlar.filter(function(x){ return x.ochiq }).sort(function(a,b){ return b.ochiq-a.ochiq });
-  o+='<div class="sec"><h2>Очиқ битимлар — менежерлар бўйича</h2><p>Ким номида қанча лид турибди</p></div>'+
-    '<div class="panel">'+ustunlar(mo.map(function(x){ return {nom:x.nom+(x.faol?'':' (ўчирилган)'),qiy:x.ochiq,ong:(x.ishlagan?'':'ишламаган')} }))+'</div>';
-  return o;
-}
-
-/* ── ҚЎНҒИРОҚЛАР ── */
-function crmQongiroqlar(){
-  var h=crmHolat(); if(h) return h;
-  var c=crmD(), q=c.qongiroqlar, m=c.menejerlar.filter(function(x){ return x.qongiroq }).sort(function(a,b){ return b.qongiroq-a.qongiroq });
-  var o=sarlavha('CRM · Қўнғироқлар','Битрикс24 телефонияси · '+esc(kalKunMatn(c.sana)),mobilTugma())+crmBosh();
-  o+='<div class="mets">'+
-    '<div class="met"><div class="met-l">Қўнғироқ</div><div class="met-v num">'+fmt(q.jami)+'</div><div class="met-d">'+fmt(m.length)+' та менежер</div></div>'+
-    '<div class="met k"><div class="met-l">Суҳбат</div><div class="met-v num">'+fmt(q.suhbat)+'</div><div class="met-d">'+kFoiz(q.jami?q.suhbat/q.jami*100:0)+' · '+c.suhbatSoniya+' с дан узун</div></div>'+
-    '<div class="met o"><div class="met-l">Гаплашилган</div><div class="met-v num">'+fmt(q.daqiqa)+' дақ</div><div class="met-d">'+(q.suhbat?'ўртача суҳбат '+crmDaq(Math.round(q.daqiqa*60/q.suhbat)):'')+'</div></div>'+
-    '<div class="met"><div class="met-l">Ёзувлар</div><div class="met-v num">'+fmt(q.yozuvlar.length)+'</div><div class="met-d">энг узун суҳбатлар (2 дақ дан)</div></div></div>';
-  o+='<div class="sec"><h2>Энг узун суҳбатлар</h2><p>Битрикс24 да битим картасидан эшитиш мумкин · «Тинглаш» — ёзув ҳаволаси (Битрикс24 га кирган бўлиш керак)</p></div>';
-  if(!q.yozuvlar.length) o+='<div class="kalbosh">Бу кунда 2 дақиқадан узун суҳбат йўқ</div>';
-  else o+='<div class="tw"><div class="tscroll"><table class="tbl"><thead><tr><th>Битим</th><th>Менежер</th><th>Вақт</th><th>Телефон</th><th style="text-align:right">Давомийлиги</th><th></th></tr></thead><tbody>'+
-    q.yozuvlar.map(function(y){ return '<tr><td>'+(y.havola?'<a href="'+esc(y.havola)+'" target="_blank" rel="noopener" class="crmhav">№'+esc(y.bitim)+'</a>':'<span style="color:var(--muted)">'+esc(y.tur||'—')+'</span>')+'</td><td><b>'+esc(y.menejer)+'</b></td><td class="num" style="color:var(--muted)">'+esc(y.vaqt)+'</td><td class="num" style="color:var(--muted)">'+esc(y.tel||'—')+'</td><td class="num" style="text-align:right;font-weight:600">'+crmDaq(y.soniya)+'</td><td>'+(y.yozuv?'<a class="btn btn-o" style="padding:3px 9px;font-size:11.5px" href="'+esc(y.yozuv)+'" target="_blank" rel="noopener">▶ Тинглаш</a>':'')+'</td></tr>' }).join('')+
-    '</tbody></table></div></div>'+
-    '<div class="jfaqat"><div class="tal">'+q.yozuvlar.map(function(y){ return '<div class="tar"><div><b>'+esc(y.menejer)+'</b><span>'+(y.bitim?'№'+esc(y.bitim)+' · ':'')+esc(y.vaqt)+(y.yozuv?' · <a href="'+esc(y.yozuv)+'" target="_blank" rel="noopener" class="crmhav">тинглаш</a>':'')+'</span></div><em class="num">'+crmDaq(y.soniya)+'</em></div>' }).join('')+'</div></div>';
-  o+='<div class="sec"><h2>Менежерлар бўйича</h2><p>Қўнғироқ сони · суҳбат улуши</p></div>'+
-    '<div class="panel">'+ustunlar(m.map(function(x){ return {nom:x.nom,qiy:x.qongiroq,ong:fmt(x.suhbat)+' суҳбат · '+(x.ulush==null?'—':x.ulush+'%')} }))+'</div>';
-  return o;
-}
-
 
 /* ══════════════════════════════════════════════════════
    18. ЯШИЛ МАКОН — СОТУВ (уй-жой)
@@ -8079,7 +7862,6 @@ function aiJurnal(){
 
 
 function menyu(){
-  if(crmMi()){ var cd=crmD(), co=cd?cd.ogoh.length:undefined, cq=cd?cd.qongiroqlar.jami:undefined; return [{p:'umumiy', nom:'Назорат', ik:'ogoh', son:co},{p:'kesim', nom:'Воронка', ik:'voronka'},{p:'jurnal', nom:'Қўнғироқлар', ik:'tel', son:cq}] }
   if(kalMi()){ var kb=(D&&D.kal)?kalKunlik(kalBugun(),kalRoyxat()).length:undefined; return [{p:'umumiy', nom:'Ҳафта', ik:'kalendar', son:kb},{p:'kesim', nom:'Ой', ik:'jadval'},{p:'jurnal', nom:'Рўйхат', ik:'chart'}] }
   if(itMi()){ var il=(D&&D.it)?itLits().length:undefined; return [{p:'umumiy', nom:'Умумий', ik:'chart'},{p:'kesim', nom:'Лицензия', ik:'kalit', son:il}] }
   if(panelMi() || rbcPanelMi() || iiPanelMi() || yoqMi() || arxPanelMi() || (potok() && arxHolat())) return [{p:'umumiy', nom:'Умумий', ik:'chart'}];
@@ -8199,8 +7981,6 @@ function chiz(){
     ? ( S.sahifa==='kesim' ? itLitsenziya() : itUmumiy() )
     : kalMi()
     ? ( S.sahifa==='kesim' ? kalOy() : S.sahifa==='jurnal' ? kalRoyxatSahifa() : kalHafta() )
-    : crmMi()
-    ? ( S.sahifa==='kesim' ? crmVoronka() : S.sahifa==='jurnal' ? crmQongiroqlar() : crmNazorat() )
     : ymMi()
     ? ( S.sahifa==='jurnal'  ? ymSotuvlar() :
         S.sahifa==='menejer' ? ymXarita()   :
@@ -8285,7 +8065,6 @@ function produktOch(p){
   if(p==='yashil_sotuv') ymYukla();
   if(p==='it') itYukla();
   if(p==='kalendar') kalYukla();
-  if(p==='crm') crmYukla();
   if(p==='individual') indYukla();
   if(potok()) arxYukla(potok());
   if(p==='ii_panel') aiYukla();
@@ -8445,9 +8224,6 @@ main.addEventListener('click',async function(e){
   if((t=e.target.closest('[data-kalkun]'))){ kalKunTanla(t.dataset.kalkun,t.dataset.kalsah); return }
   if((t=e.target.closest('[data-kalk]'))){ if(!S.kalYashir) S.kalYashir={}; var kn=t.dataset.kalk; if(S.kalYashir[kn]) delete S.kalYashir[kn]; else S.kalYashir[kn]=1; chiz(); return }
   if(e.target.closest('[data-kalx]')){ S.kalXizmat=!S.kalXizmat; chiz(); return }
-  if((t=e.target.closest('[data-crmv]'))){ crmVTanla(t.dataset.crmv); return }
-  if((t=e.target.closest('[data-crmsana]'))){ crmSanaTanla(t.dataset.crmsana); return }
-  if(e.target.closest('[data-crmqayta]')){ D.crmXato=null; crmYukla(true); return }
   if((t=e.target.closest('[data-itoyl]'))){ itOyTanla(t.dataset.itoyl,true); return }
   if(e.target.closest('[data-yop]')){ S.ochiq=null; chiz(); return }
   if((t=e.target.closest('[data-men]'))||(t=e.target.closest('[data-kes]'))){
@@ -8510,8 +8286,6 @@ var YUKLOVCHI=[
      kerak:function(){ return itMi() }, xato:function(){ return D&&D.itXato }},
   {k:'kal',        nom:'Календар',              f:function(){ return kalYukla(true) }, bor:function(){ return !!(D&&D.kal) },
      kerak:function(){ return kalMi() }, xato:function(){ return D&&D.kalXato }},
-  {k:'crm',        nom:'CRM (Битрикс24)',       f:function(){ return crmYukla(true) }, bor:function(){ return !!crmD() },
-     kerak:function(){ return crmMi() }, xato:function(){ return D&&D.crmXato }},
   {k:'arx14',      nom:'RBA — 14 архив',        f:function(){ return arxYukla('14',true) }, yo:false,
      kerak:function(){ return potok()==='14' }, xato:function(){ return D&&D.arx&&D.arx['14']&&D.arx['14'].xato }},
   {k:'arx13',      nom:'RBA — 13 архив',        f:function(){ return arxYukla('13',true) }, yo:false,
@@ -8532,7 +8306,6 @@ function yuklovchiUlangan(y){
   if(y.k==='ym') return ymUlangan();
   if(y.k==='it') return itUlangan();
   if(y.k==='kal') return kalUlangan();
-  if(y.k==='crm') return crmUlangan();
   if(y.k==='arx14'||y.k==='arx13') return arxUlangan();
   if(y.k==='nazorat') return adminMi() && kirishUlangan();
   return true;
