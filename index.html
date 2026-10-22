@@ -2032,7 +2032,7 @@ async function arxYukla(pt,majburiy){
       konversiya:j.konversiya||[],
       tadbirlar: j.tadbirlar||[],
       vaqt:      j.vaqt||'', xato:null
-    };
+    }; yangilandi('arx'+pt);
   }catch(e){
     D.arx[pt]=D.arx[pt]||{};
     D.arx[pt].xato=e.message;
@@ -2186,10 +2186,10 @@ async function yukla(jim){
            j.turonOq=D.turonOq; j.turonOqXato=D.turonOqXato; j.turonKurs=D.turonKurs;
            j.forum=D.forum; j.forumXato=D.forumXato; j.ind=D.ind; j.indXato=D.indXato;
            j.ym=D.ym; j.ymXato=D.ymXato; j.it=D.it; j.itXato=D.itXato;
-           j.kal=D.kal; j.kalXato=D.kalXato; j.crm=D.crm; j.crmXato=D.crmXato;
+           j.kal=D.kal; j.kalXato=D.kalXato; j.crm=D.crm; j.crmXato=D.crmXato; j.yuk=D.yuk;
            j.arx=D.arx;
            j.nazorat=D.nazorat; j.nazoratXato=D.nazoratXato }
-    D=j; S.xato=null; S.eski=false;
+    D=j; S.xato=null; S.eski=false; yangilandi('asosiy');
     aloqa(true,D.vaqt);
     saqla();
   }catch(e){
@@ -2226,7 +2226,7 @@ async function aiYukla(majburiy){
     D.ai=j.sotuvP ? paketOch(j.sotuvP) : (j.sotuv||[]);
     D.aiReja=Array.isArray(j.reja)?j.reja:[];
     D.aiVersiya=j.versiya||null;
-    D.aiXato=null;
+    D.aiXato=null; yangilandi('ai');
   }catch(e){
     D.aiXato=e.message;
     D.ai=D.ai||[];
@@ -2246,7 +2246,7 @@ async function markYukla(majburiy,kod){
     D.marketing=kHolatTuzat(j.lidlarP ? paketOch(j.lidlarP) : (j.lidlar||[]));
     D.markTashxis=j.tashxis||null;
     D.markVersiya=j.versiya||null;
-    D.markXato=null;
+    D.markXato=null; yangilandi('marketing');
   }catch(e){
     D.markXato=e.message;
     D.marketing=D.marketing||[];
@@ -2269,7 +2269,7 @@ async function fMarkYukla(majburiy,kod){
       throw new Error('Marketing.gs эски версия — «'+v.nom+'» варағини ўқимаяпти (v3.1 керак)');
     D[v.d]=kHolatTuzat(j.lidlarP ? paketOch(j.lidlarP) : (j.lidlar||[]));
     D[v.d+'Tashxis']=j.tashxis||null;
-    D[v.d+'Xato']=null;
+    D[v.d+'Xato']=null; yangilandi(kod);
   }catch(e){
     D[v.d+'Xato']=e.message;
   }
@@ -2287,7 +2287,7 @@ async function moliyaYukla(majburiy){
     D.moliya=j.moliyaP ? paketOch(j.moliyaP) : (j.moliya||[]);
     D.moliyaTashxis=j.tashxis||null;
     D.moliyaVersiya=j.versiya||null;
-    D.moliyaXato=null;
+    D.moliyaXato=null; yangilandi('moliya');
   }catch(e){
     D.moliyaXato=e.message;
     D.moliya=D.moliya||[];
@@ -2298,6 +2298,18 @@ async function moliyaYukla(majburiy){
 function saqla(){
   try{ localStorage.setItem(XOT,JSON.stringify(D)) }catch(e){}
 }
+/** Бўлим муваффақиятли юкланган вақти (D.yuk[k]) — эскирганини аниқлаш учун */
+function yangilandi(k){ if(!D) return; if(!D.yuk) D.yuk={}; D.yuk[k]=Date.now() }
+var ESKIRISH=10*60*1000;   // 10 дақиқа: бўлим очилганда (ёки ойнага қайтилганда) маълумот шундан эски бўлса — фонда янгиланади
+function eskirganYangila(){
+  if(!D || S.yangilanmoqda) return;
+  YUKLOVCHI.forEach(function(y){
+    if((y.admin&&!adminMi()) || !yuklovchiUlangan(y) || !y.kerak() || !y.bor || !y.bor()) return;
+    var t=(D.yuk&&D.yuk[y.k])||0;
+    if(Date.now()-t>ESKIRISH){ yangilandi(y.k); Promise.resolve().then(y.f).catch(function(){}) }   // вақтни олдиндан қўямиз — қайта-қайта чақирилмасин
+  });
+}
+document.addEventListener('visibilitychange',function(){ if(!document.hidden) eskirganYangila() });
 
 function belgi(on){ document.getElementById('yukIndikator').style.display=on?'':'none' }
 
@@ -2311,7 +2323,7 @@ function boshla(){
   try{ bor=JSON.parse(localStorage.getItem(XOT)||'null') }catch(e){}
   if(bor && !adminMi()){ delete bor.nazorat }
   if(bor){ D=bor; if(D.marketing) kHolatTuzat(D.marketing); if(D.fMark) kHolatTuzat(D.fMark); if(D.uMark) kHolatTuzat(D.uMark); S.eski=true; chiz(); aloqa(true,''); }
-  yukla(!!bor);
+  yukla(!!bor).then(eskirganYangila);
 }
 
 
@@ -4458,7 +4470,7 @@ async function turonYukla(majburiy){
     D.turonOqXato=j.oquvchiXato||null;
     D.turonKurs=j.kurs||null;
     D.turonVersiya=j.versiya||null;
-    D.turonXato=null;
+    D.turonXato=null; yangilandi('turon');
   }catch(e){
     D.turonXato=e.message;
     D.turon=D.turon||[];
@@ -5337,7 +5349,7 @@ async function itYukla(majburiy){
     D.it={tushum:(j.tushum||[]).map(function(x){ x.tolangan=x.summa||0; x.kelishuv=x.summa||0; x.qarz=0; x.kishi=1; return x }),
           plan:+j.plan||5000, planOylar:j.planOylar||null, planLits:+j.planLits||null, valyuta:j.valyuta||'$', turlar:j.turlar||[], versiya:j.versiya||null, vaqt:j.vaqt||null, tashxis:j.tashxis||null};
     itToza();
-    D.itXato=null;
+    D.itXato=null; yangilandi('it');
   }catch(e){
     D.itXato=e.message;
   }
@@ -5601,7 +5613,7 @@ async function kalYukla(majburiy){
     var j=await bittaYukla(API_KALENDAR+'?amal=baza&t='+encodeURIComponent(AUTH.token)+(S.yangi?'&yangi=1':''));
     D.kal={tadbirlar:j.tadbirlar||[], kalendarlar:j.kalendarlar||[], bugun:j.bugun||null, dan:j.dan||null, gacha:j.gacha||null,
            vaqt:j.vaqt||null, versiya:j.versiya||null, tashxis:j.tashxis||null};
-    D.kalXato=null;
+    D.kalXato=null; yangilandi('kal');
   }catch(e){
     D.kalXato=e.message;
   }
@@ -5825,7 +5837,7 @@ async function crmYukla(majburiy){
     D.crm.m[crmKalit()]=j; D.crm.voronkalar=j.voronkalar||D.crm.voronkalar||[]; D.crm.portal=j.portal||D.crm.portal;
     // эски кэшни чеклаймиз (охирги 8 та)
     var kl=Object.keys(D.crm.m); if(kl.length>8) delete D.crm.m[kl[0]];
-    D.crmXato=null;
+    D.crmXato=null; yangilandi('crm');
   }catch(e){
     D.crmXato=e.message;
   }
@@ -5989,7 +6001,7 @@ async function ymYukla(majburiy){
       x.kishi=x.soni||1; x.tolangan=x.tolagan||0; x.kelishuv=x.jami||0; x.qarz=x.qoldiq||0; return x;
     });
     D.ym={sotuv:l, info:j.info||null, valyuta:j.valyuta||'сўм', kurs:j.kurs||null, versiya:j.versiya||null};
-    D.ymXato=null;
+    D.ymXato=null; yangilandi('ym');
   }catch(e){
     D.ymXato=e.message;
   }
@@ -6504,7 +6516,7 @@ async function indYukla(majburiy){
     var j=await bittaYukla(API_IND+'?amal=baza&t='+encodeURIComponent(AUTH.token)+(S.yangi?'&yangi=1':''));
     D.ind={oquvchi:(j.oquvchi||[]).map(function(x,i){ x.id='i'+(x.q||i); x.havola=x.havola||[]; return x }),
            valyuta:j.valyuta||'$', versiya:j.versiya||null, vaqt:j.vaqt||null};
-    D.indXato=null;
+    D.indXato=null; yangilandi('ind');
   }catch(e){
     D.indXato=e.message;
   }
@@ -6744,7 +6756,7 @@ async function forumYukla(majburiy){
     var kelib=(j.kelib||[]).map(function(x){ x.tolangan=0; x.kelishuv=0; x.qarz=0; x.kishi=1; return x });
     D.forum={bilet:bilet, mehmon:mehmon, kelib:kelib, plan:j.plan||null,
              valyuta:j.valyuta||'$', kurs:j.kurs||null, versiya:j.versiya||null, vaqt:j.vaqt||null};
-    D.forumXato=null;
+    D.forumXato=null; yangilandi('forum');
   }catch(e){
     D.forumXato=e.message;
   }
@@ -7611,7 +7623,7 @@ async function nazoratYukla(majburiy){
   try{
     var j=await kirPost({amal:'jurnal',t:AUTH.token});
     if(!j.ok) throw new Error(j.xato||'Хатолик');
-    if(D){ D.nazorat=j; D.nazoratXato=null }
+    if(D){ D.nazorat=j; D.nazoratXato=null; yangilandi('nazorat') }
   }catch(e){
     if(D) D.nazoratXato=e.message;
   }
@@ -8242,6 +8254,7 @@ function produktOch(p){
   S.tDav=null; S.tVil=null; S.oqId=null;
   S.dan=null; S.gacha=null;
   chiz(); tepaga();
+  eskirganYangila();
 }
 
 var navlar=document.querySelectorAll('.ni[data-p]');
