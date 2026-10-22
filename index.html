@@ -1458,9 +1458,39 @@ body.yoOch .yo{display:flex;animation:yoKir .22s ease}
 .oqvn>span,.oqvr>span{font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600}
 .oqvn p,.oqvr p{margin:5px 0 0;font-size:13px;line-height:1.5;color:var(--ink2);white-space:pre-wrap}
 .oqvr{border-color:var(--ok-line);background:var(--ok-dim)}
+.oqvr.bosh{border-color:var(--line);background:var(--bg2)}
+.oqvg{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.oqis{grid-template-columns:repeat(3,1fr)}
+.oqis b{font-size:15px;line-height:1.3;overflow-wrap:anywhere}
+@media(max-width:820px){ .oqvg{grid-template-columns:1fr} .oqis{grid-template-columns:1fr 1fr} }
 .oqvm{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:12px;color:var(--muted)}
 .oqvm b{color:var(--ink2);font-weight:600}
 .oqyoq{color:var(--muted)!important;font-style:italic;font-weight:400}
+/* Муаммо картаси — йиғилувчи */
+.oqvk{padding:0;gap:0;overflow:hidden}
+.oqvh{width:100%;text-align:left;background:none;border:none;font-family:inherit;color:inherit;cursor:pointer;padding:13px 15px 13px 17px;align-items:center}
+.oqvh:hover{background:var(--hover)}
+.oqvk:not(.och) .oqvx{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;white-space:normal}
+.oqvp{display:flex;align-items:center;gap:6px;flex-shrink:0}
+.oqvp i{font-style:normal;font-size:10.5px;letter-spacing:.04em;padding:2px 8px;border-radius:999px;border:1px solid var(--line);color:var(--muted);background:var(--bg2);white-space:nowrap}
+.oqvp i.ha{border-color:var(--ok-line);background:var(--ok-dim);color:var(--ok)}.oqvp i.yoq{opacity:.7}
+.oqvp b{font-size:17px;font-weight:700;color:var(--c);margin-left:4px}
+.oqvc{width:26px;height:26px;border-radius:8px;display:grid;place-items:center;border:1px solid var(--line);background:var(--card);color:var(--muted);transition:transform .25s,color .2s;flex-shrink:0;margin-left:4px}
+.oqvc svg{width:14px;height:14px}.oqvk.och .oqvc{transform:rotate(180deg);color:var(--ink)}
+.oqvb{display:none;flex-direction:column;gap:11px;padding:0 17px 15px 17px;border-top:1px solid var(--line);padding-top:12px;animation:kir .3s cubic-bezier(.22,1,.36,1) both}
+.oqvk.och .oqvb{display:flex}
+.oqvt{font-size:12.5px;color:var(--muted);margin:0 0 2px}
+.oqvl{margin:6px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:6px}
+.oqvl li{display:grid;grid-template-columns:20px 1fr;gap:7px;font-size:13px;line-height:1.5;color:var(--ink2);white-space:pre-wrap}
+.oqvl li em{font-style:normal;font-size:10.5px;font-weight:700;color:var(--c);background:var(--card);border:1px solid var(--line);border-radius:6px;width:20px;height:20px;display:grid;place-items:center;margin-top:1px}
+.oqvx .oqvl{margin-top:4px}.oqvx .oqvl li{color:var(--ink);font-weight:500}
+.oqvj{display:flex;flex-direction:column;gap:8px}
+.oqvjh,.oqvjr{display:grid;grid-template-columns:24px 1fr 1fr;gap:8px;align-items:stretch}
+.oqvjh span{font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600;padding:0 12px}
+.oqvjr em{font-style:normal;font-size:11px;font-weight:700;color:var(--c);background:var(--bg2);border:1px solid var(--line);border-radius:7px;display:grid;place-items:center;align-self:start;height:24px}
+.oqvjr .oqvn,.oqvjr .oqvr{padding:8px 12px}.oqvjr p{margin:0!important}
+.oqvs{display:flex;gap:8px;align-items:center;margin:-6px 0 12px;flex-wrap:wrap}.oqvs .btn{padding:6px 12px;font-size:12px}
+@media(max-width:820px){ .oqvh{padding:12px 12px 12px 14px;gap:8px} .oqvp i{display:none} .oqvb{padding:12px 12px 13px 14px} .oqvjh{display:none} .oqvjr{grid-template-columns:20px 1fr} .oqvjr .oqvr{grid-column:2} .oqvjr em{height:20px} .oqvjr .oqvn::before,.oqvjr .oqvr::before{display:block;font-size:9.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600;margin-bottom:2px} .oqvjr .oqvn::before{content:"ижро"} .oqvjr .oqvr::before{content:"натижа"} }
 @media(max-width:820px){ .oqis{grid-template-columns:1fr 1fr} .oqi{padding:16px} .oqg{grid-template-columns:1fr} }
 
 /* ═══ ЧАП ПАНЕЛ: ГУРУҲЛАР ═══ */
@@ -7032,7 +7062,7 @@ function tOquvchilar(){
     // Учрашув саналари (такрорсиз)
     var sn={}; o.qator.forEach(function(x){ if(x.sana) sn[x.sana]=1 });
     o.sanalar=Object.keys(sn).sort();
-    // Вазифалар: бирлаштирилган катак туфайли такрорланган қаторларни битта қиламиз
+    // Муаммолар: бирлаштирилган катак туфайли такрорланган қаторларни битта қиламиз
     var vz={}, vt=[];
     o.qator.forEach(function(x){
       var kk=[x.xohish,x.nima,x.masul,x.muddat,x.holat,x.natija].join('¦');
@@ -7040,15 +7070,72 @@ function tOquvchilar(){
       if(x.sana && vz[kk].sanalar.indexOf(x.sana)<0) vz[kk].sanalar.push(x.sana);
     });
     o.vazifa=vt.map(function(kk){ return vz[kk] });
+    // Ичи бўш қаторлар (муаммо ҳам, ижро ҳам, натижа ҳам йўқ) — бошқа қатор бўлса кўрсатилмайди
+    var tola=o.vazifa.filter(function(v){ return v.xohish || v.nima || v.natija });
+    if(tola.length) o.vazifa=tola;
+    o.haqida=''; o.qator.forEach(function(x){ if(!o.haqida && x.haqida) o.haqida=x.haqida });
+    // Масъул / муддат / ҳолат одатда бутун аъзога битта (бирлаштирилган катак).
+    // Ҳамма муаммода бир хил бўлса — аъзо даражасида бир марта кўрсатилади.
+    function birxil(k){ var a=o.vazifa.map(function(v){ return v[k]==null?'':String(v[k]) }); return a.every(function(z){ return z===a[0] }) }
+    o.umumiy={masul:birxil('masul'), muddat:birxil('muddat'), holat:birxil('holat')};
+    var ms={}; o.vazifa.forEach(function(v){ if(v.masul) ms[v.masul]=1 });
+    o.masul=Object.keys(ms).join(', ');
     var fs=o.vazifa.filter(function(v){ return v.holat!=null }).map(function(v){ return v.holat });
     o.foiz=fs.length?fs.reduce(function(a,b){ return a+b },0)/fs.length:null;
     var md=o.vazifa.map(function(v){ return v.muddat }).filter(Boolean).sort();
     o.muddat=md[0]||'';
-    o.otgan=o.vazifa.filter(function(v){ var d=tKunFarq(v.muddat); return d!=null && d<0 && (v.holat||0)<100 }).length;
+    var otg=o.vazifa.filter(function(v){ var d=tKunFarq(v.muddat); return d!=null && d<0 && (v.holat||0)<100 }).length;
+    o.otgan=o.umumiy.muddat ? (otg?1:0) : otg;
     o.azo=tAzoTop(o.nom);
-    o.toldirilmagan=o.vazifa.filter(function(v){ return !v.xohish || !v.nima }).length;
+    o.bandlar=tBandlar(o.vazifa);
+    o.muammo=o.bandlar.filter(function(v){ return v.xohish }).length;
+    o.ijro=o.bandlar.filter(function(v){ return v.xohish && v.nima }).length;
+    o.natija=o.bandlar.filter(function(v){ return v.xohish && v.natija }).length;
+    o.toldirilmagan=o.muammo-o.ijro;
     return o;
   });
+}
+
+/** «1) … 2) … 3) …» ёки «1. … 2. …» кўринишидаги матнни бандларга ажратади.
+ *  Рақамлар кетма-кет (1,2,3…) бўлиши шарт — саналар (11.09.2026) ва тасодифий рақамлар ажратилмайди.
+ *  → {kirish: 1) дан олдинги матн, b:[банд…]} ёки null (2 тадан кам банд бўлса) */
+function tBandla(t){
+  t=String(t||'').trim(); if(!t) return null;
+  var re=/(^|[\s;,:])(\d{1,2})\s*(?:\)|\.(?=\s*(?:[^\d\s)]|$)))/g, m, pos=[], kut=1;   // «1)» — ҳар доим; «1.» — кейин рақам келмаса (11.09.2026 эмас)
+  while((m=re.exec(t))){ var n=+m[2]; if(n===kut){ pos.push({i:m.index+m[1].length, end:m.index+m[0].length}); kut++ } }
+  if(pos.length<2) return null;
+  var b=[]; for(var i=0;i<pos.length;i++){ var q=t.slice(pos[i].end, i+1<pos.length?pos[i+1].i:undefined).trim(); b.push(q) }
+  if(b.filter(Boolean).length<2) return null;
+  return {kirish:t.slice(0,pos[0].i).trim(), b:b};
+}
+/** Муаммоларни кўрсатиш бандларига айлантиради: «1) 2) 3)» билан ёзилган муаммо — алоҳида карталар;
+ *  ижро/натижа бандлари сони муаммолар сонига тенг бўлса — ҳар бирига ўзиники; бўлмаса — рўйхат кўринишида битта картада. */
+function tBandlar(vazifa){
+  var out=[];
+  vazifa.forEach(function(v){
+    var px=tBandla(v.xohish), pn=tBandla(v.nima), pr=tBandla(v.natija);
+    var n=px?px.b.length:0;
+    var mos=px && (!v.nima || (pn && pn.b.length===n)) && (!v.natija || (pr && pr.b.length===n));
+    if(mos){
+      px.b.forEach(function(b,k){ if(!b && !(pn&&pn.b[k]) && !(pr&&pr.b[k])) return;
+        out.push({xohish:b, kirish:k===0?px.kirish:'', nima:pn?pn.b[k]:'', natija:pr?pr.b[k]:'', holat:v.holat, masul:v.masul, muddat:v.muddat, sanalar:v.sanalar, asl:v}); });
+      return;
+    }
+    var o={xohish:v.xohish, nima:v.nima, natija:v.natija, holat:v.holat, masul:v.masul, muddat:v.muddat, sanalar:v.sanalar, asl:v};
+    if(px){ o.xohishB=px.b; o.kirish=px.kirish }
+    if(pn){ o.nimaB=pn.b; o.nimaK=pn.kirish }
+    if(pr){ o.natijaB=pr.b; o.natijaK=pr.kirish }
+    if(pn && pr && pn.b.length===pr.b.length) o.juft=true;     // ижро k ↔ натижа k
+    out.push(o);
+  });
+  return out;
+}
+/** Матн бошидаги «3.» / «3)» бизнинг тартиб рақамига тенг бўлса — олиб ташлаймиз (икки марта кўринмасин) */
+function tBoshRaqam(t,n){ var m=/^\s*(\d{1,2})\s*[.)]\s*/.exec(t||''); return (m && +m[1]===n) ? t.slice(m[0].length) : t }
+/** Матн ёки бандлар рўйхати */
+function tBandMatn(matn,bandlar,kirish,bosh){
+  if(bandlar) return (kirish?'<p>'+esc(kirish)+'</p>':'')+'<ol class="oqvl">'+bandlar.map(function(b,i){ return '<li><em>'+(i+1)+'</em><span>'+(b?esc(b):'<span class="oqyoq">—</span>')+'</span></li>' }).join('')+'</ol>';
+  return matn?'<p>'+esc(matn)+'</p>':'<p class="oqyoq">'+bosh+'</p>';
 }
 
 function tMuddatMatn(sana,foiz){
@@ -7070,8 +7157,7 @@ function turonOquvchi(){
       '<div class="xato"><b>Жадвални ўқиб бўлмади</b>'+esc(D.turonOqXato)+'</div>';
   if(!D.turonOq)
     return sarlavha('Ўқувчилар','«Учрашув ҳисоботи» жадвали',mobilTugma())+
-      '<div class="empty"><b>Ўқувчилар маълумоти келмади</b>Turon.gs ни 1.1 версияга янгиланг: '+
-      'Развернуть → Управление развертываниями → ✏ → Новая версия</div>';
+      '<div class="empty"><b>Ўқувчилар маълумоти келмади</b>«Учрашув ҳисоботи» жадвалини текширинг</div>';
 
   var all=tOquvchilar();
   var ochiq=null; all.forEach(function(o){ if(o.id===S.oqId) ochiq=o });
@@ -7081,38 +7167,39 @@ function turonOquvchi(){
   if(S.qidiruv){
     var q=S.qidiruv.toLowerCase();
     l=l.filter(function(o){
-      return [o.nom,(o.azo&&o.azo.faoliyat)||''].concat(o.vazifa.map(function(v){ return v.xohish+' '+v.nima+' '+v.masul }))
+      return [o.nom,o.haqida,(o.azo&&o.azo.faoliyat)||''].concat(o.vazifa.map(function(v){ return v.xohish+' '+v.nima+' '+v.natija+' '+v.masul }))
         .join(' ').toLowerCase().indexOf(q)>=0;
     });
   }
-  var uch=0, fs=[], otg=0;
-  all.forEach(function(o){ uch+=o.sanalar.length; if(o.foiz!=null) fs.push(o.foiz); otg+=o.otgan });
+  var uch=0, fs=[], otg=0, mu=0, ij=0;
+  all.forEach(function(o){ uch+=o.sanalar.length; if(o.foiz!=null) fs.push(o.foiz); otg+=o.otgan; mu+=o.muammo; ij+=o.ijro });
   var orta=fs.length?fs.reduce(function(a,b){ return a+b },0)/fs.length:null;
 
-  var o=sarlavha('Ўқувчилар','Учрашувлар, хоҳишлар ва тайёрлик — батафсил учун карточкани босинг',
-    '<input type="text" id="qid" placeholder="Исм, хоҳиш, масъул…" value="'+esc(S.qidiruv)+'" style="width:210px">'+mobilTugma());
+  var o=sarlavha('Ўқувчилар','Муаммолар, ижро ва натижа — батафсил учун карточкани босинг',
+    '<input type="text" id="qid" placeholder="Исм, муаммо, масъул…" value="'+esc(S.qidiruv)+'" style="width:210px">'+mobilTugma());
 
   o+='<div class="mets">'+
     '<div class="met"><div class="met-l">Ўқувчилар</div><div class="met-v num">'+fmt(all.length)+'</div><div class="met-d">«Учрашув ҳисоботи»дан</div></div>'+
-    '<div class="met"><div class="met-l">Учрашувлар</div><div class="met-v num">'+fmt(uch)+'</div><div class="met-d">жами ўтказилган</div></div>'+
-    '<div class="met o"><div class="met-l">Ўртача тайёрлик</div><div class="met-v num">'+(orta==null?'—':Math.round(orta)+'%')+'</div>'+
+    '<div class="met"><div class="met-l">Муаммолар</div><div class="met-v num">'+fmt(mu)+'</div><div class="met-d">шундан <b>'+fmt(ij)+'</b> тасида ижро ёзилган</div></div>'+
+    '<div class="met o"><div class="met-l">Ўртача ҳолат</div><div class="met-v num">'+(orta==null?'—':Math.round(orta)+'%')+'</div>'+
       '<div class="mprog"><i style="width:'+(orta||0)+'%;background:'+tFoizRang(orta)+'"></i></div></div>'+
-    '<div class="met c"><div class="met-l">Муддати ўтган</div><div class="met-v num">'+fmt(otg)+'</div><div class="met-d">бажарилмаган вазифа</div></div>'+
+    '<div class="met c"><div class="met-l">Муддати ўтган</div><div class="met-v num">'+fmt(otg)+'</div><div class="met-d">ҳолати 100% бўлмаган</div></div>'+
   '</div>';
 
   o+='<div class="oqg">'+(l.length?l.map(function(s,i){
     var f=s.foiz, oxirgi=s.sanalar[s.sanalar.length-1];
     return '<button class="oqk" data-oq="'+esc(s.id)+'" style="--c:'+tFoizRang(f)+';animation-delay:'+(i*0.03).toFixed(2)+'s">'+
       '<div class="oqkh"><div><b>'+esc(s.nom)+'</b>'+
-        '<span>'+esc((s.azo&&s.azo.faoliyat)||'фаолияти кўрсатилмаган')+'</span></div>'+
+        '<span>'+esc(s.haqida||(s.azo&&s.azo.faoliyat)||'фаолияти кўрсатилмаган')+'</span></div>'+
         '<em class="num">'+(f==null?'—':Math.round(f)+'%')+'</em></div>'+
       tChiziq(f)+
       '<div class="oqkc">'+
-        '<span><b>'+s.sanalar.length+'</b> учрашув</span>'+
-        '<span><b>'+s.vazifa.length+'</b> хоҳиш</span>'+
+        '<span><b>'+s.muammo+'</b> муаммо</span>'+
+        '<span><b>'+s.ijro+'</b> ижро</span>'+
+        '<span><b>'+s.natija+'</b> натижа</span>'+
         (s.otgan?'<span class="r"><b>'+s.otgan+'</b> муддати ўтган</span>':'')+
       '</div>'+
-      '<div class="oqkf"><span>охирги учрашув: <b>'+(oxirgi?dfmt(oxirgi):'—')+'</b></span>'+
+      '<div class="oqkf"><span>'+(s.masul?'масъул: <b>'+esc(s.masul)+'</b>':'учрашув: <b>'+(oxirgi?dfmt(oxirgi):'—')+'</b>')+'</span>'+
         (s.muddat?'<span>муддат: <b>'+dfmt(s.muddat)+'</b></span>':'')+'</div>'+
     '</button>';
   }).join(''):bosh('Ўқувчи топилмади'))+'</div>';
@@ -7120,218 +7207,59 @@ function turonOquvchi(){
 }
 
 function tOquvchiIchi(s){
-  var a=s.azo, f=s.foiz, rang=tFoizRang(f);
+  var a=s.azo, f=s.foiz, rang=tFoizRang(f), um=s.umumiy;
   var o=sarlavha(s.nom,'Ўқувчи карточкаси',mobilTugma());
   o+='<div class="tdh"><button class="btn" data-oq="">← Барча ўқувчилар</button></div>';
 
+  var tagi=[a&&[a.davlat,a.shahar].filter(Boolean).join(' / '), a&&a.shartnoma?('шартнома № '+a.shartnoma):''].filter(Boolean).join(' · ');
   o+='<div class="oqi" style="--c:'+rang+'">'+
     halqa(f||0,rang,104,11,'<b class="num" style="font-size:24px">'+(f==null?'—':Math.round(f)+'%')+'</b>')+
     '<div class="oqim"><b>'+esc(s.nom)+'</b>'+
-      '<span>'+esc([a&&a.faoliyat, a&&[a.davlat,a.shahar].filter(Boolean).join(' / '), a&&a.shartnoma?('шартнома № '+a.shartnoma):''].filter(Boolean).join(' · ')||'Тўлов жадвалида топилмади')+'</span>'+
+      '<span>'+esc(s.haqida||(a&&a.faoliyat)||'Аъзо ҳақида ёзилмаган')+(tagi?'<br>'+esc(tagi):'')+'</span>'+
       '<div class="oqis">'+
-        '<div><em>Учрашувлар</em><b class="num">'+s.sanalar.length+'</b></div>'+
-        '<div><em>Хоҳиш / сўров</em><b class="num">'+s.vazifa.length+'</b></div>'+
-        '<div><em>Тайёрлик</em><b class="num" style="color:'+rang+'">'+(f==null?'—':Math.round(f)+'%')+'</b></div>'+
-        '<div><em>Яқин муддат</em><b class="num">'+(s.muddat?dfmt(s.muddat):'—')+'</b></div>'+
+        '<div><em>Масъул</em><b>'+(s.masul?esc(s.masul):'—')+'</b></div>'+
+        '<div><em>Учрашув</em><b class="num">'+(s.sanalar.length?s.sanalar.map(dfmt).join(', '):'—')+'</b></div>'+
+        '<div><em>Муаммолар</em><b class="num">'+s.muammo+'</b></div>'+
+        '<div><em>Ижро / натижа</em><b class="num">'+s.ijro+' / '+s.natija+'</b></div>'+
+        '<div><em>Ҳолати</em><b class="num" style="color:'+rang+'">'+(f==null?'—':Math.round(f)+'%')+'</b></div>'+
+        '<div><em>Муддат</em><b class="num">'+(s.muddat?dfmt(s.muddat):'—')+'</b>'+
+          (s.muddat?'<small style="display:block;font-weight:500;font-size:11px">'+tMuddatMatn(s.muddat,f)+'</small>':'')+'</div>'+
       '</div></div></div>';
 
-  // Учрашувлар — сана бўйича
-  o+='<div class="sec"><h2>Учрашувлар</h2><p>'+s.sanalar.length+' марта учрашилган</p></div><div class="panel"><div class="oqt">'+
-    (s.sanalar.length?s.sanalar.map(function(sn,i){
-      var ish=s.vazifa.filter(function(v){ return v.sanalar.indexOf(sn)>=0 && v.xohish });
-      return '<div class="oqtr"><i>'+(i+1)+'</i><div><b>'+dfmt(sn)+'</b>'+
-        '<span>'+(ish.length?ish.map(function(v){ return esc(v.xohish.split('\n')[0]) }).join(' · '):'хоҳиш ёзилмаган')+'</span></div></div>';
-    }).join(''):'<div class="empty">Учрашув санаси ёзилмаган</div>')+'</div></div>';
-
-  // Хоҳишлар ва режа
-  o+='<div class="sec"><h2>Хоҳиш / сўров ва режа</h2><p>Нима хоҳлаяпти ва биз нима қилиб беришимиз керак</p></div>'+
-    '<div class="oqv">'+s.vazifa.map(function(v,i){
-      var vr=tFoizRang(v.holat);
-      return '<div class="oqvk" style="--c:'+vr+'">'+
-        '<div class="oqvh"><em>'+(i+1)+'</em><div class="oqvx">'+
-          (v.xohish?esc(v.xohish):'<span class="oqyoq">Хоҳиш / сўров ҳали ёзилмаган</span>')+'</div>'+
-          '<b class="num">'+(v.holat==null?'—':Math.round(v.holat)+'%')+'</b></div>'+
-        tChiziq(v.holat)+
-        '<div class="oqvn"><span>Нима қилиш керак</span>'+
-          (v.nima?'<p>'+esc(v.nima)+'</p>':'<p class="oqyoq">ҳали тўлдирилмаган</p>')+'</div>'+
-        '<div class="oqvm">'+
-          '<span>Масъул: <b>'+(v.masul?esc(v.masul):'—')+'</b></span>'+
-          '<span>Муддат: <b>'+(v.muddat?dfmt(v.muddat):'—')+'</b> '+tMuddatMatn(v.muddat,v.holat)+'</span>'+
-          (v.sanalar.length?'<span>Учрашув: <b>'+v.sanalar.map(dfmt).join(', ')+'</b></span>':'')+
-        '</div>'+
-        (v.natija?'<div class="oqvr"><span>Натижа</span><p>'+esc(v.natija)+'</p></div>':'')+
+  // Муаммолар: йиғилувчи карталар — сарлавҳа босилса ижроси ва натижаси очилади
+  var bl=s.bandlar||tBandlar(s.vazifa), och=S.oqOch||{}, hammasi=bl.length && bl.every(function(_,i){ return och[i] });
+  o+='<div class="sec"><h2>Муаммолар ва эҳтиёжлар</h2><p>Ҳар бир муаммо учун: биз томондан ижроси ва натижа · '+bl.length+' та · босиб очинг</p></div>'+
+    '<div class="oqvs"><button class="btn" data-oqhamma="'+(hammasi?'0':'1')+'">'+(hammasi?'Ҳаммасини ёпиш':'Ҳаммасини очиш')+'</button>'+
+      '<span style="font-size:12px;color:var(--muted)">ижро ёзилган: <b style="color:var(--ink2)">'+s.ijro+'</b> · натижа: <b style="color:var(--ink2)">'+s.natija+'</b></span></div>'+
+    '<div class="oqv">'+bl.map(function(v,i){
+      var vr=um.holat ? (v.natija?'var(--ok)':v.nima?'var(--a)':'var(--line2)') : tFoizRang(v.holat);
+      var past=[];
+      if(!um.masul)  past.push('<span>Масъул: <b>'+(v.masul?esc(v.masul):'—')+'</b></span>');
+      if(!um.muddat) past.push('<span>Муддат: <b>'+(v.muddat?dfmt(v.muddat):'—')+'</b> '+tMuddatMatn(v.muddat,v.holat)+'</span>');
+      if(s.sanalar.length>1 && v.sanalar.length) past.push('<span>Учрашув: <b>'+v.sanalar.map(dfmt).join(', ')+'</b></span>');
+      var ochiq=!!och[i];
+      var tana;
+      if(v.juft){
+        tana='<div class="oqvj"><div class="oqvjh"><span></span><span>Ижроси — биз томондан</span><span>Натижа</span></div>'+
+          v.nimaB.map(function(b,k){ var r=v.natijaB[k]; return '<div class="oqvjr"><em>'+(k+1)+'</em><div class="oqvn"><p>'+(b?esc(b):'<span class="oqyoq">—</span>')+'</p></div><div class="oqvr'+(r?'':' bosh')+'"><p>'+(r?esc(r):'<span class="oqyoq">ҳали ёзилмаган</span>')+'</p></div></div>' }).join('')+'</div>';
+      } else {
+        tana='<div class="oqvg"><div class="oqvn"><span>Ижроси — биз томондан</span>'+tBandMatn(v.nima,v.nimaB,v.nimaK,'ҳали ёзилмаган')+'</div>'+
+          '<div class="oqvr'+(v.natija?'':' bosh')+'"><span>Натижа</span>'+tBandMatn(v.natija,v.natijaB,v.natijaK,'ҳали ёзилмаган')+'</div></div>';
+      }
+      return '<div class="oqvk'+(ochiq?' och':'')+'" style="--c:'+vr+'">'+
+        '<button class="oqvh" data-oqband="'+i+'" aria-expanded="'+(ochiq?'true':'false')+'"><em>'+(i+1)+'</em><div class="oqvx">'+
+          (v.kirish?'<div class="oqvt">'+esc(v.kirish)+'</div>':'')+
+          (v.xohishB?tBandMatn('',v.xohishB,'',''):(v.xohish?esc(tBoshRaqam(v.xohish,i+1)):'<span class="oqyoq">Муаммо ёзилмаган</span>'))+'</div>'+
+          '<div class="oqvp"><i class="'+(v.nima?'ha':'yoq')+'">ижро'+(v.nima?' ✓':' —')+'</i><i class="'+(v.natija?'ha':'yoq')+'">натижа'+(v.natija?' ✓':' —')+'</i>'+
+          (um.holat?'':'<b class="num">'+(v.holat==null?'—':Math.round(v.holat)+'%')+'</b>')+
+          '<span class="oqvc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span></div></button>'+
+        '<div class="oqvb">'+(um.holat?'':tChiziq(v.holat))+tana+(past.length?'<div class="oqvm">'+past.join('')+'</div>':'')+'</div>'+
       '</div>';
     }).join('')+'</div>';
   return o;
 }
 
 
-
-/* ══════════════════════════════════════════════════════
-   ГУРУҲ ПАНЕЛЛАРИ — RBC, ИИ ва ҳали уланмаган бўлимлар
-   ══════════════════════════════════════════════════════ */
-
-function pvRjKarta(nom,r,rang,katta,izoh){
-  var ichi='<b class="num" style="font-size:'+(katta?30:22)+'px">'+(izoh?'—':Math.round(r.foiz)+'%')+'</b>';
-  return '<div class="pv-rj'+(katta?' jami':'')+(izoh?' ulanmagan':'')+'" style="--pc:'+rang+'">'+
-    '<div class="pv-rjn">'+esc(nom)+'</div>'+
-    '<div class="pv-rjb">'+halqa(izoh?0:r.foiz,rang,katta?112:84,katta?11:12,ichi)+
-      (izoh?'<div class="pv-rjs"><div><span>'+esc(izoh)+'</span></div></div>'
-           :'<div class="pv-rjs">'+
-              '<div><span>План</span><b class="num">'+fmt(r.reja)+'</b></div>'+
-              '<div><span>Факт</span><b class="num">'+fmt(r.fakt)+'</b></div>'+
-              '<div><span>Қолди</span><b class="num q">'+fmt(r.qoldi)+'</b></div></div>')+
-    '</div></div>';
-}
-
-/** Жадвали ҳали уланмаган бўлим (архив потоклар, Индивидуал, AI 1.0 / 2.0) */
-function ulanmaganSahifa(){
-  var t=guruhTop(S.prod), tur=(t.sg&&t.sg.tur)||t.g.tur, arxiv=tur==='arxiv', nom=guruhNomi(t);
-  return sarlavha(t.x.nom.indexOf(nom)===0?t.x.nom:nom+' · '+t.x.nom, arxiv?'Архив — тугаган, маълумоти ўзгармайди':'Янги бўлим','')+
-    '<div class="ulq">'+
-      '<div class="ulq-i">'+(arxiv
-        ?'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 7h18v13H3z"/><path d="M1 3h22v4H1zM10 12h4"/></svg>'
-        :'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>')+'</div>'+
-      '<b>'+esc(nom+' · '+t.x.nom)+'</b>'+
-      '<p>Бу бўлим учун жадвал (Google Sheets) ҳали уланмаган.<br>Жадвал тайёр бўлганда шу ерда '+
-        (arxiv?'якуний ўзгармас ҳисобот':'жонли маълумот')+' чиқади.</p>'+
-      '<div class="ulq-t">'+(t.sg||t.g).ich.map(function(x){
-        return '<button class="btn'+(x.p===S.prod?' btn-o':'')+'" data-prodga="'+x.p+'">'+esc(x.nom)+'</button>';
-      }).join('')+'</div>'+
-    '</div>';
-}
-
-
-/* ── АРХИВ ПОТОК — бошқарув панели (RBA 14, RBA 13) ── */
-function arxPanelSahifa(){
-  var pt=potok(), ds=DS();
-  var h=sarlavha('RBA — '+pt+' · бошқарув панели','Коуч якуни: план, сотувлар ва тўловлар','');
-  function rj(k){
-    var l=(ds.reja&&ds.reja[k])||[], o={reja:0,fakt:0};
-    l.forEach(function(x){ o.reja+=x.reja; o.fakt+=x.fakt });
-    o.qoldi=Math.max(0,o.reja-o.fakt); o.foiz=o.reja?o.fakt/o.reja*100:0; return o;
-  }
-  var rp=rj('praktikum'), rk=rj('kouch');
-  var jr={reja:rp.reja+rk.reja,fakt:rp.fakt+rk.fakt};
-  jr.qoldi=Math.max(0,jr.reja-jr.fakt); jr.foiz=jr.reja?jr.fakt/jr.reja*100:0;
-
-  h+='<div class="sec" style="margin-top:4px"><h2>План · факт · қолди</h2><p>«План» варақларидан — коуч якунидаги ҳолат</p></div>'+
-    '<div class="pv-rjg" style="--n:2">'+
-      pvRjKarta('Жами',jr,jr.foiz>=100?'var(--ok)':'var(--a)',true)+
-      pvRjKarta('3 кунлик',rp,'#E0A048',false)+
-      pvRjKarta('Коучинг',rk,'#4ECB92',false)+
-    '</div>';
-
-  [['praktikum','3 кунлик','#E0A048'],['kouch','Коучинг','#4ECB92']].forEach(function(q){
-    var l=ds[q[0]]||[], j=jam(l);
-    var men=guruhla(l,function(x){ return x.menejer }).slice(0,8);
-    h+='<div class="sec"><h2>'+q[1]+'</h2><p>Жами '+fmt(j.soni)+' та сотув</p></div>'+
-      '<div class="mets">'+
-        '<div class="met"><div class="met-l">Сотувлар</div><div class="met-v num">'+fmt(j.soni)+'</div>'+
-          '<div class="met-d">'+(j.kelmagan?'келмаганлар: '+fmt(j.kelmagan):'коуч давомида')+'</div></div>'+
-        '<div class="met"><div class="met-l">Келишув</div><div class="met-v num">'+pul(j.kelishuv)+'</div>'+
-          '<div class="met-d">жами шартнома суммаси</div></div>'+
-        '<div class="met k"><div class="met-l">Тўланган</div><div class="met-v num">'+pul(j.tolangan)+'</div>'+
-          '<div class="met-d">келишувнинг '+foiz(j.tolangan,j.kelishuv)+'%</div></div>'+
-        '<div class="met c"><div class="met-l">Қарздорлик</div><div class="met-v num">'+pul(j.qarz)+'</div>'+
-          '<div class="met-d">келишувнинг '+foiz(j.qarz,j.kelishuv)+'%</div></div>'+
-      '</div>'+
-      '<div class="two" style="margin-top:16px">'+
-        '<div><div class="sec" style="margin-top:0"><h2>План бажарилиши</h2><p>Ҳар бир РОП бўйича</p></div>'+
-          '<div class="panel">'+rejaUstun((ds.reja&&ds.reja[q[0]])||[])+'</div></div>'+
-        '<div><div class="sec" style="margin-top:0"><h2>Энг яхши менежерлар</h2><p>Сотув сони бўйича, юқори 8 таси</p></div>'+
-          '<div class="panel">'+ustunlar(men.map(function(x){ return {nom:x.nom,qiy:x.soni,ong:pul(x.tolangan)} }))+'</div></div>'+
-      '</div>'+
-      '<div class="ulq-t" style="justify-content:flex-start;margin-top:14px">'+
-        '<button class="btn btn-o" data-prodga="r'+pt+'_'+q[0]+'">'+q[1]+'ни батафсил очиш →</button></div>';
-  });
-  return h;
-}
-
-/* ── RBC — клублар панели ── */
-function rbcPanelSahifa(){
-  var h=sarlavha('RBC · бошқарув панели','Клублар: Турон Клуб, Турон Клуб Форум ва Индивидуал','');
-  var tp=tPlan(), bor=D&&D.turon, l=bor?D.turon:[];
-  var fp=fPlan(), ip=(D&&D.ind)?iPlan():null;
-  var jr={reja:tp.reja+(fp?fp.reja:0)+(ip?ip.reja:0),fakt:tp.fakt+(fp?fp.fakt:0)+(ip?ip.fakt:0)};
-  jr.qoldi=Math.max(0,jr.reja-jr.fakt); jr.foiz=jr.reja?jr.fakt/jr.reja*100:0;
-
-  h+='<div class="sec" style="margin-top:4px"><h2>План · факт · қолди</h2><p>Клублар бўйича — сотув (аъзо) сони</p></div>'+
-    '<div class="pv-rjg" style="--n:3">'+
-      pvRjKarta('Жами',jr,jr.foiz>=100?'var(--ok)':'var(--a)',true)+
-      pvRjKarta('Турон Клуб',tp,'#D77B96',false)+
-      (fp?pvRjKarta('Турон Клуб Форум',fp,'#E0A048',false):pvRjKarta('Турон Клуб Форум',null,'#E0A048',false,forumUlangan()?'юкланмоқда…':'ҳали уланмаган'))+
-      (ip?pvRjKarta('Индивидуал',ip,'#6FA8DC',false):pvRjKarta('Индивидуал',null,'#6FA8DC',false,indUlangan()?'юкланмоқда…':'ҳали уланмаган'))+
-    '</div>';
-
-  h+='<div class="sec"><h2>Турон Клуб</h2><p>Аъзолар, тўловлар ва ўқувчилар</p></div>';
-  if(!turonUlangan()) return h+'<div class="pv-card"><div class="pv-wait">Турон Клуб уланмаган</div></div>'+forumRbcBlok()+rbcIndividual();
-  if(!bor) return h+'<div class="pv-card">'+pvKutish()+'</div>'+forumRbcBlok()+rbcIndividual();
-
-  var jami=0; l.forEach(function(x){ jami+=x.summa||0 });
-  var kecha=l.filter(function(x){ return kechaMi(x.sana) }), ks=0; kecha.forEach(function(x){ ks+=x.summa||0 });
-  var oq=D.turonOq?tOquvchilar():null, fs=[], uch=0;
-  if(oq) oq.forEach(function(o){ uch+=o.sanalar.length; if(o.foiz!=null) fs.push(o.foiz) });
-  var orta=fs.length?fs.reduce(function(a,b){ return a+b },0)/fs.length:null;
-
-  h+='<div class="mets">'+
-    '<div class="met"><div class="met-l">Аъзолар</div><div class="met-v num">'+fmt(l.length)+'</div>'+
-      '<div class="met-d">кеча қўшилди: <b>'+fmt(kecha.length)+'</b></div></div>'+
-    '<div class="met k"><div class="met-l">Тўланган</div><div class="met-v num">'+tPul(jami)+'</div>'+
-      '<div class="met-d">'+(tKurs()?'≈ '+tUsd(jami)+' · ':'')+'кеча '+tPul(ks)+'</div></div>'+
-    '<div class="met"><div class="met-l">Ўқувчилар</div><div class="met-v num">'+(oq?fmt(oq.length):'—')+'</div>'+
-      '<div class="met-d">'+(oq?fmt(uch)+' та учрашув':'учрашув жадвали келмади')+'</div></div>'+
-    '<div class="met o"><div class="met-l">Ўртача тайёрлик</div><div class="met-v num">'+(orta==null?'—':Math.round(orta)+'%')+'</div>'+
-      '<div class="mprog"><i style="width:'+(orta||0)+'%;background:'+tFoizRang(orta)+'"></i></div></div>'+
-  '</div>'+
-  '<div class="ulq-t" style="justify-content:flex-start;margin-top:14px">'+
-    '<button class="btn btn-o" data-prodga="turon">Турон Клубни очиш →</button></div>';
-
-  h+='<div class="sec"><h2>География</h2><p>Аъзолар қайси давлатдан — давлатни босинг</p></div>'+
-     '<div class="panel">'+tXaritaDavlat(tGeo(l))+'</div>';
-
-  return h+forumRbcBlok()+rbcIndividual();
-}
-function rbcIndividual(){ return indRbcBlok() }
-
-/* ── ИИ — сунъий интеллект курслари панели ── */
-function iiPanelSahifa(){
-  var h=sarlavha('ИИ · бошқарув панели','AI — 1.0, AI — 2.0 ва AI — 3.0 — ҳар бирида 3 та курс','');
-  var r3=pvReja('ai');
-  h+='<div class="sec" style="margin-top:4px"><h2>План · факт · қолди</h2><p>Ҳар бир AI курси бўйича</p></div>'+
-    '<div class="pv-rjg" style="--n:3">'+
-      pvRjKarta('Жами',r3,r3.foiz>=100?'var(--ok)':'var(--a)',true)+
-      pvRjKarta('AI — 3.0 · 2-курс',r3,'#A08FD0',false)+
-      pvRjKarta('AI — 2.0',null,'#6FA8DC',false,'3 та курс · ҳали уланмаган')+
-      pvRjKarta('AI — 1.0',null,'#4ECB92',false,'3 та курс · ҳали уланмаган')+
-    '</div>';
-
-  h+='<div class="sec"><h2>AI — 3.0 · 2-курс</h2><p>Ҳозир онлайн бўлиб турган курс — сотувлар ва тўловлар</p></div>';
-  if(!aiUlangan()) return h+'<div class="pv-card"><div class="pv-wait">AI — 3.0 · 2-курс уланмаган</div></div>';
-  if(!D || !D.ai)  return h+'<div class="pv-card">'+pvKutish()+'</div>';
-
-  var j=jam(D.ai), kj=jam(D.ai.filter(function(x){ return kechaMi(x.sana) }));
-  h+='<div class="mets">'+
-    '<div class="met"><div class="met-l">Сотувлар</div><div class="met-v num">'+fmt(j.soni)+'</div>'+
-      '<div class="met-d">кеча: <b>'+fmt(kj.soni)+'</b></div></div>'+
-    '<div class="met k"><div class="met-l">Тўланган</div><div class="met-v num">'+pul(j.tolangan)+'</div>'+
-      '<div class="met-d">кеча '+pul(kj.tolangan)+'</div></div>'+
-    '<div class="met"><div class="met-l">Дагавор</div><div class="met-v num">'+pul(j.kelishuv)+'</div>'+
-      '<div class="met-d">жами келишув</div></div>'+
-    '<div class="met c"><div class="met-l">Қарздорлик</div><div class="met-v num">'+pul(j.qarz)+'</div>'+
-      '<div class="met-d">дагаворнинг '+foiz(j.qarz,j.kelishuv)+'%</div></div>'+
-  '</div>'+
-  '<div class="ulq-t" style="justify-content:flex-start;margin-top:14px">'+
-    '<button class="btn btn-o" data-prodga="ai">AI — 3.0 · 2-курсни очиш →</button></div>';
-
-  var men=guruhla(D.ai,function(x){ return x.menejer });
-  h+=bolim('Менежерлар','AI — 3.0 · 2-курс бўйича ким қанча сотган',
-    ustunlar(men.map(function(x){ return {nom:x.nom,qiy:x.soni,ong:pul(x.tolangan)} })));
-
-  h+='<div class="sec"><h2>AI — 1.0 ва AI — 2.0 · AI — 3.0 нинг 1 ва 3-курси</h2><p>Олдинги ва кейинги курслар</p></div>'+
-     '<div class="pv-card"><div class="pv-wait">Ҳали уланмаган — жадвал тайёр бўлганда шу ерда чиқади</div></div>';
-  return h;
-}
 
 /* ══════════════════════════════════════════════════════
    12. ЧИЗИШ
@@ -8294,9 +8222,20 @@ main.addEventListener('click',async function(e){
     if(S.sahifa!=='menejer'){ S.sahifa='menejer'; S.qidiruv='' }
     chiz(); tepaga(); return;
   }
+  if((t=e.target.closest('[data-oqband]'))){
+    e.preventDefault(); if(!S.oqOch) S.oqOch={}; var bi=t.getAttribute('data-oqband');
+    if(S.oqOch[bi]) delete S.oqOch[bi]; else S.oqOch[bi]=1;
+    var kk=t.closest('.oqvk'); if(kk){ kk.classList.toggle('och',!!S.oqOch[bi]); t.setAttribute('aria-expanded',S.oqOch[bi]?'true':'false') } else chiz();
+    return;
+  }
+  if((t=e.target.closest('[data-oqhamma]'))){
+    e.preventDefault(); S.oqOch={};
+    if(t.getAttribute('data-oqhamma')==='1'){ var sb=(tOquvchilar().filter(function(x){ return x.id===S.oqId })[0]||{}).bandlar||[]; sb.forEach(function(_,i){ S.oqOch[i]=1 }) }
+    chiz(); return;
+  }
   if((t=e.target.closest('[data-oq]'))){
     e.preventDefault();
-    S.oqId=t.getAttribute('data-oq')||null; chiz(); tepaga(); return;
+    S.oqId=t.getAttribute('data-oq')||null; S.oqOch={}; chiz(); tepaga(); return;
   }
   if((t=e.target.closest('[data-tvil]'))){
     e.preventDefault();
